@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace _2019_2
 {
-    class Program
+    class Day2
     {
         static void Main(string[] args)
         {
