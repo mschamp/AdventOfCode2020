@@ -6,7 +6,7 @@ namespace General
     {
         static void Main(string[] args)
         {
-            Solve2019();
+            //Solve2019();
             Solve2020();
         }
 
@@ -19,7 +19,7 @@ namespace General
             Day.Tests();
             Console.WriteLine("DAY1");
             Console.WriteLine(Day.SolvePart1(_2020.inputs.D1P1));
-            //Console.WriteLine(Day.SolvePart2(_2020.inputs.D1P1));
+            Console.WriteLine(Day.SolvePart2(_2020.inputs.D1P1));
             Console.WriteLine("__________________________________");
         }
 
