@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace _2019
 {
-    class Day1:IAoC
+    public class Day1:General.IAoC
     {
 
         private  int GetFuelForModule(int mass, int divider, int substracter)

@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace _2019
 {
-    class Day2:IAoC
+    public class Day2:General.IAoC
     {
        
         public string SolvePart1(string input)

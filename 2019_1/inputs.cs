@@ -4,7 +4,7 @@ using System.Text;
 
 namespace _2019
 {
-    class inputs
+    public class inputs
     {
         public static string D1P1 = @"93326
 54591
