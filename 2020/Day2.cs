@@ -14,7 +14,7 @@ namespace _2020
             Regex reg = new Regex(@"(\d+)-(\d+)\s(.):\s(.+)");
             string[] entries = input.Split(Environment.NewLine);
             int OKCounter = 0;
-            foreach (string entry in entries)
+            foreach(string entry in entries)
             {
                 MatchCollection matches = reg.Matches(entry);
                 if (PassWordOK1(int.Parse(matches[0].Groups[1].Value), int.Parse(matches[0].Groups[2].Value), matches[0].Groups[3].Value.First(), matches[0].Groups[4].Value))
@@ -45,25 +45,13 @@ namespace _2020
         private bool PassWordOK1(int min, int max, char Letter, string passw)
         {
             int number = passw.ToCharArray().Count(c => c == Letter);
-            if (number >= min &&  number <= max)
-            {
-                return true;
-            }
-            return false;
+            return (number >= min && number <= max);
         }
 
         private bool PassWordOK2(int p1, int p2, char Letter, string passw)
         {
             char[] passchar = passw.ToCharArray();
-            if (passchar[p1-1]==Letter && passchar[p2 - 1] != Letter)
-            {
-                return true;
-            }
-            if (passchar[p2 - 1] == Letter && passchar[p1 - 1] != Letter)
-            {
-                return true;
-            }
-            return false;
+            return ((passchar[p1 - 1] == Letter) ^ (passchar[p2 - 1] == Letter));
         }
 
         public void Tests()

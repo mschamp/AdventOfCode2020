@@ -1208,5 +1208,7 @@ namespace _2020
 7-9 l: llllllllll
 15-19 p: pppbpcppxcptppvmpppb
 3-4 m: fqmwcncsmp";
+
+        public static string D3P1 = @"";
     }
 }
