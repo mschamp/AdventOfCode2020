@@ -21,6 +21,15 @@ namespace General
             Console.WriteLine(Day.SolvePart1(_2020.inputs.D1P1));
             Console.WriteLine(Day.SolvePart2(_2020.inputs.D1P1));
             Console.WriteLine("__________________________________");
+
+            //Day1
+            Day = new _2020.Day2();
+
+            Day.Tests();
+            Console.WriteLine("DAY2");
+            Console.WriteLine(Day.SolvePart1(_2020.inputs.D2P1));
+            Console.WriteLine(Day.SolvePart2(_2020.inputs.D2P1));
+            Console.WriteLine("__________________________________");
         }
 
 
