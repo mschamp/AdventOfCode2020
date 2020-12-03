@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2019", "2019_1\2019.csproj", "{149D98D3-3749-48A6-8556-0674B0D25189}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "General", "General\General.csproj", "{42D8270C-273E-411D-920D-980530B094AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "General", "General\General.csproj", "{42D8270C-273E-411D-920D-980530B094AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interfaces", "Interfaces\Interfaces.csproj", "{59AA1F5F-79CD-4DC2-9E7C-DA2785DA8684}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\Interfaces.csproj", "{59AA1F5F-79CD-4DC2-9E7C-DA2785DA8684}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2020", "2020\2020.csproj", "{1DFBD68D-BDE1-410E-89D6-C3515F506947}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2020", "2020\2020.csproj", "{1DFBD68D-BDE1-410E-89D6-C3515F506947}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2019", "2019\2019.csproj", "{E7140A85-CF7F-43E7-95FA-49A18E693DA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{149D98D3-3749-48A6-8556-0674B0D25189}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{149D98D3-3749-48A6-8556-0674B0D25189}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{149D98D3-3749-48A6-8556-0674B0D25189}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{149D98D3-3749-48A6-8556-0674B0D25189}.Release|Any CPU.Build.0 = Release|Any CPU
 		{42D8270C-273E-411D-920D-980530B094AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{42D8270C-273E-411D-920D-980530B094AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42D8270C-273E-411D-920D-980530B094AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{1DFBD68D-BDE1-410E-89D6-C3515F506947}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DFBD68D-BDE1-410E-89D6-C3515F506947}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DFBD68D-BDE1-410E-89D6-C3515F506947}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7140A85-CF7F-43E7-95FA-49A18E693DA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7140A85-CF7F-43E7-95FA-49A18E693DA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7140A85-CF7F-43E7-95FA-49A18E693DA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7140A85-CF7F-43E7-95FA-49A18E693DA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
