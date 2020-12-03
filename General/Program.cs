@@ -45,9 +45,9 @@ namespace General
             Day.Tests();
             Console.WriteLine("DAY3");
             watch.Start();
-            Console.WriteLine(Day.SolvePart1(_2020.inputs.D2P1) + " " + watch.Elapsed);
+            Console.WriteLine(Day.SolvePart1(_2020.inputs.D3P1) + " " + watch.Elapsed);
             watch.Restart();
-            Console.WriteLine(Day.SolvePart2(_2020.inputs.D2P1) + " " + watch.Elapsed);
+            Console.WriteLine(Day.SolvePart2(_2020.inputs.D3P1) + " " + watch.Elapsed);
             watch.Stop();
             Console.WriteLine("__________________________________");
         }
