@@ -40,7 +40,7 @@ namespace _2020
             int PasOK = 0;
             foreach (string item in pasports)
             {
-                List<string> matched = new List<string>();
+                int matched = 0;
                 Regex reg = new Regex(@"(.{3}):(.+?)\s");
                 foreach (Match part in reg.Matches(item + " "))
                 {
@@ -49,39 +49,39 @@ namespace _2020
                         case "ecl":
                             if (eye.Contains(part.Groups[2].Value.Trim()))
                             {
-                                matched.Add("ecl");
+                                matched++;
                             }
                             break;
                         case "pid":
                             Regex pid = new Regex(@"\s\d{9}\s");
                             if (pid.IsMatch(" " + part.Groups[2].Value + " "))
                             {
-                                matched.Add("pid");
+                                matched++;
                             }
                             break;
                         case "eyr":
                             if (NumberOK(2020, 2030, part.Groups[2].Value))
                             {
-                                matched.Add("eyr");
+                                matched++;
                             }
                             break;
                         case "hcl":
                             Regex hair = new Regex(@"\s#[0-9|a-f]{6}\s");
                             if (hair.IsMatch(" "+part.Groups[2].Value+" "))
                             {
-                                matched.Add("hcl");
+                                matched++;
                             }
                             break;
                         case "byr":
                             if (NumberOK(1920, 2002, part.Groups[2].Value))
                             {
-                                matched.Add("byr");
+                                matched++;
                             }
                             break;
                         case "iyr":
                             if (NumberOK(2010, 2020, part.Groups[2].Value))
                             {
-                                matched.Add("iyr");
+                                matched++;
                             }
                             break;
                         case "hgt":
@@ -89,16 +89,16 @@ namespace _2020
                             Match value = hgt.Match(part.Groups[2].Value);
                             if ((part.Groups[2].Value.Trim().EndsWith("cm") && NumberOK(150, 193, value.Groups[1].Value) ))
                             {
-                                matched.Add("hgt");
+                                matched++;
                             }
                             else if ((part.Groups[2].Value.Trim().EndsWith("in") && NumberOK(59, 76, value.Groups[1].Value)))
                             {
-                                matched.Add("hgt");
+                                matched++;
                             }
                             break;
                     }
                 }
-                if (matched.Count() == 7 && matched.Distinct().Count() == 7)
+                if (matched == 7)
                 {
                     PasOK++;
                 }
