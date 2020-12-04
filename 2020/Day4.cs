@@ -22,77 +22,18 @@ namespace _2020
         public string SolvePart2(string input = null)
         {
             IEnumerable<Passport> Passports = ReadPassports(input);
-            List<string> eye = new List<string> { "amb", "blu", "brn", "gry", "grn", "hzl", "oth" };
-            int PasOK = 0;
-            foreach (Passport item in Passports)
+            var Requirements = new Dictionary<string, Func<string, bool>>()
             {
-                int matched = 0;
-                foreach (KeyValuePair<string, string> part in item.Content)
-                {
-                    switch (part.Key)
-                    {
-                        case "ecl":
-                            if (eye.Contains(part.Value))
-                            {
-                                matched++;
-                            }
-                            break;
-                        case "pid":
-                            Regex pid = new Regex(@"^\d{9}$");
-                            if (pid.IsMatch(part.Value))
-                            {
-                                matched++;
-                            }
-                            break;
-                        case "eyr":
-                            if (NumberOK(2020, 2030, part.Value))
-                            {
-                                matched++;
-                            }
-                            break;
-                        case "hcl":
-                            Regex hair = new Regex(@"^#[0-9|a-f]{6}$");
-                            if (hair.IsMatch(part.Value))
-                            {
-                                matched++;
-                            }
-                            break;
-                        case "byr":
-                            if (NumberOK(1920, 2002, part.Value))
-                            {
-                                matched++;
-                            }
-                            break;
-                        case "iyr":
-                            if (NumberOK(2010, 2020, part.Value))
-                            {
-                                matched++;
-                            }
-                            break;
-                        case "hgt":
-                            Regex hgt = new Regex(@"^(\d+)(cm|in)$");
-                            Match value = hgt.Match(part.Value);
-                            if (value.Success)
-                            {
-                                if ((value.Groups[2].Value=="cm" && NumberOK(150, 193, value.Groups[1].Value))|| (value.Groups[2].Value == "in" && NumberOK(59, 76, value.Groups[1].Value)))
-                                {
-                                    matched++;
-                                }
-                            }
-                            break;
-                    }
-                }
-                if (matched == 7)
-                {
-                    PasOK++;
-                }
-            }
-            return "" + PasOK;
-        }
+                {"eyr",Validators.NumberValidator(2020,2030) },
+                {"byr",Validators.NumberValidator(1920,2002) },
+                {"iyr",Validators.NumberValidator(2010,2020) },
+                {"ecl",Validators.ElementOfListValidator(new [] { "amb", "blu", "brn", "gry", "grn", "hzl", "oth" })},
+                {"pid",Validators.RegexValidator(@"^\d{9}$") },
+                {"hcl",Validators.RegexValidator(@"^#[0-9|a-f]{6}$") },
+                {"hgt",Validators.HeightValidator()} 
+            };
 
-        private bool NumberOK(int min, int max, string value)
-        {
-            return int.TryParse(value, out int number) &&(number >= min && number <= max);
+            return ""+Passports.Count(x => x.IsValid(Requirements));
         }
 
         private IEnumerable<Passport> ReadPassports(string input)
@@ -167,5 +108,44 @@ iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719") == "4")
         }
 
         public Dictionary<string, string> Content { get; private set; } 
+
+        public bool IsValid(Dictionary<string, Func<string, bool>> Requirements)
+        {
+            return Requirements.All(req => this.Content.ContainsKey(req.Key) && req.Value(this.Content[req.Key]));
+        }
+    }
+
+    public static class Validators
+    {
+        public static Func<string,bool> NumberValidator(int min, int max)
+        {
+            return input => int.TryParse(input, out int number) && (number >= min && number <= max);
+        }
+
+        public static Func<string,bool> ElementOfListValidator(string[] List)
+        {
+            return input => List.Contains(input);
+        }
+
+        public static Func<string, bool> RegexValidator(string Regex)
+        {
+            Regex rgx = new Regex(Regex);
+
+            return input => rgx.IsMatch(input);
+        }
+
+        public static Func<string, bool> HeightValidator()
+        {
+            Func<string, bool> cmValidator = NumberValidator(150, 193);
+            Func<string, bool> inValidator = NumberValidator(59, 76);
+
+            Regex hgt = new Regex(@"^(\d+)(cm|in)$");
+
+            return input =>
+            {
+                Match value = hgt.Match(input);
+                return value.Success && ((value.Groups[2].Value == "cm" && cmValidator(value.Groups[1].Value)) || (value.Groups[2].Value == "in" && inValidator(value.Groups[1].Value)));
+            };
+        }
     }
 }
