@@ -53,33 +53,33 @@ namespace _2020
                             }
                             break;
                         case "pid":
-                            Regex pid = new Regex(@"\d{9}");
-                            if (pid.IsMatch(part.Groups[2].Value))
+                            Regex pid = new Regex(@"\s\d{9}\s");
+                            if (pid.IsMatch(" " + part.Groups[2].Value + " "))
                             {
                                 matched.Add("pid");
                             }
                             break;
                         case "eyr":
-                            if (Enumerable.Range(2020, 2030).Contains(int.Parse(part.Groups[2].Value)))
+                            if (NumberOK(2020, 2030, part.Groups[2].Value))
                             {
                                 matched.Add("eyr");
                             }
                             break;
                         case "hcl":
-                            Regex hair = new Regex(@"#[0-9|a-f]{6}\s");
-                            if (hair.IsMatch(part.Groups[2].Value+" "))
+                            Regex hair = new Regex(@"\s#[0-9|a-f]{6}\s");
+                            if (hair.IsMatch(" "+part.Groups[2].Value+" "))
                             {
                                 matched.Add("hcl");
                             }
                             break;
                         case "byr":
-                            if (Enumerable.Range(1920, 2002).Contains(int.Parse(part.Groups[2].Value)))
+                            if (NumberOK(1920, 2002, part.Groups[2].Value))
                             {
                                 matched.Add("byr");
                             }
                             break;
                         case "iyr":
-                            if (Enumerable.Range(2010, 2020).Contains(int.Parse(part.Groups[2].Value)))
+                            if (NumberOK(2010, 2020, part.Groups[2].Value))
                             {
                                 matched.Add("iyr");
                             }
@@ -87,11 +87,11 @@ namespace _2020
                         case "hgt":
                             Regex hgt = new Regex(@"(\d+)");
                             Match value = hgt.Match(part.Groups[2].Value);
-                            if ((part.Groups[2].Value.Trim().EndsWith("cm") && Enumerable.Range(150, 193).Contains(int.Parse(value.Groups[1].Value))))
+                            if ((part.Groups[2].Value.Trim().EndsWith("cm") && NumberOK(150, 193, value.Groups[1].Value) ))
                             {
                                 matched.Add("hgt");
                             }
-                            else if ((part.Groups[2].Value.Trim().EndsWith("in") && Enumerable.Range(59, 76).Contains(int.Parse(value.Groups[1].Value))))
+                            else if ((part.Groups[2].Value.Trim().EndsWith("in") && NumberOK(59, 76, value.Groups[1].Value)))
                             {
                                 matched.Add("hgt");
                             }
@@ -105,6 +105,12 @@ namespace _2020
             }
             return "" + PasOK;
         }
+
+        private bool NumberOK(int min, int max, string value)
+        {
+            return int.TryParse(value, out int number) &&(number >= min && number <= max);
+        }
+
 
         public void Tests()
         {
