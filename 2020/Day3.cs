@@ -43,7 +43,7 @@ namespace _2020
                 }
             }
 
-            int Trees = 1;
+            long Trees = 1;
             foreach (Tuple<int, int> slope in ( new[] { new Tuple<int, int>(1, 1), new Tuple<int, int>(3, 1), new Tuple<int, int>(5, 1), new Tuple<int, int>(7, 1), new Tuple<int, int>(1, 2) }))
             {
                 Trees *= TreesOnSlope(array, slope, Rows, Columns);

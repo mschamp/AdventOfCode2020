@@ -50,6 +50,18 @@ namespace General
             Console.WriteLine(Day.SolvePart2(_2020.inputs.D3P1) + " " + watch.Elapsed);
             watch.Stop();
             Console.WriteLine("__________________________________");
+
+            //Day4
+            Day = new _2020.Day4();
+
+            Day.Tests();
+            Console.WriteLine("DAY4");
+            watch.Start();
+            Console.WriteLine(Day.SolvePart1(_2020.inputs.D4P1) + " " + watch.Elapsed);
+            watch.Restart();
+            Console.WriteLine(Day.SolvePart2(_2020.inputs.D4P1) + " " + watch.Elapsed);
+            watch.Stop();
+            Console.WriteLine("__________________________________");
         }
 
 
