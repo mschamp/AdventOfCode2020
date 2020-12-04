@@ -8,81 +8,27 @@ namespace _2019
        
         public string SolvePart1(string input)
         {
-            int[] values = Array.ConvertAll(input.Split(","), s => int.Parse(s));
-            int position = 0;
-            while (true)
-            {
-                int opCode = values[position];
-                if (opCode == 99)
-                {
-                    return values[0].ToString();
-                }
-                else
-                {
-                    int value1loc = values[position + 1];
-                    int value2loc = values[position + 2];
-                    int resultloc = values[position + 3];
-
-                    if (opCode == 1)
-                    {
-                        values[resultloc] = values[value1loc] + values[value2loc];
-                    }
-                    else if (opCode == 2)
-                    {
-                        values[resultloc] = values[value1loc] * values[value2loc];
-                    }
-                    else
-                    {
-                        Console.WriteLine("unknown code");
-                    }
-                }
-
-                position += 4;
-            }
+            IntcodeComputer computer = new IntcodeComputer();
+            computer.loadProgram(input);
+            computer.ExecuteProgram();
+            return ""+computer.GetMemoryContent(0);
         }
 
         public string SolvePart2(string input)
         {
+            IntcodeComputer computer = new IntcodeComputer();
             for (int noun = 0; noun <= 99; noun++)
             {
                 for (int verb = 0; verb <= 99; verb++)
                 {
-                    int[] values = Array.ConvertAll(input.Split(","), s => int.Parse(s));
-                    values[1] = noun;
-                    values[2] = verb;
-                    int position = 0;
-                    while (true)
+                    computer.loadProgram(input);
+                    computer.SetMemoryContent(1, noun);
+                    computer.SetMemoryContent(2, verb);
+                    computer.ExecuteProgram();
+                    
+                    if (computer.GetMemoryContent(0) == 19690720)
                     {
-                        int opCode = values[position];
-                        if (opCode == 99)
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            int value1loc = values[position + 1];
-                            int value2loc = values[position + 2];
-                            int resultloc = values[position + 3];
-
-                            if (opCode == 1)
-                            {
-                                values[resultloc] = values[value1loc] + values[value2loc];
-                            }
-                            else if (opCode == 2)
-                            {
-                                values[resultloc] = values[value1loc] * values[value2loc];
-                            }
-                            else
-                            {
-                                Console.WriteLine("unknown code");
-                            }
-                        }
-
-                        position += 4;
-                    }
-                    if (values[0] == 19690720)
-                    {
-                         return "Noun:" + noun.ToString() + " verb:" + verb.ToString() + "result:" + values[0];
+                         return "Noun:" + noun.ToString() + " verb:" + verb.ToString();
                     }
                 }
             }
