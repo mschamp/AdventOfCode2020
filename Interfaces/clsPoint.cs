@@ -4,9 +4,9 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 
-namespace Interfaces
+namespace General
 {
-    class clsPoint : IComparable<clsPoint>
+    public class clsPoint : IComparable<clsPoint> ,IEqualityComparer<clsPoint>
     {
         public clsPoint(int x, int y)
         {
@@ -73,6 +73,63 @@ namespace Interfaces
         public clsPoint rotate90()
         {
             return new clsPoint(-Y, X);
+        }
+
+        public IEnumerable<clsPoint> Move(string instruction)
+        {
+            return Move(instruction[0], int.Parse(instruction.Substring(1)));
+        }
+        public IEnumerable<clsPoint> Move(char Direction, int Distance)
+        {
+            List<clsPoint> points = new List<clsPoint>();
+            for (int i = 1; i <= Distance; i++)
+            {
+                switch (Direction)
+                {
+                    case 'R':
+                        points.Add(plus(i, 0));
+                        break;
+                    case 'L':
+                        points.Add(plus(-i, 0));
+                        break;
+                    case 'U':
+                        points.Add(plus(0, i));
+                        break;
+                    case 'D':
+                        points.Add(plus(0, -i));
+                        break;
+                }
+            }
+            
+            return points;
+        }
+
+        public bool Equals([AllowNull] clsPoint x, [AllowNull] clsPoint y)
+        {
+            return x.X == y.X && x.Y == y.Y;
+        }
+
+        public int GetHashCode([DisallowNull] clsPoint obj)
+        {
+            return obj.X + obj.Y;
+        }
+
+        public override int GetHashCode()
+        {
+            return GetHashCode(this);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj==null)
+            {
+                return false;
+            }
+            else if(obj is clsPoint)
+            {
+                return Equals(this, (clsPoint)obj);
+            }
+            return base.Equals(obj);
         }
 
         public int X { get; set; }

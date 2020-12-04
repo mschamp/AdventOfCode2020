@@ -91,6 +91,28 @@ namespace General
             Console.WriteLine(Day.SolvePart2(_2019.inputs.D2P2) + " " + watch.Elapsed);
             watch.Stop();
             Console.WriteLine("__________________________________");
+
+            // Day3
+            Day = new _2019.Day3();
+            Day.Tests();
+            Console.WriteLine("DAY3");
+            watch.Start();
+            Console.WriteLine(Day.SolvePart1(_2019.inputs.D3P1) + " " + watch.Elapsed);
+            watch.Restart();
+            Console.WriteLine(Day.SolvePart2(_2019.inputs.D3P1) + " " + watch.Elapsed);
+            watch.Stop();
+            Console.WriteLine("__________________________________");
+
+            // Day4
+            Day = new _2019.Day4();
+            Day.Tests();
+            Console.WriteLine("DAY4");
+            watch.Start();
+            Console.WriteLine(Day.SolvePart1(_2019.inputs.D4P1) + " " + watch.Elapsed);
+            watch.Restart();
+            Console.WriteLine(Day.SolvePart2(_2019.inputs.D4P1) + " " + watch.Elapsed);
+            watch.Stop();
+            Console.WriteLine("__________________________________");
         }
 
     }
