@@ -7,93 +7,77 @@ using System.Linq;
 
 namespace _2020
 {
+
+    //Met dank aan rversteeg: https://github.com/rversteeg/AdventOfCode2020/blob/cb8dbf0162f22b134862a7b2133042e4d05d9e85/Day04
+    //Heel veel uitgeleerd en mijn code kunnen optimaliseren
     public class Day4 : General.IAoC
     {
         public string SolvePart1(string input = null)
         {
-            string[] pasports = input.Split(Environment.NewLine + Environment.NewLine);
-            List<string> Valid = new List<string> {"ecl","pid","eyr","hcl","byr","iyr","hgt" };
-            int PasOK = 0;
-            foreach (string item in pasports)
-            {
-                int OKParts = 0;
-                Regex reg = new Regex(@"(.{3}):(.+?)\s");
-                foreach (Match part in reg.Matches(item+ " "))
-                {
-                    if (Valid.Contains(part.Groups[1].Value))
-                    {
-                        OKParts++;
-                    }
-                }
-                if (OKParts==7)
-                {
-                    PasOK++;
-                }
-            }
-            return "" + PasOK;
+            List<string> Needed = new List<string> { "ecl", "pid", "eyr", "hcl", "byr", "iyr", "hgt" };
+            IEnumerable<Passport> Passports = ReadPassports(input);
+            return "" + Passports.Count(Passport => Needed.All(item => Passport.Content.ContainsKey(item)));
         }
 
         public string SolvePart2(string input = null)
         {
-            string[] pasports = input.Split(Environment.NewLine + Environment.NewLine);
+            IEnumerable<Passport> Passports = ReadPassports(input);
             List<string> eye = new List<string> { "amb", "blu", "brn", "gry", "grn", "hzl", "oth" };
             int PasOK = 0;
-            foreach (string item in pasports)
+            foreach (Passport item in Passports)
             {
                 int matched = 0;
-                Regex reg = new Regex(@"(.{3}):(.+?)\s");
-                foreach (Match part in reg.Matches(item + " "))
+                foreach (KeyValuePair<string, string> part in item.Content)
                 {
-                    switch (part.Groups[1].Value.Trim())
+                    switch (part.Key)
                     {
                         case "ecl":
-                            if (eye.Contains(part.Groups[2].Value.Trim()))
+                            if (eye.Contains(part.Value))
                             {
                                 matched++;
                             }
                             break;
                         case "pid":
-                            Regex pid = new Regex(@"\s\d{9}\s");
-                            if (pid.IsMatch(" " + part.Groups[2].Value + " "))
+                            Regex pid = new Regex(@"^\d{9}$");
+                            if (pid.IsMatch(part.Value))
                             {
                                 matched++;
                             }
                             break;
                         case "eyr":
-                            if (NumberOK(2020, 2030, part.Groups[2].Value))
+                            if (NumberOK(2020, 2030, part.Value))
                             {
                                 matched++;
                             }
                             break;
                         case "hcl":
-                            Regex hair = new Regex(@"\s#[0-9|a-f]{6}\s");
-                            if (hair.IsMatch(" "+part.Groups[2].Value+" "))
+                            Regex hair = new Regex(@"^#[0-9|a-f]{6}$");
+                            if (hair.IsMatch(part.Value))
                             {
                                 matched++;
                             }
                             break;
                         case "byr":
-                            if (NumberOK(1920, 2002, part.Groups[2].Value))
+                            if (NumberOK(1920, 2002, part.Value))
                             {
                                 matched++;
                             }
                             break;
                         case "iyr":
-                            if (NumberOK(2010, 2020, part.Groups[2].Value))
+                            if (NumberOK(2010, 2020, part.Value))
                             {
                                 matched++;
                             }
                             break;
                         case "hgt":
-                            Regex hgt = new Regex(@"(\d+)");
-                            Match value = hgt.Match(part.Groups[2].Value);
-                            if ((part.Groups[2].Value.Trim().EndsWith("cm") && NumberOK(150, 193, value.Groups[1].Value) ))
+                            Regex hgt = new Regex(@"^(\d+)(cm|in)$");
+                            Match value = hgt.Match(part.Value);
+                            if (value.Success)
                             {
-                                matched++;
-                            }
-                            else if ((part.Groups[2].Value.Trim().EndsWith("in") && NumberOK(59, 76, value.Groups[1].Value)))
-                            {
-                                matched++;
+                                if ((value.Groups[2].Value=="cm" && NumberOK(150, 193, value.Groups[1].Value))|| (value.Groups[2].Value == "in" && NumberOK(59, 76, value.Groups[1].Value)))
+                                {
+                                    matched++;
+                                }
                             }
                             break;
                     }
@@ -111,22 +95,31 @@ namespace _2020
             return int.TryParse(value, out int number) &&(number >= min && number <= max);
         }
 
+        private IEnumerable<Passport> ReadPassports(string input)
+        {
+            List<Passport> passports = new List<Passport>();
+            foreach (string item in input.Split(Environment.NewLine + Environment.NewLine))
+            {
+                passports.Add(new Passport(item));
+            }
+            return passports;
+        }
 
         public void Tests()
         {
             Debug.Assert(SolvePart1(@"ecl:gry pid:860033327 eyr:2020 hcl:#fffffd
-byr: 1937 iyr: 2017 cid: 147 hgt: 183cm
+byr:1937 iyr:2017 cid:147 hgt:183cm
 
-iyr: 2013 ecl: amb cid: 350 eyr: 2023 pid: 028048884
+iyr:2013 ecl:amb cid:350 eyr:2023 pid:028048884
 hcl:#cfa07d byr:1929
 
 hcl:#ae17e1 iyr:2013
-eyr: 2024
-ecl: brn pid: 760753108 byr: 1931
-hgt: 179cm
+eyr:2024
+ecl:brn pid:760753108 byr:1931
+hgt:179cm
 
 hcl:#cfa07d eyr:2025 pid:166559648
-iyr:2011 ecl: brn hgt: 59in ") == "2");
+iyr:2011 ecl:brn hgt:59in ") == "2");
 
             Debug.Assert(SolvePart2(@"eyr:1972 cid:100
 hcl:#18171d ecl:amb hgt:170 pid:186cm iyr:2018 byr:1926
@@ -155,5 +148,24 @@ eyr:2022
 
 iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719") == "4");
         }
+    }
+
+    public class Passport
+    {
+        public Passport(string content)
+        {
+            Content = new Dictionary<string, string>();
+            foreach (string item in content.Split())
+            {
+                if (!string.IsNullOrEmpty(item))
+                {
+                    string[] parts = item.Split(':');
+                    Content[parts[0]] = parts[1];
+                }
+
+            } ;
+        }
+
+        public Dictionary<string, string> Content { get; private set; } 
     }
 }
