@@ -7,7 +7,7 @@ namespace General
     {
         static void Main(string[] args)
         {
-            Solve2019();
+            //Solve2019();
             Solve2020();
         }
 
@@ -60,6 +60,18 @@ namespace General
             Console.WriteLine(Day.SolvePart1(_2020.inputs.D4P1) + " " + watch.Elapsed);
             watch.Restart();
             Console.WriteLine(Day.SolvePart2(_2020.inputs.D4P1) + " " + watch.Elapsed);
+            watch.Stop();
+            Console.WriteLine("__________________________________");
+
+            //Day5
+            Day = new _2020.Day5();
+
+            Day.Tests();
+            Console.WriteLine("DAY5");
+            watch.Start();
+            Console.WriteLine(Day.SolvePart1(_2020.inputs.D5P1) + " " + watch.Elapsed);
+            watch.Restart();
+            Console.WriteLine(Day.SolvePart2(_2020.inputs.D5P1) + " " + watch.Elapsed);
             watch.Stop();
             Console.WriteLine("__________________________________");
         }
@@ -122,6 +134,17 @@ namespace General
             Console.WriteLine(Day.SolvePart1(_2019.inputs.D5P1) + " " + watch.Elapsed);
             watch.Restart();
             Console.WriteLine(Day.SolvePart2(_2019.inputs.D5P2) + " " + watch.Elapsed);
+            watch.Stop();
+            Console.WriteLine("__________________________________");
+
+            // Day6
+            Day = new _2019.Day6();
+            Day.Tests();
+            Console.WriteLine("DAY6");
+            watch.Start();
+            Console.WriteLine(Day.SolvePart1(_2019.inputs.D6P1) + " " + watch.Elapsed);
+            watch.Restart();
+            Console.WriteLine(Day.SolvePart2(_2019.inputs.D6P1) + " " + watch.Elapsed);
             watch.Stop();
             Console.WriteLine("__________________________________");
         }
