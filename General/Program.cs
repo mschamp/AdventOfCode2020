@@ -158,6 +158,18 @@ namespace General
             Console.WriteLine(Day.SolvePart2(_2019.inputs.D7P1) + " " + watch.Elapsed);
             watch.Stop();
             Console.WriteLine("__________________________________");
+
+            // Day8
+            Day = new _2019.Day8();
+            Day.Tests();
+            Console.WriteLine("DAY8");
+            watch.Start();
+            Console.WriteLine(Day.SolvePart1(_2019.inputs.D8P1) + " " + watch.Elapsed);
+            watch.Restart();
+            Console.WriteLine(Day.SolvePart2(_2019.inputs.D8P1) + " " + watch.Elapsed);
+            watch.Stop();
+            Console.WriteLine("__________________________________");
+
         }
 
     }
