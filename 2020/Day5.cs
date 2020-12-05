@@ -20,32 +20,19 @@ namespace _2020
 
         private int getSeatID(string input)
         {
-            int row = getRow(input.Substring(0, 7));
-            int column = getColumn(input.Substring(7, 3));
+            int row = ProcessTextAsBinary(input.Substring(0, 7),'B');
+            int column = ProcessTextAsBinary(input.Substring(7, 3),'R');
             return  (row * 8 + column);
         }
 
-        private int getRow(string rowtext)
+        private int ProcessTextAsBinary(string text,char accept)
         {
             double row = 0;
-            for (int i = 0; i < rowtext.Length; i++)
+            for (int i = 0; i < text.Length; i++)
             {
-                if (rowtext[i]=='B')
+                if (text[i]== accept)
                 {
-                    row += Math.Pow(2 ,rowtext.Length - i-1);
-                }
-            }
-            return (int)row;
-        }
-
-        private int getColumn(string ColumnText)
-        {
-            double row = 0;
-            for (int i = 0; i < ColumnText.Length; i++)
-            {
-                if (ColumnText[i] == 'R')
-                {
-                    row += Math.Pow(2, ColumnText.Length - i - 1);
+                    row += Math.Pow(2 ,text.Length - i-1);
                 }
             }
             return (int)row;
