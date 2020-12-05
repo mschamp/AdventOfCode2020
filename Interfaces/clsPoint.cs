@@ -52,12 +52,21 @@ namespace General
         }
         public double distance(clsPoint a, clsPoint b)
         {
-            return Math.Sqrt((b.Y - a.Y) ^ 2 + (b.X - a.X) ^ 2);
+            return Math.Sqrt(Math.Pow((b.Y - a.Y),2)  + Math.Pow((b.X - a.X), 2));
         }
 
         public double Angle(clsPoint target)
         {
             return Math.Atan2(target.X - X, target.Y - Y);
+        }
+        public double AnglePos(clsPoint target)
+        {
+            double angle = Math.Atan2(target.X - X, target.Y - Y);
+            if (angle>=0)
+            {
+                return angle;
+            }
+            return angle+2*Math.PI;
         }
 
         public bool InBound( int maxX, int maxY)
@@ -132,6 +141,10 @@ namespace General
             return base.Equals(obj);
         }
 
+        public override string ToString()
+        {
+            return X+","+Y;
+        }
         public int X { get; set; }
         public int Y { get; set; }
     }
