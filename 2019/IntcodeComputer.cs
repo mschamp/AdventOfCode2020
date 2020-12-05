@@ -141,6 +141,11 @@ namespace _2019
             return outputs;
         }
 
+        public void ClearOutputs()
+        {
+            outputs.Clear();
+        }
+
         public bool WaitingForInput
         {
             get; private set;

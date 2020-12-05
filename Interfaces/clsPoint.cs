@@ -147,5 +147,29 @@ namespace General
         }
         public int X { get; set; }
         public int Y { get; set; }
+
+        public clsPoint Move(Direction direction)
+        {
+            switch (direction)
+            {
+                case Direction.Up:
+                    return plus(0, 1);
+                case Direction.Left:
+                    return plus(-1, 0);
+                case Direction.Down:
+                    return plus(0, -1);
+                case Direction.Right:
+                    return plus(1, 0);
+            }
+            return new clsPoint(0, 0);
+        }
+    }
+
+    public enum Direction
+    {
+        Up = 0,
+        Left = 1,
+        Down = 2,
+        Right = 3
     }
 }

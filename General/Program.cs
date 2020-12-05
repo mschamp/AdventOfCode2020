@@ -192,6 +192,17 @@ namespace General
             watch.Stop();
             Console.WriteLine("__________________________________");
 
+            // Day11
+            Day = new _2019.Day11();
+            Day.Tests();
+            Console.WriteLine("DAY11");
+            watch.Start();
+            Console.WriteLine(Day.SolvePart1(_2019.inputs.D11P1) + " " + watch.Elapsed);
+            watch.Restart();
+            Console.WriteLine(Day.SolvePart2(_2019.inputs.D11P1) + " " + watch.Elapsed);
+            watch.Stop();
+            Console.WriteLine("__________________________________");
+
         }
 
     }
