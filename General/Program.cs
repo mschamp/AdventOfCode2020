@@ -7,7 +7,7 @@ namespace General
     {
         static void Main(string[] args)
         {
-            //Solve2019();
+            Solve2019();
             Solve2020();
         }
 
