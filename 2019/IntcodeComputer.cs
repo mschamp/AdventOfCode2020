@@ -17,13 +17,19 @@ namespace _2019
             positionPointer = 0;
             inputs = new Queue<int>();
             outputs = new List<int>();
+            WaitingForInput = false;
+            Halted = false;
         }
 
         public void ExecuteProgram()
         {
-            while (positionPointer < memory.Length&&memory[positionPointer]!=99)
+            while (positionPointer < memory.Length&&memory[positionPointer]!=99 && !WaitingForInput)
             {
                 positionPointer += ExecuteInstruction();
+            }
+            if (memory[positionPointer] == 99)
+            {
+                Halted = true;
             }
         }
 
@@ -40,6 +46,11 @@ namespace _2019
                     memory[LoadParameter(0, positionPointer + 3)] = memory[LoadParameter(opCode[1], positionPointer + 1)] * memory[LoadParameter(opCode[2], positionPointer + 2)];
                     return 4;
                 case 3:
+                    if (inputs.Count==0)
+                    {
+                        WaitingForInput = true;
+                        return 0;
+                    }
                     memory[LoadParameter(0, positionPointer + 1)] = inputs.Dequeue();
                     return 2;
                 case 4:
@@ -120,11 +131,22 @@ namespace _2019
         public void InputValue(int value)
         {
             inputs.Enqueue(value);
+            WaitingForInput = false;
         }
 
         public List<int> ReadOutputs()
         {
             return outputs;
+        }
+
+        public bool WaitingForInput
+        {
+            get; private set;
+        }
+
+        public bool Halted
+        {
+            get; private set;
         }
     }
 }
