@@ -11,7 +11,7 @@ namespace _2019
         public string SolvePart1(string input = null)
         {
             int[] Options = new[] { 0, 1, 2, 3, 4 };
-            List<int> ThrusterSignals = new List<int>();
+            List<long> ThrusterSignals = new List<long>();
             foreach (var PhaseSetting in Permutations<int>.AllFor(Options))
             {
                 ThrusterSignals.Add(CalculateTrustSignalOpenLoop(input, PhaseSetting));
@@ -19,9 +19,9 @@ namespace _2019
             return "" + ThrusterSignals.Max();
         }
 
-        private int CalculateTrustSignalOpenLoop(string Program, int[] inputs)
+        private long CalculateTrustSignalOpenLoop(string Program, int[] inputs)
         {
-            int Value = 0;
+            long Value = 0;
             for (int i = 0; i < inputs.Length; i++)
             {
                 Value = Amplifier(Program, Value, inputs[i]);
@@ -29,9 +29,9 @@ namespace _2019
             return Value;
         }
 
-        private int CalculateTrustSignalClosedLoop(string Program, int[] inputs)
+        private long CalculateTrustSignalClosedLoop(string Program, int[] inputs)
         {
-            int Value = 0;
+            long Value = 0;
             List<IntcodeComputer> Amplifiers = new List<IntcodeComputer>();
             for (int i = 0; i < inputs.Length; i++)
             {
@@ -51,7 +51,7 @@ namespace _2019
             return Value;
         }
 
-        private int Amplifier(string Program, int input, int phaseSetting)
+        private long Amplifier(string Program, long input, int phaseSetting)
         {
             IntcodeComputer computer = new IntcodeComputer();
             computer.loadProgram(Program);
@@ -61,7 +61,7 @@ namespace _2019
             return computer.ReadOutputs().Last();
         }
 
-        private int Amplifier(IntcodeComputer computer, int input)
+        private long Amplifier(IntcodeComputer computer, long input)
         {
             computer.InputValue(input);
             computer.ExecuteProgram();
@@ -71,7 +71,7 @@ namespace _2019
         public string SolvePart2(string input = null)
         {
             int[] Options = new[] { 5,6,7,8,9 };
-            List<int> ThrusterSignals = new List<int>();
+            List<long> ThrusterSignals = new List<long>();
             foreach (var PhaseSetting in Permutations<int>.AllFor(Options))
             {
                 ThrusterSignals.Add(CalculateTrustSignalClosedLoop(input, PhaseSetting));

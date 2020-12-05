@@ -6,135 +6,137 @@ namespace _2019
 {
     public class IntcodeComputer
     {
-        int[] memory;
-        int positionPointer;
-        Queue<int> inputs ;
-        List<int> outputs;
+        IntCodeProgram program;
+        long positionPointer;
+        long relativeBase;
+        Queue<long> inputs ;
+        List<long> outputs;
 
         public void loadProgram(string program)
         {
-            memory = Array.ConvertAll(program.Split(","), s => int.Parse(s));
+            this.program = new IntCodeProgram(program);
             positionPointer = 0;
-            inputs = new Queue<int>();
-            outputs = new List<int>();
+            relativeBase = 0;
+            inputs = new Queue<long>();
+            outputs = new List<long>();
             WaitingForInput = false;
-            Halted = false;
         }
 
         public void ExecuteProgram()
         {
-            while (positionPointer < memory.Length&&memory[positionPointer]!=99 && !WaitingForInput)
+            while (!Halted && !WaitingForInput)
             {
                 positionPointer += ExecuteInstruction();
             }
-            if (memory[positionPointer] == 99)
-            {
-                Halted = true;
-            }
         }
 
-        private int ExecuteInstruction()
+        private long ExecuteInstruction()
         {
-            int[] opCode = decodeOpcode(memory[positionPointer]);
+            int[] opCode = decodeOpcode(program.GetAddress(positionPointer));
 
-            switch (opCode[0])
+            switch ((Instruction)opCode[0])
             {
-                case 1:
-                    memory[LoadParameter(0,positionPointer + 3)] = memory[LoadParameter(opCode[1], positionPointer + 1)] + memory[LoadParameter(opCode[2], positionPointer + 2)];
+                case Instruction.Add:
+                    program.SetAddress(LoadParameter(opCode[3], positionPointer + 3), program.GetAddress(LoadParameter(opCode[1], positionPointer + 1)) + program.GetAddress(LoadParameter(opCode[2], positionPointer + 2)));
                     return 4;
-                case 2:
-                    memory[LoadParameter(0, positionPointer + 3)] = memory[LoadParameter(opCode[1], positionPointer + 1)] * memory[LoadParameter(opCode[2], positionPointer + 2)];
+                case Instruction.Mult:
+                    program.SetAddress(LoadParameter(opCode[3], positionPointer + 3), program.GetAddress(LoadParameter(opCode[1], positionPointer + 1)) * program.GetAddress(LoadParameter(opCode[2], positionPointer + 2)));
                     return 4;
-                case 3:
-                    if (inputs.Count==0)
+                case Instruction.Input:
+                    if (inputs.Count == 0)
                     {
                         WaitingForInput = true;
                         return 0;
                     }
-                    memory[LoadParameter(0, positionPointer + 1)] = inputs.Dequeue();
+                    program.SetAddress(LoadParameter(opCode[1], positionPointer + 1), inputs.Dequeue());
                     return 2;
-                case 4:
-                    outputs.Add(memory[LoadParameter(opCode[1], positionPointer + 1)]);
+                case Instruction.Output:
+                    outputs.Add(program.GetAddress(LoadParameter(opCode[1], positionPointer + 1)));
                     return 2;
-                case 5:
-                    if (memory[LoadParameter(opCode[1], positionPointer + 1)]!=0)
+                case Instruction.JumpIfTrue:
+                    if (program.GetAddress(LoadParameter(opCode[1], positionPointer + 1)) != 0)
                     {
-                        return memory[LoadParameter(opCode[2], positionPointer + 2)] - positionPointer;
-                    }
-                    return 3 ;
-                case 6:
-                    if (memory[LoadParameter(opCode[1], positionPointer + 1)] == 0)
-                    {
-                        return memory[LoadParameter(opCode[2], positionPointer + 2)] - positionPointer;
+                        return program.GetAddress(LoadParameter(opCode[2], positionPointer + 2)) - positionPointer;
                     }
                     return 3;
-                case 7:
-                    if (memory[LoadParameter(opCode[1], positionPointer + 1)] < memory[LoadParameter(opCode[2], positionPointer + 2)])
+                case Instruction.JumpIfFalse:
+                    if (program.GetAddress(LoadParameter(opCode[1], positionPointer + 1)) == 0)
                     {
-                        memory[LoadParameter(0, positionPointer + 3)] = 1;
+                        return program.GetAddress(LoadParameter(opCode[2], positionPointer + 2)) - positionPointer;
+                    }
+                    return 3;
+                case Instruction.LessThan:
+                    if (program.GetAddress(LoadParameter(opCode[1], positionPointer + 1)) < program.GetAddress(LoadParameter(opCode[2], positionPointer + 2)))
+                    {
+                        program.SetAddress(LoadParameter(opCode[3], positionPointer + 3),1);
                     }
                     else
                     {
-                        memory[LoadParameter(0, positionPointer + 3)] = 0;
+                        program.SetAddress(LoadParameter(opCode[3], positionPointer + 3), 0);
                     }
                     return 4;
-                case 8:
-                    if (memory[LoadParameter(opCode[1], positionPointer + 1)] == memory[LoadParameter(opCode[2], positionPointer + 2)])
+                case Instruction.Equals:
+                    if (program.GetAddress(LoadParameter(opCode[1], positionPointer + 1)) == program.GetAddress(LoadParameter(opCode[2], positionPointer + 2)))
                     {
-                        memory[LoadParameter(0, positionPointer + 3)] = 1;
+                        program.SetAddress(LoadParameter(opCode[3], positionPointer + 3), 1);
                     }
                     else
                     {
-                        memory[LoadParameter(0, positionPointer + 3)] = 0;
+                        program.SetAddress(LoadParameter(opCode[3], positionPointer + 3),0);
                     }
                     return 4;
+                case Instruction.AdjRel: //adjust relative base
+                    relativeBase += program.GetAddress(LoadParameter(opCode[1], positionPointer + 1));
+                    return 2;
                 default:
                     Console.WriteLine("unknown code");
                     return 1000;
             }
         }
 
-        private int LoadParameter(int mode, int value)
+        private long LoadParameter(int mode, long value)
         {
-            switch (mode)
+            switch ((Modes)mode)
             {
-                case 0:
-                    return memory[value];
-                case 1:
+                case Modes.Parameter:
+                    return program.GetAddress(value);
+                case Modes.Immediate:
                     return value;
+                case Modes.Relative:
+                    return relativeBase+program.GetAddress(value);
                 default:
                     Console.WriteLine("unknown code");
                     return 0;
             }
         }
 
-        private int[] decodeOpcode(int opCode)
+        private int[] decodeOpcode(long opCode)
         {
             int[] codes = new int[4];
-            codes[0]= opCode % 100;
-            codes[1] = (opCode % 1000- codes[0])/100;
-            codes[2] = (opCode % 10000 - codes[0]-codes[1]*100) / 1000;
-            codes[3] = (opCode - codes[0] - codes[1] * 100 - codes[2] * 1000) / 10000;
+            codes[0]= (int)(opCode % 100);
+            codes[1] = (int)((opCode % 1000- codes[0])/100);
+            codes[2] = (int)((opCode % 10000 - codes[0]-codes[1]*100) / 1000);
+            codes[3] = (int)((opCode - codes[0] - codes[1] * 100 - codes[2] * 1000) / 10000);
             return codes;
         }
 
-        public int GetMemoryContent(int address)
+        public long GetMemoryContent(int address)
         {
-            return memory[address];
+            return program.GetAddress(address);
         }
 
         public void SetMemoryContent(int address, int value)
         {
-            memory[address] = value;
+            program.SetAddress(address, value);
         }
     
-        public void InputValue(int value)
+        public void InputValue(long value)
         {
             inputs.Enqueue(value);
             WaitingForInput = false;
         }
 
-        public List<int> ReadOutputs()
+        public List<long> ReadOutputs()
         {
             return outputs;
         }
@@ -146,7 +148,47 @@ namespace _2019
 
         public bool Halted
         {
-            get; private set;
+            get
+            {
+                return (Instruction)program.GetAddress(positionPointer) == Instruction.Halt;
+            }
+        }
+    }
+
+    public class IntCodeProgram
+    {
+        public IntCodeProgram(List<long> intCode)
+        {
+            _oProgram = intCode;
+        }
+        public IntCodeProgram(string intCode)
+        {
+            _oProgram = new List<long>();
+            foreach (string item in intCode.Split(","))
+            {
+                _oProgram.Add(long.Parse(item));
+            }
+        }
+
+        private List<long> _oProgram;
+        public long GetAddress(long address)
+        {
+            CreateMemoryTillAddress(address);
+            return _oProgram[(int)address];
+        }
+
+        public void SetAddress(long address, long Value)
+        {
+            CreateMemoryTillAddress(address);
+            _oProgram[(int)address] = Value;
+        }
+        
+        private void CreateMemoryTillAddress(long address)
+        {
+            while (_oProgram.Count<address+1)
+            {
+                _oProgram.Add(0);
+            }
         }
     }
 }
