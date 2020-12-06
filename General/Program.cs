@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace General
@@ -13,195 +14,60 @@ namespace General
 
         private static void Solve2020()
         {
-            IAoC Day;
-            //Day1
-            Day = new _2020.Day1();
-
-            Day.Tests();
-            Console.WriteLine("DAY1");
+            List<IAoC> days = new List<IAoC> { new _2020.Day1(), new _2020.Day2(), new _2020.Day3(), new _2020.Day4(), new _2020.Day5(),
+            new _2020.Day6()};
+            string[] inputs = new[] { _2020.inputs.D1P1, _2020.inputs.D1P1,
+                _2020.inputs.D2P1, _2020.inputs.D2P1,
+            _2020.inputs.D3P1, _2020.inputs.D3P1,
+            _2020.inputs.D4P1, _2020.inputs.D4P1,
+            _2020.inputs.D5P1, _2020.inputs.D5P1,
+            _2020.inputs.D6P1, _2020.inputs.D6P1};
             Stopwatch watch = new Stopwatch();
-            watch.Start();
-            Console.WriteLine(Day.SolvePart1(_2020.inputs.D1P1) + " " + watch.Elapsed);
-            watch.Restart();
-            Console.WriteLine(Day.SolvePart2(_2020.inputs.D1P1) + " " + watch.Elapsed);
-            watch.Stop();
-            Console.WriteLine("__________________________________");
 
-            //Day2
-            Day = new _2020.Day2();
+            for (int i = 0; i < days.Count; i++)
+            {
+                days[i].Tests();
+                Console.WriteLine($"DAY{i + 1}");
+                watch.Start();
+                Console.WriteLine(days[i].SolvePart1(inputs[2 * i]) + " " + watch.Elapsed);
+                watch.Restart();
+                Console.WriteLine(days[i].SolvePart2(inputs[2 * i + 1]) + " " + watch.Elapsed);
+                watch.Stop();
+                Console.WriteLine("__________________________________");
+            }
 
-            Day.Tests();
-            Console.WriteLine("DAY2");
-            watch.Start();
-            Console.WriteLine(Day.SolvePart1(_2020.inputs.D2P1) + " " + watch.Elapsed);
-            watch.Restart();
-            Console.WriteLine(Day.SolvePart2(_2020.inputs.D2P1) + " " + watch.Elapsed);
-            watch.Stop();
-            Console.WriteLine("__________________________________");
-
-            //Day3
-            Day = new _2020.Day3();
-
-            Day.Tests();
-            Console.WriteLine("DAY3");
-            watch.Start();
-            Console.WriteLine(Day.SolvePart1(_2020.inputs.D3P1) + " " + watch.Elapsed);
-            watch.Restart();
-            Console.WriteLine(Day.SolvePart2(_2020.inputs.D3P1) + " " + watch.Elapsed);
-            watch.Stop();
-            Console.WriteLine("__________________________________");
-
-            //Day4
-            Day = new _2020.Day4();
-
-            Day.Tests();
-            Console.WriteLine("DAY4");
-            watch.Start();
-            Console.WriteLine(Day.SolvePart1(_2020.inputs.D4P1) + " " + watch.Elapsed);
-            watch.Restart();
-            Console.WriteLine(Day.SolvePart2(_2020.inputs.D4P1) + " " + watch.Elapsed);
-            watch.Stop();
-            Console.WriteLine("__________________________________");
-
-            //Day5
-            Day = new _2020.Day5();
-
-            Day.Tests();
-            Console.WriteLine("DAY5");
-            watch.Start();
-            Console.WriteLine(Day.SolvePart1(_2020.inputs.D5P1) + " " + watch.Elapsed);
-            watch.Restart();
-            Console.WriteLine(Day.SolvePart2(_2020.inputs.D5P1) + " " + watch.Elapsed);
-            watch.Stop();
-            Console.WriteLine("__________________________________");
         }
 
 
         private static void Solve2019()
         {
-            IAoC Day;
-            //Day1
-            Day = new _2019.Day1();
+            List<IAoC> days = new List<IAoC> { new _2019.Day1(), new _2019.Day2(), new _2019.Day3(), new _2019.Day4(), new _2019.Day5(),
+            new _2019.Day6(), new _2019.Day7(), new _2019.Day8(), new _2019.Day9(), new _2019.Day10(),
+            new _2019.Day11()};
+            string[] inputs = new[] { _2019.inputs.D1P1, _2019.inputs.D1P1,
+                _2019.inputs.D2P1, _2019.inputs.D2P2,
+            _2019.inputs.D3P1, _2019.inputs.D3P1,
+            _2019.inputs.D4P1, _2019.inputs.D4P1,
+            _2019.inputs.D5P1, _2019.inputs.D5P2,
+            _2019.inputs.D6P1, _2019.inputs.D6P1,
+            _2019.inputs.D7P1, _2019.inputs.D7P1,
+            _2019.inputs.D8P1, _2019.inputs.D8P1,
+            _2019.inputs.D9P1, _2019.inputs.D9P1,
+            _2019.inputs.D10P1, _2019.inputs.D10P1,
+            _2019.inputs.D11P1, _2019.inputs.D11P1};
             Stopwatch watch = new Stopwatch();
 
-            Day.Tests();
-            Console.WriteLine("DAY1");
-            watch.Start();
-            Console.WriteLine(Day.SolvePart1(_2019.inputs.D1P1) + " " + watch.Elapsed);
-            watch.Restart();
-            Console.WriteLine(Day.SolvePart2(_2019.inputs.D1P1) + " " + watch.Elapsed);
-            watch.Stop();
-            Console.WriteLine("__________________________________");
-
-            // Day2
-            Day = new _2019.Day2();
-            Day.Tests();
-            Console.WriteLine("DAY2");
-            watch.Start();
-            Console.WriteLine(Day.SolvePart1(_2019.inputs.D2P1) + " " + watch.Elapsed);
-            watch.Restart();
-            Console.WriteLine(Day.SolvePart2(_2019.inputs.D2P2) + " " + watch.Elapsed);
-            watch.Stop();
-            Console.WriteLine("__________________________________");
-
-            // Day3
-            Day = new _2019.Day3();
-            Day.Tests();
-            Console.WriteLine("DAY3");
-            watch.Start();
-            Console.WriteLine(Day.SolvePart1(_2019.inputs.D3P1) + " " + watch.Elapsed);
-            watch.Restart();
-            Console.WriteLine(Day.SolvePart2(_2019.inputs.D3P1) + " " + watch.Elapsed);
-            watch.Stop();
-            Console.WriteLine("__________________________________");
-
-            // Day4
-            Day = new _2019.Day4();
-            Day.Tests();
-            Console.WriteLine("DAY4");
-            watch.Start();
-            Console.WriteLine(Day.SolvePart1(_2019.inputs.D4P1) + " " + watch.Elapsed);
-            watch.Restart();
-            Console.WriteLine(Day.SolvePart2(_2019.inputs.D4P1) + " " + watch.Elapsed);
-            watch.Stop();
-            Console.WriteLine("__________________________________");
-
-            // Day5
-            Day = new _2019.Day5();
-            Day.Tests();
-            Console.WriteLine("DAY5");
-            watch.Start();
-            Console.WriteLine(Day.SolvePart1(_2019.inputs.D5P1) + " " + watch.Elapsed);
-            watch.Restart();
-            Console.WriteLine(Day.SolvePart2(_2019.inputs.D5P2) + " " + watch.Elapsed);
-            watch.Stop();
-            Console.WriteLine("__________________________________");
-
-            // Day6
-            Day = new _2019.Day6();
-            Day.Tests();
-            Console.WriteLine("DAY6");
-            watch.Start();
-            Console.WriteLine(Day.SolvePart1(_2019.inputs.D6P1) + " " + watch.Elapsed);
-            watch.Restart();
-            Console.WriteLine(Day.SolvePart2(_2019.inputs.D6P1) + " " + watch.Elapsed);
-            watch.Stop();
-            Console.WriteLine("__________________________________");
-
-            // Day7
-            Day = new _2019.Day7();
-            Day.Tests();
-            Console.WriteLine("DAY7");
-            watch.Start();
-            Console.WriteLine(Day.SolvePart1(_2019.inputs.D7P1) + " " + watch.Elapsed);
-            watch.Restart();
-            Console.WriteLine(Day.SolvePart2(_2019.inputs.D7P1) + " " + watch.Elapsed);
-            watch.Stop();
-            Console.WriteLine("__________________________________");
-
-            // Day8
-            Day = new _2019.Day8();
-            Day.Tests();
-            Console.WriteLine("DAY8");
-            watch.Start();
-            Console.WriteLine(Day.SolvePart1(_2019.inputs.D8P1) + " " + watch.Elapsed);
-            watch.Restart();
-            Console.WriteLine(Day.SolvePart2(_2019.inputs.D8P1) + " " + watch.Elapsed);
-            watch.Stop();
-            Console.WriteLine("__________________________________");
-
-            // Day9
-            Day = new _2019.Day9();
-            Day.Tests();
-            Console.WriteLine("DAY9");
-            watch.Start();
-            Console.WriteLine(Day.SolvePart1(_2019.inputs.D9P1) + " " + watch.Elapsed);
-            watch.Restart();
-            Console.WriteLine(Day.SolvePart2(_2019.inputs.D9P1) + " " + watch.Elapsed);
-            watch.Stop();
-            Console.WriteLine("__________________________________");
-
-            // Day10
-            Day = new _2019.Day10();
-            Day.Tests();
-            Console.WriteLine("DAY10");
-            watch.Start();
-            Console.WriteLine(Day.SolvePart1(_2019.inputs.D10P1) + " " + watch.Elapsed);
-            watch.Restart();
-            Console.WriteLine(Day.SolvePart2(_2019.inputs.D10P1) + " " + watch.Elapsed);
-            watch.Stop();
-            Console.WriteLine("__________________________________");
-
-            // Day11
-            Day = new _2019.Day11();
-            Day.Tests();
-            Console.WriteLine("DAY11");
-            watch.Start();
-            Console.WriteLine(Day.SolvePart1(_2019.inputs.D11P1) + " " + watch.Elapsed);
-            watch.Restart();
-            Console.WriteLine(Day.SolvePart2(_2019.inputs.D11P1) + " " + watch.Elapsed);
-            watch.Stop();
-            Console.WriteLine("__________________________________");
+            for (int i = 0; i < days.Count; i++)
+            {
+                days[i].Tests();
+                Console.WriteLine($"DAY{i+1}");
+                watch.Start();
+                Console.WriteLine(days[i].SolvePart1(inputs[2*i]) + " " + watch.Elapsed);
+                watch.Restart();
+                Console.WriteLine(days[i].SolvePart2(inputs[2 * i+1]) + " " + watch.Elapsed);
+                watch.Stop();
+                Console.WriteLine("__________________________________");
+            }
 
         }
 
