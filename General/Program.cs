@@ -15,14 +15,15 @@ namespace General
         private static void Solve2020()
         {
             List<IAoC> days = new List<IAoC> { new _2020.Day1(), new _2020.Day2(), new _2020.Day3(), new _2020.Day4(), new _2020.Day5(),
-            new _2020.Day6(),new _2020.Day7()};
+            new _2020.Day6(),new _2020.Day7(),new _2020.Day8()};
             string[] inputs = new[] { _2020.inputs.D1P1, _2020.inputs.D1P1,
                 _2020.inputs.D2P1, _2020.inputs.D2P1,
             _2020.inputs.D3P1, _2020.inputs.D3P1,
             _2020.inputs.D4P1, _2020.inputs.D4P1,
             _2020.inputs.D5P1, _2020.inputs.D5P1,
             _2020.inputs.D6P1, _2020.inputs.D6P1,
-            _2020.inputs.D7P1, _2020.inputs.D7P1};
+            _2020.inputs.D7P1, _2020.inputs.D7P1,
+             _2020.inputs.D8P1, _2020.inputs.D8P1};
             Stopwatch watch = new Stopwatch();
 
             for (int i = 0; i < days.Count; i++)
@@ -44,7 +45,7 @@ namespace General
         {
             List<IAoC> days = new List<IAoC> { new _2019.Day1(), new _2019.Day2(), new _2019.Day3(), new _2019.Day4(), new _2019.Day5(),
             new _2019.Day6(), new _2019.Day7(), new _2019.Day8(), new _2019.Day9(), new _2019.Day10(),
-            new _2019.Day11(), new _2019.Day12()};
+            new _2019.Day11(), new _2019.Day12(), new _2019.Day13()};
             string[] inputs = new[] { _2019.inputs.D1P1, _2019.inputs.D1P1,
                 _2019.inputs.D2P1, _2019.inputs.D2P2,
             _2019.inputs.D3P1, _2019.inputs.D3P1,
@@ -56,7 +57,8 @@ namespace General
             _2019.inputs.D9P1, _2019.inputs.D9P1,
             _2019.inputs.D10P1, _2019.inputs.D10P1,
             _2019.inputs.D11P1, _2019.inputs.D11P1,
-            _2019.inputs.D12P1, _2019.inputs.D12P1};
+            _2019.inputs.D12P1, _2019.inputs.D12P1,
+            _2019.inputs.D13P1, _2019.inputs.D13P1};
             Stopwatch watch = new Stopwatch();
 
             for (int i = 0; i < days.Count; i++)
