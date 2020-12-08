@@ -58,7 +58,8 @@ namespace General
             _2019.inputs.D10P1, _2019.inputs.D10P1,
             _2019.inputs.D11P1, _2019.inputs.D11P1,
             _2019.inputs.D12P1, _2019.inputs.D12P1,
-            _2019.inputs.D13P1, _2019.inputs.D13P1};
+            _2019.inputs.D13P1, _2019.inputs.D13P1,
+            _2019.inputs.D14P1, _2019.inputs.D14P1};
             Stopwatch watch = new Stopwatch();
 
             for (int i = 0; i < days.Count; i++)
