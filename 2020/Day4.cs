@@ -33,7 +33,10 @@ namespace _2020
                 {"hgt",Validators.HeightValidator()} 
             };
 
-            return ""+Passports.Count(x => x.IsValid(Requirements));
+
+            //string accepted = string.Join(Environment.NewLine + Environment.NewLine, Passports.Where(x => x.IsValid(Requirements)));
+
+            return "" + Passports.Count(x => x.IsValid(Requirements));
         }
 
         private IEnumerable<Passport> ReadPassports(string input)
@@ -93,8 +96,10 @@ iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719") == "4")
 
     public class Passport
     {
+        public string PrintOriginal { get; set; }
         public Passport(string content)
         {
+            PrintOriginal = content;
             Content = new Dictionary<string, string>();
             foreach (string item in content.Split())
             {
@@ -112,6 +117,11 @@ iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719") == "4")
         public bool IsValid(Dictionary<string, Func<string, bool>> Requirements)
         {
             return Requirements.All(req => this.Content.ContainsKey(req.Key) && req.Value(this.Content[req.Key]));
+        }
+
+        public override string ToString()
+        {
+            return PrintOriginal;
         }
     }
 
