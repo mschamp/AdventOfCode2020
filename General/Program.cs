@@ -8,14 +8,14 @@ namespace General
     {
         static void Main(string[] args)
         {
-            //Solve2019();
+            Solve2019();
             Solve2020();
         }
 
         private static void Solve2020()
         {
             List<IAoC> days = new List<IAoC> { new _2020.Day1(), new _2020.Day2(), new _2020.Day3(), new _2020.Day4(), new _2020.Day5(),
-            new _2020.Day6(),new _2020.Day7(),new _2020.Day8(),new _2020.Day9()};
+            new _2020.Day6(),new _2020.Day7(),new _2020.Day8(),new _2020.Day9(),new _2020.Day10()};
             string[] inputs = new[] { _2020.inputs.D1P1, _2020.inputs.D1P1,
                 _2020.inputs.D2P1, _2020.inputs.D2P1,
             _2020.inputs.D3P1, _2020.inputs.D3P1,
@@ -24,7 +24,8 @@ namespace General
             _2020.inputs.D6P1, _2020.inputs.D6P1,
             _2020.inputs.D7P1, _2020.inputs.D7P1,
              _2020.inputs.D8P1, _2020.inputs.D8P1,
-            _2020.inputs.D9P1, _2020.inputs.D9P1};
+            _2020.inputs.D9P1, _2020.inputs.D9P1,
+            _2020.inputs.D10P1, _2020.inputs.D10P1};
             Stopwatch watch = new Stopwatch();
 
             for (int i = 0; i < days.Count; i++)
