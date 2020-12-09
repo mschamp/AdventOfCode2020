@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 
 namespace _2020
@@ -51,7 +52,7 @@ acc +6") == "8");
 
     public class handheld
     {
-        string[] instructions;
+        Instruction[] instructions;
         public long Accumulator { get; private set; }
 
         public handheld()
@@ -61,28 +62,30 @@ acc +6") == "8");
 
         public void LoadProgram(string program)
         {
-            instructions = program.Split(Environment.NewLine);
+            instructions = program.Split(Environment.NewLine).Select(x => x.Split()).Select(x => new Instruction(x[0], int.Parse(x[1]))).ToArray();
             Instructionpointer = 0;
             Accumulator = 0;
         }
 
         public void TryFixing()
         {
-            string[] Originalinstructions = (string[])instructions.Clone();
-            for (int i = 0; i < Originalinstructions.Length; i++)
+            ExecuteProgram(); //execute original program
+            List<long> ExecutedInstruction = ExecutedInstructions;
+            Instruction[] Originalinstructions = instructions; // instructions that are executed during original execution
+            foreach (long instructionID in ExecutedInstruction)
             {
-                instructions = (string[])Originalinstructions.Clone();
-                if (instructions[i].StartsWith("acc"))
+                instructions = (Instruction[])Originalinstructions.Clone();
+                if (instructions[instructionID].Operation == EnuOperation.acc)
                 {
                     continue;
                 }
-                else if (instructions[i].StartsWith("jmp"))
+                else if (instructions[instructionID].Operation == EnuOperation.jmp)
                 {
-                    instructions[i]=instructions[i].Replace("jmp","nop");
+                    instructions[instructionID] = new Instruction(EnuOperation.nop, instructions[instructionID].Argument);
                 }
-                else if (instructions[i].StartsWith("nop"))
+                else if (instructions[instructionID].Operation == EnuOperation.nop)
                 {
-                    instructions[i]=instructions[i].Replace("nop", "jmp");
+                    instructions[instructionID] = new Instruction(EnuOperation.jmp, instructions[instructionID].Argument);
                 }
                 ExecuteProgram();
                 if (ReachedEnd)
@@ -92,14 +95,15 @@ acc +6") == "8");
             }
         }
 
+
         public void ExecuteProgram()
         {
             Instructionpointer = 0;
             Accumulator = 0;
-            List<long> ExecutedInstruction = new List<long>();
-            while (!ExecutedInstruction.Contains(Instructionpointer) && instructions.Length> Instructionpointer)
+            ExecutedInstructions = new List<long>();
+            while (!ExecutedInstructions.Contains(Instructionpointer) && instructions.Length> Instructionpointer)
             {
-                ExecutedInstruction.Add(Instructionpointer);
+                ExecutedInstructions.Add(Instructionpointer);
                 Instructionpointer+=ExecuteInstruction(instructions[Instructionpointer]);
             }
         }
@@ -114,23 +118,54 @@ acc +6") == "8");
             }
         }
 
-        public long ExecuteInstruction(string instruction)
+        public long ExecuteInstruction(Instruction instruction)
         {
-            string[] parts = instruction.Split();
-            long Argmument = long.Parse(parts[1]);
-            switch (parts[0])
+            switch (instruction.Operation)
             {
-                case "nop":
+                case EnuOperation.nop:
                     return 1;
-                case "acc":
-                    Accumulator += Argmument;
+                case EnuOperation.acc:
+                    Accumulator += instruction.Argument;
                     return 1;
-                case "jmp":
-                    return Argmument;
+                case EnuOperation.jmp:
+                    return instruction.Argument;
                 default:
                     break;
             }
             return 100;
         }
+
+        public List<long> ExecutedInstructions { get; private set; }
+    }
+
+    public class Instruction
+    {
+        public Instruction(string inputInstruction)
+            :this(inputInstruction.Split()[0], int.Parse(inputInstruction.Split()[1]))
+        {
+
+        }
+
+        public Instruction(string operation, int argument)
+            :this((EnuOperation)Enum.Parse(typeof(EnuOperation), operation),argument)
+        {
+
+        }
+        public Instruction(EnuOperation operation, long argument)
+        {
+            Operation =  operation;
+            Argument = argument;
+        }
+
+        public EnuOperation Operation {get;set;}
+        public long Argument { get; private set; }
+       
+    }
+
+    public enum EnuOperation
+    {
+        nop = 0,
+        jmp = 1,
+        acc =2
     }
 }
