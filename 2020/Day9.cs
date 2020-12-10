@@ -35,7 +35,7 @@ namespace _2020
             while (true)
             {
                 long value = inputvalues[pointer];
-                if (!CheckIfSum(ref values, value))
+                if (!CheckIfSum(values, value))
                 {
                     return value;
                 }
@@ -44,19 +44,9 @@ namespace _2020
                 pointer++;
             }
         }
-        public bool CheckIfSum(ref List<long> values, long value)
+        public bool CheckIfSum(List<long> values, long value)
         {
-            foreach (long n1 in values)
-            {
-                foreach (long n2 in values)
-                {
-                    if (n1+n2==value && n1 != n2)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
+            return values.Any(x => values.Contains(value - x));
         }
 
         public string SolvePart2(string input = null)
