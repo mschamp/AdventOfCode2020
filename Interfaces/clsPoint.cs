@@ -107,6 +107,18 @@ namespace General
                     case 'D':
                         points.Add(plus(0, -i));
                         break;
+                    case 'E':
+                        points.Add(plus(i, 0));
+                        break;
+                    case 'W':
+                        points.Add(plus(-i, 0));
+                        break;
+                    case 'N':
+                        points.Add(plus(0, i));
+                        break;
+                    case 'S':
+                        points.Add(plus(0, -i));
+                        break;
                 }
             }
             
@@ -160,6 +172,22 @@ namespace General
                     return plus(0, -1);
                 case Direction.Right:
                     return plus(1, 0);
+            }
+            return new clsPoint(0, 0);
+        }
+
+        public clsPoint Move(Direction direction, int distance)
+        {
+            switch (direction)
+            {
+                case Direction.Up:
+                    return plus(0, distance);
+                case Direction.Left:
+                    return plus(-distance, 0);
+                case Direction.Down:
+                    return plus(0, -distance);
+                case Direction.Right:
+                    return plus(distance, 0);
             }
             return new clsPoint(0, 0);
         }
