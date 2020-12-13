@@ -52,19 +52,15 @@ namespace _2020
             long TimeJump = busses[0]; //first bus always in schedule, jump in multiples of his interval
             while (BussesInShedule != busses.Count)
             {
-                if (busses[BussesInShedule]==1)
+                if (BusDepartsAdd(busses[BussesInShedule], timestamp + BussesInShedule))
                 {
-                    //Bus without schedule => always OK
+                    TimeJump = lmc(busses[BussesInShedule], TimeJump); //Next occurance of this situation is lmc of previous jump and current bus interval
                     BussesInShedule++;
                     continue;
                 }
-                
+
                 timestamp += TimeJump;
-                if (BusDepartsAdd(busses[BussesInShedule],timestamp+BussesInShedule))
-                {
-                    TimeJump = lmc(busses[BussesInShedule],TimeJump); //Next occurance of this situation is lmc of previous jump and current bus interval
-                    BussesInShedule++;
-                }
+                
 
             }
 
