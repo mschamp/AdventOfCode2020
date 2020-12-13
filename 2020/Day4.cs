@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
-using System.Text.RegularExpressions;
+
 using System.Linq;
 
 namespace _2020
@@ -24,13 +24,13 @@ namespace _2020
             IEnumerable<Passport> Passports = ReadPassports(input);
             var Requirements = new Dictionary<string, Func<string, bool>>()
             {
-                {"eyr",Validators.NumberValidator(2020,2030) },
-                {"byr",Validators.NumberValidator(1920,2002) },
-                {"iyr",Validators.NumberValidator(2010,2020) },
-                {"ecl",Validators.ElementOfListValidator(new [] { "amb", "blu", "brn", "gry", "grn", "hzl", "oth" })},
-                {"pid",Validators.RegexValidator(@"^\d{9}$") },
-                {"hcl",Validators.RegexValidator(@"^#[0-9|a-f]{6}$") },
-                {"hgt",Validators.HeightValidator()} 
+                {"eyr",General.Validators.NumberValidator(2020,2030) },
+                {"byr",General.Validators.NumberValidator(1920,2002) },
+                {"iyr",General.Validators.NumberValidator(2010,2020) },
+                {"ecl",General.Validators.ElementOfListValidator(new [] { "amb", "blu", "brn", "gry", "grn", "hzl", "oth" })},
+                {"pid",General.Validators.RegexValidator(@"^\d{9}$") },
+                {"hcl",General.Validators.RegexValidator(@"^#[0-9|a-f]{6}$") },
+                {"hgt",General.Validators.HeightValidator()} 
             };
 
 
@@ -125,37 +125,5 @@ iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719") == "4")
         }
     }
 
-    public static class Validators
-    {
-        public static Func<string,bool> NumberValidator(int min, int max)
-        {
-            return input => int.TryParse(input, out int number) && (number >= min && number <= max);
-        }
-
-        public static Func<string,bool> ElementOfListValidator(string[] List)
-        {
-            return input => List.Contains(input);
-        }
-
-        public static Func<string, bool> RegexValidator(string Regex)
-        {
-            Regex rgx = new Regex(Regex);
-
-            return input => rgx.IsMatch(input);
-        }
-
-        public static Func<string, bool> HeightValidator()
-        {
-            Func<string, bool> cmValidator = NumberValidator(150, 193);
-            Func<string, bool> inValidator = NumberValidator(59, 76);
-
-            Regex hgt = new Regex(@"^(\d+)(cm|in)$");
-
-            return input =>
-            {
-                Match value = hgt.Match(input);
-                return value.Success && ((value.Groups[2].Value == "cm" && cmValidator(value.Groups[1].Value)) || (value.Groups[2].Value == "in" && inValidator(value.Groups[1].Value)));
-            };
-        }
-    }
+    
 }

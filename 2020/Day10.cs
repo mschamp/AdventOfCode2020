@@ -8,6 +8,8 @@ namespace _2020
 {
     public class Day10 : General.IAoC
     {
+        Func<long, long> Tribonnaci = General.MathFunctions.Tribonnaci();
+
         public string SolvePart1(string input = null)
         {
             List<long> joltages = new List<long>();
@@ -44,11 +46,10 @@ namespace _2020
             {
                 joltages.Add(long.Parse(item));
             }
-            return ""+Combinations(0, joltages.Distinct().OrderBy(x => x).ToList());
+            return ""+Combinations(joltages.Distinct().OrderBy(x => x).ToList());
         }
         
-
-        private long Combinations(long curValue, List<long> input)
+        private long Combinations(List<long> input)
         {
             Dictionary<int, int> _values = new Dictionary<int, int>();
             long last = 0;
@@ -86,33 +87,22 @@ namespace _2020
             long product = 1;
             foreach (KeyValuePair<int,int> item in _values)
             {
-                product = product* (long)(Math.Pow(Tribonnaci(item.Key), item.Value));
+                product *= (long)(Math.Pow(Tribonnaci(item.Key), item.Value));
             }
             return product;
+            }
 
-
-            //Nice solution from woy
-            //if (!input.Any())
-            //    return 1;
-            //if (_values.ContainsKey(curValue))
-            //    return _values[curValue];
-            //_values[curValue] = input
-            //    .TakeWhile(x => x > curValue && x <= curValue + 3).Select((x, idx) => Combinations(x, input.Skip(idx + 1))).Sum();
-            //return _values[curValue];
-        }
-
-        public long Tribonnaci(long n)
-        {
-                if (n < 0)
-                    return 0;
-
-                if (n == 0)
-                    return 1;
-                else
-                    return Tribonnaci(n - 1) +
-                           Tribonnaci(n - 2) +
-                           Tribonnaci(n - 3);
-        }
+        //private long Combinations(long curValue, List<long> input)
+        //{
+        //Nice solution from woy
+        //if (!input.Any())
+        //    return 1;
+        //if (_values.ContainsKey(curValue))
+        //    return _values[curValue];
+        //_values[curValue] = input
+        //    .TakeWhile(x => x > curValue && x <= curValue + 3).Select((x, idx) => Combinations(x, input.Skip(idx + 1))).Sum();
+        //return _values[curValue];
+        //}
 
         public void Tests()
         {

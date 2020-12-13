@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\2015\2015.csproj" />
+    <ProjectReference Include="..\2016\2016.csproj" />
+    <ProjectReference Include="..\2017\2017.csproj" />
+    <ProjectReference Include="..\2018\2018.csproj" />
     <ProjectReference Include="..\2019\2019.csproj" />
     <ProjectReference Include="..\2020\2020.csproj" />
     <ProjectReference Include="..\Interfaces\Interfaces.csproj" />

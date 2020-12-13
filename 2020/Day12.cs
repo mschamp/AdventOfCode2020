@@ -48,23 +48,16 @@ namespace _2020
             string[] instructions = input.Split(Environment.NewLine);
             General.clsPoint Waypoint = new General.clsPoint(10, 1);
             General.clsPoint Ship = new General.clsPoint(0, 0);
-            General.Direction direction = General.Direction.Right;
 
             foreach (string instruction in instructions)
             {
                 switch (instruction[0])
                 {
                     case 'L':
-                        for (int i = 0; i < (int.Parse(instruction.Substring(1)) / 90); i++)
-                        {
-                            Waypoint = Waypoint.rotate90();
-                        }
+                        Waypoint = Waypoint.rotateDegrees(int.Parse(instruction.Substring(1)));
                         break;
                     case 'R':
-                        for (int i = 0; i < (int.Parse(instruction.Substring(1)) / 90*3); i++)
-                        {
-                            Waypoint = Waypoint.rotate90();
-                        }
+                        Waypoint = Waypoint.rotateDegrees(-int.Parse(instruction.Substring(1)));
                         break;
                     case 'F':
                         for (int i = 0; i < int.Parse(instruction.Substring(1)); i++)

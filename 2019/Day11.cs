@@ -18,11 +18,11 @@ namespace _2019
             PaintingRobot robot = new PaintingRobot(input,1);
             string result = "";
             var test = robot.PaintedCellsOrdered;
-            for (int i = robot.maxY; i >= robot.minY; i--)
+            for (double i = robot.maxY; i >= robot.minY; i--)
             {
-                for (int j = robot.minX; j <= robot.maxX; j++)
+                for (double j = robot.minX; j <= robot.maxX; j++)
                 {
-                    if (robot.GetColor(j,i)==1)
+                    if (robot.GetColor((int)j,(int)i)==1)
                     {
                         result += "#";
                     }
@@ -87,7 +87,7 @@ namespace _2019
             }
         }
 
-        public int minX
+        public double minX
         {
             get
             {
@@ -95,7 +95,7 @@ namespace _2019
             }
         }
 
-        public int maxX
+        public double maxX
         {
             get
             {
@@ -103,7 +103,7 @@ namespace _2019
             }
         }
 
-        public int minY
+        public double minY
         {
             get
             {
@@ -111,7 +111,7 @@ namespace _2019
             }
         }
 
-        public int maxY
+        public double maxY
         {
             get
             {

@@ -74,7 +74,7 @@ namespace _2019
                 if (item.Key.Y>row)
                 {
                     text += Environment.NewLine;
-                    row = item.Key.Y;
+                    row = (int)item.Key.Y;
                 }
                 switch (item.Value)
                 {

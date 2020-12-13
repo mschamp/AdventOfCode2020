@@ -43,7 +43,7 @@ namespace _2020
             return "" + NumberOccupied(rows);
         }
 
-        public int OccupiedSeats(string[] rows, int seatx, int seaty)
+        private int OccupiedSeats(string[] rows, int seatx, int seaty)
         {
             int counter = 0;
             for (int x = -1; x <= 1; x++)
@@ -61,7 +61,7 @@ namespace _2020
             return counter;
         }
 
-        public int NumberOccupied(string[] rows)
+        private int NumberOccupied(string[] rows)
         {
             int counter = 0;
             for (int i = 0; i < rows.Length; i++)
@@ -114,7 +114,7 @@ namespace _2020
             return "" + NumberOccupied(rows);
         }
 
-        public int VisibleOccupiedSeats(string[] rows, int seatx, int seaty)
+        private int VisibleOccupiedSeats(string[] rows, int seatx, int seaty)
         {
             int counter = 0;
             for (int x = -1; x <= 1; x++)
@@ -130,7 +130,7 @@ namespace _2020
             return counter;
         }
 
-        public bool VisibleChairOccupied(int startX, int startY, int dx, int dy,string[] rows)
+        private bool VisibleChairOccupied(int startX, int startY, int dx, int dy,string[] rows)
         {
             int Lookx = startX + dx;
             int Looky = startY + dy;

@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+
+namespace General
+{
+    public static class Validators
+    {
+        public static Func<string, bool> NumberValidator(int min, int max)
+        {
+            return input => int.TryParse(input, out int number) && (number >= min && number <= max);
+        }
+
+        public static Func<string, bool> ElementOfListValidator(string[] List)
+        {
+            return input => List.Contains(input);
+        }
+
+        public static Func<string, bool> RegexValidator(string Regex)
+        {
+            Regex rgx = new Regex(Regex);
+
+            return input => rgx.IsMatch(input);
+        }
+
+        public static Func<string, bool> HeightValidator()
+        {
+            Func<string, bool> cmValidator = NumberValidator(150, 193);
+            Func<string, bool> inValidator = NumberValidator(59, 76);
+
+            Regex hgt = new Regex(@"^(\d+)(cm|in)$");
+
+            return input =>
+            {
+                Match value = hgt.Match(input);
+                return value.Success && ((value.Groups[2].Value == "cm" && cmValidator(value.Groups[1].Value)) || (value.Groups[2].Value == "in" && inValidator(value.Groups[1].Value)));
+            };
+        }
+    }
+}

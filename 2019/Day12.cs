@@ -84,7 +84,7 @@ namespace _2019
                 }
             }
 
-            Func<long, long, long> lowCM = findLCM();
+            Func<long, long, long> lowCM = General.MathFunctions.findLCM();
             long lcm = 1;
             foreach (long period in Cycles)
             {
@@ -120,22 +120,6 @@ namespace _2019
 <x=2, y=-7, z=3>
 <x=9, y=-8, z=-3>
 100") == "4686774924");
-        }
-
-
-        public static Func<long, long, long> findGCD()
-        {
-            return (a, b) =>
-            {
-                if (a % b == 0) return b;
-                Func<long, long, long> GCD = findGCD();
-                return GCD(b, a % b);
-            };
-        }
-        public static Func<long, long,long> findLCM()
-        {
-            Func<long, long, long> GCD = findGCD();
-            return (a, b) => a * b / GCD(a, b);
         }
     }
     

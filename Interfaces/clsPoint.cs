@@ -8,13 +8,13 @@ namespace General
 {
     public class clsPoint : IComparable<clsPoint> ,IEqualityComparer<clsPoint>
     {
-        public clsPoint(int x, int y)
+        public clsPoint(double x, double y)
         {
             X = x;
             Y = y;
         }
 
-        public clsPoint plus(int x, int y)
+        public clsPoint plus(double x, double y)
         {
             return new clsPoint(X + x, Y + y);
         }
@@ -36,12 +36,12 @@ namespace General
             }
         }
 
-        public int manhattan(clsPoint other)
+        public double manhattan(clsPoint other)
         {
             return Math.Abs(X - other.X) + Math.Abs(Y - other.Y);
         }
 
-        public int manhattan()
+        public double manhattan()
         {
             return manhattan(new clsPoint(0, 0));
         }
@@ -76,12 +76,23 @@ namespace General
 
         public bool InBound(int minX, int maxX, int minY, int maxY)
         {
-            return (Enumerable.Range(minX, maxX).Contains(X) && Enumerable.Range(minY, maxY).Contains(Y));
+            return ((X >= minX && X <= maxX) && (Y >= minY && Y <= maxY));
         }
 
         public clsPoint rotate90()
         {
             return new clsPoint(-Y, X);
+        }
+
+        public clsPoint rotate(double Angle)
+        {
+            return new clsPoint(Math.Cos(Angle) * X - Math.Sin(Angle) * Y,
+                Math.Sin(Angle) * X + Math.Cos(Angle) * Y);
+        }
+
+        public clsPoint rotateDegrees(double Angle)
+        {
+            return rotate(Angle/180.0*Math.PI);
         }
 
         public IEnumerable<clsPoint> Move(string instruction)
@@ -96,26 +107,18 @@ namespace General
                 switch (Direction)
                 {
                     case 'R':
-                        points.Add(plus(i, 0));
-                        break;
-                    case 'L':
-                        points.Add(plus(-i, 0));
-                        break;
-                    case 'U':
-                        points.Add(plus(0, i));
-                        break;
-                    case 'D':
-                        points.Add(plus(0, -i));
-                        break;
                     case 'E':
                         points.Add(plus(i, 0));
                         break;
+                    case 'L':
                     case 'W':
                         points.Add(plus(-i, 0));
                         break;
+                    case 'U':
                     case 'N':
                         points.Add(plus(0, i));
                         break;
+                    case 'D':
                     case 'S':
                         points.Add(plus(0, -i));
                         break;
@@ -132,7 +135,7 @@ namespace General
 
         public int GetHashCode([DisallowNull] clsPoint obj)
         {
-            return obj.X + obj.Y;
+            return (int)(obj.X + obj.Y);
         }
 
         public override int GetHashCode()
@@ -157,8 +160,8 @@ namespace General
         {
             return X+","+Y;
         }
-        public int X { get; set; }
-        public int Y { get; set; }
+        public double X { get; set; }
+        public double Y { get; set; }
 
         public clsPoint Move(Direction direction)
         {
