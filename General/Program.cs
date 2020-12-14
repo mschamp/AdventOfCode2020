@@ -16,7 +16,7 @@ namespace General
         {
             List<IAoC> days = new List<IAoC> { new _2020.Day1(), new _2020.Day2(), new _2020.Day3(), new _2020.Day4(), new _2020.Day5(),
             new _2020.Day6(),new _2020.Day7(),new _2020.Day8(),new _2020.Day9(),new _2020.Day10(),
-            new _2020.Day11(),new _2020.Day12(),new _2020.Day13()};
+            new _2020.Day11(),new _2020.Day12(),new _2020.Day13(),new _2020.Day14()};
             string[] inputs = new[] { _2020.inputs.D1P1, _2020.inputs.D1P1,
             _2020.inputs.D2P1, _2020.inputs.D2P1,
             _2020.inputs.D3P1, _2020.inputs.D3P1,
@@ -29,7 +29,8 @@ namespace General
             _2020.inputs.D10P1, _2020.inputs.D10P1,
             _2020.inputs.D11P1, _2020.inputs.D11P1,
             _2020.inputs.D12P1, _2020.inputs.D12P1,
-            _2020.inputs.D13P1, _2020.inputs.D13P1};
+            _2020.inputs.D13P1, _2020.inputs.D13P1,
+            _2020.inputs.D14P1, _2020.inputs.D14P1};
             Stopwatch watch = new Stopwatch();
 
             for (int i = 0; i < days.Count; i++)
