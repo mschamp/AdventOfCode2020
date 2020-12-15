@@ -1,0 +1,64 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+
+namespace _2020
+{
+    public class Day15 : General.IAoC
+    {
+        public string SolvePart1(string input = null)
+        {
+            
+            return "" + PlayGame(2020,input);
+        }
+
+        public string SolvePart2(string input = null)
+        {
+            return "" + PlayGame(30000000, input);
+        }
+
+        private int PlayGame(int NumberOfTurns, string input)
+        {
+            int Counter = 0;
+            int LastNumber = 0;
+            Dictionary<int, int> Numbers = new Dictionary<int, int>();
+            foreach (var item in input.Split(","))
+            {
+                Counter++;
+                LastNumber = int.Parse(item);
+                Numbers[LastNumber] = Counter;
+            }
+
+            for (int i = Counter; i < NumberOfTurns; i++)
+            {
+                if (Numbers.ContainsKey(LastNumber))
+                {
+                    int next = i - Numbers[LastNumber];
+                    Numbers[LastNumber] = i;
+                    LastNumber = next;
+                    continue;
+                }
+                else
+                {
+                    Numbers[LastNumber] = i;
+                    LastNumber = 0;
+                }
+            }
+            return LastNumber;
+        }
+
+        public void Tests()
+        {
+            Debug.Assert(SolvePart1("0,3,6") == "436");
+            Debug.Assert(SolvePart1("1,3,2") == "1");
+            Debug.Assert(SolvePart1("2,1,3") == "10");
+            Debug.Assert(SolvePart1("1,2,3") == "27");
+            Debug.Assert(SolvePart1("2,3,1") == "78");
+            Debug.Assert(SolvePart1("3,2,1") == "438");
+            Debug.Assert(SolvePart1("3,1,2") == "1836");
+        }
+    }
+}

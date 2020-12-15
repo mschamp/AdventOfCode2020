@@ -10445,5 +10445,9 @@ mask = 0X1X0011011111X1X000X11X11000X01XX11
 mem[12368] = 3510868
 mem[33320] = 53294034
 mem[48579] = 15039";
+
+        public static string D15P1 = @"9,3,1,0,8,4";
+
+        public static string D16P1 = @"";
     }
 }
