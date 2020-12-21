@@ -17,61 +17,19 @@ namespace _2020
                 foods.Add(new Food(item));
             }
 
-            Dictionary<string, string> AllergenIngredient = new Dictionary<string, string>();
-            HashSet<string> ingredients = new HashSet<string>();
-            foreach (Food food in foods)
-            {
-                foreach (string allergen in food.Allergens)
-                {
-                    AllergenIngredient[allergen] = null;
-                }
-                foreach (string ingred in food.Ingredients)
-                {
-                    ingredients.Add(ingred);
-                }
-                
-            }
-
-            List<String> Allergens = AllergenIngredient.Keys.ToList();
-            while (AllergenIngredient.Values.Contains(null))
-            {
-                foreach (string Allerg in Allergens)
-                {
-                    if (AllergenIngredient[Allerg]==null)
-                    {
-                        List<string> options = foods.Where(x => x.Allergens.Contains(Allerg)).First().Ingredients;
-                        foreach (var Assigned in AllergenIngredient.Values)
-                        {
-                            options.Remove(Assigned);
-                        }
-                        
-                        foreach (var recept in foods.Where(x => x.Allergens.Contains(Allerg)))
-                        {
-                            options = options.Intersect(recept.Ingredients).ToList();
-                        }
-                        if (options.Count==1)
-                        {
-                            AllergenIngredient[Allerg] = options[0];
-                            ingredients.Remove(options[0]);
-                        }
-                    }
-
-                }
-            }
+            Dictionary<string, string> AllergenIngredient = MatchAllergensIngredients(foods);
 
             int Counter = 0;
             foreach (Food food in foods)
             {
                 foreach (string ingred in food.Ingredients)
                 {
-                    if (ingredients.Contains(ingred))
+                    if (!AllergenIngredient.Values.Contains(ingred))
                     {
                         Counter++;
                     }
                 }
             }
-
-
 
             return "" + Counter;
         }
@@ -84,6 +42,20 @@ namespace _2020
                 foods.Add(new Food(item));
             }
 
+            Dictionary<string, string> AllergenIngredient = MatchAllergensIngredients(foods);
+
+
+            List<string> Ordered = new List<string>();
+            foreach (var item in AllergenIngredient.Keys.OrderBy(x =>x))
+            {
+                Ordered.Add(AllergenIngredient[item]);
+            }
+
+            return string.Join(",", Ordered);
+        }
+
+        private Dictionary<string, string> MatchAllergensIngredients(List<Food> foods)
+        {
             Dictionary<string, string> AllergenIngredient = new Dictionary<string, string>();
             HashSet<string> ingredients = new HashSet<string>();
             foreach (Food food in foods)
@@ -125,14 +97,7 @@ namespace _2020
 
                 }
             }
-
-            List<string> Ordered = new List<string>();
-            foreach (var item in Allergens.OrderBy(x =>x))
-            {
-                Ordered.Add(AllergenIngredient[item]);
-            }
-
-            return string.Join(",", Ordered);
+            return AllergenIngredient;
         }
 
         public void Tests()
@@ -146,11 +111,7 @@ sqjhc mxmxvkd sbzzf (contains fish)") == "5");
 trh fvjkl sbzzf mxmxvkd (contains dairy)
 sqjhc fvjkl (contains soy)
 sqjhc mxmxvkd sbzzf (contains fish)") == "mxmxvkd,sqjhc,fvjkl");
-
-            
         }
-
-        
     }
 
     public class Food
