@@ -71,7 +71,7 @@ namespace _2020
 
             }
 
-            List<String> Allergens = AllergenIngredient.Keys.ToList();
+            List<string> Allergens = AllergenIngredient.Keys.ToList();
             while (AllergenIngredient.Values.Contains(null))
             {
                 foreach (string Allerg in Allergens)
@@ -124,7 +124,7 @@ sqjhc mxmxvkd sbzzf (contains fish)") == "mxmxvkd,sqjhc,fvjkl");
             Allergens = mtch.Groups[2].Value.Split(", ").ToList();
         }
 
-        public List<String> Ingredients { get; set; }
-        public List<String> Allergens { get; set; }
+        public List<string> Ingredients { get; set; }
+        public List<string> Allergens { get; set; }
     }
 }

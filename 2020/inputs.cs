@@ -15233,5 +15233,59 @@ vggchc jgnr mprhv kdq tmk krbr pgxgv kgkrhg kbcpn hqxn npccpr mksmf jrl xrxfjb l
 kqq mjzrj scx vrqf hzv hjsffq kfff jtdn cjtsfvl ssj cdgm vqmsh mlzr mdvrb chngq vjsvx xztlr pnb czsx tkl fzsl kbcpn hfxpz qhvz slgfnp gflr ffpmj bmj zxhqz tsxf vgld thrdbhmv sjmjf qhlzhd pgxgv rfhc mksmf mdlkr hqxn vzl ppvhxt jxvr tmqmbf gdtfn bljp khlr ghkpjc gns blts kgkrhg (contains wheat)
 lnssx khktc zxhqz qvjsd vmxb zmlfv mprhv qhvz ffvp kgkrhg qbxht ktkz bllq bjdt jxvr vrvsnf pgdxn mksmf gjpcz xztlr blfxjj hlhzmqv xbzp ktzzp mdvrb khlr rzk mjzrj kbjdrvk zrbx sjtmns gns qhlzhd vggchc gdtfn jrl cdgm npccpr ggmnz czsx kqq vndmgdn fzsl fblv pqxmx vtxm lvzzx qlpgl mfms jgnr tqstjfdc llrnpqp tsxf ddnr xzmj kbcpn qrzzxr bsfddz hqxn cnnh gptv bxrbp (contains peanuts, fish, nuts)
 njck qhvz gjpcz tqstjfdc czsx vzl pppr ghkpjc jgnr blfbjjh xdbn ctzvf frggd slgfnp bmj ffvp fzsl vndmgdn rfhc kgkrhg fvmstz tmk zmlfv cvxk fqxg vrqf hqxvz zvrjxt cjbnkl fkpnll qhlzhd gptv pjtf chngq vjsvx kbcpn mjzrj vgld pbzl kscl (contains fish, peanuts)";
+
+        public static string D22P1 = @"Player 1:
+29
+25
+9
+1
+17
+28
+12
+49
+8
+15
+41
+31
+39
+24
+40
+23
+6
+21
+13
+45
+20
+2
+42
+47
+10
+
+Player 2:
+46
+27
+44
+18
+30
+50
+37
+11
+43
+35
+34
+4
+22
+7
+33
+16
+36
+26
+48
+19
+38
+14
+5
+3
+32";
     }
 }
