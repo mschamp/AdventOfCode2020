@@ -22,7 +22,7 @@ namespace General
             new _2020.Day6(),new _2020.Day7(),new _2020.Day8(),new _2020.Day9(),new _2020.Day10(),
             new _2020.Day11(),new _2020.Day12(),new _2020.Day13(),new _2020.Day14(),new _2020.Day15(),
             new _2020.Day16(),new _2020.Day17(),new _2020.Day18(),new _2020.Day19(), new _2020.Day20(),
-            new _2020.Day21(),new _2020.Day22()};
+            new _2020.Day21(),new _2020.Day22(),new _2020.Day23()};
             string[] inputs = new[] { _2020.inputs.D1P1, _2020.inputs.D1P1,
             _2020.inputs.D2P1, _2020.inputs.D2P1,
             _2020.inputs.D3P1, _2020.inputs.D3P1,
@@ -44,7 +44,8 @@ namespace General
             _2020.inputs.D19P1, _2020.inputs.D19P1,
             _2020.inputs.D20P2, _2020.inputs.D20P2,
             _2020.inputs.D21P1, _2020.inputs.D21P1,
-            _2020.inputs.D22P1, _2020.inputs.D22P1};
+            _2020.inputs.D22P1, _2020.inputs.D22P1,
+            _2020.inputs.D23P1, _2020.inputs.D23P1};
 
             Solve(days, inputs);
 
@@ -114,6 +115,7 @@ namespace General
             for (int i = 0; i < days.Count; i++)
             {
                 days[i].Tests();
+                watch.Reset();
                 Console.WriteLine($"DAY{i + 1}");
                 watch.Start();
                 Console.WriteLine(days[i].SolvePart1(inputs[2 * i]) + " " + watch.Elapsed);

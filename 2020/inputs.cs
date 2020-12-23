@@ -13460,6 +13460,7 @@ Tile 1123:
 #.#.##...#
 ##...#.###";
 
+        //input of colleague
         public static string D20P2 = @"Tile 3461:
 #.##.#....
 ...#......
@@ -15287,5 +15288,7 @@ Player 2:
 5
 3
 32";
+
+        public static string D23P1 = @"193467258";
     }
 }

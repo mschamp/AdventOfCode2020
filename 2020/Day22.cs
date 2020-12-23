@@ -61,18 +61,16 @@ namespace _2020
         private long  game(List<int> Deck1, List<int> Deck2, int Game)
         {
             int Round = 0;
-            List<string> Decks1 = new List<string>();
-            List<string> Decks2 = new List<string>();
+            HashSet<string> Decks = new HashSet<string>();
             while (Deck1.Count > 0 && Deck2.Count > 0)
             {
                 Round++;
 
-                if (Decks1.Contains(string.Join(",",Deck1))|| Decks2.Contains(string.Join(",", Deck1)))
+                if (Decks.Contains(string.Join(",", Deck1) + (string.Join(";", Deck2))))
                 {
                     return 1;
                 }
-                Decks1.Add(string.Join(",", Deck1));
-                Decks2.Add(string.Join(",", Deck1));
+                Decks.Add(string.Join(",", Deck1) + (string.Join(";", Deck2)));
 
                 int p1 = Deck1[0];
                 int p2 = Deck2[0];
