@@ -83,7 +83,6 @@ namespace _2020
             for (int i = 0; i < 100; i++)
             {
                 Blacks = SimulateDay(Blacks);
-                int debug = Blacks.Count();
             }
 
 

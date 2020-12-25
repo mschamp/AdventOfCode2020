@@ -22,7 +22,7 @@ namespace General
             new _2020.Day6(),new _2020.Day7(),new _2020.Day8(),new _2020.Day9(),new _2020.Day10(),
             new _2020.Day11(),new _2020.Day12(),new _2020.Day13(),new _2020.Day14(),new _2020.Day15(),
             new _2020.Day16(),new _2020.Day17(),new _2020.Day18(),new _2020.Day19(), new _2020.Day20(),
-            new _2020.Day21(),new _2020.Day22(),new _2020.Day23(),new _2020.Day24()};
+            new _2020.Day21(),new _2020.Day22(),new _2020.Day23(),new _2020.Day24(),new _2020.Day25()};
             string[] inputs = new[] { _2020.inputs.D1P1, _2020.inputs.D1P1,
             _2020.inputs.D2P1, _2020.inputs.D2P1,
             _2020.inputs.D3P1, _2020.inputs.D3P1,
@@ -46,7 +46,8 @@ namespace General
             _2020.inputs.D21P1, _2020.inputs.D21P1,
             _2020.inputs.D22P1, _2020.inputs.D22P1,
             _2020.inputs.D23P1, _2020.inputs.D23P1,
-            _2020.inputs.D24P1, _2020.inputs.D24P1};
+            _2020.inputs.D24P1, _2020.inputs.D24P1,
+            _2020.inputs.D25P1, _2020.inputs.D25P1};
 
             Solve(days, inputs);
 
