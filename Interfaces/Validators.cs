@@ -13,9 +13,41 @@ namespace General
             return input => int.TryParse(input, out int number) && (number >= min && number <= max);
         }
 
+        public static Func<string, int> RegexMatchCountValidator(string Regex)
+        {
+            Regex rgx = new Regex(Regex);
+
+            return input => rgx.Matches(input).Count();
+        }
+
         public static Func<string, bool> ElementOfListValidator(string[] List)
         {
             return input => List.Contains(input);
+        }
+
+        public static Func<string, bool> DoubleLetterValidator()
+        {
+            return input => 
+            {
+                for (int i = 1; i < input.Length; i++)
+                {
+                    if (input[i]==input[i-1])
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            };
+        }
+
+        public static Func<string, bool> ContainsLetterValidator(char Letter)
+        {
+            return input => input.Contains(Letter);
+        }
+
+        public static Func<string, bool> ContainsStringValidator(string String)
+        {
+            return input => input.Contains(String);
         }
 
         public static Func<string, bool> RegexValidator(string Regex)

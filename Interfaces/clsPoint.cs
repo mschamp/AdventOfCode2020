@@ -108,18 +108,22 @@ namespace General
                 {
                     case 'R':
                     case 'E':
+                    case '>':
                         points.Add(plus(i, 0));
                         break;
                     case 'L':
                     case 'W':
+                    case '<':
                         points.Add(plus(-i, 0));
                         break;
                     case 'U':
                     case 'N':
+                    case '^':
                         points.Add(plus(0, i));
                         break;
                     case 'D':
                     case 'S':
+                    case 'v':
                         points.Add(plus(0, -i));
                         break;
                 }

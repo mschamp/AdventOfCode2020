@@ -13,7 +13,7 @@ namespace _2020
         public string SolvePart1(string input = null)
         {
             string[] parts = input.Split(Environment.NewLine);
-            int loopsCard = CalculateLoopSize(int.Parse(parts[0]));
+            //int loopsCard = CalculateLoopSize(int.Parse(parts[0]));
             int loopsDoor = CalculateLoopSize(int.Parse(parts[1]));
 
             return ""+ EncryptionKey(loopsDoor, int.Parse(parts[0]));
@@ -28,7 +28,7 @@ namespace _2020
             {
                 loop++; 
                 value *= subjectNumber;
-                value = value % 20201227;
+                value %= 20201227;
                 if (value==PublicKey)
                 {
                     return loop;
@@ -42,7 +42,7 @@ namespace _2020
             for (int i = 0; i < loopSize; i++)
             {
                 value *= subjectNumber;
-                value = value % 20201227;
+                value %= 20201227;
             }
             return value;
         }

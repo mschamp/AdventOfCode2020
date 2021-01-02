@@ -8,12 +8,38 @@ namespace General
     {
         static void Main(string[] args)
         {
-            Solve2015();
-            Solve2016();
-            Solve2017();
-            Solve2018();
-            //Solve2019();
-            Solve2020();
+            Console.WriteLine("Year to solve:");
+            string Year = Console.ReadLine();
+            switch (Year)
+            {
+                case "2015":
+                    Solve2015();
+                    break;
+                case "2016":
+                    Solve2016();
+                    break;
+                case "2017":
+                    Solve2017();
+                    break;
+                case "2018":
+                    Solve2018();
+                    break;
+                case "2019":
+                    Solve2019();
+                    break;
+                case "2020":
+                    Solve2020();
+                    break;
+                default:
+                    Solve2015();
+                    Solve2016();
+                    Solve2017();
+                    Solve2018();
+                    Solve2019();
+                    Solve2020();
+                    break;
+            }
+            
         }
 
         private static void Solve2020()
@@ -104,8 +130,17 @@ namespace General
 
         private static void Solve2015()
         {
-            List<IAoC> days = new List<IAoC> { };
-            string[] inputs = new string[] { };
+            List<IAoC> days = new List<IAoC> { new _2015.Day1(), new _2015.Day2(), new _2015.Day3(), new _2015.Day4(), new _2015.Day5(),
+            new _2015.Day6(),new _2015.Day7(),new _2015.Day8()};
+            string[] inputs = new string[] {
+            _2015.inputs.D1P1, _2015.inputs.D1P1,
+            _2015.inputs.D2P1, _2015.inputs.D2P1,
+            _2015.inputs.D3P1, _2015.inputs.D3P1,
+            _2015.inputs.D4P1, _2015.inputs.D4P1,
+            _2015.inputs.D5P1, _2015.inputs.D5P1,
+            _2015.inputs.D6P1, _2015.inputs.D6P1,
+            _2015.inputs.D7P1, _2015.inputs.D7P1,
+            _2015.inputs.D8P1, _2015.inputs.D8P1};
 
             Solve(days, inputs);
         }
