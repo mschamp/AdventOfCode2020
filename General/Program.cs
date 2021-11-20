@@ -131,7 +131,9 @@ namespace General
         private static void Solve2015()
         {
             List<IAoC> days = new List<IAoC> { new _2015.Day1(), new _2015.Day2(), new _2015.Day3(), new _2015.Day4(), new _2015.Day5(),
-            new _2015.Day6(),new _2015.Day7(),new _2015.Day8()};
+            new _2015.Day6(),new _2015.Day7(),new _2015.Day8(),new _2015.Day9(),new _2015.Day10(),
+            new _2015.Day11(),new _2015.Day12(),new _2015.Day13(),new _2015.Day14(),new _2015.Day15(),
+            new _2015.Day16()};
             string[] inputs = new string[] {
             _2015.inputs.D1P1, _2015.inputs.D1P1,
             _2015.inputs.D2P1, _2015.inputs.D2P1,
@@ -140,7 +142,15 @@ namespace General
             _2015.inputs.D5P1, _2015.inputs.D5P1,
             _2015.inputs.D6P1, _2015.inputs.D6P1,
             _2015.inputs.D7P1, _2015.inputs.D7P1,
-            _2015.inputs.D8P1, _2015.inputs.D8P1};
+            _2015.inputs.D8P1, _2015.inputs.D8P1,
+            _2015.inputs.D9P1, _2015.inputs.D9P1,
+             _2015.inputs.D10P1, _2015.inputs.D10P1,
+            _2015.inputs.D11P1,_2015.inputs.D11P1,
+             _2015.inputs.D12P1,_2015.inputs.D12P1,
+            _2015.inputs.D13P1,_2015.inputs.D13P1,
+            _2015.inputs.D14P1,_2015.inputs.D14P1,
+             _2015.inputs.D15P1,_2015.inputs.D15P1,
+            _2015.inputs.D16P1,_2015.inputs.D16P1};
 
             Solve(days, inputs);
         }
