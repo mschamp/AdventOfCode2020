@@ -30,6 +30,9 @@ namespace General
                 case "2020":
                     Solve2020();
                     break;
+                case "2021":
+                    Solve2021();
+                    break;
                 default:
                     Solve2015();
                     Solve2016();
@@ -37,6 +40,7 @@ namespace General
                     Solve2018();
                     Solve2019();
                     Solve2020();
+                    Solve2021();
                     break;
             }
             
@@ -155,6 +159,14 @@ namespace General
             Solve(days, inputs);
         }
 
+        private static void Solve2021()
+        {
+            List<IAoC> days = new List<IAoC> { new _2021.Day1()};
+            string[] inputs = new string[] {
+            _2021.inputs.D1P1, _2021.inputs.D1P1};
+
+            Solve(days, inputs);
+        }
         private static void Solve(List<IAoC> days, string[] inputs)
         {
             Stopwatch watch = new Stopwatch();
