@@ -6,40 +6,35 @@ using System.Linq;
 
 namespace _2021
 {
-    public class Day1 : General.IAoC
+    public class Day1 : General.PuzzleWithIntegerArrayInput
     {
-        public string SolvePart1(string input = null)
+        public override string SolvePart1(int[] input)
         {
-            List<int> depths = input.Split(Environment.NewLine).Select(x => int.Parse(x)).ToList();
-
-            int Previous = depths.First();
+            int Previous = input[0];
             int larger = 0;
 
-            for (int i = 1; i < depths.Count(); i++)
+            for (int i = 1; i < input.Count(); i++)
             {
-                if (depths[i] > Previous) larger++;
-                Previous = depths[i];
+                if (input[i] > Previous) larger++;
+                Previous = input[i];
             }
             return larger.ToString();
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(int[] input)
         {
-            List<int> depths = input.Split(Environment.NewLine).Select(x => int.Parse(x)).ToList();
-
-            int Previous = depths[0]+ depths[1]+ depths[2];
+            int Previous = input[0]+ input[1]+ input[2];
             int larger = 0;
-
-            for (int i = 3; i < depths.Count(); i++)
+            for (int i = 3; i < input.Count(); i++)
             {
-                int moving = depths[i] + depths[i - 1] + depths[i - 2];
+                int moving = input[i] + input[i - 1] + input[i - 2];
                 if (moving > Previous) larger++;
                 Previous = moving;
             }
             return larger.ToString();
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@"199
 200

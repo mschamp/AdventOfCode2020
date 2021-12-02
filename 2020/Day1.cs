@@ -3,44 +3,43 @@ using System.Diagnostics;
 
 namespace _2020
 {
-    public class Day1 : General.IAoC
+    public class Day1 : General.PuzzleWithIntegerArrayInput
     {
-        public string SolvePart1(string input = null)
+ 
+        public override string SolvePart1(int[] input)
         {
-            int[] values = Array.ConvertAll(input.Split(Environment.NewLine), s => int.Parse(s));
-            for (int i = 0; i < values.Length; i++)
+            for (int i = 0; i < input.Length; i++)
             {
-                for (int j = 0; j < values.Length; j++)
+                for (int j = 0; j < input.Length; j++)
                 {
-                    if (values[i]+values[j]==2020)
+                    if (input[i] + input[j] == 2020)
                     {
-                        return (values[i] * values[j]).ToString();
+                        return (input[i] * input[j]).ToString();
                     }
                 }
             }
             return "";
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(int[] input)
         {
-            int[] values = Array.ConvertAll(input.Split(Environment.NewLine), s => int.Parse(s));
-            for (int i = 0; i < values.Length; i++)
+            for (int i = 0; i < input.Length; i++)
             {
-                for (int j = 0; j < values.Length; j++)
+                for (int j = 0; j < input.Length; j++)
                 {
-                    for (int k = 0; k < values.Length; k++)
+                    for (int k = 0; k < input.Length; k++)
                     {
-                        if (values[i] + values[j] + values[k] == 2020)
+                        if (input[i] + input[j] + input[k] == 2020)
                         {
-                            return (values[i] * values[j] * values[k]).ToString();
+                            return (input[i] * input[j] * input[k]).ToString();
                         }
-                    }  
+                    }
                 }
             }
             return "";
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@"1721
 979

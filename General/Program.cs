@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace General
 {
@@ -10,38 +11,22 @@ namespace General
         {
             Console.WriteLine("Year to solve:");
             string Year = Console.ReadLine();
-            switch (Year)
+            Dictionary<string, Action> years = new Dictionary<string, Action>() {
+                { "2015",Solve2015},
+                { "2016",Solve2016},
+                { "2017",Solve2017},
+                { "2018",Solve2018},
+                { "2019",Solve2019},
+                { "2020",Solve2020},
+                { "2021",Solve2021},
+            };
+            if (years.TryGetValue(Year, out Action YearClass))
             {
-                case "2015":
-                    Solve2015();
-                    break;
-                case "2016":
-                    Solve2016();
-                    break;
-                case "2017":
-                    Solve2017();
-                    break;
-                case "2018":
-                    Solve2018();
-                    break;
-                case "2019":
-                    Solve2019();
-                    break;
-                case "2020":
-                    Solve2020();
-                    break;
-                case "2021":
-                    Solve2021();
-                    break;
-                default:
-                    Solve2015();
-                    Solve2016();
-                    Solve2017();
-                    Solve2018();
-                    Solve2019();
-                    Solve2020();
-                    Solve2021();
-                    break;
+                YearClass();
+            }
+            else
+            {
+                years.Values.ToList().ForEach(x => x());
             }
             
         }
@@ -53,7 +38,8 @@ namespace General
             new _2020.Day11(),new _2020.Day12(),new _2020.Day13(),new _2020.Day14(),new _2020.Day15(),
             new _2020.Day16(),new _2020.Day17(),new _2020.Day18(),new _2020.Day19(), new _2020.Day20(),
             new _2020.Day21(),new _2020.Day22(),new _2020.Day23(),new _2020.Day24(),new _2020.Day25()};
-            string[] inputs = new[] { _2020.inputs.D1P1, _2020.inputs.D1P1,
+            string[] inputs = new[] { 
+            _2020.inputs.D1P1, _2020.inputs.D1P1,
             _2020.inputs.D2P1, _2020.inputs.D2P1,
             _2020.inputs.D3P1, _2020.inputs.D3P1,
             _2020.inputs.D4P1, _2020.inputs.D4P1,
@@ -88,8 +74,9 @@ namespace General
             List<IAoC> days = new List<IAoC> { new _2019.Day1(), new _2019.Day2(), new _2019.Day3(), new _2019.Day4(), new _2019.Day5(),
             new _2019.Day6(), new _2019.Day7(), new _2019.Day8(), new _2019.Day9(), new _2019.Day10(),
             new _2019.Day11(), new _2019.Day12(), new _2019.Day13(), new _2019.Day14(), new _2019.Day15()};
-            string[] inputs = new[] { _2019.inputs.D1P1, _2019.inputs.D1P1,
-                _2019.inputs.D2P1, _2019.inputs.D2P2,
+            string[] inputs = new[] { 
+            _2019.inputs.D1P1, _2019.inputs.D1P1,
+            _2019.inputs.D2P1, _2019.inputs.D2P2,
             _2019.inputs.D3P1, _2019.inputs.D3P1,
             _2019.inputs.D4P1, _2019.inputs.D4P1,
             _2019.inputs.D5P1, _2019.inputs.D5P2,
@@ -148,12 +135,12 @@ namespace General
             _2015.inputs.D7P1, _2015.inputs.D7P1,
             _2015.inputs.D8P1, _2015.inputs.D8P1,
             _2015.inputs.D9P1, _2015.inputs.D9P1,
-             _2015.inputs.D10P1, _2015.inputs.D10P1,
+            _2015.inputs.D10P1, _2015.inputs.D10P1,
             _2015.inputs.D11P1,_2015.inputs.D11P1,
-             _2015.inputs.D12P1,_2015.inputs.D12P1,
+            _2015.inputs.D12P1,_2015.inputs.D12P1,
             _2015.inputs.D13P1,_2015.inputs.D13P1,
             _2015.inputs.D14P1,_2015.inputs.D14P1,
-             _2015.inputs.D15P1,_2015.inputs.D15P1,
+            _2015.inputs.D15P1,_2015.inputs.D15P1,
             _2015.inputs.D16P1,_2015.inputs.D16P1};
 
             Solve(days, inputs);
@@ -161,9 +148,10 @@ namespace General
 
         private static void Solve2021()
         {
-            List<IAoC> days = new List<IAoC> { new _2021.Day1()};
+            List<IAoC> days = new List<IAoC> { new _2021.Day1(), new _2021.Day2() };
             string[] inputs = new string[] {
-            _2021.inputs.D1P1, _2021.inputs.D1P1};
+            _2021.inputs.D1P1, _2021.inputs.D1P1,
+            _2021.inputs.D2P1, _2021.inputs.D2P1};
 
             Solve(days, inputs);
         }

@@ -6,18 +6,12 @@ using System.Text;
 
 namespace _2020
 {
-    public class Day10 : General.IAoC
+    public class Day10 : General.PuzzleWithLongArrayInput
     {
         Func<long, long> Tribonnaci = General.MathFunctions.Tribonnaci();
 
-        public string SolvePart1(string input = null)
+        public override string SolvePart1(long[] joltages)
         {
-            List<long> joltages = new List<long>();
-            foreach (var item in input.Split(Environment.NewLine))
-            {
-                joltages.Add(long.Parse(item));
-            }
-
             int Difference1 = 0;
             int Difference3 = 1; //1 because of built-in adapter
 
@@ -36,17 +30,12 @@ namespace _2020
                 }
                 prev = item;
             }
-            return "" + (Difference1 * Difference3);
+            return (Difference1 * Difference3).ToString();
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(long[] joltages)
         {
-            List<long> joltages = new List<long>();
-            foreach (var item in input.Split(Environment.NewLine))
-            {
-                joltages.Add(long.Parse(item));
-            }
-            return ""+Combinations(joltages.Distinct().OrderBy(x => x).ToList());
+            return Combinations(joltages.Distinct().OrderBy(x => x).ToList()).ToString();
         }
         
         private long Combinations(List<long> input)
@@ -104,7 +93,7 @@ namespace _2020
         //return _values[curValue];
         //}
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@"28
 33

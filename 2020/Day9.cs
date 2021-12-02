@@ -6,26 +6,12 @@ using System.Text;
 
 namespace _2020
 {
-    public class Day9 : General.IAoC
+    public class Day9 : General.PuzzleWithLongArrayInput
     {
-        public string SolvePart1(string input = null)
-        {
-            string[] inputvalues = input.Split(Environment.NewLine);
-            int store = int.Parse(inputvalues[0]);
-            List<long> values = new List<long>();
-            List<long> valueslong = new List<long>();
 
-            for (int i = 1; i < inputvalues.Length; i++)
-            {
-                valueslong.Add(long.Parse(inputvalues[i]));
-            }
-            return "" + findInvalidNumber(ref values, store, valueslong);
-            
-        }
-
-        public long findInvalidNumber(ref List<long> values, int store, List<long> inputvalues)
+        public long findInvalidNumber(ref List<long> values, int store, long[] inputvalues)
         {
-            int pointer = 0;
+            int pointer = 1;
             while (values.Count < store)
             {
                 values.Add(inputvalues[pointer]);
@@ -49,31 +35,14 @@ namespace _2020
             return values.Any(x => values.Contains(value - x));
         }
 
-        public string SolvePart2(string input = null)
+        public List<long> FindContinguousSet(long sum, long[] inputs)
         {
-            string[] inputvalues = input.Split(Environment.NewLine);
-            int store = int.Parse(inputvalues[0]);
-            List<long> values = new List<long>();
-            List<long> valueslong = new List<long>();
-
-            for (int i = 1; i < inputvalues.Length; i++)
-            {
-                valueslong.Add(long.Parse(inputvalues[i]));
-            }
-           
-            List<long> set = FindContinguousSet(findInvalidNumber(ref values, store, valueslong), valueslong);
-
-            return "" + (set.Min()+set.Max());
-        }
-
-        public List<long> FindContinguousSet(long sum, List<long> inputs)
-        {
-            for (int i = 0; i < inputs.Count; i++)
+            for (int i = 1; i < inputs.Length; i++)
             {
                 List<long> Values = new List<long> { inputs[i] };
                 while (Values.Sum()<sum)
                 {
-                    for (int j=1; j< inputs.Count-i; j++)
+                    for (int j=1; j< inputs.Length-i; j++)
                     {
                         Values.Add(inputs[i + j]);
                         if (Values.Sum() == sum)
@@ -86,7 +55,7 @@ namespace _2020
             return null;
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@"5
 35
@@ -131,6 +100,24 @@ namespace _2020
 277
 309
 576") == "62");
+        }
+
+        public override string SolvePart1(long[] input)
+        {
+            int store = (int)input[0];
+            List<long> values = new List<long>();
+
+            return "" + findInvalidNumber(ref values, store, input);
+        }
+
+        public override string SolvePart2(long[] input)
+        {
+            int store = (int)input[0];
+            List<long> values = new List<long>();
+
+            List<long> set = FindContinguousSet(findInvalidNumber(ref values, store, input), input);
+
+            return "" + (set.Min() + set.Max());
         }
     }
 }

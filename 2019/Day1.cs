@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace _2019
 {
-    public class Day1:General.IAoC
+    public class Day1:General.PuzzleWithIntegerArrayInput
     {
 
         private  int GetFuelForModule(int mass, int divider, int substracter)
@@ -20,23 +20,23 @@ namespace _2019
             return partialResult - substracter;
         }
 
-        public string SolvePart1(string input)
+        public override string SolvePart1(int[] input)
         {
             int sum = 0;
-                foreach (string str in input.Split(Environment.NewLine))
+                foreach (int value in input)
                 {
-                    int Fuel = GetFuelForModule(int.Parse(str), 3, 2);
+                    int Fuel = GetFuelForModule(value, 3, 2);
                     sum += Fuel;
             }
             return sum.ToString();
         }
 
-        public string SolvePart2(string input)
+        public override string SolvePart2(int[] input)
         {
             int sum = 0;
-                foreach (string str in input.Split(Environment.NewLine))
-                {
-                    int Fuel = GetFuelForModule(int.Parse(str), 3, 2);
+            foreach (int value in input)
+            {
+                    int Fuel = GetFuelForModule(value, 3, 2);
 
 
                     while (Fuel > 0)
@@ -48,7 +48,7 @@ namespace _2019
             return sum.ToString();
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1("12") == "2");
             Debug.Assert(SolvePart1("14") == "2");
