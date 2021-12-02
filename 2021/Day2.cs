@@ -1,30 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 
 namespace _2021
 {
-    public class Day2 : General.PuzzleWithStringArrayInput
+    public class Day2 : General.PuzzleWithObjectArrayInput<Day2.Instruction>
     {
-        public override string SolvePart1(string[] input)
+        public override string SolvePart1(Instruction[] input)
         {
-            System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex(@"(\w*)\s(\d*)");
             int Horizontal = 0;
             int depth = 0;
-            foreach (string item in input)
+            foreach (Instruction item in input)
             {
-                var mtch = rgx.Match(item);
-                switch (mtch.Groups[1].Value)
+                switch (item.direction)
                 {
                     case "down":
-                        depth += int.Parse(mtch.Groups[2].Value);
+                        depth += item.distance;
                         break;
                     case "forward":
-                        Horizontal += int.Parse(mtch.Groups[2].Value);
+                        Horizontal += item.distance;
                         break;
                     case "up":
-                        depth -= int.Parse(mtch.Groups[2].Value);
+                        depth -= item.distance;
                         break;
                     default:
                         break;
@@ -34,26 +33,24 @@ namespace _2021
             return (Horizontal * depth).ToString();
         }
 
-        public override string SolvePart2(string[] input)
+        public override string SolvePart2(Instruction[] input)
         {
-            System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex(@"(\w*)\s(\d*)");
             int Horizontal = 0;
             int depth = 0;
             int aim = 0;
-            foreach (string item in input)
+            foreach (Instruction item in input)
             {
-                var mtch = rgx.Match(item);
-                switch (mtch.Groups[1].Value)
+                switch (item.direction)
                 {
                     case "down":
-                        aim += int.Parse(mtch.Groups[2].Value);
+                        aim += item.distance;
                         break;
                     case "forward":
-                        Horizontal += int.Parse(mtch.Groups[2].Value);
-                        depth+=aim* int.Parse(mtch.Groups[2].Value);
+                        Horizontal += item.distance;
+                        depth +=aim* item.distance;
                         break;
                     case "up":
-                        aim -= int.Parse(mtch.Groups[2].Value);
+                        aim -= item.distance;
                         break;
                     default:
                         break;
@@ -62,6 +59,8 @@ namespace _2021
 
             return (Horizontal * depth).ToString();
         }
+
+        public record Instruction(string direction, int distance); 
 
         public override void Tests()
         {
@@ -78,6 +77,12 @@ forward 8
 up 3
 down 8
 forward 2") == "900");
+        }
+
+        public override Instruction CastToObject(string RawData)
+        {
+            string[] data = RawData.Split(' ');
+            return new Instruction(data[0], int.Parse(data[1]));
         }
     }
 }
