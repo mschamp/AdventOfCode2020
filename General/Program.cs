@@ -148,10 +148,11 @@ namespace General
 
         private static void Solve2021()
         {
-            List<IAoC> days = new List<IAoC> { new _2021.Day1(), new _2021.Day2() };
+            List<IAoC> days = new List<IAoC> { new _2021.Day1(), new _2021.Day2(), new _2021.Day3() };
             string[] inputs = new string[] {
             _2021.inputs.D1P1, _2021.inputs.D1P1,
-            _2021.inputs.D2P1, _2021.inputs.D2P1};
+            _2021.inputs.D2P1, _2021.inputs.D2P1,
+            _2021.inputs.D3P1, _2021.inputs.D3P1};
 
             Solve(days, inputs);
         }
