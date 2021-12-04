@@ -9,12 +9,12 @@ namespace General
     {
         public string SolvePart1(string input = null)
         {
-            return SolvePart1(input.Split(Environment.NewLine).Select(x => CastToObject(x)).ToArray());
+            return SolvePart1(input.Split(input.Contains(Environment.NewLine+Environment.NewLine)? Environment.NewLine + Environment.NewLine : Environment.NewLine).Select(x => CastToObject(x)).ToArray());
         }
 
         public string SolvePart2(string input = null)
         {
-            return SolvePart2(input.Split(Environment.NewLine).Select(x => CastToObject(x)).ToArray());
+            return SolvePart2(input.Split(input.Contains(Environment.NewLine + Environment.NewLine) ? Environment.NewLine + Environment.NewLine : Environment.NewLine).Select(x => CastToObject(x)).ToArray());
         }
 
         public abstract ObjectClass CastToObject(string RawData);

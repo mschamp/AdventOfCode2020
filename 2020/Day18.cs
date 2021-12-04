@@ -7,18 +7,18 @@ using System.Text.RegularExpressions;
 
 namespace _2020
 {
-    public class Day18 : General.IAoC
+    public class Day18 : General.PuzzleWithStringArrayInput
     {
         MatchEvaluator evaluator = new(NoBrackets);
 
-        public string SolvePart1(string input = null)
+        public override string SolvePart1(string[] input)
         {
             List<long> Results = new();
-            foreach (string item in input.Split(Environment.NewLine))
+            foreach (string item in input)
             {
                 Results.Add(SolveEquation1(item.Replace(" ","")));
             }
-            return "" + Results.Sum();
+            return Results.Sum().ToString();
         }
 
         private long SolveEquation1(string equation)
@@ -77,17 +77,17 @@ namespace _2020
             return long.Parse(equation);
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string[] input)
         {
             List<long> Results = new();
-            foreach (string item in input.Split(Environment.NewLine))
+            foreach (string item in input)
             {
                 Results.Add(SolveEquation2(item.Replace(" ", "")));
             }
-            return "" + Results.Sum();
+            return Results.Sum().ToString();
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1("1 + 2 * 3 + 4 * 5 + 6") =="71");
             Debug.Assert(SolvePart1("1 + (2 * 3) + (4 * (5 + 6))") == "51");

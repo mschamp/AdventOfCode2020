@@ -6,11 +6,10 @@ using System.Linq;
 
 namespace _2020
 {
-    public class Day12 : General.IAoC
+    public class Day12 : General.PuzzleWithStringArrayInput
     {
-        public string SolvePart1(string input = null)
+        public override string SolvePart1(string[] instructions)
         {
-            string[] instructions = input.Split(Environment.NewLine);
             General.clsPoint position = new(0, 0);
             General.Direction direction = General.Direction.Right;
 
@@ -43,9 +42,8 @@ namespace _2020
         }
 
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string[] instructions)
         {
-            string[] instructions = input.Split(Environment.NewLine);
             General.clsPoint Waypoint = new(10, 1);
             General.clsPoint Ship = new(0, 0);
 
@@ -75,7 +73,7 @@ namespace _2020
             return "" + Ship.manhattan();
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@"F10
 N3

@@ -5,11 +5,10 @@ using System.Text;
 
 namespace _2020
 {
-    public class Day11 : General.IAoC
+    public class Day11 : General.PuzzleWithStringArrayInput
     {
-        public string SolvePart1(string input = null)
+        public override string SolvePart1(string[] rows)
         {
-            string[] rows = input.Split(Environment.NewLine);
             string[] NewConfig = new string[rows.Length];
             bool changed = true;
             while (changed)
@@ -78,9 +77,8 @@ namespace _2020
             return counter;
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string[] rows)
         {
-            string[] rows = input.Split(Environment.NewLine);
             string[] NewConfig = new string[rows.Length];
             bool changed = true;
             while (changed)
@@ -150,7 +148,7 @@ namespace _2020
             }
             return false;
         }
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@"L.LL.LL.LL
 LLLLLLL.LL

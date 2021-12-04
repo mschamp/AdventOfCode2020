@@ -7,14 +7,14 @@ using System.Text.RegularExpressions;
 
 namespace _2020
 {
-    public class Day7 : General.IAoC
+    public class Day7 : General.PuzzleWithObjectInput<(List<Day7.Bag> Outer, Dictionary<string, Day7.Bag> bags)>
     {
-        public string SolvePart1(string input = null)
+        public override (List<Bag>, Dictionary<string, Bag>) CastToObject(string RawData)
         {
             Dictionary<string, Bag> bags = new();
             List<Bag> Outer = new();
             Regex rgx = new(@"(\d+)?\s?(\w+\s\w+)\sbags?");
-            foreach  (string outer in input.Split(Environment.NewLine))
+            foreach (string outer in RawData.Split(Environment.NewLine))
             {
                 MatchCollection mtchs = rgx.Matches(outer);
                 Bag Outbag;
@@ -38,44 +38,21 @@ namespace _2020
                     }
                 }
             }
-
-            return "" + (Outer.Count(x => x.canContain("shiny gold")) -1);
+            return (Outer, bags);
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart1((List<Bag> Outer, Dictionary<string, Bag> bags) input)
         {
-            Dictionary<string, Bag> bags = new();
-            List<Bag> Outer = new();
-            Regex rgx = new(@"(\d+)?\s?(\w+\s\w+)\sbags?");
-            foreach (string outer in input.Split(Environment.NewLine))
-            {
-                MatchCollection mtchs = rgx.Matches(outer);
-                Bag Outbag;
-                if (!bags.TryGetValue(mtchs[0].Groups[2].Value, out Outbag))
-                {
-                    Outbag = new Bag(mtchs[0].Groups[2].Value);
-                    bags[mtchs[0].Groups[2].Value] = Outbag;
-                }
-                Outer.Add(Outbag);
-                for (int i = 1; i < mtchs.Count; i++)
-                {
-                    if (mtchs[i].Groups[2].Value != "no other")
-                    {
-                        Bag inBag;
-                        if (!bags.TryGetValue(mtchs[i].Groups[2].Value, out inBag))
-                        {
-                            inBag = new Bag(mtchs[i].Groups[2].Value);
-                            bags[mtchs[i].Groups[2].Value] = inBag;
-                        }
-                        Outbag.Content[inBag] = int.Parse(mtchs[i].Groups[1].Value);
-                    }
-                }
-            }
-
-            return "" + (bags["shiny gold"].canContainAmount() - 1);
+           return (input.Outer.Count(x => x.canContain("shiny gold")) - 1).ToString();
         }
 
-        public void Tests()
+
+        public override string SolvePart2((List<Bag> Outer, Dictionary<string, Bag> bags) input)
+        {
+            return (input.bags["shiny gold"].canContainAmount() - 1).ToString();
+        }
+
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@"light red bags contain 1 bright white bag, 2 muted yellow bags.
 dark orange bags contain 3 bright white bags, 4 muted yellow bags.

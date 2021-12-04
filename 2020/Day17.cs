@@ -13,14 +13,14 @@ namespace _2020
         {
             Cubes3D cubes = new(input);
             cubes.ExecuteCycles(6);
-            return "" + cubes.CubesOnCount;
+            return cubes.CubesOnCount.ToString();
         }
 
         public string SolvePart2(string input = null)
         {
             Cubes4D cubes = new(input);
             cubes.ExecuteCycles(6);
-            return "" + cubes.CubesOnCount;
+            return cubes.CubesOnCount.ToString();
         }
 
         public void Tests()

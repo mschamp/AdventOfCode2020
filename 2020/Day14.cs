@@ -7,14 +7,14 @@ using System.Text.RegularExpressions;
 
 namespace _2020
 {
-    public class Day14 : General.IAoC
+    public class Day14 : General.PuzzleWithStringArrayInput
     {
-        public string SolvePart1(string input = null)
+        public override string SolvePart1(string[] input)
         {
             Func<string, long> FindMemory = GetMemoryAddress();
             Dictionary<long, long> Memory = new();
             string Mask="";
-            foreach (var item in input.Split(Environment.NewLine))
+            foreach (var item in input)
             {
                 if (item.StartsWith("mask"))
                 {
@@ -28,7 +28,7 @@ namespace _2020
 
             }
 
-            return "" + Memory.Values.Sum();
+            return Memory.Values.Sum().ToString();
         }
 
         private long ApplyMask1(string Mask, long Value)
@@ -107,12 +107,12 @@ namespace _2020
         }
 
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string[] input)
         {
             Func<string, long> FindMemory = GetMemoryAddress();
             Dictionary<long, long> Memory = new();
             string Mask = "";
-            foreach (var item in input.Split(Environment.NewLine))
+            foreach (var item in input)
             {
                 if (item.StartsWith("mask"))
                 {
@@ -160,7 +160,7 @@ namespace _2020
             return NewAddresses.ToArray();
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@"mask = XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X
 mem[8] = 11

@@ -12,12 +12,12 @@ namespace _2020
         public string SolvePart1(string input = null)
         {
             
-            return "" + PlayGame(2020,input);
+            return PlayGame(2020,input).ToString();
         }
 
         public string SolvePart2(string input = null)
         {
-            return "" + PlayGame(30000000, input);
+            return PlayGame(30000000, input).ToString();
         }
 
         private int PlayGame(int NumberOfTurns, string input)

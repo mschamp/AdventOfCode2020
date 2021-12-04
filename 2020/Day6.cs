@@ -6,41 +6,38 @@ using System.Text;
 
 namespace _2020
 {
-    public class Day6 : General.IAoC
+    public class Day6 : General.PuzzleWithObjectArrayInput<Group>
     {
-        public string SolvePart1(string input = null)
+        public override Group CastToObject(string RawData)
         {
-            List<Group> groups = new();
-            foreach (string group in input.Split(Environment.NewLine + Environment.NewLine))
-            {
-                groups.Add(new Group(group));
-            }
-            return "" + groups.Sum(x => x.uniqueQuestionsAnyone);
+            return new Group(RawData);
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart1(Group[] input)
         {
-            List<Group> groups = new();
-            foreach (string group in input.Split(Environment.NewLine + Environment.NewLine))
-            {
-                groups.Add(new Group(group));
-            }
-            return "" + groups.Sum(x => x.uniqueQuestionsEveryone());
+            return input.Sum(x => x.uniqueQuestionsAnyone).ToString();
         }
 
-        public void Tests()
+        public override string SolvePart2(Group[] input)
+        {
+            return input.Sum(x => x.uniqueQuestionsEveryone()).ToString();
+        }
+
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@"abc")=="3");
             Debug.Assert(SolvePart1(@"a
 b
-c") == "3");
-            Debug.Assert(SolvePart1(@"ab
-ac") == "3");
+c
 
-            Debug.Assert(SolvePart1(@"a
+") == "3");
+            Debug.Assert(SolvePart1(new Group[] { new Group(@"ab
+ac") }) == "3");
+
+            Debug.Assert(SolvePart1(new Group[] { new Group(@"a
 a
 a
-a") == "1");
+a") }) == "1");
 
             Debug.Assert(SolvePart1(@"b") == "1");
 

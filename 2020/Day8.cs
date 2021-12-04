@@ -6,27 +6,32 @@ using System.Text;
 
 namespace _2020
 {
-    public class Day8 : General.IAoC
+    public class Day8 : General.PuzzleWithObjectInput<handheld>
     {
-        public string SolvePart1(string input = null)
+        public override handheld CastToObject(string RawData)
         {
             handheld hand = new();
-            hand.LoadProgram(input);
+            hand.LoadProgram(RawData);
+
+            return hand;
+        }
+
+        public override string SolvePart1(handheld hand)
+        {
             hand.ExecuteProgram();
 
-            return "" + hand.Accumulator;
+            return hand.Accumulator.ToString();
         }
 
-        public string SolvePart2(string input = null)
+
+        public override string SolvePart2(handheld hand)
         {
-            handheld hand = new();
-            hand.LoadProgram(input);
             hand.TryFixing();
 
-            return "" + hand.Accumulator;
+            return hand.Accumulator.ToString();
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@"nop +0
 acc +1

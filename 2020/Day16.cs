@@ -7,47 +7,11 @@ using System.Text.RegularExpressions;
 
 namespace _2020
 {
-    public class Day16 : General.IAoC
+    public class Day16 : General.PuzzleWithObjectInput<(List<TicketField> fields,List<string[]> Tickets, string[] YourTicket)>
     {
-        public string SolvePart1(string input = null)
+        public override (List<TicketField> fields, List<string[]> Tickets, string[] YourTicket) CastToObject(string RawData)
         {
-            string[] inputParts = input.Split(Environment.NewLine + Environment.NewLine);
-            List<TicketField> fields = new();
-            List<string[]> Tickets = new();
-            Regex rgxfields = new(@"(\w+\s?\w*):\s(\d+)-(\d+)\sor\s(\d+)-(\d+)");
-
-            foreach (string item in inputParts[0].Split(Environment.NewLine))
-            {
-               var match= rgxfields.Match(item);
-                TicketField newField = new(match.Groups[1].Value, int.Parse(match.Groups[2].Value), int.Parse(match.Groups[3].Value));
-                newField.AddRange(int.Parse(match.Groups[4].Value), int.Parse(match.Groups[5].Value));
-                fields.Add(newField);
-            }
-            
-
-            foreach (string item in inputParts[2].Split(Environment.NewLine).Skip(1))
-            {
-                Tickets.Add(item.Split(","));
-            }
-
-            int sum = 0;
-            for (int i = 0; i < Tickets.Count; i++)
-            {
-                for (int j = 0; j < Tickets[i].Length; j++)
-                {
-                    if (!fields.Any(x => x.Valid(Tickets[i][j])))
-                    {
-                        sum += int.Parse(Tickets[i][j]);
-                    } 
-                }
-            }
-
-            return "" + sum;
-        }
-
-        public string SolvePart2(string input = null)
-        {
-            string[] inputParts = input.Split(Environment.NewLine + Environment.NewLine);
+            string[] inputParts = RawData.Split(Environment.NewLine + Environment.NewLine);
             List<TicketField> fields = new();
             string[] YourTicket = inputParts[1].Split(Environment.NewLine)[1].Split(",");
             List<string[]> Tickets = new();
@@ -60,47 +24,67 @@ namespace _2020
                 newField.AddRange(int.Parse(match.Groups[4].Value), int.Parse(match.Groups[5].Value));
                 fields.Add(newField);
             }
-
-
             foreach (string item in inputParts[2].Split(Environment.NewLine).Skip(1))
             {
                 Tickets.Add(item.Split(","));
             }
 
-            List<string[]> ValidTickets = Tickets.ToList();
-            for (int i = 0; i < Tickets.Count; i++)
+            return (fields,Tickets,YourTicket);
+        }
+
+        public override string SolvePart1((List<TicketField> fields, List<string[]> Tickets,string[] YourTicket) input)
+        {
+            int sum = 0;
+            for (int i = 0; i < input.Tickets.Count; i++)
             {
-                for (int j = 0; j < Tickets[i].Length; j++)
+                for (int j = 0; j < input.Tickets[i].Length; j++)
                 {
-                    if (!fields.Any(x => x.Valid(Tickets[i][j])))
+                    if (!input.fields.Any(x => x.Valid(input.Tickets[i][j])))
                     {
-                        ValidTickets.Remove(Tickets[i]);
+                        sum += int.Parse(input.Tickets[i][j]);
                     }
                 }
             }
 
-            TicketField[] AssignedFiels = new TicketField[Tickets.First().Length];
+            return sum.ToString();
+        }
+
+        public override string SolvePart2((List<TicketField> fields, List<string[]> Tickets, string[] YourTicket) input)
+        {
+            List<string[]> ValidTickets = input.Tickets.ToList();
+            for (int i = 0; i < input.Tickets.Count; i++)
+            {
+                for (int j = 0; j < input.Tickets[i].Length; j++)
+                {
+                    if (!input.fields.Any(x => x.Valid(input.Tickets[i][j])))
+                    {
+                        ValidTickets.Remove(input.Tickets[i]);
+                    }
+                }
+            }
+
+            TicketField[] AssignedFiels = new TicketField[input.Tickets.First().Length];
             while (AssignedFiels.Contains(null))
             {
                 List<TicketField> ToVerify = new();
-                ToVerify.AddRange(fields);
+                ToVerify.AddRange(input.fields);
                 for (int k = 0; k < AssignedFiels.Length; k++)
                 {
                     ToVerify.Remove(AssignedFiels[k]);
                 }
 
-                for (int i = 0; i < Tickets.First().Length; i++)
+                for (int i = 0; i < input.Tickets.First().Length; i++)
                 {
                     List<TicketField> Options = new();
                     for (int k = 0; k < ToVerify.Count; k++)
                     {
-                        if (ValidTickets.All(x => ToVerify[k].Valid(x[i])) && ToVerify[k].Valid(YourTicket[i]))
+                        if (ValidTickets.All(x => ToVerify[k].Valid(x[i])) && ToVerify[k].Valid(input.YourTicket[i]))
                         {
                             Options.Add(ToVerify[k]);
                         }
                     }
 
-                    if (Options.Count==1)
+                    if (Options.Count == 1)
                     {
                         AssignedFiels[i] = Options.First();
                     }
@@ -112,13 +96,13 @@ namespace _2020
             {
                 if (AssignedFiels[i].Name.StartsWith("departure"))
                 {
-                    product *= long.Parse(YourTicket[i]);
+                    product *= long.Parse(input.YourTicket[i]);
                 }
             }
-            return "" + product;
+            return product.ToString();
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@"class: 1-3 or 5-7
 row: 6-11 or 33-44

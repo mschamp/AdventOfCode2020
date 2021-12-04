@@ -7,48 +7,8 @@ using System.Text.RegularExpressions;
 
 namespace _2020
 {
-    public class Day19 : General.IAoC
-    {
-        public string SolvePart1(string input = null)
-        {
-            string[] inputParts = input.Split(Environment.NewLine + Environment.NewLine);
-            Dictionary<int, List<Rule>> Rules = DecodeRules(inputParts[0]);
-
-            int Count = 0;
-            foreach (string message in inputParts[1].Split(Environment.NewLine))
-            {
-                if (Rules[0][0].Match(message, Rules).Any(x => x.Length==0))
-                {
-                    Count++;
-                } 
-            }
-            return "" + Count;
-        }
-
-        public string SolvePart2(string input = null)
-        {
-            string[] inputParts = input.Split(Environment.NewLine + Environment.NewLine);
-            Dictionary<int, List<Rule>> Rules = DecodeRules(inputParts[0]);
-
-            Dictionary<int, List<Rule>> OverrideRules = DecodeRules(@"8: 42 | 42 8
-11: 42 31 | 42 11 31");
-
-            foreach (KeyValuePair<int, List<Rule>> item in OverrideRules)
-            {
-                Rules[item.Key] = item.Value;
-            }
-
-            int Count = 0;
-            foreach (string message in inputParts[1].Split(Environment.NewLine))
-            {
-                if (Rules[0][0].Match(message, Rules).Any(x => x.Length == 0))
-                {
-                    Count++;
-                }
-            }
-            return "" + Count;
-        }
-
+    public class Day19 : General.PuzzleWithObjectInput<(Dictionary<int, List<Rule>> Rules, string[] messages)>
+    {        
         public Dictionary<int, List<Rule>> DecodeRules(string input)
         {
             Dictionary<int, List<Rule>> result = new();
@@ -80,7 +40,7 @@ namespace _2020
             return result;
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@"0: 4 1 5
 1: 2 3 | 3 2
@@ -144,6 +104,49 @@ babaaabbbaaabaababbaabababaaab
 aabbbbbaabbbaaaaaabbbbbababaaaaabbaaabba") == "12");
 
             
+        }
+
+        public override (Dictionary<int, List<Rule>>,string[]) CastToObject(string RawData)
+        {
+            string[] inputParts = RawData.Split(Environment.NewLine + Environment.NewLine);
+            Dictionary<int, List<Rule>> Rules = DecodeRules(inputParts[0]);
+            string[] messages = inputParts[1].Split(Environment.NewLine);
+
+            return (Rules,messages);
+        }
+
+        public override string SolvePart1((Dictionary<int, List<Rule>> Rules, string[] messages) input)
+        {
+            int Count = 0;
+            foreach (string message in input.messages)
+            {
+                if (input.Rules[0][0].Match(message, input.Rules).Any(x => x.Length == 0))
+                {
+                    Count++;
+                }
+            }
+            return Count.ToString();
+        }
+
+        public override string SolvePart2((Dictionary<int, List<Rule>> Rules, string[] messages) input)
+        {
+            Dictionary<int, List<Rule>> OverrideRules = DecodeRules(@"8: 42 | 42 8
+11: 42 31 | 42 11 31");
+
+            foreach (KeyValuePair<int, List<Rule>> item in OverrideRules)
+            {
+                input.Rules[item.Key] = item.Value;
+            }
+
+            int Count = 0;
+            foreach (string message in input.messages)
+            {
+                if (input.Rules[0][0].Match(message, input.Rules).Any(x => x.Length == 0))
+                {
+                    Count++;
+                }
+            }
+            return Count.ToString();
         }
     }
 
