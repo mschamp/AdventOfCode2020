@@ -26,7 +26,7 @@ namespace _2019
 
         private List<long> RunComputer(string program)
         {
-            IntcodeComputer computer = new IntcodeComputer();
+            IntcodeComputer computer = new();
             computer.loadProgram(program);
             computer.ExecuteProgram();
             return computer.ReadOutputs();
@@ -34,7 +34,7 @@ namespace _2019
 
         private List<long> RunComputer(string program, long input)
         {
-            IntcodeComputer computer = new IntcodeComputer();
+            IntcodeComputer computer = new();
             computer.loadProgram(program);
             computer.InputValue(input);
             computer.ExecuteProgram();

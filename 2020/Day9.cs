@@ -39,7 +39,7 @@ namespace _2020
         {
             for (int i = 1; i < inputs.Length; i++)
             {
-                List<long> Values = new List<long> { inputs[i] };
+                List<long> Values = new() { inputs[i] };
                 while (Values.Sum()<sum)
                 {
                     for (int j=1; j< inputs.Length-i; j++)
@@ -105,7 +105,7 @@ namespace _2020
         public override string SolvePart1(long[] input)
         {
             int store = (int)input[0];
-            List<long> values = new List<long>();
+            List<long> values = new();
 
             return "" + findInvalidNumber(ref values, store, input);
         }
@@ -113,7 +113,7 @@ namespace _2020
         public override string SolvePart2(long[] input)
         {
             int store = (int)input[0];
-            List<long> values = new List<long>();
+            List<long> values = new();
 
             List<long> set = FindContinguousSet(findInvalidNumber(ref values, store, input), input);
 

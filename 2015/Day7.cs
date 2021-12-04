@@ -11,8 +11,8 @@ namespace _2015
     {
         public string SolvePart1(string input = null)
         {
-            Dictionary<string, Gate> wireValues = new Dictionary<string, Gate>();
-            Regex rgx = new Regex(@"(?:(?:(\d+|[a-z]+)\s)?([A-Z]+)\s)?(\d+|[a-z]+)\s->\s([a-z]+)");
+            Dictionary<string, Gate> wireValues = new();
+            Regex rgx = new(@"(?:(?:(\d+|[a-z]+)\s)?([A-Z]+)\s)?(\d+|[a-z]+)\s->\s([a-z]+)");
             foreach (string instruction in input.Split(Environment.NewLine))
             {
                 Match mtch = rgx.Match(instruction);
@@ -29,8 +29,8 @@ namespace _2015
 
         public string SolvePart2(string input = null)
         {
-            Dictionary<string, Gate> wireValues = new Dictionary<string, Gate>();
-            Regex rgx = new Regex(@"(?:(?:(\d+|[a-z]+)\s)?([A-Z]+)\s)?(\d+|[a-z]+)\s->\s([a-z]+)");
+            Dictionary<string, Gate> wireValues = new();
+            Regex rgx = new(@"(?:(?:(\d+|[a-z]+)\s)?([A-Z]+)\s)?(\d+|[a-z]+)\s->\s([a-z]+)");
             foreach (string instruction in input.Split(Environment.NewLine))
             {
                 Match mtch = rgx.Match(instruction);

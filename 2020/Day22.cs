@@ -61,7 +61,7 @@ namespace _2020
         private long  game(List<int> Deck1, List<int> Deck2, int Game)
         {
             int Round = 0;
-            HashSet<string> Decks = new HashSet<string>();
+            HashSet<string> Decks = new();
             while (Deck1.Count > 0 && Deck2.Count > 0)
             {
                 Round++;
@@ -132,7 +132,7 @@ namespace _2020
         
         private List<int> LoadDeck(string input)
         {
-            List<int> PlayerDeck = new List<int>();
+            List<int> PlayerDeck = new();
             foreach (string Card in input.Split(Environment.NewLine).Skip(1))
             {
                 PlayerDeck.Add(int.Parse(Card));

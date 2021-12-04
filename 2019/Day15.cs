@@ -9,10 +9,10 @@ namespace _2019
     {
         public string SolvePart1(string input = null)
         {
-            Dictionary<General.clsPoint, char> VisitedPlaces = new Dictionary<General.clsPoint, char>();
-            IntcodeComputer robot = new IntcodeComputer();
+            Dictionary<General.clsPoint, char> VisitedPlaces = new();
+            IntcodeComputer robot = new();
             robot.loadProgram(input);
-            General.clsPoint location = new General.clsPoint(0, 0);
+            General.clsPoint location = new(0, 0);
 
             while (true)
             {

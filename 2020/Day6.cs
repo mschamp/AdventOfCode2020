@@ -10,7 +10,7 @@ namespace _2020
     {
         public string SolvePart1(string input = null)
         {
-            List<Group> groups = new List<Group>();
+            List<Group> groups = new();
             foreach (string group in input.Split(Environment.NewLine + Environment.NewLine))
             {
                 groups.Add(new Group(group));
@@ -20,7 +20,7 @@ namespace _2020
 
         public string SolvePart2(string input = null)
         {
-            List<Group> groups = new List<Group>();
+            List<Group> groups = new();
             foreach (string group in input.Split(Environment.NewLine + Environment.NewLine))
             {
                 groups.Add(new Group(group));
@@ -104,7 +104,7 @@ b") == "6");
 
         public int uniqueQuestionsEveryone()
         {
-            Dictionary<char, int> LetterCounts = new Dictionary<char, int>();
+            Dictionary<char, int> LetterCounts = new();
             foreach (char ch in answers)
             {
                 int Count;

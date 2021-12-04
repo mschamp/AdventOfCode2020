@@ -11,7 +11,7 @@ namespace _2019
         public string SolvePart1(string input = null)
         {
             int[] Options = new[] { 0, 1, 2, 3, 4 };
-            List<long> ThrusterSignals = new List<long>();
+            List<long> ThrusterSignals = new();
             foreach (var PhaseSetting in Permutations<int>.AllFor(Options))
             {
                 ThrusterSignals.Add(CalculateTrustSignalOpenLoop(input, PhaseSetting));
@@ -32,10 +32,10 @@ namespace _2019
         private long CalculateTrustSignalClosedLoop(string Program, int[] inputs)
         {
             long Value = 0;
-            List<IntcodeComputer> Amplifiers = new List<IntcodeComputer>();
+            List<IntcodeComputer> Amplifiers = new();
             for (int i = 0; i < inputs.Length; i++)
             {
-                IntcodeComputer Amplifier = new IntcodeComputer();
+                IntcodeComputer Amplifier = new();
                 Amplifier.loadProgram(Program);
                 Amplifier.InputValue(inputs[i]);
                 Amplifiers.Add(Amplifier);
@@ -53,7 +53,7 @@ namespace _2019
 
         private long Amplifier(string Program, long input, int phaseSetting)
         {
-            IntcodeComputer computer = new IntcodeComputer();
+            IntcodeComputer computer = new();
             computer.loadProgram(Program);
             computer.InputValue(phaseSetting);
             computer.InputValue(input);
@@ -71,7 +71,7 @@ namespace _2019
         public string SolvePart2(string input = null)
         {
             int[] Options = new[] { 5,6,7,8,9 };
-            List<long> ThrusterSignals = new List<long>();
+            List<long> ThrusterSignals = new();
             foreach (var PhaseSetting in Permutations<int>.AllFor(Options))
             {
                 ThrusterSignals.Add(CalculateTrustSignalClosedLoop(input, PhaseSetting));

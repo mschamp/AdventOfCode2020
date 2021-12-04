@@ -49,7 +49,7 @@ namespace _2019
         private bool ValidPassword2(int password)
         {
             string spassword = password.ToString();
-            List<char> doubles = new List<char>();
+            List<char> doubles = new();
             int Lastvalue = -1;
             foreach (char teken in spassword)
             {

@@ -11,8 +11,8 @@ namespace _2015
     {
         public string SolvePart1(string input = null)
         {
-            HashSet<(int, int)> LampsOn = new HashSet<(int, int)>();
-            Regex rgx = new Regex(@"([\w\s]*)\s(\d+),(\d+)\sthrough\s(\d+),(\d+)");
+            HashSet<(int, int)> LampsOn = new();
+            Regex rgx = new(@"([\w\s]*)\s(\d+),(\d+)\sthrough\s(\d+),(\d+)");
 
             foreach (string instruction in input.Split(Environment.NewLine))
             {
@@ -67,8 +67,8 @@ namespace _2015
 
         public string SolvePart2(string input = null)
         {
-            Dictionary<(int, int),int> LampsOn = new Dictionary<(int, int), int>();
-            Regex rgx = new Regex(@"([\w\s]*)\s(\d+),(\d+)\sthrough\s(\d+),(\d+)");
+            Dictionary<(int, int),int> LampsOn = new();
+            Regex rgx = new(@"([\w\s]*)\s(\d+),(\d+)\sthrough\s(\d+),(\d+)");
 
             foreach (string instruction in input.Split(Environment.NewLine))
             {

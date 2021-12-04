@@ -12,7 +12,7 @@ namespace _2019
     {
         public string SolvePart1(string input = null)
         {
-            List<Moon> moons = new List<Moon>();
+            List<Moon> moons = new();
             int loops = 0;
             foreach (string line in input.Split(Environment.NewLine))
             {
@@ -44,8 +44,8 @@ namespace _2019
 
         public string SolvePart2(string input = null)
         {
-            List<Moon> moonsOriginal = new List<Moon>();
-            List<Moon> moons = new List<Moon>();
+            List<Moon> moonsOriginal = new();
+            List<Moon> moons = new();
             foreach (string line in input.Split(Environment.NewLine))
             {
                 if (line.StartsWith("<"))
@@ -203,7 +203,7 @@ namespace _2019
 
         public static Func<string, Vector3> PositionExtractor()
         {
-            Regex rgx = new Regex(@"(?<x>-?\d+),\sy=(?<y>-?\d+),\sz=(?<z>-?\d+)");
+            Regex rgx = new(@"(?<x>-?\d+),\sy=(?<y>-?\d+),\sz=(?<z>-?\d+)");
 
             return input =>
             {

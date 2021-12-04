@@ -101,7 +101,7 @@ namespace General
         }
         public IEnumerable<clsPoint> Move(char Direction, int Distance)
         {
-            List<clsPoint> points = new List<clsPoint>();
+            List<clsPoint> points = new();
             for (int i = 1; i <= Distance; i++)
             {
                 switch (Direction)

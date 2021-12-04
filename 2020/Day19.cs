@@ -51,7 +51,7 @@ namespace _2020
 
         public Dictionary<int, List<Rule>> DecodeRules(string input)
         {
-            Dictionary<int, List<Rule>> result = new Dictionary<int, List<Rule>>();
+            Dictionary<int, List<Rule>> result = new();
             foreach (string rule in input.Split(Environment.NewLine))
             {
                 string[] parts = rule.Split(":");
@@ -194,10 +194,10 @@ aabbbbbaabbbaaaaaabbbbbababaaaaabbaaabba") == "12");
 
         public override List<string> Match(string Message, Dictionary<int, List<Rule>> rules)
         {
-            List<string> options = new List<string>() {Message};
+            List<string> options = new() {Message};
             foreach (int id in Seq)
             {
-                List<string> results = new List<string>();
+                List<string> results = new();
                 foreach (Rule rule in rules[id])
                 {
                     foreach (string message in options)

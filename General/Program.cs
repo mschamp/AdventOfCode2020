@@ -11,7 +11,7 @@ namespace General
         {
             Console.WriteLine("Year to solve:");
             string Year = Console.ReadLine();
-            Dictionary<string, Action> years = new Dictionary<string, Action>() {
+            Dictionary<string, Action> years = new() {
                 { "2015",Solve2015},
                 { "2016",Solve2016},
                 { "2017",Solve2017},
@@ -33,7 +33,8 @@ namespace General
 
         private static void Solve2020()
         {
-            List<IAoC> days = new List<IAoC> { new _2020.Day1(), new _2020.Day2(), new _2020.Day3(), new _2020.Day4(), new _2020.Day5(),
+            List<IAoC> days = new()
+            { new _2020.Day1(), new _2020.Day2(), new _2020.Day3(), new _2020.Day4(), new _2020.Day5(),
             new _2020.Day6(),new _2020.Day7(),new _2020.Day8(),new _2020.Day9(),new _2020.Day10(),
             new _2020.Day11(),new _2020.Day12(),new _2020.Day13(),new _2020.Day14(),new _2020.Day15(),
             new _2020.Day16(),new _2020.Day17(),new _2020.Day18(),new _2020.Day19(), new _2020.Day20(),
@@ -71,7 +72,8 @@ namespace General
 
         private static void Solve2019()
         {
-            List<IAoC> days = new List<IAoC> { new _2019.Day1(), new _2019.Day2(), new _2019.Day3(), new _2019.Day4(), new _2019.Day5(),
+            List<IAoC> days = new()
+            { new _2019.Day1(), new _2019.Day2(), new _2019.Day3(), new _2019.Day4(), new _2019.Day5(),
             new _2019.Day6(), new _2019.Day7(), new _2019.Day8(), new _2019.Day9(), new _2019.Day10(),
             new _2019.Day11(), new _2019.Day12(), new _2019.Day13(), new _2019.Day14(), new _2019.Day15()};
             string[] inputs = new[] { 
@@ -97,7 +99,7 @@ namespace General
 
         private static void Solve2018()
         {
-            List<IAoC> days = new List<IAoC> { };
+            List<IAoC> days = new() { };
             string[] inputs = new string[] {};
 
             Solve(days, inputs);
@@ -105,7 +107,7 @@ namespace General
 
         private static void Solve2017()
         {
-            List<IAoC> days = new List<IAoC> { };
+            List<IAoC> days = new() { };
             string[] inputs = new string[] { };
 
             Solve(days, inputs);
@@ -113,7 +115,7 @@ namespace General
 
         private static void Solve2016()
         {
-            List<IAoC> days = new List<IAoC> { };
+            List<IAoC> days = new() { };
             string[] inputs = new string[] { };
 
             Solve(days, inputs);
@@ -121,7 +123,8 @@ namespace General
 
         private static void Solve2015()
         {
-            List<IAoC> days = new List<IAoC> { new _2015.Day1(), new _2015.Day2(), new _2015.Day3(), new _2015.Day4(), new _2015.Day5(),
+            List<IAoC> days = new()
+            { new _2015.Day1(), new _2015.Day2(), new _2015.Day3(), new _2015.Day4(), new _2015.Day5(),
             new _2015.Day6(),new _2015.Day7(),new _2015.Day8(),new _2015.Day9(),new _2015.Day10(),
             new _2015.Day11(),new _2015.Day12(),new _2015.Day13(),new _2015.Day14(),new _2015.Day15(),
             new _2015.Day16()};
@@ -148,7 +151,7 @@ namespace General
 
         private static void Solve2021()
         {
-            List<IAoC> days = new List<IAoC> { new _2021.Day1(), new _2021.Day2(), new _2021.Day3(), new _2021.Day4() };
+            List<IAoC> days = new() { new _2021.Day1(), new _2021.Day2(), new _2021.Day3(), new _2021.Day4() };
             string[] inputs = new string[] {
             _2021.inputs.D1P1, _2021.inputs.D1P1,
             _2021.inputs.D2P1, _2021.inputs.D2P1,
@@ -159,7 +162,7 @@ namespace General
         }
         private static void Solve(List<IAoC> days, string[] inputs)
         {
-            Stopwatch watch = new Stopwatch();
+            Stopwatch watch = new();
 
             for (int i = 0; i < days.Count; i++)
             {

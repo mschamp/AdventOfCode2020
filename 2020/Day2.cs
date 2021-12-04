@@ -11,7 +11,7 @@ namespace _2020
     {
         public string SolvePart1(string input = null)
         {
-            Regex reg = new Regex(@"(\d+)-(\d+)\s(.):\s(.+)");
+            Regex reg = new(@"(\d+)-(\d+)\s(.):\s(.+)");
             string[] entries = input.Split(Environment.NewLine);
             int OKCounter = 0;
             foreach(string entry in entries)
@@ -27,7 +27,7 @@ namespace _2020
 
         public string SolvePart2(string input = null)
         {
-            Regex reg = new Regex(@"(\d+)-(\d+)\s(.):\s(.+)");
+            Regex reg = new(@"(\d+)-(\d+)\s(.):\s(.+)");
             string[] entries = input.Split(Environment.NewLine);
             int OKCounter = 0;
             foreach (string entry in entries)

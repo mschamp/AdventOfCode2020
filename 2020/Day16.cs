@@ -12,14 +12,14 @@ namespace _2020
         public string SolvePart1(string input = null)
         {
             string[] inputParts = input.Split(Environment.NewLine + Environment.NewLine);
-            List<TicketField> fields = new List<TicketField>();
-            List<string[]> Tickets = new List<string[]>();
-            Regex rgxfields = new Regex(@"(\w+\s?\w*):\s(\d+)-(\d+)\sor\s(\d+)-(\d+)");
+            List<TicketField> fields = new();
+            List<string[]> Tickets = new();
+            Regex rgxfields = new(@"(\w+\s?\w*):\s(\d+)-(\d+)\sor\s(\d+)-(\d+)");
 
             foreach (string item in inputParts[0].Split(Environment.NewLine))
             {
                var match= rgxfields.Match(item);
-                TicketField newField = new TicketField(match.Groups[1].Value, int.Parse(match.Groups[2].Value), int.Parse(match.Groups[3].Value));
+                TicketField newField = new(match.Groups[1].Value, int.Parse(match.Groups[2].Value), int.Parse(match.Groups[3].Value));
                 newField.AddRange(int.Parse(match.Groups[4].Value), int.Parse(match.Groups[5].Value));
                 fields.Add(newField);
             }
@@ -48,15 +48,15 @@ namespace _2020
         public string SolvePart2(string input = null)
         {
             string[] inputParts = input.Split(Environment.NewLine + Environment.NewLine);
-            List<TicketField> fields = new List<TicketField>();
+            List<TicketField> fields = new();
             string[] YourTicket = inputParts[1].Split(Environment.NewLine)[1].Split(",");
-            List<string[]> Tickets = new List<string[]>();
-            Regex rgxfields = new Regex(@"(\w+\s?\w*):\s(\d+)-(\d+)\sor\s(\d+)-(\d+)");
+            List<string[]> Tickets = new();
+            Regex rgxfields = new(@"(\w+\s?\w*):\s(\d+)-(\d+)\sor\s(\d+)-(\d+)");
 
             foreach (string item in inputParts[0].Split(Environment.NewLine))
             {
                 var match = rgxfields.Match(item);
-                TicketField newField = new TicketField(match.Groups[1].Value, int.Parse(match.Groups[2].Value), int.Parse(match.Groups[3].Value));
+                TicketField newField = new(match.Groups[1].Value, int.Parse(match.Groups[2].Value), int.Parse(match.Groups[3].Value));
                 newField.AddRange(int.Parse(match.Groups[4].Value), int.Parse(match.Groups[5].Value));
                 fields.Add(newField);
             }
@@ -82,7 +82,7 @@ namespace _2020
             TicketField[] AssignedFiels = new TicketField[Tickets.First().Length];
             while (AssignedFiels.Contains(null))
             {
-                List<TicketField> ToVerify = new List<TicketField>();
+                List<TicketField> ToVerify = new();
                 ToVerify.AddRange(fields);
                 for (int k = 0; k < AssignedFiels.Length; k++)
                 {
@@ -91,7 +91,7 @@ namespace _2020
 
                 for (int i = 0; i < Tickets.First().Length; i++)
                 {
-                    List<TicketField> Options = new List<TicketField>();
+                    List<TicketField> Options = new();
                     for (int k = 0; k < ToVerify.Count; k++)
                     {
                         if (ValidTickets.All(x => ToVerify[k].Valid(x[i])) && ToVerify[k].Valid(YourTicket[i]))
@@ -137,7 +137,7 @@ nearby tickets:
 
     public class TicketField
     {
-        List<Func<string, bool>> Validators = new List<Func<string, bool>>();
+        List<Func<string, bool>> Validators = new();
         public TicketField(string name, int min, int max)
         {
             Name = name;

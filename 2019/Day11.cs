@@ -9,13 +9,13 @@ namespace _2019
     {
         public string SolvePart1(string input = null)
         {
-            PaintingRobot robot = new PaintingRobot(input,0);
+            PaintingRobot robot = new(input,0);
             return "" + robot.NumberPaintedCells;
         }
 
         public string SolvePart2(string input = null)
         {
-            PaintingRobot robot = new PaintingRobot(input,1);
+            PaintingRobot robot = new(input,1);
             string result = "";
             var test = robot.PaintedCellsOrdered;
             for (double i = robot.maxY; i >= robot.minY; i--)

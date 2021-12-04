@@ -72,7 +72,7 @@ namespace _2015
 
         public string SolvePart1(string input = null)
         {
-            Aunt sender = new Aunt(@"children: 3
+            Aunt sender = new(@"children: 3
 cats: 7
 samoyeds: 2
 pomeranians: 3
@@ -93,7 +93,7 @@ perfumes: 1".Split(Environment.NewLine), "Sender");
 
         public string SolvePart2(string input = null)
         {
-            Aunt sender = new Aunt(@"children: 3
+            Aunt sender = new(@"children: 3
 cats: 7
 samoyeds: 2
 pomeranians: 3

@@ -10,8 +10,8 @@ namespace _2015
     {
         public string SolvePart1(string input = null)
         {
-            HashSet<General.clsPoint> VisitedHouses = new HashSet<General.clsPoint>();
-            General.clsPoint Current = new General.clsPoint(0, 0);
+            HashSet<General.clsPoint> VisitedHouses = new();
+            General.clsPoint Current = new(0, 0);
             VisitedHouses.Add(Current);
 
             foreach (char item in input)
@@ -24,9 +24,9 @@ namespace _2015
 
         public string SolvePart2(string input = null)
         {
-            HashSet<General.clsPoint> VisitedHouses = new HashSet<General.clsPoint>();
-            General.clsPoint Santa = new General.clsPoint(0, 0);
-            General.clsPoint Robot = new General.clsPoint(0, 0);
+            HashSet<General.clsPoint> VisitedHouses = new();
+            General.clsPoint Santa = new(0, 0);
+            General.clsPoint Robot = new(0, 0);
             VisitedHouses.Add(Santa);
 
             for (int i = 0; i < input.Length; i+=2)

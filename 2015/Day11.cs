@@ -9,7 +9,7 @@ namespace _2015
     {
         static char[] forbidden = new char[] { 'i', 'o', 'l' };
         
-        List<Func<string, bool>> requirements = new List<Func<string, bool>>() { FirstRequirement(),SecondRequirement(),ThirdRequirement() };
+        List<Func<string, bool>> requirements = new() { FirstRequirement(),SecondRequirement(),ThirdRequirement() };
         public string SolvePart1(string input = null)
         {
             char[] characters = input.ToCharArray();

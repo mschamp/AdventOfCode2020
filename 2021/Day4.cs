@@ -14,7 +14,7 @@ namespace _2021
         {
             string[] parts = RawData.Split(Environment.NewLine + Environment.NewLine);
             List<int> Numbers = parts[0].Split(",").Select(x => int.Parse(x)).ToList();
-            Dictionary<int, BingoNumber> dict = new Dictionary<int, BingoNumber>();
+            Dictionary<int, BingoNumber> dict = new();
             var boards = parts.Skip(1).Select(x => new Board(x, ref dict)).ToList();
 
             return (Numbers, boards, dict);

@@ -11,7 +11,7 @@ namespace _2020
         public string SolvePart1(string input = null)
         {
             long ArrivalTime = long.Parse(input.Split(Environment.NewLine)[0]);
-            Dictionary<long, long> BusDeparts = new Dictionary<long, long>();
+            Dictionary<long, long> BusDeparts = new();
             foreach (string bus in input.Split(Environment.NewLine)[1].Split(","))
             {
                 if (bus == "x")
@@ -36,7 +36,7 @@ namespace _2020
         public string SolvePart2(string input = null)
         {
             Func<long, long,long> lmc = General.MathFunctions.findLCM();
-            List<long> busses = new List<long>();
+            List<long> busses = new();
             foreach (string bus in input.Split(Environment.NewLine).Last().Split(","))
             {
                 if (bus == "x")

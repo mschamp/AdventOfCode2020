@@ -9,11 +9,11 @@ namespace _2020
 {
     public class Day18 : General.IAoC
     {
-        MatchEvaluator evaluator = new MatchEvaluator(NoBrackets);
+        MatchEvaluator evaluator = new(NoBrackets);
 
         public string SolvePart1(string input = null)
         {
-            List<long> Results = new List<long>();
+            List<long> Results = new();
             foreach (string item in input.Split(Environment.NewLine))
             {
                 Results.Add(SolveEquation1(item.Replace(" ","")));
@@ -25,7 +25,7 @@ namespace _2020
         {
             while (equation.Contains('('))
             {
-                Regex rgxfields = new Regex(@"\(((?:\d+(\+|\*))+\d+)\)");
+                Regex rgxfields = new(@"\(((?:\d+(\+|\*))+\d+)\)");
                 Match mtch = rgxfields.Match(equation);
                 string inner = mtch.Groups[1].Value;
                 equation=equation.Replace(mtch.Value, SolveEquation1(inner).ToString());
@@ -57,7 +57,7 @@ namespace _2020
         {
             while (equation.Contains('('))
             {
-                Regex rgxfields = new Regex(@"\(((?:\d+(\+|\*))+\d+)\)");
+                Regex rgxfields = new(@"\(((?:\d+(\+|\*))+\d+)\)");
                 Match mtch = rgxfields.Match(equation);
                 string inner = mtch.Groups[1].Value;
                 equation = equation.Replace(mtch.Value, SolveEquation2(inner).ToString());
@@ -79,7 +79,7 @@ namespace _2020
 
         public string SolvePart2(string input = null)
         {
-            List<long> Results = new List<long>();
+            List<long> Results = new();
             foreach (string item in input.Split(Environment.NewLine))
             {
                 Results.Add(SolveEquation2(item.Replace(" ", "")));

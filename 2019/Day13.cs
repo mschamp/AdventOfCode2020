@@ -10,11 +10,11 @@ namespace _2019
     {
         public string SolvePart1(string input = null)
         {
-            IntcodeComputer computer = new IntcodeComputer();
+            IntcodeComputer computer = new();
             computer.loadProgram(input);
             computer.ExecuteProgram();
             List<long> output = computer.ReadOutputs();
-            List<Tuple<long, long, long>> screen = new List<Tuple<long, long, long>>();
+            List<Tuple<long, long, long>> screen = new();
             for (int i = 0; i < output.Count; i+=3)
             {
                 screen.Add(new Tuple<long, long, long>(output[i], output[i + 1], output[i + 2]));
@@ -24,14 +24,14 @@ namespace _2019
 
         public string SolvePart2(string input = null)
         {
-            IntcodeComputer computer = new IntcodeComputer();
+            IntcodeComputer computer = new();
             computer.loadProgram(input);
             computer.SetMemoryContent(0, 2);
             computer.ExecuteProgram();
             List<long> output;
             long xBall =0;
             long xPaddle = 0;
-            Dictionary<General.clsPoint, long> screen = new Dictionary<General.clsPoint, long>();
+            Dictionary<General.clsPoint, long> screen = new();
 
             while (computer.WaitingForInput)
             {

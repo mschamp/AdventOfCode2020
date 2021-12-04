@@ -10,7 +10,7 @@ namespace _2020
     {
         public string SolvePart1(string input = null)
         {
-            handheld hand = new handheld();
+            handheld hand = new();
             hand.LoadProgram(input);
             hand.ExecuteProgram();
 
@@ -19,7 +19,7 @@ namespace _2020
 
         public string SolvePart2(string input = null)
         {
-            handheld hand = new handheld();
+            handheld hand = new();
             hand.LoadProgram(input);
             hand.TryFixing();
 

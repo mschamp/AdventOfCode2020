@@ -11,7 +11,7 @@ namespace _2019
         public string SolvePart1(string input = null)
         {
             string[] lines = input.Split(Environment.NewLine);
-            List<General.clsPoint> Asteroids = new List<General.clsPoint>();
+            List<General.clsPoint> Asteroids = new();
             for (int i = 0; i < lines.Length; i++)
             {
                 for (int j = 0; j < lines[i].Length; j++)
@@ -23,7 +23,7 @@ namespace _2019
                 }
             }
 
-            Dictionary<General.clsPoint, List<double>> PointAngles = new Dictionary<General.clsPoint, List<double>>();
+            Dictionary<General.clsPoint, List<double>> PointAngles = new();
             foreach (General.clsPoint pointA in Asteroids)
             {
                 PointAngles[pointA] = new List<double>();
@@ -43,7 +43,7 @@ namespace _2019
         public string SolvePart2(string input = null)
         {
             string[] lines = input.Split(Environment.NewLine);
-            List<General.clsPoint> Asteroids = new List<General.clsPoint>();
+            List<General.clsPoint> Asteroids = new();
             for (int i = 0; i < lines.Length; i++)
             {
                 for (int j = 0; j < lines[i].Length; j++)
@@ -55,7 +55,7 @@ namespace _2019
                 }
             }
 
-            Dictionary<General.clsPoint, List<double>> PointAngles = new Dictionary<General.clsPoint, List<double>>();
+            Dictionary<General.clsPoint, List<double>> PointAngles = new();
             foreach (General.clsPoint pointA in Asteroids)
             {
                 PointAngles[pointA] = new List<double>();
@@ -70,7 +70,7 @@ namespace _2019
             }
 
             General.clsPoint optimalPoint = PointAngles.Keys.OrderByDescending(x => PointAngles[x].Count).First();
-            List<General.clsPoint> Destroyed = new List<General.clsPoint>();
+            List<General.clsPoint> Destroyed = new();
             List<Tuple<double, double, General.clsPoint>> SortedAsteroids = orderAsteroids(optimalPoint, Asteroids);
             Double Angle = 0.0000000000000000001;
             while (SortedAsteroids.Count>0)
@@ -95,7 +95,7 @@ namespace _2019
 
         private List<Tuple<double, double, General.clsPoint>> orderAsteroids(General.clsPoint optimalPoint, List<General.clsPoint> Asteroids )
         {
-            List<Tuple<double, double, General.clsPoint>> result = new List<Tuple<double, double, General.clsPoint>>();
+            List<Tuple<double, double, General.clsPoint>> result = new();
             foreach (General.clsPoint asteroid in Asteroids)
             {
                 if (!asteroid.Equals(optimalPoint))

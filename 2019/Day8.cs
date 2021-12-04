@@ -9,13 +9,13 @@ namespace _2019
     {
         public string SolvePart1(string input = null)
         {
-            List<Layer> layers = new List<Layer>(); 
+            List<Layer> layers = new(); 
             for (int i = 0; i < input.Length; i+=25*6)
             {
                 layers.Add(new Layer(25,6,input.Substring(i, 25 * 6)));
             }
 
-            Dictionary<int, int> ZeroCounts = new Dictionary<int, int>();
+            Dictionary<int, int> ZeroCounts = new();
             for (int i = 0; i < layers.Count; i++)
             {
                 ZeroCounts[i] = layers[i].GetDigitCount(0);
@@ -26,7 +26,7 @@ namespace _2019
 
         public string SolvePart2(string input = null)
         {
-            List<Layer> layers = new List<Layer>();
+            List<Layer> layers = new();
             for (int i = 0; i < input.Length; i += 25 * 6)
             {
                 layers.Add(new Layer(25, 6, input.Substring(i, 25 * 6)));

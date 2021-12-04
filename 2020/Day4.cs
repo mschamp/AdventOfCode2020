@@ -10,46 +10,9 @@ namespace _2020
 
     //Met dank aan rversteeg: https://github.com/rversteeg/AdventOfCode2020/blob/cb8dbf0162f22b134862a7b2133042e4d05d9e85/Day04
     //Heel veel uitgeleerd en mijn code kunnen optimaliseren
-    public class Day4 : General.IAoC
+    public class Day4 : General.PuzzleWithObjectInput<IEnumerable<Passport>>
     {
-        public string SolvePart1(string input = null)
-        {
-            List<string> Needed = new List<string> { "ecl", "pid", "eyr", "hcl", "byr", "iyr", "hgt" };
-            IEnumerable<Passport> Passports = ReadPassports(input);
-            return "" + Passports.Count(Passport => Needed.All(item => Passport.Content.ContainsKey(item)));
-        }
-
-        public string SolvePart2(string input = null)
-        {
-            IEnumerable<Passport> Passports = ReadPassports(input);
-            var Requirements = new Dictionary<string, Func<string, bool>>()
-            {
-                {"eyr",General.Validators.NumberValidator(2020,2030) },
-                {"byr",General.Validators.NumberValidator(1920,2002) },
-                {"iyr",General.Validators.NumberValidator(2010,2020) },
-                {"ecl",General.Validators.ElementOfListValidator(new [] { "amb", "blu", "brn", "gry", "grn", "hzl", "oth" })},
-                {"pid",General.Validators.RegexValidator(@"^\d{9}$") },
-                {"hcl",General.Validators.RegexValidator(@"^#[0-9|a-f]{6}$") },
-                {"hgt",General.Validators.HeightValidator()} 
-            };
-
-
-            //string accepted = string.Join(Environment.NewLine + Environment.NewLine, Passports.Where(x => x.IsValid(Requirements)));
-
-            return "" + Passports.Count(x => x.IsValid(Requirements));
-        }
-
-        private IEnumerable<Passport> ReadPassports(string input)
-        {
-            List<Passport> passports = new List<Passport>();
-            foreach (string item in input.Split(Environment.NewLine + Environment.NewLine))
-            {
-                passports.Add(new Passport(item));
-            }
-            return passports;
-        }
-
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@"ecl:gry pid:860033327 eyr:2020 hcl:#fffffd
 byr:1937 iyr:2017 cid:147 hgt:183cm
@@ -91,6 +54,38 @@ pid:545766238 ecl:hzl
 eyr:2022
 
 iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719") == "4");
+        }
+
+        public override IEnumerable<Passport> CastToObject(string RawData)
+        {
+            List<Passport> passports = new();
+            foreach (string item in RawData.Split(Environment.NewLine + Environment.NewLine))
+            {
+                passports.Add(new Passport(item));
+            }
+            return passports;
+        }
+
+        public override string SolvePart1(IEnumerable<Passport> input)
+        {
+            List<string> Needed = new() { "ecl", "pid", "eyr", "hcl", "byr", "iyr", "hgt" };
+            return input.Count(Passport => Needed.All(item => Passport.Content.ContainsKey(item))).ToString();
+        }
+
+        public override string SolvePart2(IEnumerable<Passport> input)
+        {
+            var Requirements = new Dictionary<string, Func<string, bool>>()
+            {
+                {"eyr",General.Validators.NumberValidator(2020,2030) },
+                {"byr",General.Validators.NumberValidator(1920,2002) },
+                {"iyr",General.Validators.NumberValidator(2010,2020) },
+                {"ecl",General.Validators.ElementOfListValidator(new [] { "amb", "blu", "brn", "gry", "grn", "hzl", "oth" })},
+                {"pid",General.Validators.RegexValidator(@"^\d{9}$") },
+                {"hcl",General.Validators.RegexValidator(@"^#[0-9|a-f]{6}$") },
+                {"hgt",General.Validators.HeightValidator()}
+            };
+
+            return "" + input.Count(x => x.IsValid(Requirements));
         }
     }
 

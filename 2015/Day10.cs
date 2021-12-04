@@ -26,7 +26,7 @@ namespace _2015
 
         private string LookAndSay(string input)
         {
-            StringBuilder result = new StringBuilder();
+            StringBuilder result = new();
             char current=' ';
             int counter = 0;
             for (int i = 0; i < input.Length; i++)

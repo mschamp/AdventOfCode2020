@@ -11,7 +11,7 @@ namespace _2020
     {
         public string SolvePart1(string input = null)
         {
-            List<Food> foods = new List<Food>();
+            List<Food> foods = new();
             foreach (string item in input.Split(Environment.NewLine))
             {
                 foods.Add(new Food(item));
@@ -36,7 +36,7 @@ namespace _2020
 
         public string SolvePart2(string input = null)
         {
-            List<Food> foods = new List<Food>();
+            List<Food> foods = new();
             foreach (string item in input.Split(Environment.NewLine))
             {
                 foods.Add(new Food(item));
@@ -45,7 +45,7 @@ namespace _2020
             Dictionary<string, string> AllergenIngredient = MatchAllergensIngredients(foods);
 
 
-            List<string> Ordered = new List<string>();
+            List<string> Ordered = new();
             foreach (var item in AllergenIngredient.Keys.OrderBy(x =>x))
             {
                 Ordered.Add(AllergenIngredient[item]);
@@ -56,8 +56,8 @@ namespace _2020
 
         private Dictionary<string, string> MatchAllergensIngredients(List<Food> foods)
         {
-            Dictionary<string, string> AllergenIngredient = new Dictionary<string, string>();
-            HashSet<string> ingredients = new HashSet<string>();
+            Dictionary<string, string> AllergenIngredient = new();
+            HashSet<string> ingredients = new();
             foreach (Food food in foods)
             {
                 foreach (string allergen in food.Allergens)
@@ -118,7 +118,7 @@ sqjhc mxmxvkd sbzzf (contains fish)") == "mxmxvkd,sqjhc,fvjkl");
     {
         public Food(string Input)
         {
-            Regex rgx = new Regex(@"((?:\w+\s)+)\(contains\s((?:\w+(?:,\s)?)+)\)");
+            Regex rgx = new(@"((?:\w+\s)+)\(contains\s((?:\w+(?:,\s)?)+)\)");
             Match mtch = rgx.Match(Input);
             Ingredients = mtch.Groups[1].Value.Split(" ",StringSplitOptions.RemoveEmptyEntries).ToList();
             Allergens = mtch.Groups[2].Value.Split(", ").ToList();

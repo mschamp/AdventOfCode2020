@@ -11,9 +11,9 @@ namespace _2020
     {
         public string SolvePart1(string input = null)
         {
-            Dictionary<string, Bag> bags = new Dictionary<string, Bag>();
-            List<Bag> Outer = new List<Bag>();
-            Regex rgx = new Regex(@"(\d+)?\s?(\w+\s\w+)\sbags?");
+            Dictionary<string, Bag> bags = new();
+            List<Bag> Outer = new();
+            Regex rgx = new(@"(\d+)?\s?(\w+\s\w+)\sbags?");
             foreach  (string outer in input.Split(Environment.NewLine))
             {
                 MatchCollection mtchs = rgx.Matches(outer);
@@ -44,9 +44,9 @@ namespace _2020
 
         public string SolvePart2(string input = null)
         {
-            Dictionary<string, Bag> bags = new Dictionary<string, Bag>();
-            List<Bag> Outer = new List<Bag>();
-            Regex rgx = new Regex(@"(\d+)?\s?(\w+\s\w+)\sbags?");
+            Dictionary<string, Bag> bags = new();
+            List<Bag> Outer = new();
+            Regex rgx = new(@"(\d+)?\s?(\w+\s\w+)\sbags?");
             foreach (string outer in input.Split(Environment.NewLine))
             {
                 MatchCollection mtchs = rgx.Matches(outer);

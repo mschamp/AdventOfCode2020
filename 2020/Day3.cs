@@ -5,51 +5,8 @@ using System.Text;
 
 namespace _2020
 {
-    public class Day3 : General.IAoC
+    public class Day3 : General.PuzzleWithObjectInput<char[,]>
     {
-        public string SolvePart1(string input = null)
-        {
-            string[] rowData = input.Split(Environment.NewLine);
-            int Rows = rowData.Length;
-            int Columns = rowData[0].Length;
-
-            char[,] array = new char[Columns, Rows];
-            for (int i = 0; i < Rows; i++)
-            {
-                char[] chars = rowData[i].ToCharArray();
-                for (int j = 0; j < Columns; j++)
-                {
-                    array[j, i] = chars[j];
-                }
-            }
-            return "" + TreesOnSlope(array, new Tuple<int, int>(3,1), Rows, Columns);
-
-
-        }
-
-        public string SolvePart2(string input = null)
-        {
-            string[] rowData = input.Split(Environment.NewLine);
-            int Rows = rowData.Length;
-            int Columns = rowData[0].Length;
-
-            char[,] array = new char[Columns, Rows];
-            for (int i = 0; i < Rows; i++)
-            {
-                char[] chars = rowData[i].ToCharArray();
-                for (int j = 0; j < Columns; j++)
-                {
-                    array[j, i] = chars[j];
-                }
-            }
-
-            long Trees = 1;
-            foreach (Tuple<int, int> slope in ( new[] { new Tuple<int, int>(1, 1), new Tuple<int, int>(3, 1), new Tuple<int, int>(5, 1), new Tuple<int, int>(7, 1), new Tuple<int, int>(1, 2) }))
-            {
-                Trees *= TreesOnSlope(array, slope, Rows, Columns);
-            }
-            return "" + Trees;
-        }
 
         private int TreesOnSlope(char[,] array, Tuple<int,int> slope, int Rows, int Columns)
         {
@@ -65,7 +22,7 @@ namespace _2020
             return  Trees;
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@"..##.......
 #...#...#..
@@ -90,6 +47,39 @@ namespace _2020
 #.##...#...
 #...##....#
 .#..#...#.#") == "336");
+        }
+
+        public override char[,] CastToObject(string RawData)
+        {
+            string[] rowData = RawData.Split(Environment.NewLine);
+            int Rows = rowData.Length;
+            int Columns = rowData[0].Length;
+
+            char[,] array = new char[Columns, Rows];
+            for (int i = 0; i < Rows; i++)
+            {
+                char[] chars = rowData[i].ToCharArray();
+                for (int j = 0; j < Columns; j++)
+                {
+                    array[j, i] = chars[j];
+                }
+            }
+            return array;
+        }
+
+        public override string SolvePart1(char[,] input)
+        {
+            return TreesOnSlope(input, new Tuple<int, int>(3, 1), input.GetLength(1), input.GetLength(0)).ToString();
+        }
+
+        public override string SolvePart2(char[,] input)
+        {
+            long Trees = 1;
+            foreach (Tuple<int, int> slope in (new[] { new Tuple<int, int>(1, 1), new Tuple<int, int>(3, 1), new Tuple<int, int>(5, 1), new Tuple<int, int>(7, 1), new Tuple<int, int>(1, 2) }))
+            {
+                Trees *= TreesOnSlope(input, slope, input.GetLength(1), input.GetLength(0));
+            }
+            return  Trees.ToString();
         }
     }
 }

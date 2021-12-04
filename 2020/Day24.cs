@@ -11,7 +11,7 @@ namespace _2020
     {
         public string SolvePart1(string input = null)
         {
-            HashSet<(int x,int y)> Blacks = new HashSet<(int x, int y)>();
+            HashSet<(int x,int y)> Blacks = new();
 
             foreach (string line in input.Split(Environment.NewLine))
             {
@@ -67,7 +67,7 @@ namespace _2020
 
         public string SolvePart2(string input = null)
         {
-            HashSet<(int x, int y) > Blacks = new HashSet<(int x, int y)>();
+            HashSet<(int x, int y) > Blacks = new();
 
             foreach (string line in input.Split(Environment.NewLine))
             {
@@ -91,8 +91,8 @@ namespace _2020
 
         private HashSet<(int x, int y)> SimulateDay(HashSet<(int x, int y)> Blacks)
         {
-            Dictionary<(int x, int y), int> OnCounter = new Dictionary<(int x, int y), int>();
-            HashSet<(int x, int y)> NewGrid = new HashSet<(int x, int y)>();
+            Dictionary<(int x, int y), int> OnCounter = new();
+            HashSet<(int x, int y)> NewGrid = new();
             foreach ((int x, int y) tile in Blacks)
             {
                 NewGrid.Add(tile);

@@ -11,8 +11,8 @@ namespace _2019
     {
         public string SolvePart1(string input = null)
         {
-            Dictionary<string, reaction> reactions = new Dictionary<string, reaction>();
-            Regex rgx = new Regex(@"(\d+)\s(\w+)");
+            Dictionary<string, reaction> reactions = new();
+            Regex rgx = new(@"(\d+)\s(\w+)");
             foreach (string outer in input.Split(Environment.NewLine))
             {
                 MatchCollection mtchs = rgx.Matches(outer);
@@ -35,14 +35,14 @@ namespace _2019
                     result.Reagentia.Add(reagense, int.Parse(mtchs[i].Groups[1].Value));
                 }
             }
-            Dictionary<reaction, long> chem_needed = new Dictionary<reaction, long> { { reactions["FUEL"], 1 } };
+            Dictionary<reaction, long> chem_needed = new() { { reactions["FUEL"], 1 } };
             return "" + requiredOres(chem_needed);
         }
 
         public long requiredOres(Dictionary<reaction, long> chem_needed)
         {
             long ore = 0;
-            Dictionary<reaction, long> chem_available = new Dictionary<reaction, long>();
+            Dictionary<reaction, long> chem_available = new();
             while (chem_needed.Count>0)
             {
                 KeyValuePair<reaction, long> Processing = chem_needed.First();
@@ -99,8 +99,8 @@ namespace _2019
 
         public string SolvePart2(string input = null)
         {
-            Dictionary<string, reaction> reactions = new Dictionary<string, reaction>();
-            Regex rgx = new Regex(@"(\d+)\s(\w+)");
+            Dictionary<string, reaction> reactions = new();
+            Regex rgx = new(@"(\d+)\s(\w+)");
             foreach (string outer in input.Split(Environment.NewLine))
             {
                 MatchCollection mtchs = rgx.Matches(outer);
@@ -123,7 +123,7 @@ namespace _2019
                     result.Reagentia.Add(reagense, int.Parse(mtchs[i].Groups[1].Value));
                 }
             }
-            Dictionary<reaction, long> chem_needed = new Dictionary<reaction, long> { { reactions["FUEL"], 1 } };
+            Dictionary<reaction, long> chem_needed = new() { { reactions["FUEL"], 1 } };
 
              long low = (long)(1e12 / requiredOres(chem_needed));
             long high = 10 * low;

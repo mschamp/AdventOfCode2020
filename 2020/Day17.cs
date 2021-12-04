@@ -11,14 +11,14 @@ namespace _2020
     {
         public string SolvePart1(string input = null)
         {
-            Cubes3D cubes = new Cubes3D(input);
+            Cubes3D cubes = new(input);
             cubes.ExecuteCycles(6);
             return "" + cubes.CubesOnCount;
         }
 
         public string SolvePart2(string input = null)
         {
-            Cubes4D cubes = new Cubes4D(input);
+            Cubes4D cubes = new(input);
             cubes.ExecuteCycles(6);
             return "" + cubes.CubesOnCount;
         }
@@ -76,13 +76,13 @@ namespace _2020
 
         public HashSet<(int x, int y, int z)> ExecuteCycle()
         {
-            Dictionary<(int x, int y, int z), int> OnCounter = new Dictionary<(int x, int y, int z), int>();
+            Dictionary<(int x, int y, int z), int> OnCounter = new();
             foreach ((int x, int y, int z) cube in CubesOn)
             {
                 GetNeightbours(cube, OnCounter);
             }
 
-            HashSet<(int x, int y, int z)> NewCubesOn = new HashSet<(int x, int y, int z)>();
+            HashSet<(int x, int y, int z)> NewCubesOn = new();
             foreach (KeyValuePair<(int x, int y, int z), int> item in OnCounter)
             {
                 if (item.Value==3 ||
@@ -154,13 +154,13 @@ namespace _2020
 
         public HashSet<(int x, int y, int z, int w)> ExecuteCycle()
         {
-            Dictionary<(int x, int y, int z, int w), int> OnCounter = new Dictionary<(int x, int y, int z, int w), int>();
+            Dictionary<(int x, int y, int z, int w), int> OnCounter = new();
             foreach ((int x, int y, int z, int w) cube in CubesOn)
             {
                 GetNeightbours(cube, OnCounter);
             }
 
-            HashSet<(int x, int y, int z, int w)> NewCubesOn = new HashSet<(int x, int y, int z, int w)>();
+            HashSet<(int x, int y, int z, int w)> NewCubesOn = new();
             foreach (KeyValuePair<(int x, int y, int z, int w), int> item in OnCounter)
             {
                 if (item.Value == 3 ||

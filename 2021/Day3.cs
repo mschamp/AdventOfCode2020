@@ -19,8 +19,8 @@ namespace _2021
                 CountOnes[i] = input.Count(x => x[i] == '1');
             }
 
-            string result = new string(CountOnes.Select(x => x >= input.Length / 2 ? '1':'0').ToArray()); 
-            string resultinv = new string(CountOnes.Select(x => x < input.Length / 2 ? '1' : '0').ToArray());
+            string result = new(CountOnes.Select(x => x >= input.Length / 2 ? '1':'0').ToArray()); 
+            string resultinv = new(CountOnes.Select(x => x < input.Length / 2 ? '1' : '0').ToArray());
 
 
             int gammaRate = Convert.ToInt32(result, 2);
@@ -32,44 +32,42 @@ namespace _2021
         public override string SolvePart2(string[] input)
         {
 
-            //           List<string> possibleOx = input.ToList();
+            List<string> possibleOx = input.ToList();
+            string OX = ReduceList(possibleOx, 0, false);
 
-            //int k = 0;
-            //while (possibleOx.Count>1)
-            //{
-            //    int[] CountOnes = new int[input[0].Length];
+            List<string> possibleCO = input.ToList();
+            string CO = ReduceList(possibleOx, 0, true);
 
-            //    for (int i = 0; i < input[0].Length; i++)
-            //    {
-            //        CountOnes[i] = possibleOx.Count(x => x[i] == '1');
-            //    }
+            int ox = Convert.ToInt32(OX, 2);
+            int co = Convert.ToInt32(CO, 2);
 
-            //    string result = new string(CountOnes.Select(x => x >= possibleOx.Count / 2 ? '1' : '0').ToArray());
-            //    possibleOx = possibleOx.Where(x => x[k] == result[k]).ToList();
-            //    k++;
-            //}
+            return (ox * co).ToString();
 
-            //List<string> possibleCO = input.ToList();
-            //k = 0;
-            //while (possibleCO.Count > 1)
-            //{
-            //    int[] CountOnes = new int[input[0].Length];
+        }
 
-            //    for (int i = 0; i < input[0].Length; i++)
-            //    {
-            //        CountOnes[i] = possibleCO.Count(x => x[i] == '1');
-            //    }
-            //    string resultinv = new string(CountOnes.Select(x => x < possibleCO.Count / 2 ? '1' : '0').ToArray());
-            //    possibleCO = possibleCO.Where(x => x[k] == resultinv[k]).ToList();
-            //    k++;
-            //}
+        private string ReduceList(List<string> possibleOx, int index, bool invert)
+        {
+            char MostCommon = FindMostCommon(possibleOx, index);
+            if (invert)
+            {
+            MostCommon= MostCommon == '1' ? '0' : '1';
+            }
+            possibleOx = possibleOx.Where(x => x[index] == MostCommon).ToList();
+            if (possibleOx.Count==1)
+            {
+                return possibleOx[0];
+            }
+            return ReduceList(possibleOx, index + 1, invert);
+        }
 
-            //int ox = Convert.ToInt32(possibleOx[0], 2);
-            //int co = Convert.ToInt32(possibleCO[0], 2);
-
-            //return (ox * co).ToString();
-            return "";
-
+        private char FindMostCommon(List<string> possibleOx, int index)
+        {
+            int CounterOnes = possibleOx.Count(x => x[index] == '1');
+            if (CounterOnes*2>=possibleOx.Count)
+            {
+                return '1';
+            }
+            return '0';
         }
 
         public override void Tests()

@@ -11,7 +11,7 @@ namespace _2019
         public string SolvePart1(string input = null)
         {
             string[] parts = input.Split(Environment.NewLine);
-            IntcodeComputer computer = new IntcodeComputer();
+            IntcodeComputer computer = new();
             computer.loadProgram(parts[0]);
             computer.InputValue(int.Parse(parts[1]));
             computer.ExecuteProgram();
@@ -21,7 +21,7 @@ namespace _2019
         public string SolvePart2(string input = null)
         {
             string[] parts = input.Split(Environment.NewLine);
-            IntcodeComputer computer = new IntcodeComputer();
+            IntcodeComputer computer = new();
             computer.loadProgram(parts[0]);
             computer.InputValue(int.Parse(parts[1]));
             computer.ExecuteProgram();

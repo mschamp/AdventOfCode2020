@@ -15,7 +15,7 @@ namespace _2020
             int Difference1 = 0;
             int Difference3 = 1; //1 because of built-in adapter
 
-            List<long> joltSteps = new List<long>();
+            List<long> joltSteps = new();
             long prev = 0;
             
             foreach (var item in joltages.OrderBy(x => x))
@@ -40,7 +40,7 @@ namespace _2020
         
         private long Combinations(List<long> input)
         {
-            Dictionary<int, int> _values = new Dictionary<int, int>();
+            Dictionary<int, int> _values = new();
             long last = 0;
             int OneCounter = 0;
             for (int i = 0; i < input.Count(); i++)

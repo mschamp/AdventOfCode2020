@@ -16,8 +16,8 @@ namespace _2015
 
         private List<int> FindNumbers(string input)
         {
-            List<int> result = new List<int>();
-            System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(@"-?\d+");
+            List<int> result = new();
+            System.Text.RegularExpressions.Regex regex = new(@"-?\d+");
             System.Text.RegularExpressions.MatchCollection matches = regex.Matches(input);
 
             foreach (System.Text.RegularExpressions.Match match in matches)
@@ -29,7 +29,7 @@ namespace _2015
 
         private string RemoveInvalid(string input)
         {
-            System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(@"{[^\[]*""red"".*}");
+            System.Text.RegularExpressions.Regex regex = new(@"{[^\[]*""red"".*}");
             input=regex.Replace(input, "0");
             return input;
         }

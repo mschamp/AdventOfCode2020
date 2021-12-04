@@ -14,13 +14,13 @@ namespace _2019
             string[] Wire1 = wires[0].Split(",");
             string[] Wire2 = wires[1].Split(",");
 
-            List<General.clsPoint> Wire1Corners = new List<General.clsPoint>() { new General.clsPoint(0,0)};
+            List<General.clsPoint> Wire1Corners = new() { new General.clsPoint(0,0)};
             foreach (string instruction in Wire1)
             {
                 Wire1Corners.AddRange(Wire1Corners.Last().Move(instruction.Trim()));
             }
 
-            List<General.clsPoint> Wire2Corners = new List<General.clsPoint>() { new General.clsPoint(0, 0) };
+            List<General.clsPoint> Wire2Corners = new() { new General.clsPoint(0, 0) };
             foreach (string instruction in Wire2)
             {
                 Wire2Corners.AddRange(Wire2Corners.Last().Move(instruction.Trim()));
@@ -35,20 +35,20 @@ namespace _2019
             string[] Wire1 = wires[0].Split(",");
             string[] Wire2 = wires[1].Split(",");
 
-            List<General.clsPoint> Wire1Corners = new List<General.clsPoint>() { new General.clsPoint(0, 0) };
+            List<General.clsPoint> Wire1Corners = new() { new General.clsPoint(0, 0) };
             foreach (string instruction in Wire1)
             {
                 Wire1Corners.AddRange(Wire1Corners.Last().Move(instruction.Trim()));
             }
 
-            List<General.clsPoint> Wire2Corners = new List<General.clsPoint>() { new General.clsPoint(0, 0) };
+            List<General.clsPoint> Wire2Corners = new() { new General.clsPoint(0, 0) };
             foreach (string instruction in Wire2)
             {
                 Wire2Corners.AddRange(Wire2Corners.Last().Move(instruction.Trim()));
             }
             var crossings = Wire1Corners.Intersect(Wire2Corners);
 
-            List<int> Distances = new List<int>();
+            List<int> Distances = new();
             foreach (General.clsPoint crossing in crossings)
             {
                 int Steps = 0;

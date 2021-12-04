@@ -8,7 +8,7 @@ namespace _2019
        
         public string SolvePart1(string input)
         {
-            IntcodeComputer computer = new IntcodeComputer();
+            IntcodeComputer computer = new();
             computer.loadProgram(input);
             computer.ExecuteProgram();
             return ""+computer.GetMemoryContent(0);
@@ -16,7 +16,7 @@ namespace _2019
 
         public string SolvePart2(string input)
         {
-            IntcodeComputer computer = new IntcodeComputer();
+            IntcodeComputer computer = new();
             for (int noun = 0; noun <= 99; noun++)
             {
                 for (int verb = 0; verb <= 99; verb++)

@@ -15,7 +15,7 @@ namespace General
 
         public static Func<string, int> RegexMatchCountValidator(string Regex)
         {
-            Regex rgx = new Regex(Regex);
+            Regex rgx = new(Regex);
 
             return input => rgx.Matches(input).Count();
         }
@@ -52,7 +52,7 @@ namespace General
 
         public static Func<string, bool> RegexValidator(string Regex)
         {
-            Regex rgx = new Regex(Regex);
+            Regex rgx = new(Regex);
 
             return input => rgx.IsMatch(input);
         }
@@ -62,7 +62,7 @@ namespace General
             Func<string, bool> cmValidator = NumberValidator(150, 193);
             Func<string, bool> inValidator = NumberValidator(59, 76);
 
-            Regex hgt = new Regex(@"^(\d+)(cm|in)$");
+            Regex hgt = new(@"^(\d+)(cm|in)$");
 
             return input =>
             {

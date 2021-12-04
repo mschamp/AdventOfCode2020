@@ -1533,7 +1533,7 @@ namespace _2020
 ..#..........#..........#.#....
 ..#.##.......#......#..........";
 
-        public static string D4P2 = @"ecl:grn
+        public static string D4P1 = @"ecl:grn
 cid:315 iyr:2012 hgt:192cm eyr:2023 pid:873355140 byr:1925 hcl:#cb2c03
 
 byr:2027 hcl:ec0cfd ecl:blu cid:120
@@ -2635,7 +2635,7 @@ hgt:171cm
 ecl:#ae12d3 hgt:74cm cid:239 hcl:z pid:345439730 iyr:1924 byr:2029 eyr:2031";
 
         //input of colleague
-        public static string D4P1 = @"eyr:2029 pid:157374862
+        public static string D4P1Alt = @"eyr:2029 pid:157374862
 byr:1991 ecl:amb hcl:#a97842 hgt:178cm
 
 byr:1962 pid:547578491 eyr:2028 ecl:hzl hgt:65in iyr:2013 hcl:#623a2f

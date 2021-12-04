@@ -11,7 +11,7 @@ namespace _2020
         public string SolvePart1(string input = null)
         {
             string[] instructions = input.Split(Environment.NewLine);
-            General.clsPoint position = new General.clsPoint(0, 0);
+            General.clsPoint position = new(0, 0);
             General.Direction direction = General.Direction.Right;
 
             foreach (string instruction in instructions)
@@ -46,8 +46,8 @@ namespace _2020
         public string SolvePart2(string input = null)
         {
             string[] instructions = input.Split(Environment.NewLine);
-            General.clsPoint Waypoint = new General.clsPoint(10, 1);
-            General.clsPoint Ship = new General.clsPoint(0, 0);
+            General.clsPoint Waypoint = new(10, 1);
+            General.clsPoint Ship = new(0, 0);
 
             foreach (string instruction in instructions)
             {
