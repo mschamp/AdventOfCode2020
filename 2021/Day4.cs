@@ -121,7 +121,7 @@ namespace _2021
             public Board(string input, ref Dictionary<int,BingoNumber> dictNumbers)
             {
                 string[] lines = input.Split(Environment.NewLine);
-                numbers = new BingoNumber[5, 5]; 
+                numbers = new BingoNumber[lines.Length, lines.Length]; 
                 for (int i = 0; i < lines.Length; i++)
                 {
                     int[] options = lines[i].Split(" ",StringSplitOptions.RemoveEmptyEntries).Select(x => int.Parse(x)).ToArray();
