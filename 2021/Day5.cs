@@ -17,13 +17,13 @@ namespace _2021
         public override string SolvePart1(Line[] input)
         {
             var horAndVerLines = input.Where(x => x.IsHorizontal || x.IsVertical);
-            int CountOfPointMultipleTimes =horAndVerLines.SelectMany(line => line.PointOnLine()).GroupBy(point => point).Count(x => x.Count() > 1);
+            int CountOfPointMultipleTimes =horAndVerLines.SelectMany(line => line.PointsOnLine()).GroupBy(point => point).Count(x => x.Count() > 1);
             return CountOfPointMultipleTimes.ToString();
         }
 
         public override string SolvePart2(Line[] input)
         {
-            int CountOfPointMultipleTimes = input.SelectMany(line => line.PointOnLine()).GroupBy(point => point).Count(x => x.Count() > 1);
+            int CountOfPointMultipleTimes = input.SelectMany(line => line.PointsOnLine()).GroupBy(point => point).Count(x => x.Count() > 1);
             return CountOfPointMultipleTimes.ToString();
         }
 
@@ -80,7 +80,7 @@ namespace _2021
                 }
             }
 
-            public List<General.clsPoint> PointOnLine()
+            public List<General.clsPoint> PointsOnLine()
             {
                 List<General.clsPoint> points = new();
                     General.clsPoint Huidig = start;
