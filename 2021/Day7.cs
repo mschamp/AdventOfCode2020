@@ -41,11 +41,8 @@ namespace _2021
 
         public int CalculateCost(int Position, int Goal)
         {
-            int Cost = 0;
-            for (int i = 1; i <= Math.Abs(Goal-Position); i++)
-            {
-                Cost += i;
-            }
+            int distance = Math.Abs(Goal - Position);
+            int Cost = distance * (distance + 1)/2 ;
             return Cost;
         }
 
