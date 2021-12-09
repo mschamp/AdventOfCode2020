@@ -68,7 +68,7 @@ namespace _2021
             inputSignals.Remove(numberConfig[0]);
             numberConfig[3] = inputSignals.First(s => s.Length == 5 && s.Except(numberConfig[1]).Count() == 3);
             inputSignals.Remove(numberConfig[3]);
-            numberConfig[5] = inputSignals.First(s => s.Length == 5 && s.Union(numberConfig[1]).Distinct().Except(numberConfig[9]).Count() == 0);
+            numberConfig[5] = inputSignals.First(s => s.Length == 5 && s.Union(numberConfig[1]).Except(numberConfig[9]).Count() == 0);
             inputSignals.Remove(numberConfig[5]);
             numberConfig[2] = inputSignals.First(s => s.Length == 5);
             inputSignals.Remove(numberConfig[2]);
