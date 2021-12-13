@@ -58,7 +58,7 @@ namespace _2021
         public override string SolvePart2(List<Day11.Octopus> input)
         {
             int Result = 1;
-            while (RunStep(input)<input.Count())
+            while (RunStep(input)< input.Count)
             {
                 Result++;
             }
@@ -89,8 +89,6 @@ namespace _2021
 4846848554
 5283751526") == "195");
         }
-
-
 
         public class Octopus
         {
