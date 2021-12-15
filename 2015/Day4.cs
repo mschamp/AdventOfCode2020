@@ -6,9 +6,10 @@ using System.Linq;
 
 namespace _2015
 {
-    public class Day4 : General.IAoC
+    public class Day4 : General.abstractPuzzleClass
     {
-        public string SolvePart1(string input = null)
+        public Day4() : base(4) { }
+        public override string SolvePart1(string input )
         {
             int Counter = 0;
             var md5 = System.Security.Cryptography.MD5.Create();
@@ -24,7 +25,7 @@ namespace _2015
             }
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string input )
         {
             int Counter = 0;
             var md5 = System.Security.Cryptography.MD5.Create();
@@ -40,7 +41,7 @@ namespace _2015
             }
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1("abcdef") == "609043");
         }

@@ -9,6 +9,11 @@ namespace _2021
 {
     public class Day10 : General.PuzzleWithStringArrayInput
     {
+        public Day10():base(10)
+        {
+
+        }
+
         private Dictionary<char, char> brackets = new Dictionary<char, char>() { { '(', ')' }, { '[', ']' }, { '{', '}' }, { '<', '>' } };
 
         public override string SolvePart1(string[] input)

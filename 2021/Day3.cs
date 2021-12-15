@@ -10,6 +10,10 @@ namespace _2021
 {
     public class Day3 : General.PuzzleWithStringArrayInput
     {
+        public Day3() : base(3)
+        {
+
+        }
         public override string SolvePart1(string[] input)
         {
             int[] CountOnes = new int[input[0].Length];

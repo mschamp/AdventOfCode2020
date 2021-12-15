@@ -9,6 +9,8 @@ namespace _2020
 {
     public class Day18 : General.PuzzleWithStringArrayInput
     {
+        public Day18() : base(18) { }
+
         MatchEvaluator evaluator = new(NoBrackets);
 
         public override string SolvePart1(string[] input)

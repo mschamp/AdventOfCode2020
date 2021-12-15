@@ -7,6 +7,8 @@ namespace _2019
 {
     public class Day8 : General.IAoC
     {
+        public int Day => throw new NotImplementedException();
+
         public string SolvePart1(string input = null)
         {
             List<Layer> layers = new(); 

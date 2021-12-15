@@ -7,13 +7,18 @@ using System.Text.RegularExpressions;
 
 namespace _2020
 {
-    public class Day24 : General.IAoC
+    public class Day24 : General.PuzzleWithStringArrayInput
     {
-        public string SolvePart1(string input = null)
+        public Day24():base(24)
+        {
+
+        }
+
+        public override string SolvePart1(string[] input)
         {
             HashSet<(int x,int y)> Blacks = new();
 
-            foreach (string line in input.Split(Environment.NewLine))
+            foreach (string line in input)
             {
                 (int x, int y) end = IdentifyTile(line);
                 if (Blacks.Contains(end))
@@ -65,11 +70,11 @@ namespace _2020
             return Current;
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string[] input)
         {
             HashSet<(int x, int y) > Blacks = new();
 
-            foreach (string line in input.Split(Environment.NewLine))
+            foreach (string line in input)
             {
                 (int x, int y) end = IdentifyTile(line);
                 if (Blacks.Contains(end))
@@ -130,7 +135,7 @@ namespace _2020
             
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@"sesenwnenenewseeswwswswwnenewsewsw
 neeenesenwnwwswnenewnwwsewnenwseswesw

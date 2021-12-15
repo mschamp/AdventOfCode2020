@@ -7,9 +7,13 @@ using System.Text;
 
 namespace _2015
 {
-    public class Day12 : General.IAoC
+    public class Day12 : General.abstractPuzzleClass
     {
-        public string SolvePart1(string input = null)
+        public Day12():base(12)
+        {
+
+        }
+        public override string SolvePart1(string input = null)
         {
             return FindNumbers(input).Sum().ToString();
         }
@@ -34,7 +38,7 @@ namespace _2015
             return input;
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string input = null)
         {
             dynamic json = JsonConvert.DeserializeObject(input);
 
@@ -53,7 +57,7 @@ namespace _2015
 
         long GetSum(JValue val, string avoid) => val.Type == JTokenType.Integer ? (long)val.Value : 0;
 
-        public void Tests()
+        public override void Tests()
         {
             System.Diagnostics.Debug.Assert(SolvePart1("[1,2,3]") == "6");
             System.Diagnostics.Debug.Assert(SolvePart1("{\"a\":2,\"b\":4}") == "6");

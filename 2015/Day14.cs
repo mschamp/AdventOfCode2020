@@ -5,9 +5,12 @@ using System.Text;
 
 namespace _2015
 {
-    public class Day14 : General.IAoC
+    public class Day14 : General.PuzzleWithObjectArrayInput<Day14.Deer>
     {
-        private class Deer
+        public Day14():base(14)
+            {
+            }
+        public class Deer
         {
             public Deer(string data)
             {
@@ -38,10 +41,9 @@ namespace _2015
 
         }
 
-        public string SolvePart1(string input = null)
+        public override string SolvePart1(Deer[] input)
         {
-            List<Deer> deers = input.Split(Environment.NewLine)
-    .Select(s => new Deer(s)).ToList();
+            List<Deer> deers = input.ToList();
 
             for (int i = 0; i < 2503; i++)
             {
@@ -62,10 +64,9 @@ namespace _2015
             return deer.CurrentLocation;
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(Deer[] input)
         {
-            Dictionary<Deer,int> deers = input.Split(Environment.NewLine)
-    .Select(s => new Deer(s)).ToDictionary(x=> x,x => 0);
+            Dictionary<Deer,int> deers = input.ToDictionary(x=> x,x => 0);
 
             for (int i = 0; i < 2503; i++)
             {
@@ -83,10 +84,15 @@ namespace _2015
             return deers.Max(x => x.Value).ToString();
         }
 
-        public void Tests()
+        public override void Tests()
         {
             System.Diagnostics.Debug.Assert(Race(new Deer("Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds."), 1000) == 1120);
             System.Diagnostics.Debug.Assert(Race(new Deer("Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds."), 1000) == 1056);
+        }
+
+        public override Deer CastToObject(string RawData)
+        {
+            return new Deer(RawData);
         }
     }
 }

@@ -9,6 +9,8 @@ namespace _2019
 {
     public class Day14 : General.IAoC
     {
+        public int Day => throw new NotImplementedException();
+
         public string SolvePart1(string input = null)
         {
             Dictionary<string, reaction> reactions = new();

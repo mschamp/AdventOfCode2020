@@ -6,11 +6,12 @@ using MoreLinq;
 
 namespace _2015
 {
-    public class Day9 : General.IAoC
+    public class Day9 : General.PuzzleWithStringArrayInput
     {
-        public string SolvePart1(string input = null)
+        public Day9() : base(9) { }
+        public override string SolvePart1(string[] input)
         {
-            IEnumerable<int> routeLengths = getPossibleRoutes(input.Split(Environment.NewLine));
+            IEnumerable<int> routeLengths = getPossibleRoutes(input);
 
             return routeLengths.Min().ToString();
         }
@@ -32,14 +33,14 @@ namespace _2015
                 .Select(route => route.Pairwise((from, to) => getDistance(from, to)).Sum());
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string[] input)
         {
-            IEnumerable<int> routeLengths = getPossibleRoutes(input.Split(Environment.NewLine));
+            IEnumerable<int> routeLengths = getPossibleRoutes(input);
 
             return routeLengths.Max().ToString();
         }
 
-        public void Tests()
+        public override void Tests()
         {
             System.Diagnostics.Debug.Assert(SolvePart1(@"London to Dublin = 464
 London to Belfast = 518

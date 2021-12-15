@@ -7,12 +7,15 @@ using System.Text.RegularExpressions;
 
 namespace _2020
 {
-    public class Day2 : General.IAoC
+    public class Day2 : General.PuzzleWithStringArrayInput
     {
-        public string SolvePart1(string input = null)
+        public Day2() : base(2)
+        {
+
+        }
+        public override string SolvePart1(string[] entries)
         {
             Regex reg = new(@"(\d+)-(\d+)\s(.):\s(.+)");
-            string[] entries = input.Split(Environment.NewLine);
             int OKCounter = 0;
             foreach(string entry in entries)
             {
@@ -25,10 +28,9 @@ namespace _2020
             return "" + OKCounter;
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string [] entries)
         {
             Regex reg = new(@"(\d+)-(\d+)\s(.):\s(.+)");
-            string[] entries = input.Split(Environment.NewLine);
             int OKCounter = 0;
             foreach (string entry in entries)
             {
@@ -54,7 +56,7 @@ namespace _2020
             return ((passchar[p1 - 1] == Letter) ^ (passchar[p2 - 1] == Letter));
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@"1-3 a: abcde
 1-3 b: cdefg

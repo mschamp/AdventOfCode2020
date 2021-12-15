@@ -7,14 +7,15 @@ using System.Diagnostics;
 
 namespace _2015
 {
-    public class Day6 : General.IAoC
+    public class Day6 : General.PuzzleWithStringArrayInput
     {
-        public string SolvePart1(string input = null)
+        public Day6() : base(6) { }
+        public override string SolvePart1(string[] input)
         {
             HashSet<(int, int)> LampsOn = new();
             Regex rgx = new(@"([\w\s]*)\s(\d+),(\d+)\sthrough\s(\d+),(\d+)");
 
-            foreach (string instruction in input.Split(Environment.NewLine))
+            foreach (string instruction in input)
             {
                 Match mtch = rgx.Match(instruction);
                 int xStart = int.Parse(mtch.Groups[2].Value);
@@ -65,12 +66,12 @@ namespace _2015
         }
 
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string[] input)
         {
             Dictionary<(int, int),int> LampsOn = new();
             Regex rgx = new(@"([\w\s]*)\s(\d+),(\d+)\sthrough\s(\d+),(\d+)");
 
-            foreach (string instruction in input.Split(Environment.NewLine))
+            foreach (string instruction in input)
             {
                 Match mtch = rgx.Match(instruction);
                 int xStart = int.Parse(mtch.Groups[2].Value);
@@ -110,7 +111,7 @@ namespace _2015
             return "" + LampsOn.Values.Sum();
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1("turn on 0,0 through 999,999") == "1000000");
             Debug.Assert(SolvePart1("toggle 0,0 through 999,0") == "1000");

@@ -9,6 +9,10 @@ namespace _2021
 {
     public class Day5: General.PuzzleWithObjectArrayInput<Day5.Line>
     {
+        public Day5() : base(5)
+        {
+
+        }
         public override Line CastToObject(string RawData)
         {
             return new Line(RawData);

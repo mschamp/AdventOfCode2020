@@ -9,6 +9,10 @@ namespace _2021
 {
     public class Day11 : General.PuzzleWithObjectInput<List<Day11.Octopus>>
     {
+        public Day11() : base(11)
+        {
+
+        }
         public override List<Day11.Octopus> CastToObject(string RawData)
         {
             string[] lines = RawData.Split(Environment.NewLine);

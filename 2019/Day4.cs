@@ -8,6 +8,8 @@ namespace _2019
 {
     public class Day4 : General.IAoC
     {
+        public int Day => throw new NotImplementedException();
+
         public string SolvePart1(string input = null)
         {
             string[] values = input.Split("-");

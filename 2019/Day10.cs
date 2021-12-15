@@ -6,9 +6,14 @@ using System.Text;
 
 namespace _2019
 {
-    public class Day10 : General.IAoC
+    public class Day10 : General.abstractPuzzleClass
     {
-        public string SolvePart1(string input = null)
+        public Day10():base(10)
+        {
+
+        }
+
+        public override string SolvePart1(string input = null)
         {
             string[] lines = input.Split(Environment.NewLine);
             List<General.clsPoint> Asteroids = new();
@@ -40,7 +45,7 @@ namespace _2019
             return "" + PointAngles.Values.Max(x => x.Count); ;
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string input = null)
         {
             string[] lines = input.Split(Environment.NewLine);
             List<General.clsPoint> Asteroids = new();
@@ -106,7 +111,7 @@ namespace _2019
             return result.OrderByDescending(x => x.Item1).ThenBy(x => x.Item2).ToList();
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@".#..#
 .....

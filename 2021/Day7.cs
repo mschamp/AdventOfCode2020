@@ -9,6 +9,10 @@ namespace _2021
 {
     public class Day7 : General.PuzzleWithIntegerArrayInput
     {
+        public Day7() : base(7)
+        {
+
+        }
         public override string SolvePart1(int[] input)
         {
             int min = input.Min();

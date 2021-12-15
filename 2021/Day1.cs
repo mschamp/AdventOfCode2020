@@ -8,6 +8,11 @@ namespace _2021
 {
     public class Day1 : General.PuzzleWithIntegerArrayInput
     {
+        public Day1():base(1)
+        {
+
+        }
+
         public override string SolvePart1(int[] input)
         {
             int Previous = input[0];

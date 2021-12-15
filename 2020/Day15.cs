@@ -7,15 +7,19 @@ using System.Text.RegularExpressions;
 
 namespace _2020
 {
-    public class Day15 : General.IAoC
+    public class Day15 : General.abstractPuzzleClass
     {
-        public string SolvePart1(string input = null)
+        public Day15() : base(15)
+        {
+
+        }
+        public override string SolvePart1(string input = null)
         {
             
             return PlayGame(2020,input).ToString();
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string input = null)
         {
             return PlayGame(30000000, input).ToString();
         }
@@ -50,7 +54,7 @@ namespace _2020
             return LastNumber;
         }
 
-        public void Tests()
+        public override void Tests()
         {
             //Debug.Assert(SolvePart1("0,3,6") == "436");
             //Debug.Assert(SolvePart1("1,3,2") == "1");

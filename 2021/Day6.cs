@@ -9,6 +9,10 @@ namespace _2021
 {
     public class Day6 : General.PuzzleWithIntegerArrayInput
     {
+        public Day6() : base(6)
+        {
+
+        }
         public override string SolvePart1(int[] input)
         {
             Dictionary<int,int> FishDict =input.GroupBy(x => x).ToDictionary(x => x.Key, x => x.Count());

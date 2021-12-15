@@ -7,23 +7,27 @@ using System.Text.RegularExpressions;
 
 namespace _2020
 {
-    public class Day17 : General.IAoC
+    public class Day17 : General.abstractPuzzleClass
     {
-        public string SolvePart1(string input = null)
+        public Day17() : base(17)
+        {
+
+        }
+        public override string SolvePart1(string input = null)
         {
             Cubes3D cubes = new(input);
             cubes.ExecuteCycles(6);
             return cubes.CubesOnCount.ToString();
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string input = null)
         {
             Cubes4D cubes = new(input);
             cubes.ExecuteCycles(6);
             return cubes.CubesOnCount.ToString();
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@".#.
 ..#

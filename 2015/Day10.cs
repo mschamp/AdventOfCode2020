@@ -4,9 +4,14 @@ using System.Text;
 
 namespace _2015
 {
-    public class Day10 : General.IAoC
+    public class Day10 : General.abstractPuzzleClass
     {
-        public string SolvePart1(string input = null)
+        public Day10() : base(10)
+        {
+
+        }
+
+        public override string SolvePart1(string input = null)
         {
             for (int i = 0; i < 40; i++)
             {
@@ -15,7 +20,7 @@ namespace _2015
             return input.Length.ToString();
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string input = null)
         {
             for (int i = 0; i < 50; i++)
             {
@@ -46,7 +51,7 @@ namespace _2015
             return result.ToString();
         }
 
-        public void Tests()
+        public override void Tests()
         {
             System.Diagnostics.Debug.Assert(LookAndSay("1")=="11");
             System.Diagnostics.Debug.Assert(LookAndSay("11") == "21");

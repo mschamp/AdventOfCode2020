@@ -8,6 +8,8 @@ namespace _2019
 {
     public class Day7 : General.IAoC
     {
+        public int Day => throw new NotImplementedException();
+
         public string SolvePart1(string input = null)
         {
             int[] Options = new[] { 0, 1, 2, 3, 4 };

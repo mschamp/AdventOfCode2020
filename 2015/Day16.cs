@@ -5,9 +5,10 @@ using System.Text;
 
 namespace _2015
 {
-    public class Day16 : General.IAoC
+    public class Day16 : General.PuzzleWithObjectArrayInput<Day16.Aunt>
     {
-        private class Aunt
+        public Day16() : base(16) { }
+        public class Aunt
         {
             Dictionary<string, int> things;
             public string Name;
@@ -70,7 +71,7 @@ namespace _2015
             }
         }
 
-        public string SolvePart1(string input = null)
+        public override string SolvePart1(Aunt[] aunts)
         {
             Aunt sender = new(@"children: 3
 cats: 7
@@ -82,16 +83,13 @@ goldfish: 5
 trees: 3
 cars: 2
 perfumes: 1".Split(Environment.NewLine), "Sender");
-
-
-            List<Aunt> aunts = input.Split(Environment.NewLine).Select(x => new Aunt(x)).ToList();
 
             var pos = aunts.Where(x => x.PossibleSender(sender));
 
             return pos.First().Name;
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(Aunt[] aunts)
         {
             Aunt sender = new(@"children: 3
 cats: 7
@@ -104,16 +102,18 @@ trees: 3
 cars: 2
 perfumes: 1".Split(Environment.NewLine), "Sender");
 
-
-            List<Aunt> aunts = input.Split(Environment.NewLine).Select(x => new Aunt(x)).ToList();
-
             var pos = aunts.Where(x => x.PossibleSender2(sender));
 
             return pos.First().Name;
         }
 
-        public void Tests()
+        public override void Tests()
         {
+        }
+
+        public override Aunt CastToObject(string RawData)
+        {
+            return new Aunt(RawData);
         }
     }
 }

@@ -8,6 +8,8 @@ namespace _2019
 {
     public class Day13 : General.IAoC
     {
+        public int Day => throw new NotImplementedException();
+
         public string SolvePart1(string input = null)
         {
             IntcodeComputer computer = new();

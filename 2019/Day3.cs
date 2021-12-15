@@ -8,6 +8,8 @@ namespace _2019
 {
     public class Day3 : General.IAoC
     {
+        public int Day => throw new NotImplementedException();
+
         public string SolvePart1(string input = null)
         {
             string[] wires = input.Split(Environment.NewLine);

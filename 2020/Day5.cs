@@ -8,6 +8,7 @@ namespace _2020
 {
     public class Day5 : General.PuzzleWithObjectArrayInput<int>
     {
+        public Day5() : base(5) { }
         private int getSeatID(string input)
         {
             int row = ProcessTextAsBinary(input.Substring(0, 7),'B');

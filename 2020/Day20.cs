@@ -8,6 +8,7 @@ namespace _2020
 {
     public class Day20 : General.PuzzleWithObjectInput<List<Day20.Tile>>
     {
+        public Day20() : base(20) { }
         private int CountCharts(Tile finaly, char v)
         {
             int Count = 0;

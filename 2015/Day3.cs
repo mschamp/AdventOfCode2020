@@ -6,9 +6,10 @@ using System.Text;
 
 namespace _2015
 {
-    public class Day3 : General.IAoC
+    public class Day3 : General.abstractPuzzleClass
     {
-        public string SolvePart1(string input = null)
+        public Day3() : base(3) { }
+        public override string SolvePart1(string input)
         {
             HashSet<General.clsPoint> VisitedHouses = new();
             General.clsPoint Current = new(0, 0);
@@ -22,7 +23,7 @@ namespace _2015
             return "" + VisitedHouses.Count;
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string input)
         {
             HashSet<General.clsPoint> VisitedHouses = new();
             General.clsPoint Santa = new(0, 0);
@@ -39,7 +40,7 @@ namespace _2015
             return "" + VisitedHouses.Count;
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(">") == "2");
             Debug.Assert(SolvePart1("^>v<") == "4");

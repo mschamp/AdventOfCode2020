@@ -8,6 +8,7 @@ namespace _2020
 {
     public class Day6 : General.PuzzleWithObjectArrayInput<Group>
     {
+        public Day6() : base(6) { }
         public override Group CastToObject(string RawData)
         {
             return new Group(RawData);

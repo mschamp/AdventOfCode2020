@@ -9,6 +9,10 @@ namespace _2021
 {
     public class Day9 : General.PuzzleWithObjectInput<List<Day9.Position>>
     {
+        public Day9() : base(9)
+        {
+
+        }
         public override List<Day9.Position> CastToObject(string RawData)
         {
             string[] lines = RawData.Split(Environment.NewLine);

@@ -7,9 +7,14 @@ using System.Text.RegularExpressions;
 
 namespace _2020
 {
-    public class Day23 : General.IAoC
+    public class Day23 : General.abstractPuzzleClass
     {
-        public string SolvePart1(string input = null)
+        public Day23():base(23)
+        {
+
+        }
+
+        public override string SolvePart1(string input = null)
         {
             int[] Cups = MakeList(input, input.Length);
 
@@ -54,7 +59,7 @@ namespace _2020
             return Cups;
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string input = null)
         {
             int[] Cups = MakeList(input, 1000000);
 
@@ -92,7 +97,7 @@ namespace _2020
             return list;
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1("389125467") == "67384529");
             Debug.Assert(SolvePart2("389125467") == "149245887792");

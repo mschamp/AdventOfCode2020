@@ -8,12 +8,14 @@ using System.Text.RegularExpressions;
 
 namespace _2020
 {
-    public class Day25 : General.IAoC
+    public class Day25 : General.PuzzleWithStringArrayInput
     {
-        public string SolvePart1(string input = null)
+        public Day25():base(25)
         {
-            string[] parts = input.Split(Environment.NewLine);
-            //int loopsCard = CalculateLoopSize(int.Parse(parts[0]));
+
+        }
+        public override string SolvePart1(string[] parts)
+        {
             int loopsDoor = CalculateLoopSize(int.Parse(parts[1]));
 
             return ""+ EncryptionKey(loopsDoor, int.Parse(parts[0]));
@@ -47,12 +49,12 @@ namespace _2020
             return value;
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string[] input)
         {
             return "";
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@"5764801
 17807724") == "14897079");

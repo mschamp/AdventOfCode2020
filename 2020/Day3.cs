@@ -7,7 +7,7 @@ namespace _2020
 {
     public class Day3 : General.PuzzleWithObjectInput<char[,]>
     {
-
+        public Day3() : base(3) { }
         private int TreesOnSlope(char[,] array, Tuple<int,int> slope, int Rows, int Columns)
         {
             int Trees = 0;

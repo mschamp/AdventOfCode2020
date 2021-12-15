@@ -9,6 +9,10 @@ namespace _2021
 {
     public class Day8 : General.PuzzleWithStringArrayInput
     {
+        public Day8() : base(8)
+        {
+
+        }
         public override string SolvePart1(string[] input)
         {
             int[] UniqueLength = new int[] { 2, 3, 4, 7 };

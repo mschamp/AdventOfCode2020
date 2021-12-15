@@ -5,11 +5,13 @@ using System.Text;
 
 namespace _2015
 {
-    public class Day8 : General.IAoC
+    public class Day8 : General.PuzzleWithStringArrayInput
     {
-        public string SolvePart1(string input = null)
+        public Day8() : base(8) { }
+
+        public override string SolvePart1(string[] input)
         {
-           return  input.Split(Environment.NewLine).Select(s => new
+           return  input.Select(s => new
             {
                 Escaped = s,
                 Unescaped = System.Text.RegularExpressions.Regex.Replace(
@@ -23,9 +25,9 @@ namespace _2015
 
 
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string[] input)
         {
-            return input.Split(Environment.NewLine).Select(s => new
+            return input.Select(s => new
             {
                 Unescaped = s,
                 Exploded = "\"" + s.Replace("\\", "\\\\")
@@ -34,7 +36,7 @@ namespace _2015
              .Sum(s => s.Exploded.Length - s.Unescaped.Length).ToString();
         }
 
-        public void Tests()
+        public override void Tests()
         {
             System.Diagnostics.Debug.Assert(SolvePart1("\"\"") == "2");
             System.Diagnostics.Debug.Assert(SolvePart1("\"abc\"") == "2");

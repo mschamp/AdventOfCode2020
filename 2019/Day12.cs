@@ -10,6 +10,8 @@ namespace _2019
 {
     public class Day12 : General.IAoC
     {
+        public int Day => throw new NotImplementedException();
+
         public string SolvePart1(string input = null)
         {
             List<Moon> moons = new();

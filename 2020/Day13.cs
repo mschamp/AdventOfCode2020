@@ -6,9 +6,14 @@ using System.Text;
 
 namespace _2020
 {
-    public class Day13 : General.IAoC
+    public class Day13 : General.abstractPuzzleClass
     {
-        public string SolvePart1(string input = null)
+        public Day13() : base(13)
+        {
+
+        }
+
+        public override string SolvePart1(string input = null)
         {
             long ArrivalTime = long.Parse(input.Split(Environment.NewLine)[0]);
             Dictionary<long, long> BusDeparts = new();
@@ -33,7 +38,7 @@ namespace _2020
             return (long)(Math.Ceiling((float)ArrivalTime / (float)BusID))*BusID;
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string input = null)
         {
             Func<long, long,long> lmc = General.MathFunctions.findLCM();
             List<long> busses = new();
@@ -72,7 +77,7 @@ namespace _2020
             return Timestamp % busID == 0;
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@"939
 7,13,x,x,59,x,31,19") == "295");

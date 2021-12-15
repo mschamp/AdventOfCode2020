@@ -9,6 +9,7 @@ namespace _2020
 {
     public class Day19 : General.PuzzleWithObjectInput<(Dictionary<int, List<Rule>> Rules, string[] messages)>
     {        
+        public Day19() : base(19) { }
         public Dictionary<int, List<Rule>> DecodeRules(string input)
         {
             Dictionary<int, List<Rule>> result = new();

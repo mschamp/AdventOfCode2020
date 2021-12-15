@@ -7,9 +7,13 @@ using System.Text.RegularExpressions;
 
 namespace _2020
 {
-    public class Day22 : General.IAoC
+    public class Day22 : General.abstractPuzzleClass
     {
-        public string SolvePart1(string input = null)
+        public Day22():base(22)
+        {
+
+        }
+        public override string SolvePart1(string input = null)
         {
             string[] parts = input.Split(Environment.NewLine + Environment.NewLine);
             List<int> Player1Deck = LoadDeck(parts[0]);
@@ -140,7 +144,7 @@ namespace _2020
             return PlayerDeck;
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string input = null)
         {
             string[] parts = input.Split(Environment.NewLine + Environment.NewLine);
             List<int> Player1Deck = LoadDeck(parts[0]);
@@ -149,7 +153,7 @@ namespace _2020
             return "" + game(Player1Deck, Player2Deck, 1); ;
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@"Player 1:
 9

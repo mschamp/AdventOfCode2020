@@ -7,15 +7,14 @@ using System.Text.RegularExpressions;
 
 namespace _2020
 {
-    public class Day21 : General.IAoC
+    public class Day21 : General.PuzzleWithObjectArrayInput<Day21.Food>
     {
-        public string SolvePart1(string input = null)
+        public Day21() : base(21)
         {
-            List<Food> foods = new();
-            foreach (string item in input.Split(Environment.NewLine))
-            {
-                foods.Add(new Food(item));
-            }
+
+        }
+        public override string SolvePart1(Food[] foods)
+        {
 
             Dictionary<string, string> AllergenIngredient = MatchAllergensIngredients(foods);
 
@@ -34,19 +33,14 @@ namespace _2020
             return "" + Counter;
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(Food[] foods)
         {
-            List<Food> foods = new();
-            foreach (string item in input.Split(Environment.NewLine))
-            {
-                foods.Add(new Food(item));
-            }
 
             Dictionary<string, string> AllergenIngredient = MatchAllergensIngredients(foods);
 
 
             List<string> Ordered = new();
-            foreach (var item in AllergenIngredient.Keys.OrderBy(x =>x))
+            foreach (var item in AllergenIngredient.Keys.OrderBy(x => x))
             {
                 Ordered.Add(AllergenIngredient[item]);
             }
@@ -54,7 +48,7 @@ namespace _2020
             return string.Join(",", Ordered);
         }
 
-        private Dictionary<string, string> MatchAllergensIngredients(List<Food> foods)
+        private Dictionary<string, string> MatchAllergensIngredients(Food[] foods)
         {
             Dictionary<string, string> AllergenIngredient = new();
             HashSet<string> ingredients = new();
@@ -100,7 +94,7 @@ namespace _2020
             return AllergenIngredient;
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@"mxmxvkd kfcds sqjhc nhms (contains dairy, fish)
 trh fvjkl sbzzf mxmxvkd (contains dairy)
@@ -112,19 +106,24 @@ trh fvjkl sbzzf mxmxvkd (contains dairy)
 sqjhc fvjkl (contains soy)
 sqjhc mxmxvkd sbzzf (contains fish)") == "mxmxvkd,sqjhc,fvjkl");
         }
-    }
 
-    public class Food
-    {
-        public Food(string Input)
+        public override Food CastToObject(string RawData)
         {
-            Regex rgx = new(@"((?:\w+\s)+)\(contains\s((?:\w+(?:,\s)?)+)\)");
-            Match mtch = rgx.Match(Input);
-            Ingredients = mtch.Groups[1].Value.Split(" ",StringSplitOptions.RemoveEmptyEntries).ToList();
-            Allergens = mtch.Groups[2].Value.Split(", ").ToList();
+            return new Food(RawData);
         }
 
-        public List<string> Ingredients { get; set; }
-        public List<string> Allergens { get; set; }
+        public class Food
+        {
+            public Food(string Input)
+            {
+                Regex rgx = new(@"((?:\w+\s)+)\(contains\s((?:\w+(?:,\s)?)+)\)");
+                Match mtch = rgx.Match(Input);
+                Ingredients = mtch.Groups[1].Value.Split(" ", StringSplitOptions.RemoveEmptyEntries).ToList();
+                Allergens = mtch.Groups[2].Value.Split(", ").ToList();
+            }
+
+            public List<string> Ingredients { get; set; }
+            public List<string> Allergens { get; set; }
+        }
     }
 }

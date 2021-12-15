@@ -6,12 +6,14 @@ using System.Text;
 
 namespace _2015
 {
-    public class Day2 : General.IAoC
+    public class Day2 : General.PuzzleWithStringArrayInput
     {
-        public string SolvePart1(string input = null)
+        public Day2() : base(2) { }
+
+        public override string SolvePart1(string[] input)
         {
             long area = 0;
-            foreach (string box in input.Split(Environment.NewLine))
+            foreach (string box in input)
             {
                 int[] sizes = box.Split('x').Select(x => int.Parse(x)).ToArray();
                 int a1 = sizes[0] * sizes[1];
@@ -24,10 +26,10 @@ namespace _2015
             
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string[] input)
         {
             long Ribbon = 0;
-            foreach (string box in input.Split(Environment.NewLine))
+            foreach (string box in input)
             {
                 int[] sizes = box.Split('x').Select(x => int.Parse(x)).ToArray();
                 Ribbon += sizes.Aggregate(1,(volume,next)=>volume*=next) + 2* (sizes.Sum()-sizes.Max());
@@ -36,7 +38,7 @@ namespace _2015
             return "" + Ribbon;
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@"2x3x4") == "58");
             Debug.Assert(SolvePart1(@"1x1x10") == "43");

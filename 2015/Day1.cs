@@ -5,9 +5,14 @@ using System.Text;
 
 namespace _2015
 {
-    public class Day1 : General.IAoC
+    public class Day1 : General.abstractPuzzleClass
     {
-        public string SolvePart1(string input = null)
+        public Day1():base(1)
+        {
+
+        }
+
+        public override string SolvePart1(string input = null)
         {
             int floor = 0;
             foreach (char item in input)
@@ -27,7 +32,7 @@ namespace _2015
             return ""+floor;
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string input = null)
         {
             int count = 0;
             int floor = 0;
@@ -53,7 +58,7 @@ namespace _2015
             return "";
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@"(())") == "0");
             Debug.Assert(SolvePart1(@"()()") == "0");

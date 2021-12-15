@@ -5,14 +5,19 @@ using System.Text;
 
 namespace General
 {
-    public abstract class PuzzleWithStringArrayInput:IAoC
+    public abstract class PuzzleWithStringArrayInput:abstractPuzzleClass
     {
-        public string SolvePart1(string input = null)
+        public PuzzleWithStringArrayInput(int Day):base(Day)
+        {
+
+        }
+
+        public override string SolvePart1(string input = null)
         {
             return SolvePart1(input.Split(Environment.NewLine));
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string input = null)
         {
             return SolvePart2(input.Split(Environment.NewLine));
         }
@@ -20,6 +25,6 @@ namespace General
         public abstract string SolvePart1(string[] input);
         public abstract string SolvePart2(string[] input);
 
-        public abstract void Tests();
+        public override abstract void Tests();
     }
 }

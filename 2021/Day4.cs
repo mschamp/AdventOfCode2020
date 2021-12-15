@@ -10,6 +10,10 @@ namespace _2021
 {
     public class Day4 : General.PuzzleWithObjectInput<(List<int>,List<Day4.Board>, Dictionary<int, Day4.BingoNumber>)>
     {
+        public Day4() : base(4)
+        {
+
+        }
         public override (List<int>, List<Board>, Dictionary<int, BingoNumber>) CastToObject(string RawData)
         {
             string[] parts = RawData.Split(Environment.NewLine + Environment.NewLine);

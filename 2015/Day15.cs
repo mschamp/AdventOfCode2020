@@ -5,9 +5,13 @@ using System.Text;
 
 namespace _2015
 {
-    public class Day15 : General.IAoC
+    public class Day15 : General.PuzzleWithObjectArrayInput<Day15.ingredient>
     {
-        private class ingredient
+        public Day15():base(15)
+        {
+
+        }
+        public class ingredient
         {
             public ingredient()
             {
@@ -61,10 +65,8 @@ namespace _2015
             }
         }
 
-        public string SolvePart1(string input = null)
+        public override string SolvePart1(ingredient[] ingredients)
         {
-            List<ingredient> ingredients = input.Split(Environment.NewLine)
-   .Select(s => new ingredient(s)).ToList();
 
             var ValidRecepts = Distribute4(100);
             var scores = ValidRecepts.Select(rec => CalculateScore(rec, ingredients));
@@ -72,17 +74,15 @@ namespace _2015
             return scores.Max(x => x.Item1).ToString();
         }
 
-        private Tuple<long,int> CalculateScore(int[] amount, List<ingredient> ingredients)
+        private Tuple<long,int> CalculateScore(int[] amount, ingredient[] ingredients)
         {
             ingredient result = ingredients.Zip(amount, (ing, amo) => ing * amo).Aggregate((a, b) => a + b);
 
             return Tuple.Create(result.Score, result.calories);
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(ingredient[] ingredients)
         {
-            List<ingredient> ingredients = input.Split(Environment.NewLine)
-    .Select(s => new ingredient(s)).ToList();
 
             var ValidRecepts = Distribute4(100);
             var scores = ValidRecepts.Select(rec => CalculateScore(rec, ingredients));
@@ -90,7 +90,7 @@ namespace _2015
             return scores.Where(x => x.Item2==500).Max(x => x.Item1).ToString();
         }
 
-        public void Tests()
+        public override void Tests()
         {
             System.Diagnostics.Debug.Assert(SolvePart1(@"Butterscotch: capacity -1, durability -2, flavor 6, texture 3, calories 8
 Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3") == "62842880");
@@ -102,6 +102,11 @@ Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3") == "6284
                 for (int b = 0; b <= max - a; b++)
                     for (int c = 0; c <= max - a - b; c++)
                         yield return new[] { a, b, c, max - a - b - c };
+        }
+
+        public override ingredient CastToObject(string RawData)
+        {
+            return new ingredient(RawData);
         }
     }
 }

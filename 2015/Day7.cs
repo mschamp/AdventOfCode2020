@@ -7,13 +7,15 @@ using System.Text.RegularExpressions;
 
 namespace _2015
 {
-    public class Day7 : General.IAoC
+    public class Day7 : General.PuzzleWithStringArrayInput
     {
-        public string SolvePart1(string input = null)
+        public Day7():base(7) { }
+
+        public override string SolvePart1(string[] input )
         {
             Dictionary<string, Gate> wireValues = new();
             Regex rgx = new(@"(?:(?:(\d+|[a-z]+)\s)?([A-Z]+)\s)?(\d+|[a-z]+)\s->\s([a-z]+)");
-            foreach (string instruction in input.Split(Environment.NewLine))
+            foreach (string instruction in input)
             {
                 Match mtch = rgx.Match(instruction);
 
@@ -27,11 +29,11 @@ namespace _2015
             return "";
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string[] input)
         {
             Dictionary<string, Gate> wireValues = new();
             Regex rgx = new(@"(?:(?:(\d+|[a-z]+)\s)?([A-Z]+)\s)?(\d+|[a-z]+)\s->\s([a-z]+)");
-            foreach (string instruction in input.Split(Environment.NewLine))
+            foreach (string instruction in input)
             {
                 Match mtch = rgx.Match(instruction);
 
@@ -46,7 +48,7 @@ namespace _2015
             return "" + wireValues["a"].Evaluate(wireValues);
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@"123 -> x
 456 -> y

@@ -9,6 +9,10 @@ namespace _2021
 {
     public class Day12 : General.PuzzleWithObjectInput<Dictionary<string, Day12.Cave>>
     {
+        public Day12() : base(12)
+        {
+
+        }
         public override Dictionary<string, Cave> CastToObject(string RawData)
         {
             Dictionary<string, Cave> caves = new();

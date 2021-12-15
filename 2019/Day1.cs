@@ -5,7 +5,7 @@ namespace _2019
 {
     public class Day1:General.PuzzleWithIntegerArrayInput
     {
-
+        public Day1() : base(1) { }
         private  int GetFuelForModule(int mass, int divider, int substracter)
         {
             double sub = mass / divider;

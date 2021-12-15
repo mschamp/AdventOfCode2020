@@ -8,6 +8,8 @@ namespace _2020
 {
     public class Day10 : General.PuzzleWithLongArrayInput
     {
+        public Day10() : base(10) { }
+
         Func<long, long> Tribonnaci = General.MathFunctions.Tribonnaci();
 
         public override string SolvePart1(long[] joltages)

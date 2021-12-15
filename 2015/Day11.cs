@@ -5,12 +5,16 @@ using System.Text;
 
 namespace _2015
 {
-    public class Day11 : General.IAoC
+    public class Day11 : General.abstractPuzzleClass
     {
+        public Day11():base(11)
+        {
+
+        }
         static char[] forbidden = new char[] { 'i', 'o', 'l' };
         
         List<Func<string, bool>> requirements = new() { FirstRequirement(),SecondRequirement(),ThirdRequirement() };
-        public string SolvePart1(string input = null)
+        public override string SolvePart1(string input = null)
         {
             char[] characters = input.ToCharArray();
             while (!IsVallid(new string(characters)) || input== new string(characters))
@@ -32,7 +36,7 @@ namespace _2015
             return new string(characters);
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string input = null)
         {
             for (int i = 0; i < 2; i++)
             {
@@ -87,7 +91,7 @@ namespace _2015
             };
         }
 
-        public void Tests()
+        public override void Tests()
         {
             System.Diagnostics.Debug.Assert(IsVallid("hijklmmn") == false);
             System.Diagnostics.Debug.Assert(IsVallid("abbceffg") == false);

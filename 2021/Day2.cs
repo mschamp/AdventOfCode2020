@@ -8,6 +8,10 @@ namespace _2021
 {
     public class Day2 : General.PuzzleWithObjectArrayInput<Day2.Instruction>
     {
+        public Day2() : base(2)
+        {
+
+        }
         public override string SolvePart1(Instruction[] input)
         {
             int Horizontal = 0;

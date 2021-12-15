@@ -6,11 +6,16 @@ using MoreLinq;
 
 namespace _2015
 {
-    public class Day13 : General.IAoC
+    public class Day13 : General.PuzzleWithStringArrayInput
     {
-        public string SolvePart1(string input = null)
+        public Day13():base(13)
         {
-            var relations = input.Split(Environment.NewLine)
+
+        }
+
+        public override string SolvePart1(string[] input)
+        {
+            var relations = input
     .Select(s => System.Text.RegularExpressions.Regex.Match(s, @"^(\w+)\s\w+\s(\w+)\s(\d+)(?:\s\w+){6}\s(\w+)").Groups)
     .Select(g => new { Person1 = g[1].Value, Person2 = g[4].Value, Happiness = g[2].Value=="gain"?int.Parse(g[3].Value):-1* int.Parse(g[3].Value) })
     .ToList();
@@ -26,9 +31,9 @@ namespace _2015
             return result.Max().ToString();
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string[] input)
         {
-            var relations = input.Split(Environment.NewLine)
+            var relations = input
    .Select(s => System.Text.RegularExpressions.Regex.Match(s, @"^(\w+)\s\w+\s(\w+)\s(\d+)(?:\s\w+){6}\s(\w+)").Groups)
    .Select(g => new { Person1 = g[1].Value, Person2 = g[4].Value, Happiness = g[2].Value == "gain" ? int.Parse(g[3].Value) : -1 * int.Parse(g[3].Value) })
    .ToList();
@@ -46,7 +51,7 @@ namespace _2015
             return result.Max().ToString();
         }
 
-        public void Tests()
+        public override void Tests()
         {
             System.Diagnostics.Debug.Assert(SolvePart1(@"Alice would gain 54 happiness units by sitting next to Bob.
 Alice would lose 79 happiness units by sitting next to Carol.

@@ -8,6 +8,7 @@ namespace _2020
 {
     public class Day12 : General.PuzzleWithStringArrayInput
     {
+        public Day12() : base(12) { }
         public override string SolvePart1(string[] instructions)
         {
             General.clsPoint position = new(0, 0);
