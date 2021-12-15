@@ -3,11 +3,11 @@ using System.Diagnostics;
 
 namespace _2019
 {
-    public class Day2:General.IAoC
+    public class Day2:General.abstractPuzzleClass
     {
-        public int Day => throw new NotImplementedException();
+        public Day2() : base(2) { }
 
-        public string SolvePart1(string input)
+        public override string SolvePart1(string input)
         {
             IntcodeComputer computer = new();
             computer.loadProgram(input);
@@ -15,7 +15,7 @@ namespace _2019
             return ""+computer.GetMemoryContent(0);
         }
 
-        public string SolvePart2(string input)
+        public override string SolvePart2(string input)
         {
             IntcodeComputer computer = new();
             for (int noun = 0; noun <= 99; noun++)
@@ -36,7 +36,7 @@ namespace _2019
             return "";
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1("1,0,0,0,99") == "2");
             Debug.Assert(SolvePart1("2,3,0,3,99") == "2");

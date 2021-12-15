@@ -7,13 +7,16 @@ using System.Threading.Tasks;
 
 namespace _2021
 {
-    public class Day15 : General.PuzzleWithObjectInput<List<Day15.Position>>
+    public class Day15 : General.PuzzleWithObjectInput<Dictionary<(int, int), Day15.Position>>
     {
         public Day15() : base(15) { }
-        public override string SolvePart1(List<Day15.Position> input)
+        public override string SolvePart1(Dictionary<(int, int), Position> input)
         {
-            Position start = input.Where(x => x.X == input.Max(y => y.X) && x.Y == input.Max(y => y.Y)).First();
-            Position goal = input.Where(x => x.X == 0 && x.Y == 0).First();
+            List<Position> positions = input.Values.ToList();
+
+            positions.ForEach(x => x.FindPositionsAround(input));
+            Position goal = positions.Where(x => x.X == positions.Max(y => y.X) && x.Y == positions.Max(y => y.Y)).First();
+            Position start = positions.Where(x => x.X == 0 && x.Y == 0).First();
 
             Func<Position, int> CostFunction = s => s.Value;
 
@@ -22,44 +25,65 @@ namespace _2021
             return (Path.Sum(x => x.Value) - start.Value).ToString();
         }
 
-        public override string SolvePart2(List<Day15.Position> input)
+        public override string SolvePart2(Dictionary<(int, int), Position> input)
         {
-            return "";
+            List<Position> positions = new();
+            
+            int MaxX = input.Values.Select(x => x.X).Distinct().Count();
+            int MaxY = input.Values.Select(x => x.Y).Distinct().Count();
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    positions.AddRange(Scale(i, j, MaxX, MaxY, input));
+                }
+            }
+
+            Dictionary<(int,int),Position> positionsd = positions.ToDictionary(x => (x.X,x.Y), x => x);
+            positions.ForEach(x => x.FindPositionsAround(positionsd));
+
+
+            Position goal = positions.Where(x => x.X == 5*MaxX-1 && x.Y == 5 * MaxY - 1).First();
+            Position start = positions.Where(x => x.X == 0 && x.Y == 0).First();
+
+            Func<Position, int> CostFunction = s => s.Value;
+
+            List<Position> Path = Astar(start, goal, CostFunction);
+
+            return (Path.Sum(x => x.Value) - start.Value).ToString();
         }
 
-        public List<Position> Astar(Position start, Position goal, Func<Position,int> CostFunction)
+        public List<Position> Scale(int dx, int dy, int MaxX, int MaxY, Dictionary<(int, int), Position> input)
         {
-            List<Position> openSet = new() { start};
-            HashSet<Position> Seen = new();
-            Dictionary<Position, Position> cameFrom = new();
+            return input.Values.Select(x => new Position(x.X + dx * MaxX, x.Y + dy * MaxY, x.Value + dx + dy)).ToList();
+        }
 
-            Dictionary<Position, int> gScore = new();
+
+        public List<T> Astar<T>(T start, T goal, Func<T,int> CostFunction) where T: Position
+        {
+            Queue<T> openSet = new();
+            openSet.Enqueue(start);
+            Dictionary<T, T> cameFrom = new();
+
+            Dictionary<T, int> gScore = new();
             gScore[start] = 0;
 
-            Dictionary<Position, int> fScore = new();
-            fScore[start] = 0;
-
-            while (openSet.Any())
+            while (openSet.TryDequeue(out T cur))
             {
-                Position cur = openSet[0];
-                openSet.Remove(cur);
-                Seen.Add(cur);
-
                 if (cur.Equals(goal))
                 {
                     return reconstruct_path(cameFrom, cur);
                 }
 
-                foreach (Position item in cur.positionsAround)
+                foreach (T item in cur.positionsAround)
                 {
                     var tentGScore = gScore[cur] + CostFunction(item);
                     if (tentGScore < gScore.GetValueOrDefault(item, int.MaxValue))
                     {
                         cameFrom[item] = cur;
                         gScore[item] = tentGScore;
-                        fScore[item] = tentGScore+ item.manhattan(start);
-                        openSet.Add(item);
-                        openSet = openSet.Where(x => !Seen.Contains(x)).OrderBy(x => fScore[x]).ToList();
+                        openSet.Enqueue(item);
+                        //openSet = openSet.OrderBy(x => fScore[x]).ToList();
                     }
                 }
 
@@ -68,9 +92,9 @@ namespace _2021
             return null;
         }
 
-        public List<Position> reconstruct_path(Dictionary<Position, Position> cameFrom, Position current)
+        public List<T> reconstruct_path<T>(Dictionary<T, T> cameFrom, T current)
         {
-            List<Position> totalPath = new() { current };
+            List<T> totalPath = new() { current };
             while (cameFrom.TryGetValue(current, out current))
             {
                 totalPath.Insert(0,current);
@@ -85,19 +109,16 @@ namespace _2021
             {
                 return $"({X},{Y})";
             }
-            public bool isMin
-            {
-                get
-                {
-                    return positionsAround.All(x => x.Value > Value);
-                }
-            }
-
             public Position(int x, int y, int value)
             {
                 X = x;
                 Y = y;
                 Value = value;
+                while (Value>9)
+                {
+                    Value -= 9;
+                }
+                
 
             }
 
@@ -113,27 +134,6 @@ namespace _2021
                 if (grid.TryGetValue((X, Y - 1), out Position above)) positionsAround.Add(above);
                 if (grid.TryGetValue((X + 1, Y), out Position right)) positionsAround.Add(right);
                 if (grid.TryGetValue((X, Y + 1), out Position below)) positionsAround.Add(below);
-            }
-
-            public bool AssignedToBasin = false;
-
-            public int BasinSize()
-            {
-                int Size = 1;
-
-
-                return Size;
-            }
-
-            public int WalkThroughBasin()
-            {
-                if (AssignedToBasin) return 0;
-                if (Value == 9) return 0;
-
-                AssignedToBasin = true;
-
-                var positionsNotInBasin = positionsAround.Where(p => p.AssignedToBasin == false);
-                return 1 + positionsNotInBasin.Sum(p => p.WalkThroughBasin());
             }
 
             public int X { get; private set; }
@@ -156,17 +156,6 @@ namespace _2021
 1293138521
 2311944581") == "40");
 
-            Debug.Assert(SolvePart1(@"1911191111
-1119111991
-9999999111
-9999911199
-9999119999
-9999199999
-9111199999
-9199999111
-9111911191
-9991119991") == "40");
-
             Debug.Assert(SolvePart2(@"1163751742
 1381373672
 2136511328
@@ -179,7 +168,7 @@ namespace _2021
 2311944581") == "315");
         }
 
-        public override List<Position> CastToObject(string RawData)
+        public override Dictionary<(int, int), Position> CastToObject(string RawData)
         {
             string[] lines = RawData.Split(Environment.NewLine);
             Dictionary<(int, int), Position> grid = new Dictionary<(int, int), Position>();
@@ -190,11 +179,7 @@ namespace _2021
                     grid[(j, i)] = new Position(j, i, lines[i][j] - '0');
                 }
             }
-
-            List<Position> positions = grid.Values.ToList();
-            positions.ForEach(x => x.FindPositionsAround(grid));
-
-            return positions;
+            return grid;
         }
     }
 }

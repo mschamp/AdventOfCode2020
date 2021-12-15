@@ -8,7 +8,7 @@ namespace _2019
 {
     public class Day7 : General.IAoC
     {
-        public int Day => throw new NotImplementedException();
+        public int Day => 7;
 
         public string SolvePart1(string input = null)
         {

@@ -6,13 +6,12 @@ using System.Text;
 
 namespace _2019
 {
-    public class Day3 : General.IAoC
+    public class Day3 : General.PuzzleWithStringArrayInput
     {
-        public int Day => throw new NotImplementedException();
+        public Day3() : base(3) { }
 
-        public string SolvePart1(string input = null)
+        public override string SolvePart1(string[] wires)
         {
-            string[] wires = input.Split(Environment.NewLine);
             string[] Wire1 = wires[0].Split(",");
             string[] Wire2 = wires[1].Split(",");
 
@@ -31,9 +30,8 @@ namespace _2019
             return "" + crossings.Where(x => x.X!=0||x.Y!=0 ).Min(x => x.manhattan());
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string[] wires)
         {
-            string[] wires = input.Split(Environment.NewLine);
             string[] Wire1 = wires[0].Split(",");
             string[] Wire2 = wires[1].Split(",");
 
@@ -75,7 +73,7 @@ namespace _2019
             return "" + Distances.Min();
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@"R75,D30,R83,U83,L12,D49,R71,U7,L72
 U62, R66, U55, R34, D71, R55, D58, R83") == "159");

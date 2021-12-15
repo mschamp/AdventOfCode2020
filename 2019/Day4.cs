@@ -6,11 +6,11 @@ using System.Text;
 
 namespace _2019
 {
-    public class Day4 : General.IAoC
+    public class Day4 : General.abstractPuzzleClass
     {
-        public int Day => throw new NotImplementedException();
+        public Day4() : base(4) { }
 
-        public string SolvePart1(string input = null)
+        public override string SolvePart1(string input = null)
         {
             string[] values = input.Split("-");
             int min = int.Parse(values[0]);
@@ -66,7 +66,7 @@ namespace _2019
             return spassword.GroupBy(c => c).Select(c => new { Char = c.Key, Count = c.Count() }).Any(x => x.Count==2);
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string input = null)
         {
             string[] values = input.Split("-");
             int min = int.Parse(values[0]);
@@ -83,7 +83,7 @@ namespace _2019
             return "" + OK;
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(ValidPassword(111111) == true);
             Debug.Assert(ValidPassword(223450) == false);
