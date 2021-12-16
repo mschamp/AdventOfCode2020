@@ -83,7 +83,6 @@ namespace _2021
                         cameFrom[item] = cur;
                         gScore[item] = tentGScore;
                         openSet.Enqueue(item);
-                        //openSet = openSet.OrderBy(x => fScore[x]).ToList();
                     }
                 }
 
