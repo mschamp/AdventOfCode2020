@@ -19,6 +19,7 @@ namespace General
                 { "2019",Solve2019},
                 { "2020",Solve2020},
                 { "2021",Solve2021},
+                { "2022",Solve2022}
             };
             if (years.TryGetValue(Year, out Action YearClass))
             {
@@ -154,7 +155,7 @@ namespace General
             List<IAoC> days = new() { new _2021.Day1(), new _2021.Day2(), new _2021.Day3(), new _2021.Day4(), new _2021.Day5(),
                 new _2021.Day6(), new _2021.Day7(), new _2021.Day8(), new _2021.Day9(),
                 new _2021.Day10(),new _2021.Day11(),new _2021.Day12(),new _2021.Day13(), new _2021.Day13(),new _2021.Day14(),
-                new _2021.Day15(),new _2021.Day15(),new _2021.Day16()
+                new _2021.Day15(),new _2021.Day15(),new _2021.Day16(),new _2021.Day17()
             };
             string[] inputs = new string[] {
             _2021.inputs.D1P1, _2021.inputs.D1P1,
@@ -174,10 +175,12 @@ namespace General
              _2021.inputs.D14P1, _2021.inputs.D14P1,
              _2021.inputs.D15P1, _2021.inputs.D15P1,
              _2021.inputs.D15P2, _2021.inputs.D15P2,
-            _2021.inputs.D16P1, _2021.inputs.D16P1};
+            _2021.inputs.D16P1, _2021.inputs.D16P1,
+             _2021.inputs.D17P1, _2021.inputs.D17P1};
 
             Solve(days, inputs);
         }
+
         private static void Solve(List<IAoC> days, string[] inputs)
         {
             Stopwatch watch = new();
