@@ -182,6 +182,16 @@ namespace General
             Solve(days, inputs);
         }
 
+        private static void Solve2022()
+        {
+            List<IAoC> days = new() { new _2022.Day1() };
+            string[] inputs = new string[] {
+            _2022.inputs.D1P1, _2022.inputs.D1P1
+            };
+
+            Solve(days, inputs);
+        }
+
         private static void Solve(List<IAoC> days, string[] inputs)
         {
             Stopwatch watch = new();
