@@ -184,9 +184,10 @@ namespace General
 
         private static void Solve2022()
         {
-            List<IAoC> days = new() { new _2022.Day1() };
+            List<IAoC> days = new() { new _2022.Day1(), new _2022.Day2() };
             string[] inputs = new string[] {
-            _2022.inputs.D1P1, _2022.inputs.D1P1
+            _2022.inputs.D1P1, _2022.inputs.D1P1,
+            _2022.inputs.D2P1, _2022.inputs.D2P1
             };
 
             Solve(days, inputs);

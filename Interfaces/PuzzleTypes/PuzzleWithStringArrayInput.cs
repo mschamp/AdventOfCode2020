@@ -14,12 +14,12 @@ namespace General
 
         public override string SolvePart1(string input = null)
         {
-            return SolvePart1(input.Split(Environment.NewLine));
+            return SolvePart1(input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries));
         }
 
         public override string SolvePart2(string input = null)
         {
-            return SolvePart2(input.Split(Environment.NewLine));
+            return SolvePart2(input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries));
         }
 
         public abstract string SolvePart1(string[] input);
