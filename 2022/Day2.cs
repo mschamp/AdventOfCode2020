@@ -43,12 +43,12 @@ namespace _2022
 
         private int ScoreChoose(hand p2)
         {
-            return (int)p2;
+            return (int)p2+1;
         }
 
         private hand ConvertChart(char value, int offset)
         {
-            int bar = (value - 'A'+offset)%3+1;
+            int bar = (value - 'A'+offset)%3;
             return (hand)bar;
         }
 
@@ -69,7 +69,7 @@ namespace _2022
         private hand GetHandBasedOnResult(char value, hand OtherHand)
         {
             int Difference = (value - 'Y');
-            return (hand)(1+(2+(int)OtherHand + Difference)%3);
+            return (hand)((3+(int)OtherHand + Difference)%3);
         }
 
         public override void Tests()
@@ -86,9 +86,9 @@ C Z") == "12");
 
         private enum hand
         {
-            Rock = 1,
-            Paper = 2,
-            Scissors = 3
+            Rock = 0,
+            Paper = 1,
+            Scissors = 2
         }
     }
 }
