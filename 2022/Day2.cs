@@ -48,8 +48,7 @@ namespace _2022
 
         private hand ConvertChart(char value, int offset)
         {
-            int bar = (value - 'A'+offset)%3;
-            return (hand)bar;
+            return (hand)((value - 'A' + offset) % 3);
         }
 
         public override string SolvePart2(string[] input)
@@ -59,7 +58,6 @@ namespace _2022
             {
                 hand p1 = ConvertChart(item[0], 0);
                 hand p2 = GetHandBasedOnResult(item[2], p1);
-
                 scores += GetScore(p1, p2);
             }
 
