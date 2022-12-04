@@ -21,16 +21,7 @@ namespace _2022
 
         private int GetScorePack(string x)
         {
-            int Length = x.Length;
-            HashSet<char> chars = new HashSet<char>(x.Substring(0,Length/2));
-            for (int i = Length/2; i < Length; i++)
-            {
-                if (chars.Contains(x[i]))
-                {
-                    return GetValue(x[i]);
-                }
-            }
-            return 0;
+            return GetValue(x.Substring(0, x.Length / 2).Intersect(x.Substring(x.Length / 2, x.Length / 2)).First());
         }
 
         private int GetValue(char c)
