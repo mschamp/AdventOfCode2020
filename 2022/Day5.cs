@@ -20,7 +20,7 @@ namespace _2022
             var instructions = inputParts[1].Split(Environment.NewLine);
             var startPositions = inputParts[0].Split(Environment.NewLine);
 
-            int maxPosition = int.Parse(startPositions.Last().Split("  ").Last().Replace(" ", ""));
+            int maxPosition = int.Parse(startPositions.Last().Split("   ").Last().Replace(" ", ""));
             List<char>[] positions = new List<char>[maxPosition];
 
             for (int i = 0; i < positions.Length; i++)
@@ -42,12 +42,11 @@ namespace _2022
 
         public override string SolvePart1((IEnumerable<string> moves, List<char>[] positions) input)
         {
-            Regex rgx = new Regex(@"move (\d+) from (\d+) to (\d+)");
             foreach (var instruction in input.moves)
             {
-                Match m = rgx.Match(instruction);
-                input.positions[int.Parse(m.Groups[3].Value) - 1].InsertRange(0, input.positions[int.Parse(m.Groups[2].Value) - 1].Take(int.Parse(m.Groups[1].Value)).Reverse());
-                input.positions[int.Parse(m.Groups[2].Value) - 1].RemoveRange(0, int.Parse(m.Groups[1].Value));
+                var parts = instruction.Split(" ");
+                input.positions[int.Parse(parts[5]) - 1].InsertRange(0, input.positions[int.Parse(parts[3]) - 1].Take(int.Parse(parts[1])).Reverse());
+                input.positions[int.Parse(parts[3]) - 1].RemoveRange(0, int.Parse(parts[1]));
             }
 
             return string.Join("", input.positions.Select(x => x.First()));
@@ -55,12 +54,11 @@ namespace _2022
 
         public override string SolvePart2((IEnumerable<string> moves, List<char>[] positions) input)
         {
-            Regex rgx = new Regex(@"move (\d+) from (\d+) to (\d+)");
             foreach (var instruction in input.moves)
             {
-                Match m = rgx.Match(instruction);
-                input.positions[int.Parse(m.Groups[3].Value) - 1].InsertRange(0, input.positions[int.Parse(m.Groups[2].Value) - 1].Take(int.Parse(m.Groups[1].Value)));
-                input.positions[int.Parse(m.Groups[2].Value) - 1].RemoveRange(0, int.Parse(m.Groups[1].Value));
+                var parts = instruction.Split(" ");
+                input.positions[int.Parse(parts[5]) - 1].InsertRange(0, input.positions[int.Parse(parts[3]) - 1].Take(int.Parse(parts[1])));
+                input.positions[int.Parse(parts[3]) - 1].RemoveRange(0, int.Parse(parts[1]));
             }
 
             return string.Join("", input.positions.Select(x => x.First()));
