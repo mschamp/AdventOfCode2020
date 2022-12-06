@@ -15,22 +15,22 @@ namespace _2022
 
         public override string SolvePart1(string input = null)
         {
-            for (int i = 3; i < input.Length; i++)
-            {
-                if ( input.Substring(i-3,4).Distinct().Count()==4)                 
-                    return (i+1).ToString();
-            }
-            return "0";
+            return LocationOfUniqueSubstring(4, input).ToString();
         }
 
         public override string SolvePart2(string input = null)
         {
-            for (int i = 13; i < input.Length; i++)
+            return LocationOfUniqueSubstring(14, input).ToString();
+        }
+
+        private int LocationOfUniqueSubstring(int length,string input)
+        {
+            for (int i = length-1; i < input.Length; i++)
             {
-                if (input.Substring(i - 13, 14).Distinct().Count() == 14)
-                    return (i + 1).ToString();
+                if (new HashSet<char>(input.Substring(i+1 - length, length)).Count() == length)
+                    return (i + 1);
             }
-            return "0";
+            return 0;
         }
 
         public override void Tests()
