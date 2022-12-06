@@ -25,10 +25,10 @@ namespace _2022
 
         private int LocationOfUniqueSubstring(int length,string input)
         {
-            for (int i = length-1; i < input.Length; i++)
+             for (int i = 0; i < input.Length-4; i++)
             {
-                if (new HashSet<char>(input.Substring(i+1 - length, length)).Count() == length)
-                    return (i + 1);
+                if (new HashSet<char>(input[i..(i+length)]).Count() == length)
+                    return (i + length);
             }
             return 0;
         }
