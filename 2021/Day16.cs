@@ -11,7 +11,7 @@ namespace _2021
     {
         public Day16() : base(16) { }
 
-        public override Packet CastToObject(string RawData)
+        protected override Packet CastToObject(string RawData)
         {
             string binaryString = string.Join(string.Empty, RawData.Select(c => HexCharToBitString(c,4)));
             int increment = 0;

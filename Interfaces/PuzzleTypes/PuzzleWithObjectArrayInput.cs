@@ -22,7 +22,7 @@ namespace General
             return SolvePart2(input.Split(input.Contains(Environment.NewLine + Environment.NewLine) ? Environment.NewLine + Environment.NewLine : Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Select(x => CastToObject(x)).ToArray());
         }
 
-        public abstract ObjectClass CastToObject(string RawData);
+        protected abstract ObjectClass CastToObject(string RawData);
 
         public override abstract void Tests();
 

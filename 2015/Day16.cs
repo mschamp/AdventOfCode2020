@@ -111,7 +111,7 @@ perfumes: 1".Split(Environment.NewLine), "Sender");
         {
         }
 
-        public override Aunt CastToObject(string RawData)
+        protected override Aunt CastToObject(string RawData)
         {
             return new Aunt(RawData);
         }

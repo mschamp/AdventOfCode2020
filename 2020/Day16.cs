@@ -14,7 +14,7 @@ namespace _2020
         {
 
         }
-        public override (List<TicketField> fields, List<string[]> Tickets, string[] YourTicket) CastToObject(string RawData)
+        protected override (List<TicketField> fields, List<string[]> Tickets, string[] YourTicket) CastToObject(string RawData)
         {
             string[] inputParts = RawData.Split(Environment.NewLine + Environment.NewLine);
             List<TicketField> fields = new();

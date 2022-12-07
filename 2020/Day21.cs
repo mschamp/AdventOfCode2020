@@ -107,7 +107,7 @@ sqjhc fvjkl (contains soy)
 sqjhc mxmxvkd sbzzf (contains fish)") == "mxmxvkd,sqjhc,fvjkl");
         }
 
-        public override Food CastToObject(string RawData)
+        protected override Food CastToObject(string RawData)
         {
             return new Food(RawData);
         }

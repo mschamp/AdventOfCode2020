@@ -13,7 +13,7 @@ namespace _2021
         {
 
         }
-        public override Line CastToObject(string RawData)
+        protected override Line CastToObject(string RawData)
         {
             return new Line(RawData);
         }

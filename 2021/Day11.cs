@@ -13,7 +13,7 @@ namespace _2021
         {
 
         }
-        public override List<Day11.Octopus> CastToObject(string RawData)
+        protected override List<Day11.Octopus> CastToObject(string RawData)
         {
             string[] lines = RawData.Split(Environment.NewLine);
             Dictionary<(int, int), Octopus> grid = new Dictionary<(int, int), Octopus>();

@@ -10,7 +10,7 @@ namespace _2021
     public class Day14:General.PuzzleWithObjectInput<(string template,Dictionary<string, string[]> rules)>
     {
         public Day14() : base(14) { }
-        public override (string, Dictionary<string, string[]>) CastToObject(string RawData)
+        protected override (string, Dictionary<string, string[]>) CastToObject(string RawData)
         {
             string[] parts = RawData.Split(Environment.NewLine+Environment.NewLine);
             Dictionary<string, string[]> dict = parts[1].Split(Environment.NewLine).Select(x => resultProducts(x.Split(" -> "))).ToDictionary(x => x.Item1, x => x.Item2);

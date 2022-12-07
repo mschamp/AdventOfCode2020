@@ -11,7 +11,7 @@ namespace _2021
     {
         public Day17() : base(17) { }
 
-        public override int[] CastToObject(string RawData)
+        protected override int[] CastToObject(string RawData)
         {
             System.Text.RegularExpressions.Regex rgx = new(@"-?\d+");
             return rgx.Matches(RawData).Select(x => x.Value).Select(i => int.Parse(i)).ToArray();

@@ -21,7 +21,7 @@ namespace General
             return SolvePart2(CastToObject(input));
         }
 
-        public abstract ObjectClass CastToObject(string RawData);
+        protected abstract ObjectClass CastToObject(string RawData);
 
         public override abstract void Tests();
 

@@ -13,7 +13,7 @@ namespace _2022
         {
         }
 
-        public override (folder rootFolder, List<folder> AllFolders) CastToObject(string rawData)
+        protected override (folder rootFolder, List<folder> AllFolders) CastToObject(string rawData)
         {
             List<folder> folders = new List<folder>();
             folder root = new folder(@"/", null);

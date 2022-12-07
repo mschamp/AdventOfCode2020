@@ -54,7 +54,7 @@ namespace _2020
             return "";
         }
 
-        public override int CastToObject(string RawData)
+        protected override int CastToObject(string RawData)
         {
             return getSeatID(RawData);
         }

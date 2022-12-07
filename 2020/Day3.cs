@@ -49,7 +49,7 @@ namespace _2020
 .#..#...#.#") == "336");
         }
 
-        public override char[,] CastToObject(string RawData)
+        protected override char[,] CastToObject(string RawData)
         {
             string[] rowData = RawData.Split(Environment.NewLine);
             int Rows = rowData.Length;

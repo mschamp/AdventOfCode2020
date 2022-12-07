@@ -167,7 +167,7 @@ namespace _2021
 2311944581") == "315");
         }
 
-        public override Dictionary<(int, int), Position> CastToObject(string RawData)
+        protected override Dictionary<(int, int), Position> CastToObject(string RawData)
         {
             string[] lines = RawData.Split(Environment.NewLine);
             Dictionary<(int, int), Position> grid = new Dictionary<(int, int), Position>();

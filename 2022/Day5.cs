@@ -14,7 +14,7 @@ namespace _2022
         {
         }
 
-        public override (IEnumerable<string> moves, List<char>[] positions) CastToObject(string RawData)
+        protected override (IEnumerable<string> moves, List<char>[] positions) CastToObject(string RawData)
         {
             var inputParts = RawData.Split(Environment.NewLine + Environment.NewLine);
             var instructions = inputParts[1].Split(Environment.NewLine);

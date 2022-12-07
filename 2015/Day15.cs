@@ -104,7 +104,7 @@ Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3") == "6284
                         yield return new[] { a, b, c, max - a - b - c };
         }
 
-        public override ingredient CastToObject(string RawData)
+        protected override ingredient CastToObject(string RawData)
         {
             return new ingredient(RawData);
         }

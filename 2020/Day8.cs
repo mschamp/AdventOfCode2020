@@ -9,7 +9,7 @@ namespace _2020
     public class Day8 : General.PuzzleWithObjectInput<handheld>
     {
         public Day8() : base(8) { }
-        public override handheld CastToObject(string RawData)
+        protected override handheld CastToObject(string RawData)
         {
             handheld hand = new();
             hand.LoadProgram(RawData);

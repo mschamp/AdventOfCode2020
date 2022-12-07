@@ -14,7 +14,7 @@ namespace _2021
         {
 
         }
-        public override (List<int>, List<Board>, Dictionary<int, BingoNumber>) CastToObject(string RawData)
+        protected override (List<int>, List<Board>, Dictionary<int, BingoNumber>) CastToObject(string RawData)
         {
             string[] parts = RawData.Split(Environment.NewLine + Environment.NewLine);
             List<int> Numbers = parts[0].Split(",").Select(x => int.Parse(x)).ToList();

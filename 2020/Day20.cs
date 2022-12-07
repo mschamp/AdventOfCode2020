@@ -346,7 +346,7 @@ Tile 3079:
 ..#.###...") == "273");
         }
 
-        public override List<Tile> CastToObject(string RawData)
+        protected override List<Tile> CastToObject(string RawData)
         {
             return RawData.Split(Environment.NewLine + Environment.NewLine).Select(x => new Tile(x)).ToList();
         }

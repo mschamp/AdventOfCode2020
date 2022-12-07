@@ -90,7 +90,7 @@ namespace _2015
             System.Diagnostics.Debug.Assert(Race(new Deer("Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds."), 1000) == 1056);
         }
 
-        public override Deer CastToObject(string RawData)
+        protected override Deer CastToObject(string RawData)
         {
             return new Deer(RawData);
         }

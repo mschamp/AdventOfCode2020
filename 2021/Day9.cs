@@ -13,7 +13,7 @@ namespace _2021
         {
 
         }
-        public override List<Day9.Position> CastToObject(string RawData)
+        protected override List<Day9.Position> CastToObject(string RawData)
         {
             string[] lines = RawData.Split(Environment.NewLine);
             Dictionary<(int, int), Position> grid = new Dictionary<(int, int), Position>();

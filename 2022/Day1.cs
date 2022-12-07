@@ -9,7 +9,7 @@ namespace _2022
 
         }
 
-        public override int[] CastToObject(string RawData)
+        protected override int[] CastToObject(string RawData)
         {
             return RawData.Split(Environment.NewLine).Select(y => int.Parse(y)).ToArray();
         }

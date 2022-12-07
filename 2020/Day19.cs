@@ -107,7 +107,7 @@ aabbbbbaabbbaaaaaabbbbbababaaaaabbaaabba") == "12");
             
         }
 
-        public override (Dictionary<int, List<Rule>>,string[]) CastToObject(string RawData)
+        protected override (Dictionary<int, List<Rule>>,string[]) CastToObject(string RawData)
         {
             string[] inputParts = RawData.Split(Environment.NewLine + Environment.NewLine);
             Dictionary<int, List<Rule>> Rules = DecodeRules(inputParts[0]);

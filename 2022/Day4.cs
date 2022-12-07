@@ -14,7 +14,7 @@ namespace _2022
         {
         }
 
-        public override ((int, int), (int, int)) CastToObject(string RawData)
+        protected override ((int, int), (int, int)) CastToObject(string RawData)
         {
             var parts = RawData.Split(new char[] { ',', '-' }).Select(x=>int.Parse(x)).ToArray();
             return ((parts[0], parts[1]), (parts[2], parts[3]));

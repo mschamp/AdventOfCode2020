@@ -83,7 +83,7 @@ down 8
 forward 2") == "900");
         }
 
-        public override Instruction CastToObject(string RawData)
+        protected override Instruction CastToObject(string RawData)
         {
             string[] data = RawData.Split(' ');
             return new Instruction(data[0], int.Parse(data[1]));

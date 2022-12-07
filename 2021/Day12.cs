@@ -13,7 +13,7 @@ namespace _2021
         {
 
         }
-        public override Dictionary<string, Cave> CastToObject(string RawData)
+        protected override Dictionary<string, Cave> CastToObject(string RawData)
         {
             Dictionary<string, Cave> caves = new();
             foreach (string line in RawData.Split(Environment.NewLine))

@@ -15,7 +15,7 @@ namespace _2021
 
         }
 
-        public override (List<clsPoint> dots, string[] foldinstructions) CastToObject(string RawData)
+        protected override (List<clsPoint> dots, string[] foldinstructions) CastToObject(string RawData)
         {
             string[] parts = RawData.Split(Environment.NewLine + Environment.NewLine);
             List<General.clsPoint> points = parts[0].Split(Environment.NewLine).Select(x => new clsPoint(Double.Parse(x.Split(",")[0]), Double.Parse(x.Split(",")[1]))).ToList();
