@@ -24,6 +24,11 @@ namespace General
             return new clsPoint(X + other.X, Y + other.Y);
         }
 
+        public static clsPoint operator -(clsPoint p1,clsPoint p2)
+        {
+            return new clsPoint(p1.X-p2.X, p1.Y-p2.Y);
+        }
+
         public int CompareTo([AllowNull] clsPoint other)
         {
             if (Y == other.Y)
@@ -195,6 +200,30 @@ namespace General
                     return plus(0, -distance);
                 case Direction.Right:
                     return plus(distance, 0);
+            }
+            return new clsPoint(0, 0);
+        }
+
+        public clsPoint Move(string direction, int distance)
+        {
+            switch (direction)
+            {
+                case "R":
+                case "E":
+                case ">":
+                    return plus(distance, 0);
+                case "L":
+                case "W":
+                case "<":
+                    return plus(-distance, 0);
+                case "U":
+                case "N":
+                case "^":
+                    return plus(0, distance);
+                case "D":
+                case "S":
+                case "v":
+                    return plus(0, -distance);
             }
             return new clsPoint(0, 0);
         }
