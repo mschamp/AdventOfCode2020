@@ -21,7 +21,12 @@ namespace General
 
         public clsPoint plus(clsPoint other)
         {
-            return new clsPoint(X + other.X, Y + other.Y);
+            return this + other;
+        }
+
+        public static clsPoint operator +(clsPoint p1, clsPoint p2)
+        {
+            return new clsPoint(p1.X + p2.X, p1.Y + p2.Y);
         }
 
         public static clsPoint operator -(clsPoint p1,clsPoint p2)

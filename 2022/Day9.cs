@@ -16,25 +16,7 @@ namespace _2022
 
         public override string SolvePart1(string[] input)
         {
-            HashSet<General.clsPoint> VisitedPositions= new HashSet<General.clsPoint> ();
-            General.clsPoint Head=new General.clsPoint(0,0);
-            General.clsPoint Tail= new General.clsPoint(0, 0);
-            VisitedPositions.Add(Tail);
-
-            foreach (var instruction in input)
-            {
-                var parts = instruction.Split(' ');
-                //Move head
-                for (int i = 0; i < int.Parse(parts[1]); i++)
-                {
-                    Head = Head.Move(parts[0], 1);
-                    if (Head.distance(Tail)>=2)
-                    {
-                        Tail=MoveTail(Head,Tail);
-                    }
-                    VisitedPositions.Add(Tail);
-                }
-            }
+            FollowInstructions(input, 2, out HashSet<clsPoint> VisitedPositions);
 
             return VisitedPositions.Count().ToString();
         }
@@ -47,34 +29,38 @@ namespace _2022
 
         public override string SolvePart2(string[] input)
         {
-            HashSet<General.clsPoint> VisitedPositions = new HashSet<General.clsPoint>();
-            General.clsPoint[] knots = new clsPoint[10];
-            for (int i = 0; i < 10; i++)
+
+            FollowInstructions(input, 10, out HashSet<clsPoint> VisitedPositions);
+            return VisitedPositions.Count().ToString();
+        }
+
+        private void FollowInstructions(string[] input, int length, out HashSet<General.clsPoint> VisitedPositions)
+        {
+            VisitedPositions = new HashSet<General.clsPoint>();
+            General.clsPoint[] knots = new clsPoint[length];
+            for (int i = 0; i < length; i++)
             {
-                knots[i]= new General.clsPoint(0, 0);
+                knots[i] = new General.clsPoint(0, 0);
             }
             VisitedPositions.Add(knots.Last());
 
             foreach (var instruction in input)
             {
                 var parts = instruction.Split(' ');
-                //Move head
                 for (int i = 0; i < int.Parse(parts[1]); i++)
                 {
                     knots[0] = knots[0].Move(parts[0], 1);
-                    for (int j = 1; j < 10; j++)
+                    for (int j = 1; j < length; j++)
                     {
-                        if(knots[j-1].distance(knots[j]) >= 2)
-                    {
-                            knots[j] = MoveTail(knots[j-1], knots[j]);
+                        if (knots[j - 1].distance(knots[j]) >= 2)
+                        {
+                            knots[j] = MoveTail(knots[j - 1], knots[j]);
                         }
                     }
-                    
+
                     VisitedPositions.Add(knots.Last());
                 }
             }
-
-            return VisitedPositions.Count().ToString();
         }
 
         public override void Tests()
@@ -87,6 +73,24 @@ R 4
 D 1
 L 5
 R 2") == "13");
+            Debug.Assert(SolvePart2(@"R 4
+U 4
+L 3
+D 1
+R 4
+D 1
+L 5
+R 2") == "1");
+
+            Debug.Assert(SolvePart2(@"R 5
+U 8
+L 8
+D 3
+R 17
+D 10
+L 25
+U 20") == "36");
+
         }
     }
 }
