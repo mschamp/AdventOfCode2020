@@ -47,8 +47,7 @@ namespace _2022
 
                 foreach (T item in cur.positionsAround)
                 {
-                    var cost = CostFunction(cur);
-                    var tentGScore = gScore[cur] + cost;
+                    var tentGScore = gScore[cur] + CostFunction(cur);
                     if (tentGScore < gScore.GetValueOrDefault(item, int.MaxValue))
                     {
                         cameFrom[item] = cur;
