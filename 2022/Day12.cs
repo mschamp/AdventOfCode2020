@@ -115,7 +115,8 @@ abdefghi") == "29");
 
             List<Position> positions = grid.Values.ToList();
 
-            positions.ForEach(x => x.FindPositionsAround(grid));
+            Func<Position,Position,bool> filterFunct = (me,other)=>other.Value-me.Value<=1;
+            positions.ForEach(x => x.FindPositionsAround(grid,filterFunct));
 
             return (grid,start,end);
         }
@@ -138,13 +139,13 @@ abdefghi") == "29");
                 return Math.Abs(X - other.X) + Math.Abs(Y - other.Y);
             }
 
-            public void FindPositionsAround(Dictionary<(int, int), Position> grid)
+            public void FindPositionsAround(Dictionary<(int, int), Position> grid, Func<Position, Position, bool>FilterFunction)
             {
                 positionsAround = new List<Position>();
-                if (grid.TryGetValue((X - 1, Y), out Position left) && left.Value-Value<=1) positionsAround.Add(left);
-                if (grid.TryGetValue((X, Y - 1), out Position above) && above.Value - Value <= 1) positionsAround.Add(above);
-                if (grid.TryGetValue((X + 1, Y), out Position right) && right.Value - Value <= 1) positionsAround.Add(right);
-                if (grid.TryGetValue((X, Y + 1), out Position below) && below.Value - Value <= 1) positionsAround.Add(below);
+                if (grid.TryGetValue((X - 1, Y), out Position left) && FilterFunction(this,left)) positionsAround.Add(left);
+                if (grid.TryGetValue((X, Y - 1), out Position above) && FilterFunction(this, above)) positionsAround.Add(above);
+                if (grid.TryGetValue((X + 1, Y), out Position right) && FilterFunction(this, right)) positionsAround.Add(right);
+                if (grid.TryGetValue((X, Y + 1), out Position below) && FilterFunction(this, below)) positionsAround.Add(below);
             }
 
             public int X { get; private set; }
