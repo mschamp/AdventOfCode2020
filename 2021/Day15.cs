@@ -7,27 +7,29 @@ using System.Threading.Tasks;
 
 namespace _2021
 {
-    public class Day15 : General.PuzzleWithObjectInput<Dictionary<(int, int), Day15.Position>>
+     public class Day15 : General.PuzzleWithObjectInput<Dictionary<(int, int), General.Astar.Position>>
     {
         public Day15() : base(15) { }
-        public override string SolvePart1(Dictionary<(int, int), Position> input)
+        public override string SolvePart1(Dictionary<(int, int), General.Astar.Position> input)
         {
-            List<Position> positions = input.Values.ToList();
+            List<General.Astar.Position> positions = input.Values.ToList();
 
-            positions.ForEach(x => x.FindPositionsAround(input));
-            Position goal = positions.Where(x => x.X == positions.Max(y => y.X) && x.Y == positions.Max(y => y.Y)).First();
-            Position start = positions.Where(x => x.X == 0 && x.Y == 0).First();
+            Func<General.Astar.Position, General.Astar.Position, bool> filterFunct = (me, other) => true;
+            positions.ForEach(x => x.FindPositionsAround(input, filterFunct));
 
-            Func<Position, int> CostFunction = s => s.Value;
+            General.Astar.Position goal = positions.Where(x => x.X == positions.Max(y => y.X) && x.Y == positions.Max(y => y.Y)).First();
+            General.Astar.Position start = positions.Where(x => x.X == 0 && x.Y == 0).First();
 
-            List<Position> Path = Astar(start, goal, CostFunction);
+            Func<General.Astar.Position, int> CostFunction = s => s.Value;
+
+            List<General.Astar.Position> Path = General.Astar.AstarSolver < General.Astar.Position>(start, goal, CostFunction);
 
             return (Path.Sum(x => x.Value) - start.Value).ToString();
         }
 
-        public override string SolvePart2(Dictionary<(int, int), Position> input)
+        public override string SolvePart2(Dictionary<(int, int), General.Astar.Position> input)
         {
-            List<Position> positions = new();
+            List<General.Astar.Position> positions = new();
             
             int MaxX = input.Values.Select(x => x.X).Distinct().Count();
             int MaxY = input.Values.Select(x => x.Y).Distinct().Count();
@@ -39,108 +41,35 @@ namespace _2021
                 }
             }
 
-            Dictionary<(int,int),Position> positionsd = positions.ToDictionary(x => (x.X,x.Y), x => x);
-            positions.ForEach(x => x.FindPositionsAround(positionsd));
+            Dictionary<(int,int),General.Astar.Position> positionsd = positions.ToDictionary(x => (x.X,x.Y), x => x);
+            Func<General.Astar.Position, General.Astar.Position, bool> filterFunct = (me, other) => true;
+            positions.ForEach(x => x.FindPositionsAround(positionsd, filterFunct));
 
 
-            Position goal = positions.Where(x => x.X == 5*MaxX-1 && x.Y == 5 * MaxY - 1).First();
-            Position start = positions.Where(x => x.X == 0 && x.Y == 0).First();
+            General.Astar.Position goal = positions.Where(x => x.X == 5*MaxX-1 && x.Y == 5 * MaxY - 1).First();
+            General.Astar.Position start = positions.Where(x => x.X == 0 && x.Y == 0).First();
 
-            Func<Position, int> CostFunction = s => s.Value;
+            Func<General.Astar.Position, int> CostFunction = s => s.Value;
 
-            List<Position> Path = Astar(start, goal, CostFunction);
+            List<General.Astar.Position> Path = General.Astar.AstarSolver(start, goal, CostFunction);
 
             return (Path.Sum(x => x.Value) - start.Value).ToString();
         }
 
-        public List<Position> Scale(int dx, int dy, int MaxX, int MaxY, Dictionary<(int, int), Position> input)
+        public List<General.Astar.Position> Scale(int dx, int dy, int MaxX, int MaxY, Dictionary<(int, int), General.Astar.Position> input)
         {
-            return input.Values.Select(x => new Position(x.X + dx * MaxX, x.Y + dy * MaxY, x.Value + dx + dy)).ToList();
-        }
-
-
-        public List<T> Astar<T>(T start, T goal, Func<T,int> CostFunction) where T: Position
-        {
-            Queue<T> openSet = new();
-            openSet.Enqueue(start);
-            Dictionary<T, T> cameFrom = new();
-
-            Dictionary<T, int> gScore = new();
-            gScore[start] = 0;
-
-            while (openSet.TryDequeue(out T cur))
+            Func<int, int> Reduce = Value =>
             {
-                if (cur.Equals(goal))
-                {
-                    return reconstruct_path(cameFrom, cur);
-                }
-
-                foreach (T item in cur.positionsAround)
-                {
-                    var tentGScore = gScore[cur] + CostFunction(item);
-                    if (tentGScore < gScore.GetValueOrDefault(item, int.MaxValue))
-                    {
-                        cameFrom[item] = cur;
-                        gScore[item] = tentGScore;
-                        openSet.Enqueue(item);
-                    }
-                }
-
-            }
-
-            return null;
-        }
-
-        public List<T> reconstruct_path<T>(Dictionary<T, T> cameFrom, T current)
-        {
-            List<T> totalPath = new() { current };
-            while (cameFrom.TryGetValue(current, out current))
-            {
-                totalPath.Insert(0,current);
-            }
-            return totalPath;
-
-        }
-
-        public class Position
-        {
-            public override string ToString()
-            {
-                return $"({X},{Y})";
-            }
-            public Position(int x, int y, int value)
-            {
-                X = x;
-                Y = y;
-                Value = value;
-                while (Value>9)
+                while (Value > 9)
                 {
                     Value -= 9;
                 }
-                
-
-            }
-
-            public int manhattan(Position other)
-            {
-                return Math.Abs(X - other.X) + Math.Abs(Y - other.Y);
-            }
-
-            public void FindPositionsAround(Dictionary<(int, int), Position> grid)
-            {
-                positionsAround = new List<Position>();
-                if (grid.TryGetValue((X - 1, Y), out Position left)) positionsAround.Add(left);
-                if (grid.TryGetValue((X, Y - 1), out Position above)) positionsAround.Add(above);
-                if (grid.TryGetValue((X + 1, Y), out Position right)) positionsAround.Add(right);
-                if (grid.TryGetValue((X, Y + 1), out Position below)) positionsAround.Add(below);
-            }
-
-            public int X { get; private set; }
-            public int Y { get; private set; }
-            public int Value { get; private set; }
-
-            public List<Position> positionsAround { get; set; }
+                return Value;
+            };
+            return input.Values.Select(x => new General.Astar.Position(x.X + dx * MaxX, x.Y + dy * MaxY, Reduce(x.Value + dx + dy))).ToList();
         }
+
+
 
         public override void Tests()
         {
@@ -167,15 +96,16 @@ namespace _2021
 2311944581") == "315");
         }
 
-        protected override Dictionary<(int, int), Position> CastToObject(string RawData)
+        protected override Dictionary<(int, int), General.Astar.Position> CastToObject(string RawData)
         {
             string[] lines = RawData.Split(Environment.NewLine);
-            Dictionary<(int, int), Position> grid = new Dictionary<(int, int), Position>();
+            Dictionary<(int, int), General.Astar.Position> grid = new Dictionary<(int, int), General.Astar.Position>();
             for (int i = 0; i < lines.Length; i++)
             {
                 for (int j = 0; j < lines[0].Length; j++)
                 {
-                    grid[(j, i)] = new Position(j, i, lines[i][j] - '0');
+                    int Value = lines[i][j] - '0';
+                    grid[(j, i)] = new General.Astar.Position(j, i, Value);
                 }
             }
             return grid;
