@@ -186,7 +186,7 @@ namespace General
         {
             List<IAoC> days = new() { new _2022.Day1(), new _2022.Day2(), new _2022.Day3(), new _2022.Day4(), new _2022.Day5(),
             new _2022.Day6(), new _2022.Day7(), new _2022.Day8(), new _2022.Day9(), new _2022.Day10(),
-            new _2022.Day11(),new _2022.Day12()};
+            new _2022.Day11(),new _2022.Day11(),new _2022.Day12(),new _2022.Day12(),new _2022.Day13()};
             string[] inputs = new string[] {
             _2022.inputs.D1P1, _2022.inputs.D1P1,
             _2022.inputs.D2P1, _2022.inputs.D2P1,
@@ -199,7 +199,10 @@ namespace General
             _2022.inputs.D9P1, _2022.inputs.D9P1,
             _2022.inputs.D10P1, _2022.inputs.D10P1,
             _2022.inputs.D11P1, _2022.inputs.D11P1,
+            _2022.inputs.D11P2, _2022.inputs.D11P2,
             _2022.inputs.D12P1, _2022.inputs.D12P1,
+            _2022.inputs.D12P3, _2022.inputs.D12P3,
+            _2022.inputs.D13P1, _2022.inputs.D13P1,
             };
 
             Solve(days, inputs);

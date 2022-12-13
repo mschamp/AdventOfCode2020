@@ -9,6 +9,7 @@ namespace _2022
 {
     public class Day10 : General.PuzzleWithStringArrayInput
     {
+        char White = char.ConvertFromUtf32(9608)[0];
         public Day10() : base(10)
         {
         }
@@ -88,7 +89,7 @@ namespace _2022
             for (int i = 0; i < screen.Length; i++)
             {
                 if (i>0 &&i % 40 == 0) result += Environment.NewLine;
-                if (screen[i]) result += '#';
+                if (screen[i]) result += White;
                 else result += '.';
             }
             return result;
@@ -393,7 +394,7 @@ noop") == @"##..##..##..##..##..##..##..##..##..##..
 ####....####....####....####....####....
 #####.....#####.....#####.....#####.....
 ######......######......######......####
-#######.......#######.......#######.....");
+#######.......#######.......#######.....".Replace('#', White));
         }
     }
 }
