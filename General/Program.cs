@@ -123,7 +123,7 @@ namespace General
 
 		private static void Solve2023()
 		{
-			List<IAoC> days = new() { new _2023.Day1()};
+			List<IAoC> days = new() { new _2023.Day1(), new _2023.Day2()};
 
 			Solve(days);
 		}

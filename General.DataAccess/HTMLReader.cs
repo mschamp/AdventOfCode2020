@@ -32,8 +32,8 @@ namespace General.DataAccess
 				if (response.IsSuccessStatusCode)
 				{
 					var result = response.Content.ReadAsStringAsync().Result;
-					result= result.Trim();
 					result= result.Replace("\n",Environment.NewLine);
+					result = result.Trim();
 					return result;
 				}
 				else
