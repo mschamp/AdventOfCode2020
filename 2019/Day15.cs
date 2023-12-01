@@ -9,7 +9,9 @@ namespace _2019
     {
         public int Day => 15;
 
-        public string SolvePart1(string input = null)
+		public int Year => 2019;
+
+		public string SolvePart1(string input = null)
         {
             Dictionary<General.clsPoint, char> VisitedPlaces = new();
             IntcodeComputer robot = new();

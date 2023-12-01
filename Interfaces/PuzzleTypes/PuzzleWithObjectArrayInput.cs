@@ -7,7 +7,7 @@ namespace General
 {
     public abstract class PuzzleWithObjectArrayInput<ObjectClass> : abstractPuzzleClass
     {
-        public PuzzleWithObjectArrayInput(int Day):base(Day)
+        public PuzzleWithObjectArrayInput(int Day, int year):base(Day, year)
         {
 
         }

@@ -9,7 +9,7 @@ namespace _2020
 {
     public class Day7 : General.PuzzleWithObjectInput<(List<Day7.Bag> Outer, Dictionary<string, Day7.Bag> bags)>
     {
-        public Day7() : base(7) { }
+        public Day7() : base(7, 2020) { }
         protected override (List<Bag>, Dictionary<string, Bag>) CastToObject(string RawData)
         {
             Dictionary<string, Bag> bags = new();

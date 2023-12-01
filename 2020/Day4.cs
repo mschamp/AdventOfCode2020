@@ -12,7 +12,7 @@ namespace _2020
     //Heel veel uitgeleerd en mijn code kunnen optimaliseren
     public class Day4 : General.PuzzleWithObjectInput<IEnumerable<Passport>>
     {
-        public Day4() : base(4) { }
+        public Day4() : base(4, 2020) { }
         public override void Tests()
         {
             Debug.Assert(SolvePart1(@"ecl:gry pid:860033327 eyr:2020 hcl:#fffffd

@@ -9,7 +9,7 @@ namespace _2015
 {
     public class Day12 : General.abstractPuzzleClass
     {
-        public Day12():base(12)
+        public Day12():base(12, 2015)
         {
 
         }

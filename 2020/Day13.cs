@@ -8,7 +8,7 @@ namespace _2020
 {
     public class Day13 : General.abstractPuzzleClass
     {
-        public Day13() : base(13)
+        public Day13() : base(13, 2020)
         {
 
         }

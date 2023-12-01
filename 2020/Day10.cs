@@ -8,7 +8,7 @@ namespace _2020
 {
     public class Day10 : General.PuzzleWithLongArrayInput
     {
-        public Day10() : base(10) { }
+        public Day10() : base(10, 2020) { }
 
         Func<long, long> Tribonnaci = General.MathFunctions.Tribonnaci();
 

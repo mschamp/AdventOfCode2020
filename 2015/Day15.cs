@@ -7,7 +7,7 @@ namespace _2015
 {
     public class Day15 : General.PuzzleWithObjectArrayInput<Day15.ingredient>
     {
-        public Day15():base(15)
+        public Day15():base(15, 2015)
         {
 
         }

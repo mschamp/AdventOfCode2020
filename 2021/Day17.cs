@@ -9,7 +9,7 @@ namespace _2021
 {
     public class Day17 : General.PuzzleWithObjectInput<int[]>
     {
-        public Day17() : base(17) { }
+        public Day17() : base(17, 2021) { }
 
         protected override int[] CastToObject(string RawData)
         {

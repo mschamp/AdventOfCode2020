@@ -10,7 +10,7 @@ namespace _2021
 {
      public class Day15 : PuzzleWithObjectInput<Dictionary<(int, int), Astar.Position>>
     {
-        public Day15() : base(15) { }
+        public Day15() : base(15, 2021) { }
         public override string SolvePart1(Dictionary<(int, int), Astar.Position> input)
         {
             List<Astar.Position> positions = input.Values.ToList();

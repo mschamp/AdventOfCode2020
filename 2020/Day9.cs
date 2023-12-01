@@ -8,10 +8,10 @@ namespace _2020
 {
     public class Day9 : General.PuzzleWithLongArrayInput
     {
-        public Day9() : base(9) { }
+        public Day9() : base(9, 2020) { }
         public long findInvalidNumber(ref List<long> values, int store, long[] inputvalues)
         {
-            int pointer = 1;
+            int pointer = 0;
             while (values.Count < store)
             {
                 values.Add(inputvalues[pointer]);
@@ -57,8 +57,7 @@ namespace _2020
 
         public override void Tests()
         {
-            Debug.Assert(SolvePart1(@"5
-35
+            Debug.Assert(SolvePart1(@"35
 20
 15
 25
@@ -79,8 +78,7 @@ namespace _2020
 309
 576") == "127");
 
-            Debug.Assert(SolvePart2(@"5
-35
+            Debug.Assert(SolvePart2(@"35
 20
 15
 25
@@ -104,15 +102,34 @@ namespace _2020
 
         public override string SolvePart1(long[] input)
         {
-            int store = (int)input[0];
-            List<long> values = new();
+			int store;
+
+			if (input.Length > 100)
+			{
+				store = 25;
+			}
+			else
+			{
+				store = 5;
+			}
+			List<long> values = new();
 
             return "" + findInvalidNumber(ref values, store, input);
         }
 
         public override string SolvePart2(long[] input)
         {
-            int store = (int)input[0];
+            int store;
+
+			if (input.Length >100)
+            {
+				store = 25;
+			}
+            else
+            {
+				store = 5;
+			}
+            
             List<long> values = new();
 
             List<long> set = FindContinguousSet(findInvalidNumber(ref values, store, input), input);

@@ -10,6 +10,7 @@ namespace _2019
     public class Day14 : General.IAoC
     {
         public int Day => 14;
+        public int Year => 2019;
 
         public string SolvePart1(string input = null)
         {

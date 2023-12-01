@@ -10,7 +10,7 @@ namespace _2022
 {
     public class Day12 : PuzzleWithObjectInput<(Dictionary<(int, int), Astar.Position> grid, (int,int) start, (int,int) end)>
     {
-        public Day12() : base(12)
+        public Day12() : base(12,2022)
         {
         }
 

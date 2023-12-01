@@ -10,7 +10,7 @@ namespace _2022
     public class Day10 : General.PuzzleWithStringArrayInput
     {
         char White = char.ConvertFromUtf32(9608)[0];
-        public Day10() : base(10)
+        public Day10() : base(10, 2022)
         {
         }
 

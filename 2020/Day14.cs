@@ -9,7 +9,7 @@ namespace _2020
 {
     public class Day14 : General.PuzzleWithStringArrayInput
     {
-        public Day14() : base(14) { }
+        public Day14() : base(14, 2020) { }
         public override string SolvePart1(string[] input)
         {
             Func<string, long> FindMemory = GetMemoryAddress();

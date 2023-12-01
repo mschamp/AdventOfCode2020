@@ -7,7 +7,7 @@ namespace _2015
 {
     public class Day16 : General.PuzzleWithObjectArrayInput<Day16.Aunt>
     {
-        public Day16() : base(16) { }
+        public Day16() : base(16, 2015) { }
         public class Aunt
         {
             Dictionary<string, int> things;

@@ -8,7 +8,7 @@ namespace _2015
 {
     public class Day2 : General.PuzzleWithStringArrayInput
     {
-        public Day2() : base(2) { }
+        public Day2() : base(2, 2015) { }
 
         public override string SolvePart1(string[] input)
         {

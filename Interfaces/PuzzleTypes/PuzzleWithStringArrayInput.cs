@@ -7,7 +7,7 @@ namespace General
 {
     public abstract class PuzzleWithStringArrayInput:abstractPuzzleClass
     {
-        public PuzzleWithStringArrayInput(int Day):base(Day)
+        public PuzzleWithStringArrayInput(int Day, int year) : base(Day, year)
         {
 
         }

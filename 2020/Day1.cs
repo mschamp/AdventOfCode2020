@@ -5,7 +5,7 @@ namespace _2020
 {
     public class Day1 : General.PuzzleWithIntegerArrayInput
     {
-        public Day1() : base(1) { }
+        public Day1() : base(1, 2020) { }
         public override string SolvePart1(int[] input)
         {
             for (int i = 0; i < input.Length; i++)

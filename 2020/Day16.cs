@@ -10,7 +10,7 @@ namespace _2020
     public class Day16 : General.PuzzleWithObjectInput<(List<TicketField> fields,List<string[]> Tickets, string[] YourTicket)>
     {
 
-        public Day16() : base(16)
+        public Day16() : base(16, 2020)
         {
 
         }

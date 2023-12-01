@@ -9,7 +9,7 @@ namespace _2021
 {
     public class Day18:General.PuzzleWithStringArrayInput
     {
-        public Day18() : base(18) { }
+        public Day18() : base(18, 2021) { }
 
         public Fish CastToObject(string RawData)
         {

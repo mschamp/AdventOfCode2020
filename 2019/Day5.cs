@@ -10,12 +10,21 @@ namespace _2019
     {
         public int Day => 5;
 
-        public string SolvePart1(string input = null)
+		public int Year => 2019;
+
+		public string SolvePart1(string input = null)
         {
             string[] parts = input.Split(Environment.NewLine);
             IntcodeComputer computer = new();
             computer.loadProgram(parts[0]);
-            computer.InputValue(int.Parse(parts[1]));
+			if (parts.Length > 1)
+			{
+				computer.InputValue(int.Parse(parts[1]));
+			}
+			else
+			{
+				computer.InputValue(1);
+			}
             computer.ExecuteProgram();
             return "" + computer.ReadOutputs().Last();
         }
@@ -25,8 +34,15 @@ namespace _2019
             string[] parts = input.Split(Environment.NewLine);
             IntcodeComputer computer = new();
             computer.loadProgram(parts[0]);
-            computer.InputValue(int.Parse(parts[1]));
-            computer.ExecuteProgram();
+			if (parts.Length > 1)
+			{
+				computer.InputValue(int.Parse(parts[1]));
+			}
+			else
+			{
+				computer.InputValue(5);
+			}
+			computer.ExecuteProgram();
             return "" + computer.ReadOutputs().Last();
         }
 

@@ -10,7 +10,7 @@ namespace _2021
 {
     public class Day4 : General.PuzzleWithObjectInput<(List<int>,List<Day4.Board>, Dictionary<int, Day4.BingoNumber>)>
     {
-        public Day4() : base(4)
+        public Day4() : base(4, 2021)
         {
 
         }

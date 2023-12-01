@@ -8,7 +8,7 @@ namespace _2015
 {
     public class Day3 : General.abstractPuzzleClass
     {
-        public Day3() : base(3) { }
+        public Day3() : base(3, 2015) { }
         public override string SolvePart1(string input)
         {
             HashSet<General.clsPoint> VisitedHouses = new();

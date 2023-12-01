@@ -7,7 +7,7 @@ namespace _2020
 {
     public class Day11 : General.PuzzleWithStringArrayInput
     {
-        public Day11() : base(11) { }
+        public Day11() : base(11, 2020) { }
         public override string SolvePart1(string[] rows)
         {
             string[] NewConfig = new string[rows.Length];

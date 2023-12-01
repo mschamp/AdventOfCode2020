@@ -9,7 +9,7 @@ namespace _2021
 {
     public class Day7 : General.PuzzleWithIntegerArrayInput
     {
-        public Day7() : base(7)
+        public Day7() : base(7, 2021)
         {
 
         }

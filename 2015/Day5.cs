@@ -8,7 +8,7 @@ namespace _2015
 {
     public class Day5 : General.PuzzleWithStringArrayInput
     {
-        public Day5():base(5){}
+        public Day5():base(5, 2015){}
         public override string SolvePart1(string[] input)
         {
             Func<string, int> vowel = General.Validators.RegexMatchCountValidator(@"a|e|i|o|u");

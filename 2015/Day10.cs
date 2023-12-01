@@ -6,7 +6,7 @@ namespace _2015
 {
     public class Day10 : General.abstractPuzzleClass
     {
-        public Day10() : base(10)
+        public Day10() : base(10, 2015)
         {
 
         }

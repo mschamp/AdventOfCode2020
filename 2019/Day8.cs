@@ -8,8 +8,9 @@ namespace _2019
     public class Day8 : General.IAoC
     {
         public int Day => 8;
+		public int Year => 2019;
 
-        public string SolvePart1(string input = null)
+		public string SolvePart1(string input = null)
         {
             List<Layer> layers = new(); 
             for (int i = 0; i < input.Length; i+=25*6)

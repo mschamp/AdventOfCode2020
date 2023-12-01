@@ -9,8 +9,9 @@ namespace _2019
     public class Day6 : General.IAoC
     {
         public int Day => 6;
+		public int Year => 2019;
 
-        public string SolvePart1(string input = null)
+		public string SolvePart1(string input = null)
         {
             string[] textOrbits = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
             Dictionary<string, Orbit> orbits = new();

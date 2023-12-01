@@ -8,7 +8,7 @@ namespace _2019
 {
     public class Day4 : General.abstractPuzzleClass
     {
-        public Day4() : base(4) { }
+        public Day4() : base(4, 2019) { }
 
         public override string SolvePart1(string input = null)
         {

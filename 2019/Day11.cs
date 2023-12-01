@@ -8,7 +8,7 @@ namespace _2019
     public class Day11 : General.IAoC
     {
         public int Day => 11;
-
+        public int Year => 2019;
         public string SolvePart1(string input = null)
         {
             PaintingRobot robot = new(input,0);

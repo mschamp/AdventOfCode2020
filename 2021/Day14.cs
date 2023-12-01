@@ -9,7 +9,7 @@ namespace _2021
 {
     public class Day14:General.PuzzleWithObjectInput<(string template,Dictionary<string, string[]> rules)>
     {
-        public Day14() : base(14) { }
+        public Day14() : base(14, 2021) { }
         protected override (string, Dictionary<string, string[]>) CastToObject(string RawData)
         {
             string[] parts = RawData.Split(Environment.NewLine+Environment.NewLine);

@@ -10,7 +10,7 @@ namespace _2021
 {
     public class Day13 : General.PuzzleWithObjectInput<(List<General.clsPoint> dots, string[] foldinstructions)>
     {
-        public Day13() : base(13)
+        public Day13() : base(13, 2021)
         {
 
         }

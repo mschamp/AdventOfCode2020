@@ -8,7 +8,7 @@ namespace _2015
 {
     public class Day9 : General.PuzzleWithStringArrayInput
     {
-        public Day9() : base(9) { }
+        public Day9() : base(9, 2015) { }
         public override string SolvePart1(string[] input)
         {
             IEnumerable<int> routeLengths = getPossibleRoutes(input);

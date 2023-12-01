@@ -10,7 +10,7 @@ namespace _2022
 {
     public class Day3 : General.PuzzleWithStringArrayInput
     {
-        public Day3() : base(3)
+        public Day3() : base(3, 2022)
         {
         }
 

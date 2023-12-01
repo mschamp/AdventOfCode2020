@@ -9,7 +9,7 @@ namespace _2021
 {
     public class Day11 : General.PuzzleWithObjectInput<List<Day11.Octopus>>
     {
-        public Day11() : base(11)
+        public Day11() : base(11, 2021)
         {
 
         }

@@ -11,5 +11,6 @@ namespace General
         public void Tests();
 
         public int Day { get; }
+        public int Year { get; }
     }
 }

@@ -8,7 +8,7 @@ namespace _2019
 {
     public class Day3 : General.PuzzleWithStringArrayInput
     {
-        public Day3() : base(3) { }
+        public Day3() : base(3, 2019) { }
 
         public override string SolvePart1(string[] wires)
         {

@@ -4,7 +4,7 @@ namespace _2022
 {
     public class Day1 : General.PuzzleWithObjectArrayInput<int[]>
     {
-        public Day1():base(1)
+        public Day1():base(1, 2022)
         {
 
         }

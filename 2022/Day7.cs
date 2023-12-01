@@ -9,7 +9,7 @@ namespace _2022
 {
     public class Day7 : General.PuzzleWithObjectInput<(Day7.folder rootFolder, List<Day7.folder> AllFolders )>
     {
-        public Day7() : base(7)
+        public Day7() : base(7,2022)
         {
         }
 

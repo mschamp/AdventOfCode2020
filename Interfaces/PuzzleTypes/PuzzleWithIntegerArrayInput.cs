@@ -7,8 +7,8 @@ namespace General
 {
     public abstract class PuzzleWithIntegerArrayInput :abstractPuzzleClass 
     {
-        public PuzzleWithIntegerArrayInput(int Day)
-            : base(Day)
+        public PuzzleWithIntegerArrayInput(int Day, int year)
+            : base(Day,year)
         {
            
         }

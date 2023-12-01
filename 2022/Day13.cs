@@ -11,7 +11,7 @@ namespace _2022
 {
     public class Day13 : General.PuzzleWithObjectArrayInput<(Day13.Packet left, Day13.Packet right)>
     {
-        public Day13() : base(13)
+        public Day13() : base(13, 2022)
         {
         }
 

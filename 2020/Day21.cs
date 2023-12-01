@@ -9,7 +9,7 @@ namespace _2020
 {
     public class Day21 : General.PuzzleWithObjectArrayInput<Day21.Food>
     {
-        public Day21() : base(21)
+        public Day21() : base(21, 2020)
         {
 
         }

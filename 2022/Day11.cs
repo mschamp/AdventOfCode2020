@@ -11,7 +11,7 @@ namespace _2022
 {
     public class Day11:General.PuzzleWithObjectArrayInput<Day11.Monkey>
     {
-        public Day11() : base(11)
+        public Day11() : base(11, 2022)
         {
         }
 

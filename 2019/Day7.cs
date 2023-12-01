@@ -9,8 +9,9 @@ namespace _2019
     public class Day7 : General.IAoC
     {
         public int Day => 7;
+		public int Year => 2019;
 
-        public string SolvePart1(string input = null)
+		public string SolvePart1(string input = null)
         {
             int[] Options = new[] { 0, 1, 2, 3, 4 };
             List<long> ThrusterSignals = new();

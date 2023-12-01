@@ -10,7 +10,7 @@ namespace _2022
 {
     public class Day5 : General.PuzzleWithObjectInput<(IEnumerable<string> moves, List<char>[] positions)>
     {
-        public Day5() : base(5)
+        public Day5() : base(5, 2022)
         {
         }
 

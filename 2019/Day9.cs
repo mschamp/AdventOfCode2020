@@ -9,8 +9,9 @@ namespace _2019
     public class Day9 : General.IAoC
     {
         public int Day => 9;
+		public int Year => 2019;
 
-        public string SolvePart1(string input = null)
+		public string SolvePart1(string input = null)
         {
             var outputTestmode = RunComputer(input, 1);
             if (outputTestmode.Count==1)

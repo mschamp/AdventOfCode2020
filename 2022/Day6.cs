@@ -9,7 +9,7 @@ namespace _2022
 {
     public class Day6 : General.abstractPuzzleClass
     {
-        public Day6() : base(6)
+        public Day6() : base(6,2022)
         {
         }
 

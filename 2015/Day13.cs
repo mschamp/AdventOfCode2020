@@ -8,7 +8,7 @@ namespace _2015
 {
     public class Day13 : General.PuzzleWithStringArrayInput
     {
-        public Day13():base(13)
+        public Day13():base(13, 2015)
         {
 
         }
@@ -25,7 +25,7 @@ namespace _2015
             Func<string, string, int> getHappiness = (a, b) => relations
                   .Where(d => (d.Person1 == a && d.Person2 == b) ||
                                           (d.Person2 == a && d.Person1 == b)).Sum(x=> x.Happiness);
-            var permutations = persons.Permutations().Select(perm => perm.ToList().Concat(perm.First()));
+            var permutations = persons.Permutations().Select(perm => perm.ToList().Append(perm.First()));
             var result = permutations
                 .Select(route => route.Pairwise((from, to) => getHappiness(from, to)).Sum());
             return result.Max().ToString();
@@ -45,7 +45,7 @@ namespace _2015
             Func<string, string, int> getHappiness = (a, b) => relations
                   .Where(d => (d.Person1 == a && d.Person2 == b) ||
                                           (d.Person2 == a && d.Person1 == b)).Sum(x => x.Happiness);
-            var permutations = persons.Permutations().Select(perm => perm.ToList().Concat(perm.First()));
+            var permutations = persons.Permutations().Select(perm => perm.ToList().Append(perm.First()));
             var result = permutations
                 .Select(route => route.Pairwise((from, to) => getHappiness(from, to)).Sum());
             return result.Max().ToString();
