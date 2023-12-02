@@ -9,11 +9,24 @@ namespace General
 {
     class Program
     {
-        private static DataAccess.IDB _DB = new DataAccess.SQLiteDB();
+        private static DataAccess.ICachedInput _Cache;
 		private static DataAccess.IHTMLReader _HTMLReader = new DataAccess.HTMLReader();
         static void Main(string[] args)
         {
-			Dictionary<string, Action> years = new() {
+            switch (ConfigurationManager.AppSettings["UsedCachingMethod"])
+            {
+                case "DB":
+                    _Cache = new DataAccess.SQLiteDB();
+					break;
+                case "file":
+                    _Cache = new DataAccess.FileStorage();
+                    break;
+                default:
+                    break;
+            }
+
+
+            Dictionary<string, Action> years = new() {
 				{ "2015",Solve2015},
 				{ "2016",Solve2016},
 				{ "2017",Solve2017},
@@ -150,10 +163,10 @@ namespace General
         private static string GetInput(IAoC puzzle)
         {
             string DefaultUser = ConfigurationManager.AppSettings["DefaultUser"];
-           if (_DB.LoadPuzzleInput(puzzle.Year, puzzle.Day, DefaultUser, out string PuzzleInput)) return PuzzleInput;
+           if (_Cache.TryLoadPuzzleInput(puzzle.Year, puzzle.Day, DefaultUser, out string PuzzleInput)) return PuzzleInput;
 
            PuzzleInput = _HTMLReader.GetInputData(puzzle.Day, puzzle.Year);
-            _DB.StorePuzzleInput(new Interfaces.PuzzleData()
+            _Cache.StorePuzzleInput(new Interfaces.PuzzleData()
 			{
 				Day = puzzle.Day,
 				Year = puzzle.Year,

@@ -3,7 +3,7 @@ using System.Data.SQLite;
 
 namespace General.DataAccess
 {
-	public class SQLiteDB : IDB
+	public class SQLiteDB : ICachedInput
 	{
 
 		private string GetConnectionString()
@@ -11,7 +11,7 @@ namespace General.DataAccess
 			return ConfigurationManager.ConnectionStrings["default"].ConnectionString.Replace("{AppDir}", AppDomain.CurrentDomain.BaseDirectory); ;
 		}
 
-		public bool LoadPuzzleInput(int year, int day, string user, out string PuzzleInput)
+		public bool TryLoadPuzzleInput(int year, int day, string user, out string PuzzleInput)
 		{
 			PuzzleInput = "";
 			bool found = false;
