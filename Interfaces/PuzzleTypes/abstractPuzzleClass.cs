@@ -8,10 +8,10 @@ namespace General
 {
     public abstract class abstractPuzzleClass : General.IAoC
     {
-        public abstractPuzzleClass(int Day, int year)
+        public abstractPuzzleClass(int day, int year)
         {
-            this.Day = Day;
-            this.Year = year;
+            Day = day;
+            Year = year;
         }
 
         public int Day { get; private set; }

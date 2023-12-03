@@ -24,7 +24,6 @@ namespace _2023
 		{
 			int sum = input.Sum(x=>ExtractNumber(x,false));
 			return sum.ToString();
-
 		}
 
 		public override string SolvePart2(string[] input)
