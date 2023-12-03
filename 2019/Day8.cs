@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace _2019
 {
-    public class Day8 : General.IAoC
+	public class Day8 : General.IAoC
     {
         public int Day => 8;
 		public int Year => 2019;

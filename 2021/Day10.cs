@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _2021
 {
-    public class Day10 : General.PuzzleWithStringArrayInput
+	public class Day10 : General.PuzzleWithStringArrayInput
     {
         public Day10():base(10, 2021)
         {

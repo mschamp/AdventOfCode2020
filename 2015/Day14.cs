@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace _2015
 {
-    public class Day14 : General.PuzzleWithObjectArrayInput<Day14.Deer>
+	public class Day14 : General.PuzzleWithObjectArrayInput<Day14.Deer>
     {
         public Day14():base(14, 2015)
             {

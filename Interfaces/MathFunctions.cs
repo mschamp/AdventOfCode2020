@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace General
 {
-    public static class MathFunctions
+	public static class MathFunctions
     {
         public static Func<long, long, long> findGCD()
         {

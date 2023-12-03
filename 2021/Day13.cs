@@ -3,12 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _2021
 {
-    public class Day13 : General.PuzzleWithObjectInput<(List<General.clsPoint> dots, string[] foldinstructions)>
+	public class Day13 : General.PuzzleWithObjectInput<(List<General.clsPoint> dots, string[] foldinstructions)>
     {
         public Day13() : base(13, 2021)
         {

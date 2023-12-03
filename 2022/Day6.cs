@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 namespace _2022
 {
-    public class Day6 : General.abstractPuzzleClass
+	public class Day6 : General.abstractPuzzleClass
     {
         public Day6() : base(6,2022)
         {

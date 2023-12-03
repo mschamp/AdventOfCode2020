@@ -1,14 +1,9 @@
 ﻿using General;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _2022
 {
-    public class Day12 : PuzzleWithObjectInput<(Dictionary<(int, int), Astar.Position> grid, (int,int) start, (int,int) end)>
+	public class Day12 : PuzzleWithObjectInput<(Dictionary<(int, int), Astar.Position> grid, (int,int) start, (int,int) end)>
     {
         public Day12() : base(12,2022)
         {

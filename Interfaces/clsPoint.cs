@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
 
 namespace General
 {
-    public class clsPoint : IComparable<clsPoint> ,IEqualityComparer<clsPoint>
+	public class clsPoint : IComparable<clsPoint> ,IEqualityComparer<clsPoint>
     {
         public clsPoint(double x, double y)
         {

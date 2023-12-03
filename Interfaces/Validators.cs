@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace General
 {
-    public static class Validators
+	public static class Validators
     {
         public static Func<string, bool> NumberValidator(int min, int max)
         {

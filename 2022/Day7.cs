@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 namespace _2022
 {
-    public class Day7 : General.PuzzleWithObjectInput<(Day7.folder rootFolder, List<Day7.folder> AllFolders )>
+	public class Day7 : General.PuzzleWithObjectInput<(Day7.folder rootFolder, List<Day7.folder> AllFolders )>
     {
         public Day7() : base(7,2022)
         {

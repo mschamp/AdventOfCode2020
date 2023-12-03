@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _2021
 {
-    public class Day12 : General.PuzzleWithObjectInput<Dictionary<string, Day12.Cave>>
+	public class Day12 : General.PuzzleWithObjectInput<Dictionary<string, Day12.Cave>>
     {
         public Day12() : base(12, 2021)
         {

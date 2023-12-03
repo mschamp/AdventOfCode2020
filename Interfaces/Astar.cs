@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace General
 {
-    public class Astar
+	public class Astar
     {
         public static List<T> AstarSolver<T>(IEnumerable<T> start, T goal, Func<T, int> CostFunction) where T : Position
         {

@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 
 namespace _2020
 {
-    public class Day20 : General.PuzzleWithObjectInput<List<Day20.Tile>>
+	public class Day20 : General.PuzzleWithObjectInput<List<Day20.Tile>>
     {
         public Day20() : base(20, 2020) { }
         private int CountCharts(Tile finaly, char v)

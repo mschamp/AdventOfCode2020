@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace General.Extensions
 {
-    public static class ArrayExtensions
+	public static class ArrayExtensions
     {
         public static T[] getRow<T>(this T[,] matrix, int rowNumber)
         {

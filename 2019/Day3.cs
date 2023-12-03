@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 
 namespace _2019
 {
-    public class Day3 : General.PuzzleWithStringArrayInput
+	public class Day3 : General.PuzzleWithStringArrayInput
     {
         public Day3() : base(3, 2019) { }
 

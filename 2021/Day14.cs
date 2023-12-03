@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _2021
 {
-    public class Day14:General.PuzzleWithObjectInput<(string template,Dictionary<string, string[]> rules)>
+	public class Day14:General.PuzzleWithObjectInput<(string template,Dictionary<string, string[]> rules)>
     {
         public Day14() : base(14, 2021) { }
         protected override (string, Dictionary<string, string[]>) CastToObject(string RawData)

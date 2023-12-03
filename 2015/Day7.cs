@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace _2015
 {
-    public class Day7 : General.PuzzleWithStringArrayInput
+	public class Day7 : General.PuzzleWithStringArrayInput
     {
         public Day7():base(7, 2015) { }
 

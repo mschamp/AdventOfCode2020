@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace _2020
 {
-    public class Day16 : General.PuzzleWithObjectInput<(List<TicketField> fields,List<string[]> Tickets, string[] YourTicket)>
+	public class Day16 : General.PuzzleWithObjectInput<(List<TicketField> fields,List<string[]> Tickets, string[] YourTicket)>
     {
 
         public Day16() : base(16, 2020)

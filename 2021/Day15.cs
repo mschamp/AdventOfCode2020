@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using General;
 
 namespace _2021
 {
-     public class Day15 : PuzzleWithObjectInput<Dictionary<(int, int), Astar.Position>>
+	public class Day15 : PuzzleWithObjectInput<Dictionary<(int, int), Astar.Position>>
     {
         public Day15() : base(15, 2021) { }
         public override string SolvePart1(Dictionary<(int, int), Astar.Position> input)

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
+﻿using System.Diagnostics;
 using System.Linq;
 
 namespace _2020
 {
-    public class Day12 : General.PuzzleWithStringArrayInput
+	public class Day12 : General.PuzzleWithStringArrayInput
     {
         public Day12() : base(12, 2020) { }
         public override string SolvePart1(string[] instructions)

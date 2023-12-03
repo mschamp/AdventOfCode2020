@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 
 namespace _2015
 {
-    public class Day3 : General.abstractPuzzleClass
+	public class Day3 : General.abstractPuzzleClass
     {
         public Day3() : base(3, 2015) { }
         public override string SolvePart1(string input)

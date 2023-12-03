@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 namespace _2022
 {
-    public class Day8 : General.PuzzleWithObjectArrayInput<int[]>
+	public class Day8 : General.PuzzleWithObjectArrayInput<int[]>
     {
         public Day8() : base(8, 2022)
         {

@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 
 namespace _2020
 {
-    public class Day10 : General.PuzzleWithLongArrayInput
+	public class Day10 : General.PuzzleWithLongArrayInput
     {
         public Day10() : base(10, 2020) { }
 

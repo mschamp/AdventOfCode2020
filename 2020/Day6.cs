@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 
 namespace _2020
 {
-    public class Day6 : General.PuzzleWithObjectArrayInput<Group>
+	public class Day6 : General.PuzzleWithObjectArrayInput<Group>
     {
         public Day6() : base(6, 2020) { }
         protected override Group CastToObject(string RawData)

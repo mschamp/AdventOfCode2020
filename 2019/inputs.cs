@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace _2019
+﻿namespace _2019
 {
-    public class inputs
+	public class inputs
     {
         public static string D1P1 = @"93326
 54591

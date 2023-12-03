@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Linq;
 
 namespace _2021
 {
-    public class Day1 : General.PuzzleWithIntegerArrayInput
+	public class Day1 : General.PuzzleWithIntegerArrayInput
     {
         public Day1():base(1, 2021)
         {

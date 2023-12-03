@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Diagnostics;
 
 using System.Linq;
@@ -8,9 +7,9 @@ using System.Linq;
 namespace _2020
 {
 
-    //Met dank aan rversteeg: https://github.com/rversteeg/AdventOfCode2020/blob/cb8dbf0162f22b134862a7b2133042e4d05d9e85/Day04
-    //Heel veel uitgeleerd en mijn code kunnen optimaliseren
-    public class Day4 : General.PuzzleWithObjectInput<IEnumerable<Passport>>
+	//Met dank aan rversteeg: https://github.com/rversteeg/AdventOfCode2020/blob/cb8dbf0162f22b134862a7b2133042e4d05d9e85/Day04
+	//Heel veel uitgeleerd en mijn code kunnen optimaliseren
+	public class Day4 : General.PuzzleWithObjectInput<IEnumerable<Passport>>
     {
         public Day4() : base(4, 2020) { }
         public override void Tests()

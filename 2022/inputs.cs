@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _2022
+﻿namespace _2022
 {
-    public class inputs
+	public class inputs
     {
         public static string D1P1 = @"22243
 11899

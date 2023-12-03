@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace _2021
 {
-    public class Day16 : General.PuzzleWithObjectInput<Day16.Packet>
+	public class Day16 : General.PuzzleWithObjectInput<Day16.Packet>
     {
         public Day16() : base(16, 2021) { }
 

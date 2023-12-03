@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 
 namespace _2015
 {
-    public class Day5 : General.PuzzleWithStringArrayInput
+	public class Day5 : General.PuzzleWithStringArrayInput
     {
         public Day5():base(5, 2015){}
         public override string SolvePart1(string[] input)

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace _2019
 {
-    public class Day2:General.abstractPuzzleClass
+	public class Day2:General.abstractPuzzleClass
     {
         public Day2() : base(2,2019) { }
 

@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 
 namespace _2020
 {
-    public class Day17 : General.abstractPuzzleClass
+	public class Day17 : General.abstractPuzzleClass
     {
         public Day17() : base(17, 2020)
         {

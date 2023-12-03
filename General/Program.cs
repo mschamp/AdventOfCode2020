@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace General
 {
-    class Program
+	class Program
     {
         private static DataAccess.ICachedInput _Cache;
 		private static DataAccess.IHTMLReader _HTMLReader = new DataAccess.HTMLReader();

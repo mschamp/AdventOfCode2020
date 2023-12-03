@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace General
+﻿namespace General
 {
-    public abstract class PuzzleWithObjectInput<ObjectClass> : abstractPuzzleClass
+	public abstract class PuzzleWithObjectInput<ObjectClass> : abstractPuzzleClass
     {
         public PuzzleWithObjectInput(int Day, int year) : base(Day, year)
         {

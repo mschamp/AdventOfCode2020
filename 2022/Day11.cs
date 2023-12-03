@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static _2022.Day11;
-using static System.Net.Mime.MediaTypeNames;
+﻿using System.Diagnostics;
 
 namespace _2022
 {
-    public class Day11:General.PuzzleWithObjectArrayInput<Day11.Monkey>
+	public class Day11:General.PuzzleWithObjectArrayInput<Day11.Monkey>
     {
         public Day11() : base(11, 2022)
         {

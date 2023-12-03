@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 
 namespace _2020
 {
-    public class Day19 : General.PuzzleWithObjectInput<(Dictionary<int, List<Rule>> Rules, string[] messages)>
+	public class Day19 : General.PuzzleWithObjectInput<(Dictionary<int, List<Rule>> Rules, string[] messages)>
     {        
         public Day19() : base(19, 2020) { }
         public Dictionary<int, List<Rule>> DecodeRules(string input)

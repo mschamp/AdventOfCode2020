@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 namespace _2022
 {
-    public class Day5 : General.PuzzleWithObjectInput<(IEnumerable<string> moves, List<char>[] positions)>
+	public class Day5 : General.PuzzleWithObjectInput<(IEnumerable<string> moves, List<char>[] positions)>
     {
         public Day5() : base(5, 2022)
         {

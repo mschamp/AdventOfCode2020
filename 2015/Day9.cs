@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using MoreLinq;
 
 namespace _2015
 {
-    public class Day9 : General.PuzzleWithStringArrayInput
+	public class Day9 : General.PuzzleWithStringArrayInput
     {
         public Day9() : base(9, 2015) { }
         public override string SolvePart1(string[] input)

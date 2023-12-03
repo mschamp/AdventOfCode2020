@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 
 namespace _2020
 {
-    public class Day3 : General.PuzzleWithObjectInput<char[,]>
+	public class Day3 : General.PuzzleWithObjectInput<char[,]>
     {
         public Day3() : base(3, 2020) { }
         private int TreesOnSlope(char[,] array, Tuple<int,int> slope, int Rows, int Columns)

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 
 namespace _2020
 {
-    public class Day9 : General.PuzzleWithLongArrayInput
+	public class Day9 : General.PuzzleWithLongArrayInput
     {
         public Day9() : base(9, 2020) { }
         public long findInvalidNumber(ref List<long> values, int store, long[] inputvalues)

@@ -1,14 +1,9 @@
 ﻿using General;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _2022
 {
-    public class Day9 : General.PuzzleWithStringArrayInput
+	public class Day9 : General.PuzzleWithStringArrayInput
     {
         public Day9() : base(9, 2022)
         {

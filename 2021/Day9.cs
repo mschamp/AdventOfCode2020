@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics;
 
 namespace _2021
 {
-    public class Day9 : General.PuzzleWithObjectInput<List<Day9.Position>>
+	public class Day9 : General.PuzzleWithObjectInput<List<Day9.Position>>
     {
         public Day9() : base(9, 2021)
         {

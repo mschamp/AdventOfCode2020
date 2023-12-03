@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using MoreLinq;
 
 namespace _2015
 {
-    public class Day13 : General.PuzzleWithStringArrayInput
+	public class Day13 : General.PuzzleWithStringArrayInput
     {
         public Day13():base(13, 2015)
         {

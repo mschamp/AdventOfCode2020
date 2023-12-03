@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace _2019
+﻿namespace _2019
 {
-    public enum Modes
+	public enum Modes
     {
         Parameter = 0,
         Immediate = 1,

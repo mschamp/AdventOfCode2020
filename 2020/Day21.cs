@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace _2020
 {
-    public class Day21 : General.PuzzleWithObjectArrayInput<Day21.Food>
+	public class Day21 : General.PuzzleWithObjectArrayInput<Day21.Food>
     {
         public Day21() : base(21, 2020)
         {

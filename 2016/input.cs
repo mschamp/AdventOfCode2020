@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace _2016
+﻿namespace _2016
 {
-    public static class input
+	public static class input
     {
     }
 }

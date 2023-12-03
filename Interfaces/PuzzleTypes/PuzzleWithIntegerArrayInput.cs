@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace General
 {
-    public abstract class PuzzleWithIntegerArrayInput :abstractPuzzleClass 
+	public abstract class PuzzleWithIntegerArrayInput :abstractPuzzleClass 
     {
         public PuzzleWithIntegerArrayInput(int Day, int year)
             : base(Day,year)

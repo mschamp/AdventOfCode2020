@@ -1,14 +1,9 @@
 ﻿using MoreLinq.Extensions;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _2022
 {
-    public class Day3 : General.PuzzleWithStringArrayInput
+	public class Day3 : General.PuzzleWithStringArrayInput
     {
         public Day3() : base(3, 2022)
         {

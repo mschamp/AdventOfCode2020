@@ -1,15 +1,10 @@
 ﻿using MoreLinq;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _2022
 {
-    public class Day13 : General.PuzzleWithObjectArrayInput<(Day13.Packet left, Day13.Packet right)>
+	public class Day13 : General.PuzzleWithObjectArrayInput<(Day13.Packet left, Day13.Packet right)>
     {
         public Day13() : base(13, 2022)
         {

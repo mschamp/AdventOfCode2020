@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace _2019
 {
-    public class IntcodeComputer
+	public class IntcodeComputer
     {
         IntCodeProgram program;
         long positionPointer;

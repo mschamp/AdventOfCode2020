@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
+﻿using System.Diagnostics;
 
 
 namespace _2020
 {
-    public class Day25 : General.PuzzleWithStringArrayInput
+	public class Day25 : General.PuzzleWithStringArrayInput
     {
         public Day25():base(25, 2020)
         {

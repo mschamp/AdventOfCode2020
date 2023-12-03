@@ -1,9 +1,8 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace _2020
 {
-    public class Day1 : General.PuzzleWithIntegerArrayInput
+	public class Day1 : General.PuzzleWithIntegerArrayInput
     {
         public Day1() : base(1, 2020) { }
         public override string SolvePart1(int[] input)

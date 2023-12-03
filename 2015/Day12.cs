@@ -3,11 +3,10 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace _2015
 {
-    public class Day12 : General.abstractPuzzleClass
+	public class Day12 : General.abstractPuzzleClass
     {
         public Day12():base(12, 2015)
         {

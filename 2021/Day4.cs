@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using General.Extensions;
 
 namespace _2021
 {
-    public class Day4 : General.PuzzleWithObjectInput<(List<int>,List<Day4.Board>, Dictionary<int, Day4.BingoNumber>)>
+	public class Day4 : General.PuzzleWithObjectInput<(List<int>,List<Day4.Board>, Dictionary<int, Day4.BingoNumber>)>
     {
         public Day4() : base(4, 2021)
         {

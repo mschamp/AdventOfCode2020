@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 
 namespace _2019
 {
-    public class Day9 : General.IAoC
+	public class Day9 : General.IAoC
     {
         public int Day => 9;
 		public int Year => 2019;

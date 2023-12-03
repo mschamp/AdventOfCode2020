@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 
 namespace _2020
 {
-    public class Day22 : General.abstractPuzzleClass
+	public class Day22 : General.abstractPuzzleClass
     {
         public Day22():base(22, 2020) 
         {

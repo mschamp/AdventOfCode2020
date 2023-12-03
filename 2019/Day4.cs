@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 
 namespace _2019
 {
-    public class Day4 : General.abstractPuzzleClass
+	public class Day4 : General.abstractPuzzleClass
     {
         public Day4() : base(4, 2019) { }
 

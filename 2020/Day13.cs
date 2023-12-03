@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 
 namespace _2020
 {
-    public class Day13 : General.abstractPuzzleClass
+	public class Day13 : General.abstractPuzzleClass
     {
         public Day13() : base(13, 2020)
         {

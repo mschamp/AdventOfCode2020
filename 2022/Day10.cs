@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 namespace _2022
 {
-    public class Day10 : General.PuzzleWithStringArrayInput
+	public class Day10 : General.PuzzleWithStringArrayInput
     {
         char White = char.ConvertFromUtf32(9608)[0];
         public Day10() : base(10, 2022)

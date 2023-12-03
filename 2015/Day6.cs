@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
 
 namespace _2015
 {
-    public class Day6 : General.PuzzleWithStringArrayInput
+	public class Day6 : General.PuzzleWithStringArrayInput
     {
         public Day6() : base(6, 2015) { }
         public override string SolvePart1(string[] input)
