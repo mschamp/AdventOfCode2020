@@ -56,8 +56,7 @@ namespace _2023
 		{
 			for (int i = CardID+1; i < CardID + 1 + CardWins[CardID]; i++)
 			{
-				CardCount[i]++;
-				AddWinningCards(CardWins, ref CardCount, i);
+				CardCount[i]+= CardCount[CardID];
 			}
 		}
 
