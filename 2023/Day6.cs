@@ -6,9 +6,9 @@
 		{
 		}
 
-		public override string SolvePart1(string[] input = null)
+		public override string SolvePart1(string[] input)
 		{
-			var Combinations = input[0].Split(" ", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Skip(1).Select(long.Parse)
+			IEnumerable<(long First, long Second)> Combinations = input[0].Split(" ", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Skip(1).Select(long.Parse)
 				.Zip(input[1].Split(" ", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Skip(1).Select(long.Parse));
 
 			return Combinations.Select(CalculateWaysToWin).Aggregate((long)1, (product,value)=>product*value).ToString();
@@ -34,14 +34,11 @@
 			return CountWins;
 		}
 
-		private long CalculateDistance(long TotalTime, long HoldButton)
-		{
-			return (TotalTime - HoldButton) * HoldButton;
-		}
+		private long CalculateDistance(long TotalTime, long HoldButton) =>(TotalTime - HoldButton) * HoldButton;
 
-		public override string SolvePart2(string[] input = null)
+		public override string SolvePart2(string[] input)
 		{
-			var Combinations = input[0].Replace(" ", "").Split(":", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Skip(1).Select(long.Parse)
+			IEnumerable<(long First, long Second)> Combinations = input[0].Replace(" ", "").Split(":", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Skip(1).Select(long.Parse)
 				.Zip(input[1].Replace(" ", "").Split(":", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Skip(1).Select(long.Parse));
 
 			return Combinations.Select(CalculateWaysToWin).Aggregate((long)1, (product, value) => product * value).ToString();
