@@ -1,7 +1,4 @@
-﻿using General;
-using System.Diagnostics;
-
-namespace _2023
+﻿namespace _2023
 {
 	public class Day3 : PuzzleWithObjectInput<(List<Day3.Number> numbers, List<Day3.Symbol> symbols)>
 	{

@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace _2023
+﻿namespace _2023
 {
 	public class Day1 : General.PuzzleWithStringArrayInput
 	{

@@ -1,7 +1,4 @@
-﻿using General;
-using System.Diagnostics;
-
-namespace _2023
+﻿namespace _2023
 {
 	public class Day2 : PuzzleWithObjectArrayInput<Day2.game>
 	{

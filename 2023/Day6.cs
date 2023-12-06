@@ -1,12 +1,4 @@
-﻿using General;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _2023
+﻿namespace _2023
 {
 	public class Day6 : PuzzleWithStringArrayInput
 	{
@@ -16,10 +8,8 @@ namespace _2023
 
 		public override string SolvePart1(string[] input = null)
 		{
-			long[] times = input[0].Split(" ", StringSplitOptions.TrimEntries|StringSplitOptions.RemoveEmptyEntries).Skip(1).Select(long.Parse).ToArray();
-			long[] Distances = input[1].Split(" ", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Skip(1).Select(long.Parse).ToArray();
-
-			var Combinations = times.Zip(Distances);
+			var Combinations = input[0].Split(" ", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Skip(1).Select(long.Parse)
+				.Zip(input[1].Split(" ", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Skip(1).Select(long.Parse));
 
 			return Combinations.Select(CalculateWaysToWin).Aggregate((long)1, (product,value)=>product*value).ToString();
 		}
@@ -27,20 +17,20 @@ namespace _2023
 		private long CalculateWaysToWin((long Totaltime, long RecordDistance)input)
 		{
 			bool WaitingForWin = true;
-			bool LastWin = false;
 			long CountWins = 0;
 			long time = 1;
+			bool LastWin;
 			do
 			{
 				LastWin = false;
-				if (CalculateDistance(input.Totaltime,time)>input.RecordDistance)
+				if (CalculateDistance(input.Totaltime, time) > input.RecordDistance)
 				{
 					CountWins++;
-					WaitingForWin=false;
-					LastWin=true;
+					WaitingForWin = false;
+					LastWin = true;
 				}
 				time++;
-			} while (WaitingForWin||LastWin);
+			} while (WaitingForWin || LastWin);
 			return CountWins;
 		}
 
@@ -51,10 +41,8 @@ namespace _2023
 
 		public override string SolvePart2(string[] input = null)
 		{
-			long[] times = input[0].Replace(" ","").Split(":", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Skip(1).Select(long.Parse).ToArray();
-			long[] Distances = input[1].Replace(" ", "").Split(":", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Skip(1).Select(long.Parse).ToArray();
-
-			var Combinations = times.Zip(Distances);
+			var Combinations = input[0].Replace(" ", "").Split(":", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Skip(1).Select(long.Parse)
+				.Zip(input[1].Replace(" ", "").Split(":", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Skip(1).Select(long.Parse));
 
 			return Combinations.Select(CalculateWaysToWin).Aggregate((long)1, (product, value) => product * value).ToString();
 		}
