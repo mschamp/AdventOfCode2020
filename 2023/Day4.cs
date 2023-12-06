@@ -41,13 +41,11 @@ namespace _2023
 			{
 				var cardParts = input[i-1].Split(':', '|');
 				CardWins[i] = NumberOfMatches(cardParts[1].Trim(), cardParts[2].Trim());
-				CardCount[i] = 1;
-			}
-
-			for (int i = 1; i <= input.Length; i++)
-			{
+				CardCount[i] ++;
 				AddWinningCards(CardWins, ref CardCount, i);
 			}
+
+
 
 			return $"{CardCount.Sum()}";
         }
