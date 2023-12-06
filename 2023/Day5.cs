@@ -8,7 +8,7 @@
 
 		public override string SolvePart1(string input = null)
 		{
-			var parts = input.Split(Environment.NewLine + Environment.NewLine);
+			string[] parts = input.Split(Environment.NewLine + Environment.NewLine);
 			long[] seeds = parts[0].Split(' ').Skip(1).Select(long.Parse).ToArray();
 			List<ProjectionFunction> functions = new List<ProjectionFunction>();	
 
@@ -18,10 +18,10 @@
 			}
 
 			List<long> Positions = new List<long>();
-			foreach (var seed in seeds)
+			foreach (long seed in seeds)
 			{
 				long x = seed;
-				foreach (var projection in functions)
+				foreach (ProjectionFunction projection in functions)
 				{
 					x = projection.CalculateMapping(x);
 				}
@@ -33,7 +33,7 @@
 
 		public override string SolvePart2(string input = null)
 		{
-			var parts = input.Split(Environment.NewLine + Environment.NewLine);
+			string[] parts = input.Split(Environment.NewLine + Environment.NewLine);
 			long[] seeds = parts[0].Split(' ').Skip(1).Select(long.Parse).ToArray();
 			List<(long, long)> SeedRanges = new List<(long, long)>();
 
@@ -50,10 +50,10 @@
 			}
 
 			List<long> PossibleStartLocations = new List<long>();
-			foreach (var item in SeedRanges)
+			foreach ((long, long) item in SeedRanges)
 			{
-				var x = new List<(long, long)> { item };
-				foreach (var projection in functions)
+				List<(long, long)> x = new List<(long, long)> { item };
+				foreach (ProjectionFunction projection in functions)
 				{
 					x = projection.CalculateMappingRange(x);
 				}
@@ -67,7 +67,7 @@
 		{
             public ProjectionFunction(string InstructionBlock)
             {
-				var Instruction = InstructionBlock.Split(Environment.NewLine);
+				string[] Instruction = InstructionBlock.Split(Environment.NewLine);
 				Instruction.Skip(1).Select(x=>x.Split(' ').ToArray()).ToList().ForEach(x=> mappings.Add((long.Parse(x[0]), long.Parse(x[1]), long.Parse(x[2]))));
             }
 
@@ -75,7 +75,7 @@
 
 			public long CalculateMapping(long x)
 			{
-				foreach (var item in mappings)
+				foreach ((long dest, long src, long count) item in mappings)
 				{
 					if (item.src<=x && x<item.src+item.count)
 					{
@@ -88,16 +88,16 @@
 			public List<(long,long)> CalculateMappingRange(IEnumerable<(long start,long end)> x)
 			{
 				Queue<(long start, long end)> Ranges = new Queue<(long start, long end)>(x);
-				var result = new List<(long, long)>();
-				foreach (var item in mappings)
+				List<(long, long)> result = new List<(long, long)>();
+				foreach ((long dest, long src, long count) item in mappings)
 				{
 					long end = item.src + item.count;
-					var NR = new List<(long, long)>();
+					List<(long, long)> NR = new List<(long, long)>();
 					while (Ranges.TryDequeue(out (long start,long end) Current))
 					{
-						var before = (Current.start, Math.Min(Current.end, item.src));
-						var overlap = (Math.Max(Current.start, item.src), Math.Min(Current.end, end));
-						var after = (Math.Max(end, Current.start), Current.end);
+						(long start, long) before = (Current.start, Math.Min(Current.end, item.src));
+						(long, long) overlap = (Math.Max(Current.start, item.src), Math.Min(Current.end, end));
+						(long, long end) after = (Math.Max(end, Current.start), Current.end);
 
 						if (before.Item2>before.Item1)
 						{

@@ -46,7 +46,7 @@
 		private bool dectectTextNumber(Dictionary<string, char> numbers, string line, int i, out char number)
 		{
 			number = '0';
-			foreach (var item in numbers)
+			foreach (KeyValuePair<string, char> item in numbers)
 			{
 				if ( line.AsSpan(i).StartsWith(item.Key))
 				{

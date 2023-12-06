@@ -1,4 +1,6 @@
-﻿namespace _2023
+﻿using System.Text.RegularExpressions;
+
+namespace _2023
 {
 	public class Day6 : PuzzleWithStringArrayInput
 	{
@@ -16,6 +18,15 @@
 
 		private long CalculateWaysToWin((long Totaltime, long RecordDistance)input)
 		{
+
+			double sqrtD = Math.Sqrt(Math.Pow(input.Totaltime , 2) - 4 * input.RecordDistance);
+			long R = (long)(Math.Ceiling((input.Totaltime + sqrtD) / 2) - Math.Floor((input.Totaltime - sqrtD) / 2) - 1);
+			
+			return R;
+		}
+
+		private long CalculateWaysToWinOld((long Totaltime, long RecordDistance) input)
+		{
 			bool WaitingForWin = true;
 			long CountWins = 0;
 			long time = 1;
@@ -31,6 +42,8 @@
 				}
 				time++;
 			} while (WaitingForWin || LastWin);
+
+
 			return CountWins;
 		}
 

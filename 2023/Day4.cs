@@ -37,7 +37,7 @@
 			int[] CardCount = new int[input.Length+1];
 			for (int i = 1; i <= input.Length; i++)
 			{
-				var cardParts = input[i-1].Split(':', '|');
+				string[] cardParts = input[i-1].Split(':', '|');
 				CardWins[i] = NumberOfMatches(cardParts[1].Trim(), cardParts[2].Trim());
 				CardCount[i] ++;
 				AddWinningCards(CardWins, ref CardCount, i);
