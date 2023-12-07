@@ -19,11 +19,8 @@ namespace _2023
 			cardOrder['J'] = 3;
 			orderedList.ForEach(x => x.DetectType(false));
 			orderedList.Sort();
-			long product = 0;
-			for (int i = 0; i<input.Length; i++)
-			{
-				product += (input.Length - i) * orderedList[i].Bid;
-			}
+			int j = input.Length;
+			long product = orderedList.Sum(x => x.Bid * j--);
 			return product.ToString();
 		}
 
@@ -33,11 +30,8 @@ namespace _2023
 			cardOrder['J'] = 100;
 			orderedList.ForEach(x => x.DetectType(true));
 			orderedList.Sort();
-			long product = 0;
-			for (int i = 0; i < input.Length; i++)
-			{
-				product += (input.Length - i) * orderedList[i].Bid;
-			}
+			int j = input.Length;
+			long product = orderedList.Sum(x => x.Bid * j--); 
 			return product.ToString();
 		}
 
