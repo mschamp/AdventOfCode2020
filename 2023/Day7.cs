@@ -16,6 +16,7 @@ namespace _2023
 		public override string SolvePart1(Hand[] input)
 		{
 			var orderedList = input.ToList();
+			cardOrder['J'] = 3;
 			orderedList.Sort();
 			long product = 0;
 			for (int i = 0; i<input.Length; i++)
@@ -28,6 +29,7 @@ namespace _2023
 		public override string SolvePart2(Hand[] input)
 		{
 			var orderedList = input.ToList();
+			cardOrder['J'] = 100;
 			orderedList.ForEach(x => x.ProcessJoker());
 			orderedList.Sort();
 			long product = 0;
@@ -92,8 +94,6 @@ QQQJA 483") == "5905");
 
 			public void ProcessJoker()
 			{
-				ScoringSystem['J'] = 100;
-
 				var counted = Cards.GroupBy(c => c).Select(g => new { g.Key, Count = g.Count() }).OrderByDescending(x => x.Count).ToList();
 				int countJ = 0;
 				if (Cards.Contains('J')) countJ = counted.First(x => x.Key == 'J').Count;
