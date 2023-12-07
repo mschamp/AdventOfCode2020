@@ -87,11 +87,9 @@ QQQJA 483") == "5905");
 			{
 				var counted = Cards.GroupBy(c => c).Select(g => new { g.Key, Count = g.Count() }).OrderByDescending(x => x.Count).ToList();
 				int countJ = 0;
-				if (JisJoker)
+				if (JisJoker && Cards.Contains('J'))
 				{
-					if (Cards.Contains('J')) countJ = counted.First(x => x.Key == 'J').Count;
-
-					List<(char, int)> Adjusted = new List<(char, int)>();
+					countJ = counted.First(x => x.Key == 'J').Count;
 					counted.Remove(counted.FirstOrDefault(x => x.Key == 'J'));
 				}
 				if (countJ == 5 || counted[0].Count + countJ == 5) HandType = HandType.Fiveofakind;
