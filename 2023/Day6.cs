@@ -13,15 +13,22 @@ namespace _2023
 			IEnumerable<(long First, long Second)> Combinations = input[0].Split(" ", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Skip(1).Select(long.Parse)
 				.Zip(input[1].Split(" ", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Skip(1).Select(long.Parse));
 
-			return Combinations.Select(CalculateWaysToWin).Aggregate((long)1, (product,value)=>product*value).ToString();
+			return Combinations.Select(CalculateWaysToWin).Aggregate((long)1, (product, value) => product * value).ToString();
 		}
 
-		private long CalculateWaysToWin((long Totaltime, long RecordDistance)input)
+		public override string SolvePart2(string[] input)
 		{
+			IEnumerable<(long First, long Second)> Combinations = input[0].Replace(" ", "").Split(":", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Skip(1).Select(long.Parse)
+				.Zip(input[1].Replace(" ", "").Split(":", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Skip(1).Select(long.Parse));
 
-			double sqrtD = Math.Sqrt(Math.Pow(input.Totaltime , 2) - 4 * input.RecordDistance);
+			return Combinations.Select(CalculateWaysToWin).Aggregate((long)1, (product, value) => product * value).ToString();
+		}
+
+		private long CalculateWaysToWin((long Totaltime, long RecordDistance) input)
+		{
+			double sqrtD = Math.Sqrt(Math.Pow(input.Totaltime, 2) - 4 * input.RecordDistance);
 			long R = (long)(Math.Ceiling((input.Totaltime + sqrtD) / 2) - Math.Floor((input.Totaltime - sqrtD) / 2) - 1);
-			
+
 			return R;
 		}
 
@@ -47,15 +54,7 @@ namespace _2023
 			return CountWins;
 		}
 
-		private long CalculateDistance(long TotalTime, long HoldButton) =>(TotalTime - HoldButton) * HoldButton;
-
-		public override string SolvePart2(string[] input)
-		{
-			IEnumerable<(long First, long Second)> Combinations = input[0].Replace(" ", "").Split(":", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Skip(1).Select(long.Parse)
-				.Zip(input[1].Replace(" ", "").Split(":", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Skip(1).Select(long.Parse));
-
-			return Combinations.Select(CalculateWaysToWin).Aggregate((long)1, (product, value) => product * value).ToString();
-		}
+		private long CalculateDistance(long TotalTime, long HoldButton) => (TotalTime - HoldButton) * HoldButton;
 
 		public override void Tests()
 		{
