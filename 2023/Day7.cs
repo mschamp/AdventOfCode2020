@@ -17,6 +17,7 @@ namespace _2023
 		{
 			var orderedList = input.ToList();
 			cardOrder['J'] = 3;
+			orderedList.ForEach(x => x.DetectType(false));
 			orderedList.Sort();
 			long product = 0;
 			for (int i = 0; i<input.Length; i++)
@@ -30,7 +31,7 @@ namespace _2023
 		{
 			var orderedList = input.ToList();
 			cardOrder['J'] = 100;
-			orderedList.ForEach(x => x.ProcessJoker());
+			orderedList.ForEach(x => x.DetectType(true));
 			orderedList.Sort();
 			long product = 0;
 			for (int i = 0; i < input.Length; i++)
@@ -80,28 +81,20 @@ QQQJA 483") == "5905");
 				var parts = input.Split(" ");
 				Bid = long.Parse(parts[1]);
 				Cards = parts[0].ToArray();
-				ScoringSystem = cardOrder;
-
-				var counted = Cards.GroupBy(c => c).Select(g => new { g.Key, Count = g.Count()}).OrderByDescending(x=> x.Count).ToArray();
-				if (counted[0].Count == 5) HandType = HandType.Fiveofakind;
-				else if (counted[0].Count == 4) HandType = HandType.Fourofakind;
-				else if (counted[0].Count == 3 && counted[1].Count ==2) HandType = HandType.Fullhouse;
-				else if (counted[0].Count == 3) HandType = HandType.Threeofakind;
-				else if (counted[0].Count == 2 && counted[1].Count==2) HandType = HandType.Twopair;
-				else if (counted[0].Count == 2) HandType = HandType.Onepair;
-				else HandType = HandType.Highcard;
 			}
 
-			public void ProcessJoker()
+			public void DetectType(bool JisJoker)
 			{
 				var counted = Cards.GroupBy(c => c).Select(g => new { g.Key, Count = g.Count() }).OrderByDescending(x => x.Count).ToList();
 				int countJ = 0;
-				if (Cards.Contains('J')) countJ = counted.First(x => x.Key == 'J').Count;
+				if (JisJoker)
+				{
+					if (Cards.Contains('J')) countJ = counted.First(x => x.Key == 'J').Count;
 
-				List<(char,int)> Adjusted = new List<(char,int)>();
-				counted.Remove(counted.FirstOrDefault(x => x.Key == 'J'));
-
-				if (countJ==5|| counted[0].Count+countJ == 5) HandType = HandType.Fiveofakind;
+					List<(char, int)> Adjusted = new List<(char, int)>();
+					counted.Remove(counted.FirstOrDefault(x => x.Key == 'J'));
+				}
+				if (countJ == 5 || counted[0].Count + countJ == 5) HandType = HandType.Fiveofakind;
 				else if (counted[0].Count + countJ == 4) HandType = HandType.Fourofakind;
 				else if (counted[0].Count + countJ == 3 && counted[1].Count == 2) HandType = HandType.Fullhouse;
 				else if (counted[0].Count + countJ == 3) HandType = HandType.Threeofakind;
@@ -113,8 +106,6 @@ QQQJA 483") == "5905");
 			public char[] Cards { get; private set; }
 
 			public long Bid { get; private set; }
-
-			private Dictionary<char, int> ScoringSystem;
 
 			public HandType HandType { get; private set; }
 
