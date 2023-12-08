@@ -16,7 +16,7 @@ namespace General.DataAccess
 			_apiClient.DefaultRequestHeaders.Add("cookie", "session=" + ConfigurationManager.AppSettings["sessionID"]);
 		}
 
-		public string GetInputData(int day, int year)
+		public IList<(string,string)> GetInputData(int day, int year)
 		{
 			if (_apiClient == null) InitializeClient();
 
@@ -27,7 +27,7 @@ namespace General.DataAccess
 					var result = response.Content.ReadAsStringAsync().Result;
 					result= result.Replace("\n",Environment.NewLine);
 					result = result.Trim();
-					return result;
+					return new List<(string,string)>{("",result)};
 				}
 				else
 				{

@@ -11,9 +11,9 @@ namespace General.DataAccess
 			return ConfigurationManager.ConnectionStrings["default"].ConnectionString.Replace("{AppDir}", AppDomain.CurrentDomain.BaseDirectory); ;
 		}
 
-		public bool TryLoadPuzzleInput(int year, int day, string user, out string PuzzleInput)
+		public bool TryLoadPuzzleInput(int year, int day, string user, out IList<(string,string)> PuzzleInput)
 		{
-			PuzzleInput = "";
+			PuzzleInput = new List<(string,string)>();
 			bool found = false;
 
 			using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString()))
@@ -21,7 +21,7 @@ namespace General.DataAccess
 				SQLiteDataReader SQLite_datareader;
 				SQLiteCommand SQLite_cmd;
 				SQLite_cmd = conn.CreateCommand();
-				SQLite_cmd.CommandText = "SELECT input FROM puzzleInputs where year=@year and day=@day and user=@user LIMIT 1";
+				SQLite_cmd.CommandText = "SELECT input, user FROM puzzleInputs where year=@year and day=@day and user=@user LIMIT 1";
 				SQLite_cmd.Parameters.AddWithValue("@year", year);
 				SQLite_cmd.Parameters.AddWithValue("@day", day);
 				SQLite_cmd.Parameters.AddWithValue("@user", user);
@@ -30,7 +30,34 @@ namespace General.DataAccess
 				SQLite_datareader = SQLite_cmd.ExecuteReader();
 				if (SQLite_datareader.Read())
 				{
-					PuzzleInput = SQLite_datareader.GetString(0);
+					PuzzleInput.Add((SQLite_datareader.GetString(1),SQLite_datareader.GetString(0)));
+					found = true;
+				}
+				conn.Close();
+			}
+
+			return found;
+		}
+
+		public bool TryLoadPuzzleInputAllUsers(int year, int day, out IList<(string, string)> PuzzleInput)
+		{
+			PuzzleInput = new List<(string, string)>();
+			bool found = false;
+
+			using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString()))
+			{
+				SQLiteDataReader SQLite_datareader;
+				SQLiteCommand SQLite_cmd;
+				SQLite_cmd = conn.CreateCommand();
+				SQLite_cmd.CommandText = "SELECT input, user FROM puzzleInputs where year=@year and day=@day";
+				SQLite_cmd.Parameters.AddWithValue("@year", year);
+				SQLite_cmd.Parameters.AddWithValue("@day", day);
+
+				conn.Open();
+				SQLite_datareader = SQLite_cmd.ExecuteReader();
+				while (SQLite_datareader.Read())
+				{
+					PuzzleInput.Add((SQLite_datareader.GetString(1), SQLite_datareader.GetString(0)));
 					found = true;
 				}
 				conn.Close();

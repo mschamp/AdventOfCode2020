@@ -3,6 +3,6 @@ namespace General.DataAccess
 {
 	public interface IHTMLReader
 	{
-		string GetInputData(int day, int year);
+		IList<(string, string)> GetInputData(int day, int year);
 	}
 }

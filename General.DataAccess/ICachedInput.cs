@@ -12,7 +12,9 @@ namespace General.DataAccess
 		/// <param name="user">Name of the user that got the input</param>
 		/// <param name="PuzzleInput">output parameter that will contain the input if found</param>
 		/// <returns><c>True</c> if input is found</returns>
-		bool TryLoadPuzzleInput(int year, int day, string user, out string PuzzleInput);
+		bool TryLoadPuzzleInput(int year, int day, string user, out IList<(string, string)> PuzzleInput);
+		bool TryLoadPuzzleInputAllUsers(int year, int day, out IList<(string, string)> PuzzleInput);
+		
 		void StorePuzzleInput(PuzzleData puzzleData);
 	}
 }
