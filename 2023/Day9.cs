@@ -10,17 +10,17 @@ namespace _2023
 
 		public override string SolvePart1(List<int>[] input)
 		{
-			return input.Sum(x => getNext(x)).ToString();
+			return input.Sum(getNext).ToString();
 		}
 
 		private int getNext(IEnumerable<int> sequence)
 		{
-			var diffs = sequence;
-			var lasts = new List<int> { sequence.Last() };
+			IEnumerable<int> diffs = sequence;
+			List<int> lasts = new List<int> { sequence.Last() };
 
 			while (!diffs.All(x=>x==0))
 			{
-				var combined = diffs.Zip(diffs.Skip(1));
+				IEnumerable<(int First, int Second)> combined = diffs.Zip(diffs.Skip(1));
 				diffs = combined.Select(x=>x.Second-x.First).ToList();
 				lasts.Add(diffs.Last());
 			}
