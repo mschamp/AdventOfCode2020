@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using General.Extensions;
-
-namespace _2023
+﻿namespace _2023
 {
 	public class Day7:PuzzleWithObjectArrayInput<Day7.Hand>
 	{

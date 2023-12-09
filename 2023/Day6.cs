@@ -1,6 +1,4 @@
-﻿using System.Text.RegularExpressions;
-
-namespace _2023
+﻿namespace _2023
 {
 	public class Day6 : PuzzleWithStringArrayInput
 	{

@@ -1,11 +1,4 @@
-﻿using General;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _2023
+﻿namespace _2023
 {
 	public class Day8 : PuzzleWithObjectInput<(char[] instructions, Dictionary<string, Day8.NetworkNode> network)>
 	{
@@ -46,7 +39,9 @@ namespace _2023
 			HashSet<string> possibleDestinations = new HashSet<string>(input.network.Keys.Where(x => x[2] == 'Z') );
 
 			Func<long, long, long> lcm = MathFunctions.findLCM();
-			long result = startlocationGhosts.Select(x => (long)StepsToDestination(input.instructions, input.network, x, possibleDestinations)).Aggregate(1L, (product, value) => product = lcm(product, value));
+			long result = startlocationGhosts.Select(x => (long)StepsToDestination(input.instructions, input.network, x, possibleDestinations))
+									.AsParallel()
+									.Aggregate(1L, (product, value) => product = lcm(product, value));
 			return result.ToString();
 		}
 
