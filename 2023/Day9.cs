@@ -1,6 +1,4 @@
-﻿using MoreLinq;
-
-namespace _2023
+﻿namespace _2023
 {
 	public class Day9 : PuzzleWithObjectArrayInput<List<int>>
 	{

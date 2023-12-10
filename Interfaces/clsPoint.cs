@@ -161,9 +161,9 @@ namespace General
             {
                 return false;
             }
-            else if(obj is clsPoint)
+            else if(obj is clsPoint point)
             {
-                return Equals(this, (clsPoint)obj);
+                return Equals(this, point);
             }
             return base.Equals(obj);
         }

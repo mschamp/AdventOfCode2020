@@ -138,7 +138,7 @@ namespace General
 		private static void Solve2023()
 		{
 			List<IAoC> days = [new _2023.Day1(), new _2023.Day2(), new _2023.Day3(), new _2023.Day4(), new _2023.Day5(), new _2023.Day6(),
-			new _2023.Day7(), new _2023.Day8(),	new _2023.Day9()];
+			new _2023.Day7(), new _2023.Day8(),	new _2023.Day9(), new _2023.Day10()];
 
 			Solve(days);
 		}
