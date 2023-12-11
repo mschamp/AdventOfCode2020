@@ -16,7 +16,7 @@
 			IEnumerable<int> diffs = sequence;
 			List<int> lasts = new List<int> { sequence.Last() };
 
-			while (!diffs.All(x=>x==0))
+			while (diffs.Any(x=>x!=0))
 			{
 				IEnumerable<(int First, int Second)> combined = diffs.Zip(diffs.Skip(1));
 				diffs = combined.Select(x=>x.Second-x.First).ToList();

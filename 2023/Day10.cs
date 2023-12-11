@@ -69,15 +69,12 @@ namespace _2023
 				double dx = points[1].X - points[0].X;
 				double dy = points[1].Y - points[0].Y;
 
-				double rx = -dy;
-				double ry = dx;
-				double lx = dy;
-				double ly = -dx;
-
                 foreach (var point in points)
                 {
-					if (!HashLoop.Contains(new clsPoint(point.X + rx, point.Y + ry))) right.Add(new clsPoint(point.X + rx, point.Y + ry));
-					if (!HashLoop.Contains(new clsPoint(point.X + lx, point.Y + ly))) left.Add(new clsPoint(point.X + lx, point.Y + ly));
+					clsPoint pl = new clsPoint(point.X + dy, point.Y -dx);
+					clsPoint pr = new clsPoint(point.X -dy, point.Y + dx);
+					if (!HashLoop.Contains(pr)) right.Add(pr);
+					if (!HashLoop.Contains(pl)) left.Add(pl);
                 }
 
 				
@@ -149,10 +146,9 @@ L7JLJL-JLJLJL--JLJ.L") == "10");
 			string[] lines =RawData.Split(Environment.NewLine);
             for (int y = 0; y < lines.Length; y++)
             {
-				string line = lines[y];
-                for (int x = 0; x < line.Length; x++)
+                for (int x = 0; x < lines[y].Length; x++)
                 {
-					switch (line[x])
+					switch (lines[y][x])
 					{
 						case 'S':
 							Start = new clsPoint(x, y);
