@@ -46,7 +46,7 @@ namespace _2023
 			long sum = 0;
             for (int i = 0; i < points.Count; i++)
             {
-                for (int j = i; j < points.Count; j++)
+                for (int j = i+1; j < points.Count; j++)
                 {
 					sum += DistanceGalaxyPair(points[i], points[j]);
                 }
