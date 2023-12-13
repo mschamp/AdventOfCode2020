@@ -17,7 +17,6 @@ namespace _2023
 		private (int y, int x) GetMirror(Grid grid, int difference)
 		{
 
-			List<int> verts = new List<int>();
 			for (int i = 1; i < grid.Width; i++)
 			{
 				List<string> left = new List<string>();
@@ -30,20 +29,15 @@ namespace _2023
 				{
 					right.Add(grid.getCol(j));
 				}
-				int n = Math.Min(left.Count, right.Count);
-				left = left.GetRange(0, n);
-				right = right.GetRange(0, n);
 				if (GetDifference(left.Zip(right)) == difference)
 				{
-					verts.Add(i);
-					break;
+					return (0, i);
 				}
 			}
 
-				List<int> horizontals = new List<int>();
 				for (int i = 1; i < grid.Height; i++)
 				{
-					List<string> top = new List<string>();
+					List<string> top = new List<string> (); ;
 					List<string> bottom = new List<string>();
 					for (int j = i - 1; j >= 0; j--)
 					{
@@ -53,30 +47,23 @@ namespace _2023
 					{
 						bottom.Add(grid.getRow(j));
 					}
-					int n = Math.Min(top.Count, bottom.Count);
-					top = top.GetRange(0, n);
-					bottom = bottom.GetRange(0, n);
 					if (GetDifference(top.Zip(bottom)) == difference)
 					{
-						horizontals.Add(i);
-						break;
-					}
-
-
-					
+						return (i, 0);
+					}					
 				}
-				return (horizontals.FirstOrDefault(), verts.FirstOrDefault());
+				return (0,0);
 			
 		}
 
 		private int GetDifference(IEnumerable<(string First, string Second)> list)
 		{
 			int count = 0;
-            foreach (var pair in list)
+            foreach ((string First, string Second) in list)
             {
-                for (int i = 0; i < pair.First.Length; i++)
+                for (int i = 0; i < First.Length; i++)
                 {
-					if (pair.First[i] != pair.Second[i]) count++;
+					if (First[i] != Second[i]) count++;
                 }
             }
 			return count;
@@ -130,11 +117,6 @@ namespace _2023
 		public override string SolvePart2(Grid[] input)
 		{
 			return $"{input.Select(x=> GetMirror(x,1)).Sum(m => m.x + m.y * 100)}";
-		}
-
-		private void FixSmudge(Grid x)
-		{
-			
 		}
 
 		public class Grid
