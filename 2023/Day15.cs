@@ -70,17 +70,16 @@ namespace _2023
 				}
 			}
 
-			long result = 0;
+			int result = 0;
 			for (int i = 0;i<256;i++)
 			{
 				for (int j = 0; j<boxes[i].Count;j++)
 				{
-					result += (long)(i+1) * (long)(j+1) * (long)boxes[i][j].value;
+					result += (i+1) * (j+1) * boxes[i][j].value;
 				}
 			}
 
 			return $"{result}";
-			throw new NotImplementedException();
 		}
 
 		public override void Tests()
