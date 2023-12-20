@@ -55,7 +55,17 @@ namespace General
             return input => rgx.IsMatch(input);
         }
 
-        public static Func<string, bool> HeightValidator()
+        public static Func<int,bool>LargerThen(int limit) 
+        {
+            return input => input > limit;
+        }
+
+		public static Func<int, bool> SmallerThen(int limit)
+		{
+			return input => input < limit;
+		}
+
+		public static Func<string, bool> HeightValidator()
         {
             Func<string, bool> cmValidator = NumberValidator(150, 193);
             Func<string, bool> inValidator = NumberValidator(59, 76);
