@@ -13,7 +13,7 @@ namespace _2020
 
         public override string SolvePart1(string[] input)
         {
-            HashSet<(int x,int y)> Blacks = new();
+            HashSet<(int x,int y)> Blacks = [];
 
             foreach (string line in input)
             {
@@ -69,7 +69,7 @@ namespace _2020
 
         public override string SolvePart2(string[] input)
         {
-            HashSet<(int x, int y) > Blacks = new();
+            HashSet<(int x, int y) > Blacks = [];
 
             foreach (string line in input)
             {
@@ -93,8 +93,8 @@ namespace _2020
 
         private HashSet<(int x, int y)> SimulateDay(HashSet<(int x, int y)> Blacks)
         {
-            Dictionary<(int x, int y), int> OnCounter = new();
-            HashSet<(int x, int y)> NewGrid = new();
+            Dictionary<(int x, int y), int> OnCounter = [];
+            HashSet<(int x, int y)> NewGrid = [];
             foreach ((int x, int y) tile in Blacks)
             {
                 NewGrid.Add(tile);

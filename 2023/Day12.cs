@@ -9,7 +9,7 @@
 
 		public override string SolvePart1((string line, int[] counts)[] input)
 		{
-			return $"{input.AsParallel().Sum(x => CalculateOption(x.line, x.counts, 0,0,0, new Dictionary<(int pointer, int PointerCounts, int CurrentLength), long>()))}";
+			return $"{input.AsParallel().Sum(x => CalculateOption(x.line, x.counts, 0,0,0, []))}";
 		}
 
 		private long CalculateOption(string line, int[] counts, int CurrentLength, int pointerLine, int PointerCounts, Dictionary<(int pointer, int PointerCounts, int CurrentLength), long> cache)
@@ -78,7 +78,7 @@
 			long sum = input.AsParallel().Sum(line => CalculateOption(string.Join("?", Enumerable.Repeat(line.line, 5)),
 														Enumerable.Repeat(line.counts, 5).SelectMany(x => x).ToArray(), 
 														0, 0, 0, 
-														new Dictionary<(int pointer, int PointerCounts, int CurrentLength), long>()));
+														[]));
 			
 			return $"{sum}";
 		}

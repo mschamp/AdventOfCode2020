@@ -15,7 +15,7 @@ namespace _2020
         public override string SolvePart1(string input = null)
         {
             long ArrivalTime = long.Parse(input.Split(Environment.NewLine)[0]);
-            Dictionary<long, long> BusDeparts = new();
+            Dictionary<long, long> BusDeparts = [];
             foreach (string bus in input.Split(Environment.NewLine)[1].Split(","))
             {
                 if (bus == "x")
@@ -40,7 +40,7 @@ namespace _2020
         public override string SolvePart2(string input = null)
         {
             Func<long, long,long> lmc = General.MathFunctions.findLCM();
-            List<long> busses = new();
+            List<long> busses = [];
             foreach (string bus in input.Split(Environment.NewLine).Last().Split(","))
             {
                 if (bus == "x")

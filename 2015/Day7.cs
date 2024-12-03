@@ -11,7 +11,7 @@ namespace _2015
 
         public override string SolvePart1(string[] input )
         {
-            Dictionary<string, Gate> wireValues = new();
+            Dictionary<string, Gate> wireValues = [];
             Regex rgx = new(@"(?:(?:(\d+|[a-z]+)\s)?([A-Z]+)\s)?(\d+|[a-z]+)\s->\s([a-z]+)");
             foreach (string instruction in input)
             {
@@ -29,7 +29,7 @@ namespace _2015
 
         public override string SolvePart2(string[] input)
         {
-            Dictionary<string, Gate> wireValues = new();
+            Dictionary<string, Gate> wireValues = [];
             Regex rgx = new(@"(?:(?:(\d+|[a-z]+)\s)?([A-Z]+)\s)?(\d+|[a-z]+)\s->\s([a-z]+)");
             foreach (string instruction in input)
             {

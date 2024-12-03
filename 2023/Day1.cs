@@ -2,7 +2,8 @@
 {
 	public class Day1 : General.PuzzleWithStringArrayInput
 	{
-		Dictionary<string, char> text = new Dictionary<string, char> {
+		Dictionary<string, char> text = new()
+        {
 				{ "one", '1' },
 				{ "two", '2' },
 				{ "three", '3' },
@@ -32,7 +33,7 @@
 
 		private int ExtractNumber(string line, bool includetext)
 		{
-			List<char> numbers = new List<char>();
+			List<char> numbers = [];
 			for (int i = 0; i < line.Length; i++)
 			{
 				if (char.IsDigit(line[i])) numbers.Add(line[i]);

@@ -38,7 +38,7 @@ namespace _2020
             Dictionary<string, string> AllergenIngredient = MatchAllergensIngredients(foods);
 
 
-            List<string> Ordered = new();
+            List<string> Ordered = [];
             foreach (var item in AllergenIngredient.Keys.OrderBy(x => x))
             {
                 Ordered.Add(AllergenIngredient[item]);
@@ -49,8 +49,8 @@ namespace _2020
 
         private Dictionary<string, string> MatchAllergensIngredients(Food[] foods)
         {
-            Dictionary<string, string> AllergenIngredient = new();
-            HashSet<string> ingredients = new();
+            Dictionary<string, string> AllergenIngredient = [];
+            HashSet<string> ingredients = [];
             foreach (Food food in foods)
             {
                 foreach (string allergen in food.Allergens)

@@ -33,7 +33,7 @@
 
 		public override string SolvePart2(string[] input)
 		{
-			Dictionary<int, int>CardWins = new Dictionary<int, int>();
+			Dictionary<int, int>CardWins = [];
 			int[] CardCount = new int[input.Length+1];
 			for (int i = 1; i <= input.Length; i++)
 			{

@@ -7,7 +7,7 @@
 		}
 
 
-		Dictionary<string, int> ValidGameDict = new Dictionary<string, int> { { "red",12}, { "blue", 14 }, { "green", 13 } };
+		Dictionary<string, int> ValidGameDict = new() { { "red",12}, { "blue", 14 }, { "green", 13 } };
 
 		public bool ValidGame(game game)
 		{
@@ -26,7 +26,7 @@
 		public int CalculatePower(game game)
 		{
 
-			Dictionary<string, int> map = new Dictionary<string, int>();
+			Dictionary<string, int> map = [];
 			for (int i = 0; i < game.Turns.Length; i += 1)
 			{
 				string[] stones = game.Turns[i].Split(' ', ',');

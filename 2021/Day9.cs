@@ -14,7 +14,7 @@ namespace _2021
         protected override List<Day9.Position> CastToObject(string RawData)
         {
             string[] lines = RawData.Split(Environment.NewLine);
-            Dictionary<(int, int), Position> grid = new Dictionary<(int, int), Position>();
+            Dictionary<(int, int), Position> grid = [];
             for (int i = 0; i < lines.Length; i++)
             {
                 for (int j = 0; j < lines[0].Length; j++)
@@ -68,7 +68,7 @@ namespace _2021
 
             public void FindPositionsAround(Dictionary<(int,int),Position> grid)
             {
-                positionsAround = new List<Position>();
+                positionsAround = [];
                 if (grid.TryGetValue((X - 1, Y), out Position left)) positionsAround.Add(left);
                 if (grid.TryGetValue((X, Y - 1), out Position above)) positionsAround.Add(above);
                 if (grid.TryGetValue((X + 1, Y), out Position right)) positionsAround.Add(right);

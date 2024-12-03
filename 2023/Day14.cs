@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _2023
+﻿namespace _2023
 {
-	public class Day14 : PuzzleWithObjectInput<Dictionary<(int, int), char>>
+    public class Day14 : PuzzleWithObjectInput<Dictionary<(int, int), char>>
 	{
 		public Day14():base(14,2023)
 		{
@@ -51,8 +45,7 @@ namespace _2023
 			(int limitXMin, int limitXMax) = (0, input.Max(x => x.Key.Item1));
 			(int limitYMin, int limitYMax) = (0, input.Max(x => x.Key.Item2));
 
-			int loop = 0;
-			Dictionary <string,int> cache = new();
+			Dictionary <string,int> cache = [];
 			bool loopDetected = false;
 
             for (int i = 0; i < 1000000000; i++)
@@ -111,7 +104,7 @@ O.#..O.#.#
 
 		protected override Dictionary<(int, int), char> CastToObject(string RawData)
 		{
-			Dictionary<(int, int), char> result = new Dictionary<(int, int), char>();
+			Dictionary<(int, int), char> result = [];
 			string[] lines = RawData.Split(Environment.NewLine);
             for (int y = 0; y < lines.Length; y++)
             {

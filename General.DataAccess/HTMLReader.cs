@@ -27,7 +27,7 @@ namespace General.DataAccess
 					var result = response.Content.ReadAsStringAsync().Result;
 					result= result.Replace("\n",Environment.NewLine);
 					result = result.Trim();
-					return new List<(string,string)>{("",result)};
+					return [("",result)];
 				}
 				else
 				{

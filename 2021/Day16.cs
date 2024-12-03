@@ -115,7 +115,7 @@ namespace _2021
             public int TypeID { get; set; }
             public int Version { get; set; }
             public long LiteralValue { get; set; }
-            public List<Packet> SubPackets = new();
+            public List<Packet> SubPackets = [];
             public long VersionSum => Version + SubPackets.Sum(x => x.VersionSum);
             public long Value => (TypeID) switch
             {

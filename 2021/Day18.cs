@@ -141,10 +141,7 @@ namespace _2021
        private IEnumerable<Fish> IterateTree(Fish Node)
         {
             if (Node is null) return new List<Fish>();
-            List<Fish> result = new List<Fish>();
-            result.AddRange(IterateTree(Node.Left));
-            result.AddRange(IterateTree(Node.Right));
-            result.Add(Node);
+            List<Fish> result = [.. IterateTree(Node.Left), .. IterateTree(Node.Right), Node];
             return result;
         }
 
@@ -171,11 +168,11 @@ namespace _2021
         {
             if (node==null)
             {
-                return new List<Fish>();
+                return [];
             }
             if (node.Value != null)
             {
-                return new List<Fish>() { node};
+                return [node];
             }
 
             return WalkThroughTree(node.Left).Concat(WalkThroughTree(node.Right)).ToList();

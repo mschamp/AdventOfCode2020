@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 
 namespace _2023
 {
-	public class Day19:PuzzleWithObjectInput<(Dictionary<string, Day19.instruction> instruction,List<Day19.material>material)>
+    public class Day19:PuzzleWithObjectInput<(Dictionary<string, Day19.instruction> instruction,List<Day19.material>material)>
 	{
-		private Dictionary<string, int> keyLocation = new Dictionary<string, int> { { "x", 0 }, { "m", 1 }, { "a", 2 }, { "s", 3 } };
+		private Dictionary<string, int> keyLocation = new() { { "x", 0 }, { "m", 1 }, { "a", 2 }, { "s", 3 } };
         public Day19():base(19,2023)
         {
             
@@ -98,7 +93,6 @@ namespace _2023
 						{
 							case "A":
 								return true;
-								break;
 							case "R":
 								return false;
 							default:
@@ -109,8 +103,6 @@ namespace _2023
 					}
 				}
 			}
-
-			return false;
 		}
 
 		public override void Tests()
@@ -179,7 +171,7 @@ hdj{m>838:A,pv}
 		{
             public requirement(string input)
             {
-				Regex rgx = new Regex("(\\w)([<>])(\\d+):(\\w+)");
+				Regex rgx = new("(\\w)([<>])(\\d+):(\\w+)");
 				Match m = rgx.Match(input);
 				if (m.Success)
 				{
@@ -217,7 +209,7 @@ hdj{m>838:A,pv}
 			public material(string input) 
 			{
 				var t = input[1..^1].Split(',');
-				materialValues = new();
+				materialValues = [];
                 foreach (var item in t)
                 {
 					var parts = item.Split('=');

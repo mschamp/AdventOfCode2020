@@ -8,8 +8,8 @@ namespace General
         public static List<T> AstarSolver<T>(IEnumerable<T> start, T goal, Func<T, int> CostFunction) where T : Position
         {
             Queue<T> openSet = new();
-            Dictionary<T, T> cameFrom = new();
-            Dictionary<T, int> gScore = new();
+            Dictionary<T, T> cameFrom = [];
+            Dictionary<T, int> gScore = [];
 
             foreach (T item in start)
             {
@@ -37,7 +37,7 @@ namespace General
                 }
 
             }
-            return new List<T>();
+            return [];
         }
 
         public static List<T> AstarSolver<T>(T start, T goal, Func<T, int> CostFunction) where T : Position
@@ -48,7 +48,7 @@ namespace General
 
             private static List<T> reconstruct_path<T>(Dictionary<T, T> cameFrom, T current)
         {
-            List<T> totalPath = new() { current };
+            List<T> totalPath = [current];
             while (cameFrom.TryGetValue(current, out current))
             {
                 totalPath.Insert(0, current);
@@ -77,7 +77,7 @@ namespace General
 
             public void FindPositionsAround(Dictionary<(int, int), Position> grid, Func<Position, Position, bool> FilterFunction)
             {
-                positionsAround = new List<Position>();
+                positionsAround = [];
                 if (grid.TryGetValue((X - 1, Y), out Position left) && FilterFunction(this, left)) positionsAround.Add(left);
                 if (grid.TryGetValue((X, Y - 1), out Position above) && FilterFunction(this, above)) positionsAround.Add(above);
                 if (grid.TryGetValue((X + 1, Y), out Position right) && FilterFunction(this, right)) positionsAround.Add(right);

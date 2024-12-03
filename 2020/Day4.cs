@@ -58,7 +58,7 @@ iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719") == "4")
 
         protected override IEnumerable<Passport> CastToObject(string RawData)
         {
-            List<Passport> passports = new();
+            List<Passport> passports = [];
             foreach (string item in RawData.Split(Environment.NewLine + Environment.NewLine))
             {
                 passports.Add(new Passport(item));
@@ -68,7 +68,7 @@ iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719") == "4")
 
         public override string SolvePart1(IEnumerable<Passport> input)
         {
-            List<string> Needed = new() { "ecl", "pid", "eyr", "hcl", "byr", "iyr", "hgt" };
+            List<string> Needed = ["ecl", "pid", "eyr", "hcl", "byr", "iyr", "hgt"];
             return input.Count(Passport => Needed.All(item => Passport.Content.ContainsKey(item))).ToString();
         }
 
@@ -95,7 +95,7 @@ iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719") == "4")
         public Passport(string content)
         {
             PrintOriginal = content;
-            Content = new Dictionary<string, string>();
+            Content = [];
             foreach (string item in content.Split())
             {
                 if (!string.IsNullOrEmpty(item))

@@ -4,18 +4,17 @@ using System.Linq;
 
 namespace _2019
 {
-	public class Day13 : General.IAoC
+	public class Day13 : General.abstractPuzzleClass
     {
-        public int Day => 13;
-        public int Year => 2019;
+        public Day13() : base(13, 2019) { }
 
-        public string SolvePart1(string input = null)
+        public override string SolvePart1(string input = null)
         {
             IntcodeComputer computer = new();
             computer.loadProgram(input);
             computer.ExecuteProgram();
             List<long> output = computer.ReadOutputs();
-            List<Tuple<long, long, long>> screen = new();
+            List<Tuple<long, long, long>> screen = [];
             for (int i = 0; i < output.Count; i+=3)
             {
                 screen.Add(new Tuple<long, long, long>(output[i], output[i + 1], output[i + 2]));
@@ -23,7 +22,7 @@ namespace _2019
             return "" + screen.Count(x => x.Item3 == 2);
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string input = null)
         {
             IntcodeComputer computer = new();
             computer.loadProgram(input);
@@ -32,7 +31,7 @@ namespace _2019
             List<long> output;
             long xBall =0;
             long xPaddle = 0;
-            Dictionary<General.clsPoint, long> screen = new();
+            Dictionary<General.clsPoint, long> screen = [];
 
             while (computer.WaitingForInput)
             {
@@ -109,9 +108,9 @@ namespace _2019
 
         }
 
-        public void Tests()
+
+        public override void Tests()
         {
-            
         }
     }
 }

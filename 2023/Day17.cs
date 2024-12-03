@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _2023
+﻿namespace _2023
 {
-	public class Day17 : PuzzleWithObjectArrayInput<int[]>
+    public class Day17 : PuzzleWithObjectArrayInput<int[]>
 	{
         public Day17():base(17,2023)
         {
@@ -18,13 +12,13 @@ namespace _2023
 		}
 
 		int[] directions = [0,1,2,3];
-		List<(int, int)> dirMovement = new List<(int, int)> { (0, 1), (1, 0), (0, -1), (-1, 0) };
+		List<(int, int)> dirMovement = [(0, 1), (1, 0), (0, -1), (-1, 0)];
 		private int AstarSpecial(int[][] input,int MaxDistance, int MinDistance)
 		{
-			Queue<(int, int, int, int)> q = new Queue<(int, int, int, int)>();
+			Queue<(int, int, int, int)> q = new();
 			q.Enqueue((0, 0, 0, -1));
-			HashSet<( int, int, int)> seen = new HashSet<( int, int, int)>();
-			Dictionary<(int,int,int),int> costs = new();
+			HashSet<( int, int, int)> seen = [];
+			Dictionary<(int,int,int),int> costs = [];
 			while (q.TryDequeue(out (int cost, int x, int y, int dd) c))
 			{
 				//if (c.x==input.Length-1 && c.y == input[0].Length-1)return c.cost;

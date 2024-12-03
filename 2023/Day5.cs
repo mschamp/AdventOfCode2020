@@ -10,14 +10,14 @@
 		{
 			string[] parts = input.Split(Environment.NewLine + Environment.NewLine);
 			long[] seeds = parts[0].Split(' ').Skip(1).Select(long.Parse).ToArray();
-			List<ProjectionFunction> functions = new List<ProjectionFunction>();	
+			List<ProjectionFunction> functions = [];	
 
 			for (int i = 1; i < parts.Length; i++)
 			{
 				functions.Add(new ProjectionFunction(parts[i]));
 			}
 
-			List<long> Positions = new List<long>();
+			List<long> Positions = [];
 			foreach (long seed in seeds)
 			{
 				long x = seed;
@@ -35,24 +35,24 @@
 		{
 			string[] parts = input.Split(Environment.NewLine + Environment.NewLine);
 			long[] seeds = parts[0].Split(' ').Skip(1).Select(long.Parse).ToArray();
-			List<(long, long)> SeedRanges = new List<(long, long)>();
+			List<(long, long)> SeedRanges = [];
 
 			for (int i = 0; i < seeds.Length; i+=2)
 			{
 				SeedRanges.Add((seeds[i], seeds[i] + seeds[i + 1]));
 			}
 
-			List<ProjectionFunction> functions = new List<ProjectionFunction>();
+			List<ProjectionFunction> functions = [];
 
 			for (int i = 1; i < parts.Length; i++)
 			{
 				functions.Add(new ProjectionFunction(parts[i]));
 			}
 
-			List<long> PossibleStartLocations = new List<long>();
+			List<long> PossibleStartLocations = [];
 			foreach ((long, long) item in SeedRanges)
 			{
-				List<(long, long)> x = new List<(long, long)> { item };
+				List<(long, long)> x = [item];
 				foreach (ProjectionFunction projection in functions)
 				{
 					x = projection.CalculateMappingRange(x);
@@ -71,7 +71,7 @@
 				Instruction.Skip(1).Select(x=>x.Split(' ').ToArray()).ToList().ForEach(x=> mappings.Add((long.Parse(x[0]), long.Parse(x[1]), long.Parse(x[2]))));
             }
 
-			public List<(long dest,long src,long count)> mappings = new List<(long, long, long)> ();
+			public List<(long dest,long src,long count)> mappings = [];
 
 			public long CalculateMapping(long x)
 			{
@@ -87,12 +87,12 @@
 
 			public List<(long,long)> CalculateMappingRange(IEnumerable<(long start,long end)> x)
 			{
-				Queue<(long start, long end)> Ranges = new Queue<(long start, long end)>(x);
-				List<(long, long)> result = new List<(long, long)>();
+				Queue<(long start, long end)> Ranges = new(x);
+				List<(long, long)> result = [];
 				foreach ((long dest, long src, long count) item in mappings)
 				{
 					long end = item.src + item.count;
-					List<(long, long)> NR = new List<(long, long)>();
+					List<(long, long)> NR = [];
 					while (Ranges.TryDequeue(out (long start,long end) Current))
 					{
 						(long start, long) before = (Current.start, Math.Min(Current.end, item.src));

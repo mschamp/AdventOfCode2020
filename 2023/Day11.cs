@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _2023
+﻿namespace _2023
 {
-	public class Day11 : PuzzleWithObjectInput<(List<(int X, int Y)> points, List<int> emptyRows, List<int> emptyColoms)>
+    public class Day11 : PuzzleWithObjectInput<(List<(int X, int Y)> points, List<int> emptyRows, List<int> emptyColoms)>
 	{
 		public Day11() : base(11, 2023)
 		{
@@ -70,7 +64,7 @@ namespace _2023
 
 		protected override (List<(int X, int Y)> points, List<int> emptyRows, List<int> emptyColoms) CastToObject(string RawData)
 		{
-			List<(int X, int Y)> points = new();
+			List<(int X, int Y)> points = [];
 			
 			string[] lines = RawData.Split(Environment.NewLine);
             for (int y = 0; y < lines.Length; y++)
@@ -81,8 +75,8 @@ namespace _2023
                 }
             }
 
-			List<int> emptyRows = new List<int>(Enumerable.Range(0, lines.Length).Except(points.Select(p => p.Y)));
-			List<int> emptyColoms = new List<int>(Enumerable.Range(0, lines[0].Length).Except(points.Select(p => p.X)));
+			List<int> emptyRows = new(Enumerable.Range(0, lines.Length).Except(points.Select(p => p.Y)));
+			List<int> emptyColoms = new(Enumerable.Range(0, lines[0].Length).Except(points.Select(p => p.X)));
 
             return (points, emptyRows, emptyColoms);
 		}

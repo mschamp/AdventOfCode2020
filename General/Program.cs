@@ -35,8 +35,9 @@ namespace General
 				{ "2020",Solve2020},
 				{ "2021",Solve2021},
 				{ "2022",Solve2022},
-				{ "2023",Solve2023}
-			};
+				{ "2023",Solve2023},
+                { "2024",Solve2024}
+            };
 
             while (true)
             {
@@ -98,7 +99,16 @@ namespace General
 
         private static void Solve2016()
         {
-            List<IAoC> days = [];
+            List<IAoC> days = [new _2016.Day3(),
+                new _2016.Day1(), new _2016.Day2(),new _2016.Day3()];
+
+            Solve(days);
+        }
+
+        private static void Solve2024()
+        {
+            List<IAoC> days = [new _2024.Day4(),
+                new _2024.Day1(), new _2024.Day2(),new _2024.Day3(),new _2024.Day4()];
 
             Solve(days);
         }
@@ -128,7 +138,7 @@ namespace General
 
         private static void Solve2022()
         {
-            List<IAoC> days = [ new _2022.Day1(), new _2022.Day2(), new _2022.Day3(), new _2022.Day4(), new _2022.Day5(),
+            List<IAoC> days = [new _2022.Day12(), new _2022.Day1(), new _2022.Day2(), new _2022.Day3(), new _2022.Day4(), new _2022.Day5(),
             new _2022.Day6(), new _2022.Day7(), new _2022.Day8(), new _2022.Day9(), new _2022.Day10(),
             new _2022.Day11(),new _2022.Day11(),new _2022.Day12(),new _2022.Day12(),new _2022.Day13()];
 
@@ -137,11 +147,11 @@ namespace General
 
 		private static void Solve2023()
 		{
-			List<IAoC> days = [new _2023.Day20(), new _2023.Day1(), new _2023.Day2(), new _2023.Day3(), new _2023.Day4(), new _2023.Day5(), new _2023.Day6(),
+			List<IAoC> days = [new _2023.Day1(), new _2023.Day2(), new _2023.Day3(), new _2023.Day4(), new _2023.Day5(), new _2023.Day6(),
 			new _2023.Day7(), new _2023.Day8(),	new _2023.Day9(), new _2023.Day10(),new _2023.Day11(), new _2023.Day12(),
 			new _2023.Day13(),	new _2023.Day14(),	new _2023.Day15(), new _2023.Day16(),	new _2023.Day17() ,new _2023.Day18(), 
-                new _2023.Day19(), new _2023.Day20()
-			];
+                new _2023.Day19(), new _2023.Day20(), new _2023.Day21(), new _2023.Day22(), new _2023.Day24()
+            ];
 
 			Solve(days);
 		}

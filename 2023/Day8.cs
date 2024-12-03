@@ -36,7 +36,7 @@
 		public override string SolvePart2((char[] instructions, Dictionary<string, NetworkNode> network) input)
 		{
 			IEnumerable<string> startlocationGhosts = input.network.Keys.Where(x => x[2] == 'A');
-			HashSet<string> possibleDestinations = new HashSet<string>(input.network.Keys.Where(x => x[2] == 'Z') );
+			HashSet<string> possibleDestinations = new(input.network.Keys.Where(x => x[2] == 'Z') );
 
 			Func<long, long, long> lcm = MathFunctions.findLCM();
 			long result = startlocationGhosts.Select(x => (long)StepsToDestination(input.instructions, input.network, x, possibleDestinations))

@@ -13,7 +13,7 @@ namespace _2019
 		public string SolvePart1(string input = null)
         {
             string[] textOrbits = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
-            Dictionary<string, Orbit> orbits = new();
+            Dictionary<string, Orbit> orbits = [];
 
             foreach (string text in textOrbits)
             {
@@ -33,7 +33,7 @@ namespace _2019
         public string SolvePart2(string input = null)
         {
             string[] textOrbits = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
-            Dictionary<string, Orbit> orbits = new();
+            Dictionary<string, Orbit> orbits = [];
 
             foreach (string text in textOrbits)
             {
@@ -48,7 +48,7 @@ namespace _2019
                 
             }
 
-            List<Orbit> YouToOrigin = new();
+            List<Orbit> YouToOrigin = [];
             Orbit orbit = orbits["YOU"].Parent;
             while(orbit.Parent != null) //While not in origin
             {

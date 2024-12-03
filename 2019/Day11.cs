@@ -53,8 +53,10 @@ namespace _2019
         {
             direction = General.Direction.Up;
             CurrentPosition = new General.clsPoint(0, 0);
-            paintedPanels = new Dictionary<General.clsPoint, long>();
-            paintedPanels[CurrentPosition]= start;
+            paintedPanels = new Dictionary<General.clsPoint, long>
+            {
+                [CurrentPosition] = start
+            };
             computer = new IntcodeComputer();
             computer.loadProgram(sProgram);
 

@@ -10,7 +10,7 @@ namespace _2015
         public Day6() : base(6, 2015) { }
         public override string SolvePart1(string[] input)
         {
-            HashSet<(int, int)> LampsOn = new();
+            HashSet<(int, int)> LampsOn = [];
             Regex rgx = new(@"([\w\s]*)\s(\d+),(\d+)\sthrough\s(\d+),(\d+)");
 
             foreach (string instruction in input)
@@ -66,7 +66,7 @@ namespace _2015
 
         public override string SolvePart2(string[] input)
         {
-            Dictionary<(int, int),int> LampsOn = new();
+            Dictionary<(int, int),int> LampsOn = [];
             Regex rgx = new(@"([\w\s]*)\s(\d+),(\d+)\sthrough\s(\d+),(\d+)");
 
             foreach (string instruction in input)

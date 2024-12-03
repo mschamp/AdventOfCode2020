@@ -10,8 +10,8 @@ namespace _2022
 
         protected override (folder rootFolder, List<folder> AllFolders) CastToObject(string rawData)
         {
-            List<folder> folders = new List<folder>();
-            folder root = new folder(@"/", null);
+            List<folder> folders = [];
+            folder root = new(@"/", null);
             folders.Add(root);
             folder currentDirectory = null;
 
@@ -48,12 +48,12 @@ namespace _2022
                         }
                         break;
                     case "dir":
-                        folder newFolder = new folder(parts[1], currentDirectory);
+                        folder newFolder = new(parts[1], currentDirectory);
                         currentDirectory.childs.Add(newFolder);
                         folders.Add(newFolder);
                         break;
                     default:
-                        file newfile = new file(long.Parse(parts[0]), parts[1]);
+                        clsFile newfile = new(long.Parse(parts[0]), parts[1]);
                         currentDirectory.childs.Add(newfile);
                         break;
                 }
@@ -137,16 +137,14 @@ $ ls
             public string Name { get; protected set; }
         }
 
-        public class file : Item 
+        public class clsFile : Item 
         {
-            public file (long size, string name )
+            public override long Size { get; }
+            public clsFile (long size, string name)
             {
                 Size = size;
                 Name = name;
-            }
-
-            public override long Size { get; }
-            
+            }            
         }
 
 
@@ -155,7 +153,7 @@ $ ls
             public List<Item> childs;
             public folder(string name, folder parent)
             {
-                childs = new List<Item>();
+                childs = [];
                 Name = name;
                 Parent = parent;
             }

@@ -42,7 +42,7 @@ namespace _2020
 
         private List<(int row, int column)> LoadMonster()
         {
-            List<(int row, int column)> result = new();
+            List<(int row, int column)> result = [];
             string Monster = @"                  # 
 #    ##    ##    ###
  #  #  #  #  #  #   ";
@@ -62,8 +62,7 @@ namespace _2020
 
         private Tile[,] RestorImage(List<Tile> tiles)
         {
-            List<Tile> tilesToMatch = new();
-            tilesToMatch.AddRange(tiles);
+            List<Tile> tilesToMatch = [.. tiles];
             int Size = (int)Math.Sqrt(tiles.Count);
             Tile[,] fullImage = new Tile[Size, Size];
             for (int Row = 0; Row < Size; Row++)
@@ -402,7 +401,7 @@ Tile 3079:
             public Tile(string input)
             {
                 string[] lines = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
-                TouchingTiles = new HashSet<Tile>();
+                TouchingTiles = [];
                 ID = int.Parse(lines[0].Substring(5, 4));
                 image = lines.Skip(1).ToArray();
                 Orientation = 0;

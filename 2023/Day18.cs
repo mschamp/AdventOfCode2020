@@ -2,8 +2,8 @@
 {
 	public class Day18 : PuzzleWithStringArrayInput
 	{
-		Dictionary<string, string> directions = new Dictionary<string, string> { { "0", "R" }, { "1", "D" }, { "2", "L" }, { "3", "U" } };
-		Dictionary<string, (long,long)> motion = new Dictionary<string, (long,long)> { { "R", (0,1) }, { "L", (0,-1)  }, { "U", (-1,0) }, { "D", (1,0) } };
+		Dictionary<string, string> directions = new() { { "0", "R" }, { "1", "D" }, { "2", "L" }, { "3", "U" } };
+		Dictionary<string, (long,long)> motion = new() { { "R", (0,1) }, { "L", (0,-1)  }, { "U", (-1,0) }, { "D", (1,0) } };
         public Day18():base(18,2023)
         {
 			
@@ -12,7 +12,7 @@
         public override string SolvePart1(string[] input)
 		{
 			(long x, long y) = (0, 0);
-			List<(long x, long Y)> borders = new List<(long x, long Y)> { (x, y) };
+			List<(long x, long Y)> borders = [(x, y)];
 			foreach (var item in input)
 			{
 				string[] parts= item.Split(" ");
@@ -40,12 +40,12 @@
 		public override string SolvePart2(string[] input)
 		{
 			(long x, long y) = (0, 0);
-			List<(long x, long Y)> borders = new List<(long x, long Y)> { (x, y) };
+			List<(long x, long Y)> borders = [(x, y)];
 			foreach (var item in input)
 			{
 				string color = item.Split(" ")[2];
 				long distance = long.Parse(color[2..^2], System.Globalization.NumberStyles.HexNumber);
-				(long dx, long dy) = motion[directions[new string(color[^2..^1])]];
+				(long dx, long dy) = motion[directions[new string(color.AsSpan()[^2..^1])]];
 				y = y + distance * dy;
 				x = x + distance * dx;
 				borders.Add((x, y));

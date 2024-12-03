@@ -19,7 +19,7 @@ namespace _2015
 
         private List<int> FindNumbers(string input)
         {
-            List<int> result = new();
+            List<int> result = [];
             System.Text.RegularExpressions.Regex regex = new(@"-?\d+");
             System.Text.RegularExpressions.MatchCollection matches = regex.Matches(input);
 

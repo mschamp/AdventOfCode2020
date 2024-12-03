@@ -12,7 +12,7 @@ namespace _2022
 
         protected List<Packet> ParsePacket(string input)
         {
-            List<Packet> packets = new List<Packet>();
+            List<Packet> packets = [];
             for (int i = 0; i < input.Length; i++)
             {
                 switch (input[i])
@@ -47,7 +47,7 @@ namespace _2022
         public class Packet:IComparable<Packet>, IEqualityComparer<Packet>
         {
             public bool List { get; set; } = true;
-            public List<Packet> Parts { get; set; } = new();
+            public List<Packet> Parts { get; set; } = [];
             public int Value { get; set; } = 0;
             public string StringRepresentation { get; set; }
 
@@ -160,7 +160,7 @@ namespace _2022
 
         public override string SolvePart2((Packet left, Packet right)[] input)
         {
-            List<Packet> AllPackets = new List<Packet>();
+            List<Packet> AllPackets = [];
 
             Packet p1 = ParsePacket("[[2]]").First();
             Packet p2 = ParsePacket("[[6]]").First();
@@ -210,7 +210,7 @@ namespace _2022
                 }
                 else
                 {
-                    List<Packet> tmp = new();
+                    List<Packet> tmp = [];
                     bool res;
                     if (!left[i].List)
                     {

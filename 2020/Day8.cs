@@ -105,7 +105,7 @@ acc +6") == "8");
         {
             Instructionpointer = 0;
             Accumulator = 0;
-            ExecutedInstructions = new List<long>();
+            ExecutedInstructions = [];
             while (!ExecutedInstructions.Contains(Instructionpointer) && instructions.Length> Instructionpointer)
             {
                 ExecutedInstructions.Add(Instructionpointer);

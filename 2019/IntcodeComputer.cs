@@ -17,7 +17,7 @@ namespace _2019
             positionPointer = 0;
             relativeBase = 0;
             inputs = new Queue<long>();
-            outputs = new List<long>();
+            outputs = [];
             WaitingForInput = false;
         }
 
@@ -167,7 +167,7 @@ namespace _2019
         }
         public IntCodeProgram(string intCode)
         {
-            _oProgram = new List<long>();
+            _oProgram = [];
             foreach (string item in intCode.Split(","))
             {
                 _oProgram.Add(long.Parse(item));

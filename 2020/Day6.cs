@@ -31,10 +31,10 @@ b
 c
 
 ") == "3");
-            Debug.Assert(SolvePart1(new Group[] { new Group(@"ab
+            Debug.Assert(SolvePart1(new Group[] { new(@"ab
 ac") }) == "3");
 
-            Debug.Assert(SolvePart1(new Group[] { new Group(@"a
+            Debug.Assert(SolvePart1(new Group[] { new(@"a
 a
 a
 a") }) == "1");
@@ -81,7 +81,7 @@ b") == "6");
         int people = 0;
         public Group(string input)
         {
-            answers = new List<char>();
+            answers = [];
             foreach (var item in input.Split(Environment.NewLine))
             {
                 answers.AddRange(item.ToCharArray());
@@ -101,7 +101,7 @@ b") == "6");
 
         public int uniqueQuestionsEveryone()
         {
-            Dictionary<char, int> LetterCounts = new();
+            Dictionary<char, int> LetterCounts = [];
             foreach (char ch in answers)
             {
                 int Count;

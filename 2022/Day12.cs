@@ -42,7 +42,7 @@ abdefghi") == "29");
         protected override (Dictionary<(int, int), Astar.Position> grid, (int, int) start, (int, int) end) CastToObject(string RawData)
         {
             string[] lines = RawData.Split(Environment.NewLine);
-            Dictionary<(int, int), Astar.Position> grid = new Dictionary<(int, int), Astar.Position>();
+            Dictionary<(int, int), Astar.Position> grid = [];
             (int, int) start = (0,0);
             (int,int) end = (0, 0);
 

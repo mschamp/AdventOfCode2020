@@ -43,7 +43,7 @@ namespace _2020
         {
 
             string[] rows = input.Split(Environment.NewLine);
-            CubesOn = new HashSet<(int x, int y, int z)>();
+            CubesOn = [];
             for (int x = 0; x < rows.Length; x++)
             {
                 for (int y = 0; y < rows[x].Length; y++)
@@ -77,13 +77,13 @@ namespace _2020
 
         public HashSet<(int x, int y, int z)> ExecuteCycle()
         {
-            Dictionary<(int x, int y, int z), int> OnCounter = new();
+            Dictionary<(int x, int y, int z), int> OnCounter = [];
             foreach ((int x, int y, int z) cube in CubesOn)
             {
                 GetNeightbours(cube, OnCounter);
             }
 
-            HashSet<(int x, int y, int z)> NewCubesOn = new();
+            HashSet<(int x, int y, int z)> NewCubesOn = [];
             foreach (KeyValuePair<(int x, int y, int z), int> item in OnCounter)
             {
                 if (item.Value==3 ||
@@ -117,7 +117,7 @@ namespace _2020
         {
 
             string[] rows = input.Split(Environment.NewLine);
-            CubesOn = new HashSet<(int x, int y, int z, int w)>();
+            CubesOn = [];
             for (int x = 0; x < rows.Length; x++)
             {
                 for (int y = 0; y < rows[x].Length; y++)
@@ -155,13 +155,13 @@ namespace _2020
 
         public HashSet<(int x, int y, int z, int w)> ExecuteCycle()
         {
-            Dictionary<(int x, int y, int z, int w), int> OnCounter = new();
+            Dictionary<(int x, int y, int z, int w), int> OnCounter = [];
             foreach ((int x, int y, int z, int w) cube in CubesOn)
             {
                 GetNeightbours(cube, OnCounter);
             }
 
-            HashSet<(int x, int y, int z, int w)> NewCubesOn = new();
+            HashSet<(int x, int y, int z, int w)> NewCubesOn = [];
             foreach (KeyValuePair<(int x, int y, int z, int w), int> item in OnCounter)
             {
                 if (item.Value == 3 ||

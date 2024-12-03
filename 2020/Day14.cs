@@ -13,7 +13,7 @@ namespace _2020
         public override string SolvePart1(string[] input)
         {
             Func<string, long> FindMemory = GetMemoryAddress();
-            Dictionary<long, long> Memory = new();
+            Dictionary<long, long> Memory = [];
             string Mask="";
             foreach (var item in input)
             {
@@ -111,7 +111,7 @@ namespace _2020
         public override string SolvePart2(string[] input)
         {
             Func<string, long> FindMemory = GetMemoryAddress();
-            Dictionary<long, long> Memory = new();
+            Dictionary<long, long> Memory = [];
             string Mask = "";
             foreach (var item in input)
             {
@@ -138,7 +138,7 @@ namespace _2020
 
         private long[] GetAddresses(string Address)
         {
-            List<long> addresses = new();
+            List<long> addresses = [];
             foreach (var item in MakeCombinations(Address))
             {
                 addresses.Add(Convert.ToInt64(item, 2));
@@ -154,7 +154,7 @@ namespace _2020
             }
 
 
-            List<string> NewAddresses = new();
+            List<string> NewAddresses = [];
             int loc = Addresses.IndexOf("X");
             NewAddresses.AddRange(MakeCombinations(new StringBuilder(Addresses) { [loc] = '1' }.ToString()));
             NewAddresses.AddRange(MakeCombinations(new StringBuilder(Addresses) { [loc] = '0' }.ToString()));

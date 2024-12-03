@@ -1,9 +1,4 @@
 ﻿using MoreLinq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _2023
 {
@@ -54,7 +49,8 @@ namespace _2023
 			int low_pulses = 0;
 			int high_pulses = 0;
 			Dictionary<string, Module> modules = input.ToDictionary(x => x.label);
-			Dictionary<string, int> counts = ((Conjunction)modules["ft"]).inputModules.ToDictionary(x => x, _ => 0);
+			Module end = modules.First(x => x.Value.destinations.Contains("rx")).Value;
+			Dictionary<string, int> counts = ((Conjunction)end).inputModules.ToDictionary(x => x, _ => 0);
 			int pulse = 0;
 			while (counts.Values.Any(x=>x==0))
 			{
@@ -65,18 +61,18 @@ namespace _2023
 			}
 			Func<long, long, long> LCM = MathFunctions.findLCM();
 
-			return $"{counts.Values.Aggregate(1l,(lcm,x)=>LCM(lcm,x))}";
+			return $"{counts.Values.Aggregate(1L,(lcm,x)=>LCM(lcm,x))}";
 		}
 
 		private void Pulse(ref int low_pulses,
 						   ref int high_pulses,
 						   Dictionary<string, Module> modules,
 						   int pulse,
-						   Dictionary<string, int> counts = null
+						   Dictionary<string, int>? counts = null
 						   )
 		{
 
-			Queue<(bool, string, string)> signalQueue = new Queue<(bool, string, string)>();
+			Queue<(bool, string, string)> signalQueue = new();
 			signalQueue.Enqueue((false, "button", "broadcaster"));
 			low_pulses += 1;
 
@@ -118,7 +114,7 @@ namespace _2023
 			public abstract bool? ProcessSignal(string src, bool Value);
 
             public string label { get; protected set; }
-			public List<string> destinations { get; protected set; } = new();
+			public List<string> destinations { get; protected set; } = [];
 			public bool output { get; protected set; } = false;
 		}
 

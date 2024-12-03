@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _2023
+﻿namespace _2023
 {
-	public class Day10 : PuzzleWithObjectInput<(clsPoint start, Dictionary<clsPoint, clsPoint[]> path)>
+    public class Day10 : PuzzleWithObjectInput<(clsPoint start, Dictionary<clsPoint, clsPoint[]> path)>
 	{
 		public Day10() : base(10, 2023)
 		{
@@ -20,8 +14,8 @@ namespace _2023
 		private List<clsPoint> getLoop(clsPoint start, Dictionary<clsPoint, clsPoint[]> path)
 		{
 			clsPoint Current = start;
-			HashSet<clsPoint> Checked = new HashSet<clsPoint>();
-			List<clsPoint> Loop = new List<clsPoint>();
+			HashSet<clsPoint> Checked = [];
+			List<clsPoint> Loop = [];
 
 			while(!Checked.Contains(Current))
 			{
@@ -40,7 +34,7 @@ namespace _2023
 
 		private int FillArea(List<clsPoint> Loop, Queue<clsPoint> ToCheck, double MaxX, double MaxY)
 		{
-			HashSet<clsPoint> Checked = new HashSet<clsPoint>(Loop);
+			HashSet<clsPoint> Checked = new(Loop);
 			while (ToCheck.TryDequeue(out clsPoint point))
 			{
 				if (point.X < 0 || point.Y < 0) continue;
@@ -59,9 +53,9 @@ namespace _2023
 		public override string SolvePart2((clsPoint start, Dictionary<clsPoint, clsPoint[]> path) input)
 		{
 			List<clsPoint> Loop = getLoop(input.start, input.path);
-			HashSet<clsPoint> HashLoop = new HashSet<clsPoint>(Loop);
-			HashSet<clsPoint> left = new HashSet<clsPoint>();
-			HashSet<clsPoint> right = new HashSet<clsPoint>();
+			HashSet<clsPoint> HashLoop = new(Loop);
+			HashSet<clsPoint> left = [];
+			HashSet<clsPoint> right = [];
 
             for (int i = 0; i < Loop.Count; i++)
             {
@@ -71,8 +65,8 @@ namespace _2023
 
                 foreach (var point in points)
                 {
-					clsPoint pl = new clsPoint(point.X + dy, point.Y -dx);
-					clsPoint pr = new clsPoint(point.X -dy, point.Y + dx);
+					clsPoint pl = new(point.X + dy, point.Y -dx);
+					clsPoint pr = new(point.X -dy, point.Y + dx);
 					if (!HashLoop.Contains(pr)) right.Add(pr);
 					if (!HashLoop.Contains(pl)) left.Add(pl);
                 }
@@ -142,7 +136,7 @@ L7JLJL-JLJLJL--JLJ.L") == "10");
 	protected override (clsPoint start, Dictionary<clsPoint, clsPoint[]> path) CastToObject(string RawData)
 		{
 			clsPoint Start = null;
-			Dictionary<clsPoint, clsPoint[]> path = new Dictionary<clsPoint, clsPoint[]>(); ;
+			Dictionary<clsPoint, clsPoint[]> path = []; ;
 			string[] lines =RawData.Split(Environment.NewLine);
             for (int y = 0; y < lines.Length; y++)
             {

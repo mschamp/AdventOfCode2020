@@ -14,7 +14,7 @@ namespace _2019
 
         public string SolvePart1(string input = null)
         {
-            List<Moon> moons = new();
+            List<Moon> moons = [];
             int loops = 0;
             foreach (string line in input.Split(Environment.NewLine))
             {
@@ -46,8 +46,8 @@ namespace _2019
 
         public string SolvePart2(string input = null)
         {
-            List<Moon> moonsOriginal = new();
-            List<Moon> moons = new();
+            List<Moon> moonsOriginal = [];
+            List<Moon> moons = [];
             foreach (string line in input.Split(Environment.NewLine))
             {
                 if (line.StartsWith("<"))

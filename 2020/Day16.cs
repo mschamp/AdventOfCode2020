@@ -16,9 +16,9 @@ namespace _2020
         protected override (List<TicketField> fields, List<string[]> Tickets, string[] YourTicket) CastToObject(string RawData)
         {
             string[] inputParts = RawData.Split(Environment.NewLine + Environment.NewLine);
-            List<TicketField> fields = new();
+            List<TicketField> fields = [];
             string[] YourTicket = inputParts[1].Split(Environment.NewLine)[1].Split(",");
-            List<string[]> Tickets = new();
+            List<string[]> Tickets = [];
             Regex rgxfields = new(@"(\w+\s?\w*):\s(\d+)-(\d+)\sor\s(\d+)-(\d+)");
 
             foreach (string item in inputParts[0].Split(Environment.NewLine))
@@ -70,8 +70,7 @@ namespace _2020
             TicketField[] AssignedFiels = new TicketField[input.Tickets.First().Length];
             while (AssignedFiels.Contains(null))
             {
-                List<TicketField> ToVerify = new();
-                ToVerify.AddRange(input.fields);
+                List<TicketField> ToVerify = [.. input.fields];
                 for (int k = 0; k < AssignedFiels.Length; k++)
                 {
                     ToVerify.Remove(AssignedFiels[k]);
@@ -79,7 +78,7 @@ namespace _2020
 
                 for (int i = 0; i < input.Tickets.First().Length; i++)
                 {
-                    List<TicketField> Options = new();
+                    List<TicketField> Options = [];
                     for (int k = 0; k < ToVerify.Count; k++)
                     {
                         if (ValidTickets.All(x => ToVerify[k].Valid(x[i])) && ToVerify[k].Valid(input.YourTicket[i]))
@@ -125,7 +124,7 @@ nearby tickets:
 
     public class TicketField
     {
-        List<Func<string, bool>> Validators = new();
+        List<Func<string, bool>> Validators = [];
         public TicketField(string name, int min, int max)
         {
             Name = name;

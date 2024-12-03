@@ -84,7 +84,7 @@ namespace _2021
 
             public List<General.clsPoint> PointsOnLine()
             {
-                List<General.clsPoint> points = new();
+                List<General.clsPoint> points = [];
                     General.clsPoint Huidig = start;
                     int DeltaX = Math.Sign(end.X - start.X);
                     int DeltaY = Math.Sign(end.Y - start.Y);

@@ -21,14 +21,14 @@ namespace _2021
 
             Func<Astar.Position, int> CostFunction = s => s.Value;
 
-            List<Astar.Position> Path = General.Astar.AstarSolver(start, goal, CostFunction);
+            List<Astar.Position> Path = Astar.AstarSolver(start, goal, CostFunction);
 
             return (Path.Sum(x => x.Value) - start.Value).ToString();
         }
 
         public override string SolvePart2(Dictionary<(int, int), Astar.Position> input)
         {
-            List<Astar.Position> positions = new();
+            List<Astar.Position> positions = [];
             
             int MaxX = input.Values.Select(x => x.X).Distinct().Count();
             int MaxY = input.Values.Select(x => x.Y).Distinct().Count();
@@ -50,7 +50,7 @@ namespace _2021
 
             Func<Astar.Position, int> CostFunction = s => s.Value;
 
-            List<Astar.Position> Path = General.Astar.AstarSolver(start, goal, CostFunction);
+            List<Astar.Position> Path = Astar.AstarSolver(start, goal, CostFunction);
 
             return (Path.Sum(x => x.Value) - start.Value).ToString();
         }
@@ -98,7 +98,7 @@ namespace _2021
         protected override Dictionary<(int, int), Astar.Position> CastToObject(string RawData)
         {
             string[] lines = RawData.Split(Environment.NewLine);
-            Dictionary<(int, int), Astar.Position> grid = new Dictionary<(int, int), Astar.Position>();
+            Dictionary<(int, int), Astar.Position> grid = [];
             for (int i = 0; i < lines.Length; i++)
             {
                 for (int j = 0; j < lines[0].Length; j++)

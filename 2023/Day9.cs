@@ -14,7 +14,7 @@
 		private int getNext(IEnumerable<int> sequence)
 		{
 			IEnumerable<int> diffs = sequence;
-			List<int> lasts = new List<int> { sequence.Last() };
+			List<int> lasts = [sequence.Last()];
 
 			while (diffs.Any(x=>x!=0))
 			{

@@ -9,7 +9,7 @@ namespace _2015
         public Day3() : base(3, 2015) { }
         public override string SolvePart1(string input)
         {
-            HashSet<General.clsPoint> VisitedHouses = new();
+            HashSet<General.clsPoint> VisitedHouses = [];
             General.clsPoint Current = new(0, 0);
             VisitedHouses.Add(Current);
 
@@ -23,7 +23,7 @@ namespace _2015
 
         public override string SolvePart2(string input)
         {
-            HashSet<General.clsPoint> VisitedHouses = new();
+            HashSet<General.clsPoint> VisitedHouses = [];
             General.clsPoint Santa = new(0, 0);
             General.clsPoint Robot = new(0, 0);
             VisitedHouses.Add(Santa);

@@ -23,7 +23,7 @@ namespace _2021
 
         public override string SolvePart1((string, Dictionary<string, string[]>) input)
         {
-            Dictionary<string, long> pairs = new();
+            Dictionary<string, long> pairs = [];
             for (int i = 0; i < input.Item1.Length-1; i++)
             {
                 pairs.Add(input.Item1.Substring(i, 2), 1);
@@ -41,7 +41,7 @@ namespace _2021
 
         private Dictionary<char,long> CountLetter(Dictionary<string, long> pairs, string original)
         {
-            Dictionary<char, long> result = new();
+            Dictionary<char, long> result = [];
             foreach (var pair in pairs)
             {
                 if (!result.ContainsKey(pair.Key[0])) result.Add(pair.Key[0], 0);
@@ -55,7 +55,7 @@ namespace _2021
 
         private Dictionary<string, long> Step(Dictionary<string, long> pairs, Dictionary<string, string[]> rules)
         {
-            Dictionary<string, long> result = new();
+            Dictionary<string, long> result = [];
 
             foreach (var pair in pairs)
             {
@@ -71,7 +71,7 @@ namespace _2021
 
         public override string SolvePart2((string, Dictionary<string, string[]>) input)
         {
-            Dictionary<string, long> pairs = new();
+            Dictionary<string, long> pairs = [];
             for (int i = 0; i < input.Item1.Length - 1; i++)
             {
                 pairs.Add(input.Item1.Substring(i, 2), 1);

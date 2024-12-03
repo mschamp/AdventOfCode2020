@@ -23,7 +23,7 @@ namespace _2020
         {
             int Counter = 0;
             int LastNumber = 0;
-            Dictionary<int, int> Numbers = new();
+            Dictionary<int, int> Numbers = [];
             foreach (var item in input.Split(","))
             {
                 Counter++;

@@ -13,10 +13,10 @@ namespace General.DataAccess
 
 		public bool TryLoadPuzzleInput(int year, int day, string user, out IList<(string,string)> PuzzleInput)
 		{
-			PuzzleInput = new List<(string,string)>();
+			PuzzleInput = [];
 			bool found = false;
 
-			using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString()))
+			using (SQLiteConnection conn = new(GetConnectionString()))
 			{
 				SQLiteDataReader SQLite_datareader;
 				SQLiteCommand SQLite_cmd;
@@ -41,10 +41,10 @@ namespace General.DataAccess
 
 		public bool TryLoadPuzzleInputAllUsers(int year, int day, out IList<(string, string)> PuzzleInput)
 		{
-			PuzzleInput = new List<(string, string)>();
+			PuzzleInput = [];
 			bool found = false;
 
-			using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString()))
+			using (SQLiteConnection conn = new(GetConnectionString()))
 			{
 				SQLiteDataReader SQLite_datareader;
 				SQLiteCommand SQLite_cmd;
@@ -68,9 +68,8 @@ namespace General.DataAccess
 
 		public void StorePuzzleInput(Interfaces.PuzzleData puzzleData)
 		{
-			using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString()))
+			using (SQLiteConnection conn = new(GetConnectionString()))
 			{
-				SQLiteDataReader SQLite_datareader;
 				SQLiteCommand SQLite_cmd;
 				SQLite_cmd = conn.CreateCommand();
 				SQLite_cmd.CommandText = "insert into puzzleInputs values (@year,@day,@user,@input)";

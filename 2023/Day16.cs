@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Numerics;
 
 namespace _2023
 {
-	public class Day16 : PuzzleWithObjectInput<Dictionary<Complex, char>>
+    public class Day16 : PuzzleWithObjectInput<Dictionary<Complex, char>>
 	{
-		Complex[] directions = new Complex[] { new Complex(1, 0), new Complex(-1, 0), new Complex(0, -1), new Complex(0, 1) };
+		Complex[] directions = new Complex[] { new(1, 0), new(-1, 0), new(0, -1), new(0, 1) };
 
 		public Day16():base(16,2023)
         {
@@ -49,7 +43,7 @@ namespace _2023
 
 		private int CountEnergized(Queue<(Complex, Complex)> todo, Dictionary<Complex, char> grid)
 		{
-			HashSet<(Complex, Complex)> energized = new ();
+			HashSet<(Complex, Complex)> energized = [];
 			while(todo.TryDequeue(out (Complex point, Complex direction) current))
 			{
 				 while (!energized.Contains(current))
@@ -108,7 +102,7 @@ namespace _2023
 
 		protected override Dictionary<Complex, char> CastToObject(string RawData)
 		{
-			Dictionary<Complex, char> result = new();
+			Dictionary<Complex, char> result = [];
 			string[] lines = RawData.Split(Environment.NewLine);
             for (int y = 0; y < lines.Length; y++)
             {

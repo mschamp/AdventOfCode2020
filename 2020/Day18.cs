@@ -13,7 +13,7 @@ namespace _2020
 
         public override string SolvePart1(string[] input)
         {
-            List<long> Results = new();
+            List<long> Results = [];
             foreach (string item in input)
             {
                 Results.Add(SolveEquation1(item.Replace(" ","")));
@@ -79,7 +79,7 @@ namespace _2020
 
         public override string SolvePart2(string[] input)
         {
-            List<long> Results = new();
+            List<long> Results = [];
             foreach (string item in input)
             {
                 Results.Add(SolveEquation2(item.Replace(" ", "")));

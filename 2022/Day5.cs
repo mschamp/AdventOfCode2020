@@ -19,7 +19,7 @@ namespace _2022
 
             for (int i = 0; i < positions.Length; i++)
             {
-                positions[i] = new List<char>();
+                positions[i] = [];
             }
 
             for (int i = 0; i < startPositions.Length - 1; i++)

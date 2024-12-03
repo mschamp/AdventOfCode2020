@@ -37,7 +37,7 @@ namespace _2020
         {
             for (int i = 1; i < inputs.Length; i++)
             {
-                List<long> Values = new() { inputs[i] };
+                List<long> Values = [inputs[i]];
                 while (Values.Sum()<sum)
                 {
                     for (int j=1; j< inputs.Length-i; j++)
@@ -110,7 +110,7 @@ namespace _2020
 			{
 				store = 5;
 			}
-			List<long> values = new();
+			List<long> values = [];
 
             return "" + findInvalidNumber(ref values, store, input);
         }
@@ -128,7 +128,7 @@ namespace _2020
 				store = 5;
 			}
             
-            List<long> values = new();
+            List<long> values = [];
 
             List<long> set = FindContinguousSet(findInvalidNumber(ref values, store, input), input);
 

@@ -14,7 +14,7 @@ namespace _2021
         protected override List<Day11.Octopus> CastToObject(string RawData)
         {
             string[] lines = RawData.Split(Environment.NewLine);
-            Dictionary<(int, int), Octopus> grid = new Dictionary<(int, int), Octopus>();
+            Dictionary<(int, int), Octopus> grid = [];
             for (int i = 0; i < lines.Length; i++)
             {
                 for (int j = 0; j < lines[0].Length; j++)
@@ -42,7 +42,7 @@ namespace _2021
         private int RunStep(List<Octopus> octopi)
         {
             octopi.ForEach(x => x.IncreaseEnergy());
-            HashSet<Octopus> Flashed = new();
+            HashSet<Octopus> Flashed = [];
 
             while(octopi.Where(x => x.EnergyLevel>9).Except(Flashed).Any())
             {
@@ -123,7 +123,7 @@ namespace _2021
 
             internal void FindPositionsAround(Dictionary<(int, int), Octopus> grid)
             {
-                positionsAround = new List<Octopus>();
+                positionsAround = [];
                 if (grid.TryGetValue((X - 1, Y), out Octopus left)) positionsAround.Add(left);
                 if (grid.TryGetValue((X, Y - 1), out Octopus above)) positionsAround.Add(above);
                 if (grid.TryGetValue((X + 1, Y), out Octopus right)) positionsAround.Add(right);

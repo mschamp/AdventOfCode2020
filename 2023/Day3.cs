@@ -46,14 +46,14 @@
 
 		protected override (List<Number> numbers, List<Symbol> symbols) CastToObject(string RawData)
 		{
-			List<Number> numbers = new List<Number>();
-			List<Symbol> symbols = new List<Symbol>();
+			List<Number> numbers = [];
+			List<Symbol> symbols = [];
 			string[] input = RawData.Split(Environment.NewLine);
 
 			for (int row = 0; row < input.Length; row++)
 			{
-				Number currentNumber = new Number();
-				List<char> digits = new List<char>();
+				Number currentNumber = new();
+				List<char> digits = [];
 
 				for (int col = 0; col < input[row].Length; col++)
 				{

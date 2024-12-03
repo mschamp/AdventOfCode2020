@@ -11,8 +11,8 @@ namespace _2020
         public Day7() : base(7, 2020) { }
         protected override (List<Bag>, Dictionary<string, Bag>) CastToObject(string RawData)
         {
-            Dictionary<string, Bag> bags = new();
-            List<Bag> Outer = new();
+            Dictionary<string, Bag> bags = [];
+            List<Bag> Outer = [];
             Regex rgx = new(@"(\d+)?\s?(\w+\s\w+)\sbags?");
             foreach (string outer in RawData.Split(Environment.NewLine))
             {
@@ -77,7 +77,7 @@ dark violet bags contain no other bags.") == "126");
         {
             public Bag(string color)
             {
-                Content = new Dictionary<Bag, int>();
+                Content = [];
                 Color = color;
             }
 

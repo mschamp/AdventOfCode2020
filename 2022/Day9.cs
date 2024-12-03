@@ -31,7 +31,7 @@ namespace _2022
 
         private void FollowInstructions(string[] input, int length, out HashSet<General.clsPoint> VisitedPositions)
         {
-            VisitedPositions = new HashSet<General.clsPoint>();
+            VisitedPositions = [];
             General.clsPoint[] knots = new clsPoint[length];
             for (int i = 0; i < length; i++)
             {

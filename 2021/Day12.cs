@@ -13,7 +13,7 @@ namespace _2021
         }
         protected override Dictionary<string, Cave> CastToObject(string RawData)
         {
-            Dictionary<string, Cave> caves = new();
+            Dictionary<string, Cave> caves = [];
             foreach (string line in RawData.Split(Environment.NewLine))
             {
                 IEnumerable< Cave> parts = line.Split("-").Select(x => GetOrCreateCave(x, caves));
@@ -184,7 +184,7 @@ start-RW") == "3509");
             {
                 this.Name = Name;
                 IsBigCave = char.IsUpper(Name[0]);
-                ConnectedCaves = new List<Cave>();
+                ConnectedCaves = [];
             }
 
             public string Name { get; set; }

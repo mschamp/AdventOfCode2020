@@ -1,4 +1,5 @@
-﻿using System;
+﻿using General;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -6,14 +7,13 @@ using System.Text.RegularExpressions;
 
 namespace _2019
 {
-	public class Day14 : General.IAoC
+	public class Day14 : abstractPuzzleClass
     {
-        public int Day => 14;
-        public int Year => 2019;
+        public Day14() : base(14, 2019) { }
 
-        public string SolvePart1(string input = null)
+        public override string SolvePart1(string input = null)
         {
-            Dictionary<string, reaction> reactions = new();
+            Dictionary<string, reaction> reactions = [];
             Regex rgx = new(@"(\d+)\s(\w+)");
             foreach (string outer in input.Split(Environment.NewLine))
             {
@@ -44,7 +44,7 @@ namespace _2019
         public long requiredOres(Dictionary<reaction, long> chem_needed)
         {
             long ore = 0;
-            Dictionary<reaction, long> chem_available = new();
+            Dictionary<reaction, long> chem_available = [];
             while (chem_needed.Count>0)
             {
                 KeyValuePair<reaction, long> Processing = chem_needed.First();
@@ -99,9 +99,9 @@ namespace _2019
             return ore;
         }
 
-        public string SolvePart2(string input = null)
+        public override string SolvePart2(string input = null)
         {
-            Dictionary<string, reaction> reactions = new();
+            Dictionary<string, reaction> reactions = [];
             Regex rgx = new(@"(\d+)\s(\w+)");
             foreach (string outer in input.Split(Environment.NewLine))
             {
@@ -156,7 +156,7 @@ namespace _2019
 
         }
 
-        public void Tests()
+        public override void Tests()
         {
             Debug.Assert(SolvePart1(@"10 ORE => 10 A
 1 ORE => 1 B
@@ -261,7 +261,7 @@ namespace _2019
      {
         public reaction(string result)
         {
-            Reagentia = new Dictionary<reaction, int>();
+            Reagentia = [];
             Result = result;
 
         }

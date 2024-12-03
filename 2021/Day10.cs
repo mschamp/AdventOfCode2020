@@ -11,7 +11,7 @@ namespace _2021
 
         }
 
-        private Dictionary<char, char> brackets = new Dictionary<char, char>() { { '(', ')' }, { '[', ']' }, { '{', '}' }, { '<', '>' } };
+        private Dictionary<char, char> brackets = new() { { '(', ')' }, { '[', ']' }, { '{', '}' }, { '<', '>' } };
 
         public override string SolvePart1(string[] input)
         {
@@ -39,7 +39,7 @@ namespace _2021
         public override string SolvePart2(string[] input)
         {
             Dictionary<char, int> points = new() { { '(', 1 }, { '[', 2 }, { '{', 3 }, { '<', 4 } };
-            List<long> scores = new ();
+            List<long> scores = [];
             foreach (string line in input)
             {
                 Stack<char> symbols = new ();

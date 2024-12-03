@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
-
-namespace _2023
+﻿namespace _2023
 {
-	public class Day13 : PuzzleWithObjectArrayInput<Day13.Grid>
+    public class Day13 : PuzzleWithObjectArrayInput<Day13.Grid>
 	{
 		public Day13() : base(13, 2023)
 		{
@@ -19,8 +12,8 @@ namespace _2023
 
 			for (int i = 1; i < grid.Width; i++)
 			{
-				List<string> left = new List<string>();
-				List<string> right = new List<string>();
+				List<string> left = [];
+				List<string> right = [];
 				for (int j = i - 1; j >= 0; j--)
 				{
 					left.Add(grid.getCol(j));
@@ -37,8 +30,8 @@ namespace _2023
 
 				for (int i = 1; i < grid.Height; i++)
 				{
-					List<string> top = new List<string> (); ;
-					List<string> bottom = new List<string>();
+					List<string> top = []; ;
+					List<string> bottom = [];
 					for (int j = i - 1; j >= 0; j--)
 					{
 						top.Add(grid.getRow(j));

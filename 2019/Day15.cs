@@ -12,7 +12,7 @@ namespace _2019
 
 		public string SolvePart1(string input = null)
         {
-            Dictionary<General.clsPoint, char> VisitedPlaces = new();
+            Dictionary<General.clsPoint, char> VisitedPlaces = [];
             IntcodeComputer robot = new();
             robot.loadProgram(input);
             General.clsPoint location = new(0, 0);
@@ -29,10 +29,6 @@ namespace _2019
                     default:
                         break;
                 }
-            }
-            if (robot.ReadOutputs().Last()==2)
-            {
-                return "";
             }
         }
 

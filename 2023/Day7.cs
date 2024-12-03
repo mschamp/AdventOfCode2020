@@ -58,7 +58,8 @@ QQQJA 483") == "5905");
 			Highcard
 		}
 
-		static Dictionary<char, int> cardOrder = new Dictionary<char, int> { { 'A', 0 }, { 'K', 1 }, { 'Q', 2 }, { 'J', 3 }, { 'T',4 },
+		static Dictionary<char, int> cardOrder = new()
+        { { 'A', 0 }, { 'K', 1 }, { 'Q', 2 }, { 'J', 3 }, { 'T',4 },
 			{'9',5 }, {'8',6 }, {'7',7 }, {'6',8 }, {'5',9 },{'4',10 }, {'3',11 },{'2',12 } };
 		
 		public class Hand: IComparable<Hand>

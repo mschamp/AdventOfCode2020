@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
-
-namespace _2023
+﻿namespace _2023
 {
-	public class Day15 : PuzzleWithObjectInput<Day15.instruction[]>
+    public class Day15 : PuzzleWithObjectInput<Day15.instruction[]>
 	{
 		public Day15() : base(15, 2023)
 		{
@@ -38,7 +31,7 @@ namespace _2023
 			
 			for (int i = 0; i<256; i++)
 			{
-				boxes.Add(new List<instruction>());
+				boxes.Add([]);
 			}
 			foreach (instruction b in input)
 			{
@@ -49,7 +42,7 @@ namespace _2023
 						List < instruction> Boxlist = boxes[labelHash];
 						if (Boxlist == null)
 						{
-							Boxlist = new List<instruction>();
+							Boxlist = [];
 							boxes[labelHash]=Boxlist;
 						}
 						if (Boxlist.Any(x => x.label == b.label))

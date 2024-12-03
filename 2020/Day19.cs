@@ -10,21 +10,21 @@ namespace _2020
         public Day19() : base(19, 2020) { }
         public Dictionary<int, List<Rule>> DecodeRules(string input)
         {
-            Dictionary<int, List<Rule>> result = new();
+            Dictionary<int, List<Rule>> result = [];
             foreach (string rule in input.Split(Environment.NewLine))
             {
                 string[] parts = rule.Split(":");
                 int number = int.Parse(parts[0]);
                 if (parts[1].Contains('"'))
                 {
-                    result[number] = new List<Rule>() { new EndRule(number, parts[1]) };
+                    result[number] = [new EndRule(number, parts[1])];
                 }
                 else
                 {
                     List<Rule> rules;
                     if (!result.TryGetValue(number, out rules))
                     {
-                        rules = new List<Rule>();
+                        rules = [];
                     }
                     foreach (string option in parts[1].Split("|"))
                     {
@@ -169,9 +169,9 @@ aabbbbbaabbbaaaaaabbbbbababaaaaabbaaabba") == "12");
         {
             if (Message.StartsWith(Text))
             {
-                return new List<string>() { Message.Substring(1) };
+                return [Message.Substring(1)];
             }
-            return new List<string>();
+            return [];
         }
 
         public override string ToString()
@@ -185,7 +185,7 @@ aabbbbbaabbbaaaaaabbbbbababaaaaabbaaabba") == "12");
         public IntermediateRule(int number, string text)
         {
             Number = number;
-            Seq = new List<int>();
+            Seq = [];
             foreach (var item in text.Split(" ",StringSplitOptions.RemoveEmptyEntries))
             {
                 Seq.Add(int.Parse(item));
@@ -196,10 +196,10 @@ aabbbbbaabbbaaaaaabbbbbababaaaaabbaaabba") == "12");
 
         public override List<string> Match(string Message, Dictionary<int, List<Rule>> rules)
         {
-            List<string> options = new() {Message};
+            List<string> options = [Message];
             foreach (int id in Seq)
             {
-                List<string> results = new();
+                List<string> results = [];
                 foreach (Rule rule in rules[id])
                 {
                     foreach (string message in options)
