@@ -22,6 +22,7 @@
 
             foreach (var (y, x) in grid.Keys)
             {
+                if (grid[(y, x)] != 'X') continue;
                 foreach (var (dy, dx) in DELTAS)
                     {
                         string candidate = new string(Enumerable.Range(0, goal.Length)
