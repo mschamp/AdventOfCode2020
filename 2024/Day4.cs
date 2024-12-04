@@ -1,25 +1,100 @@
 ﻿namespace _2024
 {
-    public class Day4 : abstractPuzzleClass
+    public class Day4 : PuzzleWithObjectInput<Dictionary<(int,int),char>>
     {
         public Day4():base(4,2024)
         {
-
+             
         }
 
-        public override string SolvePart1(string input = null)
+        public override string SolvePart1(Dictionary<(int, int), char> grid)
         {
-            throw new NotImplementedException();
+            string goal = "XMAS";
+            int counter = 0;
+
+
+            var DELTAS = new List<(int dy, int dx)>
+        {
+            (-1, -1), (-1, 0), (-1, 1),
+            ( 0, -1),          ( 0, 1),
+            ( 1, -1), ( 1, 0), ( 1, 1)
+        };
+
+            foreach (var (y, x) in grid.Keys)
+            {
+                foreach (var (dy, dx) in DELTAS)
+                    {
+                        string candidate = new string(Enumerable.Range(0, goal.Length)
+                            .Select(i => grid.ContainsKey((y + dy * i, x + dx * i)) ? grid[(y + dy * i, x + dx * i)] : '.')
+                            .ToArray());
+                        if (candidate == goal) counter++;
+                    }
+            }
+
+            return counter.ToString();
         }
 
-        public override string SolvePart2(string input = null)
+        public override string SolvePart2(Dictionary<(int, int), char> grid)
         {
-            throw new NotImplementedException();
+            int counter = 0;
+            foreach (var (y, x) in grid.Keys)
+            {
+                if (grid[(y, x)] == 'A')
+                {
+                    string lr = (grid.ContainsKey((y - 1, x - 1)) ? grid[(y - 1, x - 1)] : '.').ToString() +
+                                (grid.ContainsKey((y + 1, x + 1)) ? grid[(y + 1, x + 1)] : '.').ToString();
+
+                    string rl = (grid.ContainsKey((y - 1, x + 1)) ? grid[(y - 1, x + 1)] : '.').ToString() +
+                                (grid.ContainsKey((y + 1, x - 1)) ? grid[(y + 1, x - 1)] : '.').ToString();
+
+                    if (new HashSet<string> { lr, rl }.IsSubsetOf(new HashSet<string> { "MS", "SM" }))
+                    {
+                        counter++;
+                    }
+                }
+            }
+
+            return counter.ToString();
         }
 
         public override void Tests()
         {
-            throw new NotImplementedException();
+            Debug.Assert(SolvePart1(@"MMMSXXMASM
+MSAMXMSMSA
+AMXSXMAAMM
+MSAMASMSMX
+XMASAMXAMM
+XXAMMXXAMA
+SMSMSASXSS
+SAXAMASAAA
+MAMMMXMMMM
+MXMXAXMASX") == "18");
+            Debug.Assert(SolvePart2(@"MMMSXXMASM
+MSAMXMSMSA
+AMXSXMAAMM
+MSAMASMSMX
+XMASAMXAMM
+XXAMMXXAMA
+SMSMSASXSS
+SAXAMASAAA
+MAMMMXMMMM
+MXMXAXMASX") == "9");
+        }
+
+        protected override Dictionary<(int, int), char> CastToObject(string RawData)
+        {
+            string[] input = RawData.Split(Environment.NewLine).ToArray();
+            Dictionary<(int, int), char> grid = new Dictionary<(int, int), char>();
+
+            for (int y = 0; y < input.Length; y++)
+            {
+                for (int x = 0; x < input[y].Length; x++)
+                {
+                    grid[(y, x)] = input[y][x];
+                }
+            }
+            return grid;
+
         }
     }
 }
