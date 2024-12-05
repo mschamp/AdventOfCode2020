@@ -107,8 +107,8 @@ namespace General
 
         private static void Solve2024()
         {
-            List<IAoC> days = [new _2024.Day4(),
-                new _2024.Day1(), new _2024.Day2(),new _2024.Day3(),new _2024.Day4()];
+            List<IAoC> days = [new _2024.Day5(),
+                new _2024.Day1(), new _2024.Day2(),new _2024.Day3(),new _2024.Day4(),new _2024.Day5()];
 
             Solve(days);
         }

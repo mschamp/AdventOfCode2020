@@ -1,17 +1,16 @@
 ﻿namespace _2024
 {
-    public class Day4 : PuzzleWithObjectInput<Dictionary<(int,int),char>>
+    public class Day4 : PuzzleWithObjectInput<Dictionary<(int, int), char>>
     {
-        public Day4():base(4,2024)
+        public Day4() : base(4, 2024)
         {
-             
+
         }
 
         public override string SolvePart1(Dictionary<(int, int), char> grid)
         {
             string goal = "XMAS";
             int counter = 0;
-
 
             var DELTAS = new List<(int dy, int dx)>
         {
@@ -24,12 +23,12 @@
             {
                 if (grid[(y, x)] != 'X') continue;
                 foreach (var (dy, dx) in DELTAS)
-                    {
-                        string candidate = new string(Enumerable.Range(0, goal.Length)
-                            .Select(i => grid.ContainsKey((y + dy * i, x + dx * i)) ? grid[(y + dy * i, x + dx * i)] : '.')
-                            .ToArray());
-                        if (candidate == goal) counter++;
-                    }
+                {
+                    string candidate = new string(Enumerable.Range(0, goal.Length)
+                        .Select(i => grid.ContainsKey((y + dy * i, x + dx * i)) ? grid[(y + dy * i, x + dx * i)] : '.')
+                        .ToArray());
+                    if (candidate == goal) counter++;
+                }
             }
 
             return counter.ToString();
@@ -38,20 +37,23 @@
         public override string SolvePart2(Dictionary<(int, int), char> grid)
         {
             int counter = 0;
+            HashSet<string> options = new HashSet<string> { "MS", "SM" };
             foreach (var (y, x) in grid.Keys)
             {
-                if (grid[(y, x)] == 'A')
+                if (grid[(y, x)] != 'A') continue;
+                HashSet<string> foundValues = new HashSet<string>
                 {
-                    string lr = (grid.ContainsKey((y - 1, x - 1)) ? grid[(y - 1, x - 1)] : '.').ToString() +
-                                (grid.ContainsKey((y + 1, x + 1)) ? grid[(y + 1, x + 1)] : '.').ToString();
+                    ""+
+                    (grid.ContainsKey((y - 1, x - 1)) ? grid[(y - 1, x - 1)] : '.') +
+                    (grid.ContainsKey((y + 1, x + 1)) ? grid[(y + 1, x + 1)] : '.'),
+                    ""+
+                    (grid.ContainsKey((y - 1, x + 1)) ? grid[(y - 1, x + 1)] : '.') +
+                    (grid.ContainsKey((y + 1, x - 1)) ? grid[(y + 1, x - 1)] : '.')
+                };
 
-                    string rl = (grid.ContainsKey((y - 1, x + 1)) ? grid[(y - 1, x + 1)] : '.').ToString() +
-                                (grid.ContainsKey((y + 1, x - 1)) ? grid[(y + 1, x - 1)] : '.').ToString();
-
-                    if (new HashSet<string> { lr, rl }.IsSubsetOf(new HashSet<string> { "MS", "SM" }))
-                    {
-                        counter++;
-                    }
+                if (foundValues.IsSubsetOf(options))
+                {
+                    counter++;
                 }
             }
 
