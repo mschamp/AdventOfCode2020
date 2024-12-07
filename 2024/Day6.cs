@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MoreLinq;
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -48,13 +49,8 @@ namespace _2024
         {
             HashSet<clsPoint> orignalPath = getPath(input.obstacles, input.start, input.size);
             orignalPath.Remove(input.start);
-            int counter = 0;
+            int counter = orignalPath.AsParallel().Count(item => getPath(input.obstacles.Add(item), input.start, input.size) == null) ;
 
-            Parallel.ForEach(orignalPath, item =>
-            {
-                if (getPath(input.obstacles.Add(item), input.start, input.size) == null) counter++;
-            }
-            );
             return counter.ToString();
         }
 
@@ -110,7 +106,7 @@ namespace _2024
             }
 
             
-            return (ImmutableHashSet.Create(obstacles.ToArray()), start,size);
+            return (obstacles.ToImmutableHashSet(), start,size);
         }
     }
 }
