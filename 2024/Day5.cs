@@ -109,7 +109,7 @@
             string[] parts = RawData.Split(Environment.NewLine+Environment.NewLine);
             HashSet<(int,int)> rules = parts[0].Split(Environment.NewLine).Select(x=>x.Split('|')).Select(x=> (int.Parse(x[0]), int.Parse(x[1]))).ToHashSet();
 
-            List<List<int>> updates = parts[1].Split(Environment.NewLine).Select(x => x.Split(',')).Select(x => x.Select(y => int.Parse(y)).ToList()).ToList();
+            List<List<int>> updates = parts[1].Split(Environment.NewLine).Select(x => x.Split(',')).Select(x => x.Select(int.Parse).ToList()).ToList();
 
             return (rules, updates);
         }

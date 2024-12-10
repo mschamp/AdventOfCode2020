@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _2024
+﻿namespace _2024
 {
     public class Day7 : PuzzleWithObjectArrayInput<long[]>
     {
@@ -16,12 +9,16 @@ namespace _2024
 
         public override string SolvePart1(long[][] input)
         {
-            return input.Where(x => IsPossible(x[1..], x[0],true,true,false)).Sum(x => x[0]).ToString();
+            return input.Where(x => IsPossible(x[1..], x[0],true,true,false))
+                .Sum(x => x[0])
+                .ToString();
         }
 
         public override string SolvePart2(long[][] input)
         {
-            return input.Where(x => IsPossible(x[1..], x[0], true, true, true)).Sum(x => x[0]).ToString();
+            return input.Where(x => IsPossible(x[1..], x[0], true, true, true))
+                .Sum(x => x[0])
+                .ToString();
         }
 
         private bool IsPossible(long[] terms, long goal, bool Multiply, bool Sum, bool Concat)
@@ -29,7 +26,7 @@ namespace _2024
             if (terms.Length == 1) return terms[0] == goal;
             long last = terms[terms.Length - 1];
             long[] otherTerms = terms[0..(terms.Length - 1)];
-            if (Multiply&& goal%last==0 && IsPossible(otherTerms,goal/last,Multiply,Sum,Concat))return true;
+            if (Multiply && last != 0 && goal%last==0 && IsPossible(otherTerms,goal/last,Multiply,Sum,Concat))return true;
             if (Sum&&goal-last>0 && IsPossible(otherTerms,goal-last, Multiply, Sum, Concat))return true;
             if (Concat)
             {
@@ -67,7 +64,9 @@ namespace _2024
 
         protected override long[] CastToObject(string RawData)
         {
-            return RawData.Split([':', ' '], StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToArray();
+            return RawData.Split([':', ' '], StringSplitOptions.RemoveEmptyEntries)
+                .Select(long.Parse)
+                .ToArray();
         }
     }
 }

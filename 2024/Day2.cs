@@ -10,7 +10,7 @@ namespace _2024
 
         public override string SolvePart1(int[][] input)
         {
-            int count = input.Count(x => Safe(x));
+            int count = input.Count(Safe);
 
             return count.ToString();
         }
@@ -64,7 +64,7 @@ namespace _2024
 
         protected override int[] CastToObject(string RawData)
         {
-            return RawData.Split(' ').Select(x=> int.Parse(x)).ToArray();
+            return RawData.Split(' ').Select(int.Parse).ToArray();
         }
     }
 }
