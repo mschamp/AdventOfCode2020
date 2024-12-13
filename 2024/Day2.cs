@@ -1,7 +1,4 @@
-﻿using General;
-using System.Linq;
-
-namespace _2024
+﻿namespace _2024
 {
     public class Day2 : PuzzleWithObjectArrayInput<int[]>
     {
