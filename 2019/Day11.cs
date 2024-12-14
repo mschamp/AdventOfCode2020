@@ -25,7 +25,7 @@ namespace _2019
                 {
                     if (robot.GetColor((int)j,(int)i)==1)
                     {
-                        result += "#";
+                        result += General.Constants.charConstants.White;
                     }
                     else
                     {

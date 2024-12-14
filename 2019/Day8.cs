@@ -43,7 +43,7 @@ namespace _2019
                     {
                         if (layers[l].GetValue(j, i) == 1)
                         {
-                            result += "X";
+                            result += General.Constants.charConstants.White;
                             break;
                         }
                         else if (layers[l].GetValue(j, i) == 0)

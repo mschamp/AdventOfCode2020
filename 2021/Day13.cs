@@ -71,7 +71,7 @@ namespace _2021
             {
                 for (int i = 0; i <= MaxX; i++)
                 {
-                    result += input.dots.Contains(new clsPoint(i, j)) ? "#": " ";
+                    result += input.dots.Contains(new clsPoint(i, j)) ? General.Constants.charConstants.White : " ";
                 }
                 result += Environment.NewLine;
             }

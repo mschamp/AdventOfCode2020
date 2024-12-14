@@ -110,7 +110,7 @@ namespace General
             List<IAoC> days = [new _2024.Day14(),
                 new _2024.Day1(), new _2024.Day2(),new _2024.Day3(),new _2024.Day4(),new _2024.Day5(),
             new _2024.Day6(),new _2024.Day7(),new _2024.Day8(),new _2024.Day9(),new _2024.Day10(),
-            new _2024.Day11(),new _2024.Day12(),new _2024.Day13()];
+            new _2024.Day11(),new _2024.Day12(),new _2024.Day13(),new _2024.Day14()];
 
             Solve(days);
         }

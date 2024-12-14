@@ -2,7 +2,7 @@
 
 namespace _2024
 {
-    public class Day13:PuzzleWithObjectInput<(double x1, double y1, double x2, double y2, double rx, double ry)[]>
+    public class Day13:PuzzleWithObjectArrayInput<(double x1, double y1, double x2, double y2, double rx, double ry)>
 
     {
         public Day13():base(13,2024)
@@ -33,7 +33,9 @@ namespace _2024
         {
             Debug.Assert(SolvePart1(@"Button A: X+94, Y+34
 Button B: X+22, Y+67
-Prize: X=8400, Y=5400") == "280");
+Prize: X=8400, Y=5400
+
+") == "280");
 
             Debug.Assert(SolvePart1(@"Button A: X+94, Y+34
 Button B: X+22, Y+67
@@ -52,14 +54,15 @@ Button B: X+27, Y+71
 Prize: X=18641, Y=10279") == "480");
         }
 
-        protected override (double x1, double y1, double x2, double y2, double rx, double ry)[] CastToObject(string RawData)
-        {
-            Regex rgx = new Regex(@".*X\+(\d+).*Y\+(\d+)\r\n.*X\+(\d+).*Y\+(\d+)\r\n.*X=(\d+).*Y=(\d+)", RegexOptions.Multiline | RegexOptions.Compiled);
-            var mt = rgx.Matches(RawData);
+        Regex rgx = new Regex(@".*X\+(\d+).*Y\+(\d+)\r\n.*X\+(\d+).*Y\+(\d+)\r\n.*X=(\d+).*Y=(\d+)", RegexOptions.Multiline | RegexOptions.Compiled);
 
-            return mt.Select(mt => (double.Parse(mt.Groups[1].Value), double.Parse(mt.Groups[2].Value),
+        protected override (double x1, double y1, double x2, double y2, double rx, double ry) CastToObject(string RawData)
+        {
+           var mt = rgx.Match(RawData);
+
+            return (double.Parse(mt.Groups[1].Value), double.Parse(mt.Groups[2].Value),
                 double.Parse(mt.Groups[3].Value), double.Parse(mt.Groups[4].Value),
-                double.Parse(mt.Groups[5].Value), double.Parse(mt.Groups[6].Value))).ToArray();
+                double.Parse(mt.Groups[5].Value), double.Parse(mt.Groups[6].Value));
         }
     }
 }
