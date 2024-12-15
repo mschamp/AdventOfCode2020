@@ -22,7 +22,7 @@ namespace _2024
             }
 
             Dictionary<(bool top, bool left), int> counters = new Dictionary<(bool top, bool left), int>{ { (false, false),0},{ (false, true), 0 },
-            { (true, false),0},{ (true, true), 0 }};
+                                                                                                          { (true, false),0},{ (true, true), 0 }};
 
             for (int i = 0; i<input.Length;i++)
             {
