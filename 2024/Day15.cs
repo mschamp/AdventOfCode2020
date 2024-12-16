@@ -2,14 +2,14 @@
 
 namespace _2024
 {
-    public class Day15:PuzzleWithObjectInput<(HashSet<clsPoint> walls, HashSet<Day15.box> boxes, clsPoint robot, List<char> Instructions, (int x, int y) size )>
+    public class Day15:PuzzleWithObjectInput<(HashSet<(int X,int Y)> walls, HashSet<Day15.box> boxes, clsPoint robot, List<char> Instructions, (int x, int y) size )>
     {
         public Day15():base(15,2024)
         {
             
         }
 
-        public override string SolvePart1((HashSet<clsPoint> walls, HashSet<box> boxes, clsPoint robot, List<char> Instructions, (int x, int y) size) input)
+        public override string SolvePart1((HashSet<(int X, int Y)> walls, HashSet<box> boxes, clsPoint robot, List<char> Instructions, (int x, int y) size) input)
         {
             foreach (var instruction in input.Instructions)
             {
@@ -23,22 +23,18 @@ namespace _2024
             return input.boxes.Sum(x=> CalculatePosition(x,input.size)).ToString();
         }
 
-        public override string SolvePart2((HashSet<clsPoint> walls, HashSet<box> boxes, clsPoint robot, List<char> Instructions, (int x, int y) size) input)
+        public override string SolvePart2((HashSet<(int X, int Y)> walls, HashSet<box> boxes, clsPoint robot, List<char> Instructions, (int x, int y) size) input)
         {
-            HashSet<clsPoint> scaledWalls = new();
+            HashSet<(int X, int Y)> scaledWalls = new();
             foreach (var item in input.walls)
             {
-                scaledWalls.Add(new clsPoint(item.X * 2, item.Y));
-                scaledWalls.Add(new clsPoint(item.X * 2+1, item.Y));
+                scaledWalls.Add((item.X * 2, item.Y));
+                scaledWalls.Add((item.X * 2+1, item.Y));
             }
 
-            HashSet<box> scaledBoxes = new();
-            foreach (var item in input.boxes)
-            {
-                scaledBoxes.Add(new box(item.X * 2, item.Y,2,1));
-            }
-
+            HashSet<box> scaledBoxes = input.boxes.Select(item=> new box(item.X * 2, item.Y, 2, 1)).ToHashSet();
             input.robot = new clsPoint(2 * input.robot.X, input.robot.Y);
+
 
             foreach (var instruction in input.Instructions)
             {
@@ -52,13 +48,13 @@ namespace _2024
             return scaledBoxes.Sum(x => CalculatePosition(x, input.size)).ToString();
         }
 
-        private bool TryMove(HashSet<clsPoint> walls, HashSet<box> boxes, clsPoint robot, char Instruction,
+        private bool TryMove(HashSet<(int X, int Y)> walls, HashSet<box> boxes, clsPoint robot, char Instruction,
             out HashSet<box> NewBoxes,out clsPoint newRobot)
         {
             newRobot = robot.Move(Instruction,1).First();
             NewBoxes = boxes.ToHashSet();
 
-            if(walls.Contains(newRobot)) return false;
+            if(walls.Contains(((int)newRobot.X, (int)newRobot.Y))) return false;
             Queue<box> boxesToMove = new Queue<box>();
             boxes.Intersect([newRobot]).ForEach(x=> boxesToMove.Enqueue((box)x));
 
@@ -68,7 +64,7 @@ namespace _2024
             while(boxesToMove.TryDequeue(out box box))
             {
                box newb = box.Move(Instruction, 1).Select(x=> new box(x.X,x.Y, box.Sx,box.Sy)).First();
-               if (walls.Contains(newb)) return false;
+               if (walls.Contains(((int)newb.X,(int)newb.Y))) return false;
                ToRemove.Add(box);
                ToAdd.Add(newb);
                boxes.Intersect([newb]).ForEach(x => boxesToMove.Enqueue(x));
@@ -87,22 +83,22 @@ namespace _2024
             return true;
         }
 
-        private bool TryMove2(HashSet<clsPoint> walls, HashSet<box> boxes, clsPoint robot, char Instruction,
+        private bool TryMove2(HashSet<(int X, int Y)> walls, HashSet<box> boxes, clsPoint robot, char Instruction,
            out HashSet<box> NewBoxes, out clsPoint newRobot)
         {
             newRobot = robot.Move(Instruction, 1).First();
             NewBoxes = boxes.ToHashSet();
 
-            if (walls.Contains(newRobot)) return false;
+            if (walls.Contains(((int)newRobot.X,(int)newRobot.Y))) return false;
             Queue<box> boxesToMove = new Queue<box>();
 
-            Dictionary<clsPoint, box> lookup = new();
+            Dictionary<(int X, int Y), box> lookup = new();
             foreach (var box1 in boxes)
             {
                 box1.UsedLocations().ForEach(x => lookup.Add(x, box1));               
             }
 
-            if (lookup.TryGetValue(newRobot, out box collision)) boxesToMove.Enqueue(collision);
+            if (lookup.TryGetValue(((int)newRobot.X, (int)newRobot.Y), out box collision)) boxesToMove.Enqueue(collision);
 
             HashSet<box> ToRemove = new();
             HashSet<box> ToAdd = new();
@@ -117,13 +113,11 @@ namespace _2024
                 ToRemove.Add(box);
                 ToAdd.Add(newb);
 
-                HashSet<box> TempToMove = new();
                 foreach(var loc in newb.UsedLocations())
                 {
-                    if (lookup.TryGetValue(loc,out box collision2)&&collision2!=box) TempToMove.Add(collision2);
+                    if (lookup.TryGetValue(loc,out box collision2)&&collision2!=box) boxesToMove.Enqueue(collision2);
                 }
 
-                TempToMove.ForEach(x=>boxesToMove.Enqueue(x));
             }
 
             foreach (box newb in ToRemove)
@@ -213,11 +207,11 @@ vvv<<^>^v^^><<>>><>^<<><^vv^^<>vvv<>><^^v>^>vv<>v<<<<v<^v>^<^^>>>^<v<v
 v^^>>><<^^<>>^v^<v^vv<>v^<<>^<^v^v><^<<<><<^<v><v<>vv>>v><v^<vv<>v^<<^") == "9021");
         }
 
-        protected override (HashSet<clsPoint> walls, HashSet<box> boxes, clsPoint robot, List<char> Instructions, (int x, int y) size) CastToObject(string RawData)
+        protected override (HashSet<(int X, int Y)> walls, HashSet<box> boxes, clsPoint robot, List<char> Instructions, (int x, int y) size) CastToObject(string RawData)
         {
             string[] parts = RawData.Split(Environment.NewLine+Environment.NewLine);
 
-            HashSet<clsPoint> walls = new();
+            HashSet < (int X, int Y) > walls = new();
             HashSet<box> boxes = new();
             clsPoint robot=null;
 
@@ -230,7 +224,7 @@ v^^>>><<^^<>>^v^<v^vv<>v^<<>^<^v^v><^<<<><<^<v><v<>vv>>v><v^<vv<>v^<<^") == "902
                     switch (grid[y][x])
                     {
                         case '#':
-                            walls.Add(new clsPoint(x, grid.Length - y));
+                            walls.Add((x, grid.Length - y));
                             break;
                         case 'O':
                             boxes.Add(new box(x, grid.Length - y,1,1));
@@ -261,7 +255,7 @@ v^^>>><<^^<>>^v^<v^vv<>v^<<>^<^v^v><^<<<><<^<v><v<>vv>>v><v^<vv<>v^<<^") == "902
             public int Sx { get; }
             public int Sy { get; }
 
-            public IEnumerable<clsPoint> UsedLocations()
+            public IEnumerable<(int X,int Y)> UsedLocations()
             {
                 int scX = 1;
                 while (scX <= Sx)
@@ -269,7 +263,7 @@ v^^>>><<^^<>>^v^<v^vv<>v^<<>^<^v^v><^<<<><<^<v><v<>vv>>v><v^<vv<>v^<<^") == "902
                     int scY = 1;
                     while (scY <= Sy)
                     {
-                        yield return new clsPoint(X + scX - 1, Y + scY - 1);
+                        yield return ((int)X + scX - 1, (int)Y + scY - 1);
                         scY++;
                     }
                     scX++;
