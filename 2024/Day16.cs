@@ -51,14 +51,12 @@ namespace _2024
             gScore[start] = 0;
 
             List<((int x, int y, int o) orient, int cost)> TempArrivals = new(); 
-            List<int> costs=new();
 
             while (openSet.TryDequeue(out (int x, int y, int o) cur))
             {
                 if (cur.x==goal.x&&cur.y==goal.y)
                 {
                     TempArrivals.Add((cur, gScore[cur]));
-                    costs.Add(gScore[cur]);
                 }
 
                 foreach ((int x, int y, int o, int cost) item in PossiblePosition(cur,pathways))
@@ -71,7 +69,7 @@ namespace _2024
                         gScore[newPos] = tentGScore;
                         openSet.Enqueue(newPos);
                     }
-                    else if(tentGScore == gScore.GetValueOrDefault(newPos, int.MaxValue))
+                    else if(tentGScore == gScore[newPos])
                     {
                         cameFrom[newPos].Add(cur);
                     }
@@ -79,7 +77,7 @@ namespace _2024
 
             }
 
-            var min = costs.Min();
+            var min = TempArrivals.Min(x=>x.cost);
             arrivals = TempArrivals.Where(x => x.cost == min).Select(x => x.orient).ToHashSet();
             return min;
         }
@@ -115,17 +113,6 @@ namespace _2024
             }
 
             return GoodPositions.Count();
-        }
-
-        private static List<T> reconstruct_path<T>(Dictionary<T, T> cameFrom, T current)
-        {
-            List<T> totalPath = [current];
-            while (cameFrom.TryGetValue(current, out current))
-            {
-                totalPath.Insert(0, current);
-            }
-            return totalPath;
-
         }
 
         public override void Tests()
