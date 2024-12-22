@@ -15,26 +15,29 @@ namespace _2024
         }
         public override string SolvePart1(long[] input)
         {
-            return input.Sum(x => Enumerable.Range(0,2000).Aggregate(x, (x, y) => nextSecret(x))).ToString();
+            return input.AsParallel().Sum(x => Enumerable.Range(0,2000).Aggregate(x, (x, y) => nextSecret(x))).ToString();
         }
 
         private long nextSecret(long n)
         {
             n ^= n * 64;
-            n %= 16777216;
+            n &= 0xFFFFFF;
+            //n %= 16777216;
 
             n ^= n / 32;
-            n %= 16777216;
+            n &= 0xFFFFFF;
+            //n %= 16777216;
 
             n ^= n * 2048;
-            n %= 16777216;
+            n &= 0xFFFFFF;
+            //n %= 16777216;
 
             return n;
         }
 
         public override string SolvePart2(long[] input)
         {
-            Dictionary<(long, long, long, long), long> patternsRoi = new Dictionary<(long, long, long, long), long>();
+            Dictionary<(long, long, long, long), long> patternsRoi = new();
 
             foreach (long init in input)
             {
@@ -60,14 +63,12 @@ namespace _2024
 
             for (int i = 0; i < 2000; i++)
             {
-                long newN = nextSecret(n);
-
                 long b = n % 10;
-                long nb = newN % 10;
+                n = nextSecret(n);
+                long nb = n % 10;
 
                 deltas.Add((nb - b, nb));
 
-                n = newN;
             }
 
             return deltas;

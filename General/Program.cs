@@ -99,8 +99,9 @@ namespace General
 
         private static void Solve2016()
         {
-            List<IAoC> days = [new _2016.Day3(),
-                new _2016.Day1(), new _2016.Day2(),new _2016.Day3()];
+            List<IAoC> days = [new _2016.Day7(),
+                new _2016.Day1(), new _2016.Day2(),new _2016.Day3(),new _2016.Day4(),new _2016.Day5(),
+            new _2016.Day6(),new _2016.Day7()];
 
             Solve(days);
         }
