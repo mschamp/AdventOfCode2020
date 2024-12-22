@@ -125,39 +125,6 @@ namespace _2016
             return list;
         }
 
-        private bool MeetsSslCriteria(List<string> outsideList, List<string> insideList)
-        {
-            bool matchingPairs = false;
-
-            for (int outsideIndex = 0; outsideIndex < outsideList.Count; outsideIndex++)
-            {
-                string outside = outsideList[outsideIndex]; // aba
-                char out1 = outside[0]; // a
-                char out2 = outside[1]; // b
-                char out3 = outside[2]; // a
-
-                for (int insideIndex = 0; insideIndex < insideList.Count; insideIndex++)
-                {
-                    string inside = insideList[insideIndex]; // bab
-                    char in1 = inside[0]; // b
-                    char in2 = inside[1]; // a
-                    char in3 = inside[2]; // b
-
-                    if (out1 == in2 && out2 == in1)
-                    {
-                        matchingPairs = true;
-                        break;
-                    }
-                }
-
-                if (matchingPairs)
-                {
-                    break;
-                }
-            }
-
-            return matchingPairs;
-        }
         private readonly string[] parts;
     }
 }
